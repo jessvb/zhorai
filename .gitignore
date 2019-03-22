@@ -60,7 +60,10 @@ typings/
 # next.js build output
 .next
 
-#python semantic_parser env
+#semantic-parser python env
 semantic-parser/bin
 semantic-parser/include
 semantic-parser/lib
+
+#semantic-parser pycache
+semantic-parser/ccg2lambda/scripts/__pycache__/
