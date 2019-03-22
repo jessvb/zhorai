@@ -67,3 +67,6 @@ semantic-parser/lib
 
 #semantic-parser pycache
 semantic-parser/ccg2lambda/scripts/__pycache__/
+
+# pycache
+*pycache*
