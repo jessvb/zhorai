@@ -1,0 +1,1193 @@
+copying parser data from the source distribution
+
+selecting feature types, applying cutoff and sorting
+
+creating feature lexicon
+
+creating rules file
+
+creating config file
+creating forest files in /tmp/forests.rev
+forests 0 of 18 at sentence 0 on nlp0 pid 26378
+forests 5 of 18 at sentence 11005 on nlp5 pid 13989
+forests 3 of 18 at sentence 6603 on nlp7 pid 27727
+forests 4 of 18 at sentence 8804 on nlp7 pid 27728
+forests 12 of 18 at sentence 26412 on nlp4 pid 23189
+forests 11 of 18 at sentence 24211 on nlp4 pid 23188
+forests 6 of 18 at sentence 13206 on nlp5 pid 13990
+forests 15 of 18 at sentence 33015 on nlp1 pid 15862
+forests 7 of 18 at sentence 15407 on nlp3 pid 16088
+forests 16 of 18 at sentence 35216 on nlp1 pid 15863
+forests 17 of 18 at sentence 37417 on nlp0 pid 26377
+forests 8 of 18 at sentence 17608 on nlp3 pid 16089
+forests 10 of 18 at sentence 22010 on nlp6 pid 12464
+forests 2 of 18 at sentence 4402 on nlp8 pid 31125
+forests 1 of 18 at sentence 2201 on nlp8 pid 31124
+forests 9 of 18 at sentence 19809 on nlp6 pid 12463
+forests 13 of 18 at sentence 28613 on nlp2 pid 30747
+forests 14 of 18 at sentence 30814 on nlp2 pid 30748
+creating weights file
+tree_gis 0 of 18 on nlp0 pid 26656
+tree_gis 1 of 18 on nlp8 pid 31314
+tree_gis 2 of 18 on nlp8 pid 31315
+tree_gis 3 of 18 on nlp7 pid 28174
+tree_gis 4 of 18 on nlp7 pid 28175
+tree_gis 5 of 18 on nlp5 pid 14252
+tree_gis 6 of 18 on nlp5 pid 14253
+tree_gis 7 of 18 on nlp3 pid 16353
+tree_gis 8 of 18 on nlp3 pid 16354
+tree_gis 9 of 18 on nlp6 pid 12725
+tree_gis 11 of 18 on nlp4 pid 23379
+tree_gis 10 of 18 on nlp6 pid 12726
+tree_gis 12 of 18 on nlp4 pid 23380
+tree_gis 14 of 18 on nlp2 pid 31007
+tree_gis 15 of 18 on nlp1 pid 16053
+tree_gis 16 of 18 on nlp1 pid 16054
+tree_gis 13 of 18 on nlp2 pid 31006
+tree_gis 17 of 18 on nlp0 pid 26655
+creating forest files in /tmp/forests.rev
+forests 0 of 18 at sentence 0 on nlp0 pid 26878
+forests 17 of 18 at sentence 37417 on nlp0 pid 26877
+forests 4 of 18 at sentence 8804 on nlp7 pid 28427
+forests 3 of 18 at sentence 6603 on nlp7 pid 28426
+forests 1 of 18 at sentence 2201 on nlp8 pid 31518
+forests 7 of 18 at sentence 15407 on nlp3 pid 16487
+forests 10 of 18 at sentence 22010 on nlp6 pid 12860
+forests 2 of 18 at sentence 4402 on nlp8 pid 31519
+forests 5 of 18 at sentence 11005 on nlp5 pid 14389
+forests 6 of 18 at sentence 13206 on nlp5 pid 14390
+forests 8 of 18 at sentence 17608 on nlp3 pid 16488
+forests 12 of 18 at sentence 26412 on nlp4 pid 23591
+forests 11 of 18 at sentence 24211 on nlp4 pid 23590
+forests 9 of 18 at sentence 19809 on nlp6 pid 12859
+forests 13 of 18 at sentence 28613 on nlp2 pid 31143
+forests 14 of 18 at sentence 30814 on nlp2 pid 31144
+forests 16 of 18 at sentence 35216 on nlp1 pid 16265
+forests 15 of 18 at sentence 33015 on nlp1 pid 16264
+forests 7 of 18 done on nlp3 pid 16487
+forests 5 of 18 done on nlp5 pid 14389
+forests 11 of 18 done on nlp4 pid 23590
+forests 10 of 18 done on nlp6 pid 12860
+forests 1 of 18 done on nlp8 pid 31518
+forests 14 of 18 done on nlp2 pid 31144
+forests 17 of 18 done on nlp0 pid 26877
+forests 9 of 18 done on nlp6 pid 12859
+forests 8 of 18 done on nlp3 pid 16488
+forests 13 of 18 done on nlp2 pid 31143
+forests 4 of 18 done on nlp7 pid 28427
+forests 16 of 18 done on nlp1 pid 16265
+forests 6 of 18 done on nlp5 pid 14390
+forests 3 of 18 done on nlp7 pid 28426
+forests 2 of 18 done on nlp8 pid 31519
+forests 12 of 18 done on nlp4 pid 23591
+forests 0 of 18 done on nlp0 pid 26878
+forests 15 of 18 done on nlp1 pid 16264
+creating weights file
+tree_gis 0 of 18 on nlp0 pid 27088
+tree_gis 1 of 18 on nlp8 pid 31683
+tree_gis 2 of 18 on nlp8 pid 31684
+tree_gis 3 of 18 on nlp7 pid 29051
+tree_gis 4 of 18 on nlp7 pid 29052
+tree_gis 5 of 18 on nlp5 pid 14543
+tree_gis 7 of 18 on nlp3 pid 16644
+tree_gis 8 of 18 on nlp3 pid 16645
+tree_gis 6 of 18 on nlp5 pid 14544
+tree_gis 11 of 18 on nlp4 pid 23753
+tree_gis 9 of 18 on nlp6 pid 13012
+tree_gis 10 of 18 on nlp6 pid 13013
+tree_gis 12 of 18 on nlp4 pid 23754
+tree_gis 15 of 18 on nlp1 pid 16427
+tree_gis 16 of 18 on nlp1 pid 16428
+tree_gis 13 of 18 on nlp2 pid 31305
+tree_gis 14 of 18 on nlp2 pid 31306
+tree_gis 17 of 18 on nlp0 pid 27087
+calculated local forest count: 1963 on nlp3 pid 16644
+calculated local forest count: 2026 on nlp6 pid 13012
+calculated local forest count: 1957 on nlp6 pid 13013
+calculated local forest count: 1982 on nlp8 pid 31683
+calculated local forest count: 2015 on nlp3 pid 16645
+calculated local forest count: 1991 on nlp5 pid 14543
+calculated local forest count: 1992 on nlp7 pid 29052
+calculated local forest count: 1990 on nlp7 pid 29051
+calculated local forest count: 1969 on nlp4 pid 23753
+calculated local forest count: 1968 on nlp2 pid 31306
+calculated local forest count: 1990 on nlp1 pid 16428
+calculated local forest count: 1981 on nlp2 pid 31305
+calculated local forest count: 1972 on nlp5 pid 14544
+calculated local forest count: 1999 on nlp0 pid 27087
+calculated local forest count: 1991 on nlp8 pid 31684
+calculated local forest count: 2008 on nlp1 pid 16427
+calculated local forest count: 1968 on nlp4 pid 23754
+calculated local forest count: 1970 on nlp0 pid 27088
+total number of forests: 35732
+total number of nreject: 1743
+total number of nread: 37475
+init, distrib, sumZ = 28572.8, cp, red, cp, llhood = -513803, pen = 0, obj = 513803
+nfeatures = 482578
+tfeatures = 12292481
+C = 0
+smoothing = gaussian
+alpha = 0.6
+-----------------------------------
+feature memory = 11581872
+0: obj = 513803
+search, distrib, sumZ = 28955, cp, red, cp, llhood = -512220, pen = 0.000180002, obj = 512220
+dumping expectations
+1: obj = 512220
+search, distrib, sumZ = 29195.5, cp, red, cp, llhood = -508850, pen = 0.00100188, obj = 508850
+alpha = 1, phi(alpha) = 508850, phi'(alpha) = -3354.82, CONDITION = 3046.44
+grow, distrib, sumZ = 29437.7, cp, red, cp, llhood = -505510, pen = 0.00258573, obj = 505510
+alpha = 2, phi(alpha) = 505510, phi'(alpha) = -3324.32, CONDITION = 3046.44
+grow, distrib, sumZ = 29927.3, cp, red, cp, llhood = -498924, pen = 0.00803934, obj = 498924
+alpha = 4, phi(alpha) = 498924, phi'(alpha) = -3262.18, CONDITION = 3046.44
+grow, distrib, sumZ = 30927.3, cp, red, cp, llhood = -486131, pen = 0.0280902, obj = 486131
+alpha = 8, phi(alpha) = 486131, phi'(alpha) = -3133.34, CONDITION = 3046.44
+grow, distrib, sumZ = 33015.3, cp, red, cp, llhood = -462150, pen = 0.104767, obj = 462150
+2: obj = 462150
+search, distrib, sumZ = 75806.4, cp, red, cp, llhood = -312250, pen = 7.98388, obj = 312258
+3: obj = 312258
+search, distrib, sumZ = 82854.4, cp, red, cp, llhood = -298275, pen = 11.8728, obj = 298287
+4: obj = 298287
+search, distrib, sumZ = 84425.5, cp, red, cp, llhood = -275984, pen = 13.1772, obj = 275997
+5: obj = 275997
+search, distrib, sumZ = 89149.8, cp, red, cp, llhood = -257474, pen = 17.2891, obj = 257491
+6: obj = 257491
+search, distrib, sumZ = 94842, cp, red, cp, llhood = -241644, pen = 24.4289, obj = 241668
+7: obj = 241668
+search, distrib, sumZ = 101837, cp, red, cp, llhood = -219982, pen = 40.447, obj = 220022
+8: obj = 220022
+search, distrib, sumZ = 108583, cp, red, cp, llhood = -207914, pen = 65.7902, obj = 207980
+9: obj = 207980
+search, distrib, sumZ = 109470, cp, red, cp, llhood = -201776, pen = 72.1639, obj = 201848
+10: obj = 201848
+search, distrib, sumZ = 110770, cp, red, cp, llhood = -194787, pen = 85.5067, obj = 194873
+11: obj = 194873
+search, distrib, sumZ = 111021, cp, red, cp, llhood = -188578, pen = 102.771, obj = 188681
+12: obj = 188681
+search, distrib, sumZ = 113265, cp, red, cp, llhood = -183192, pen = 132.213, obj = 183324
+13: obj = 183324
+search, distrib, sumZ = 117088, cp, red, cp, llhood = -177723, pen = 156.82, obj = 177880
+14: obj = 177880
+search, distrib, sumZ = 119690, cp, red, cp, llhood = -173987, pen = 170.144, obj = 174158
+15: obj = 174158
+search, distrib, sumZ = 123219, cp, red, cp, llhood = -167868, pen = 200.536, obj = 168069
+16: obj = 168069
+search, distrib, sumZ = 126708, cp, red, cp, llhood = -164894, pen = 253.343, obj = 165147
+17: obj = 165147
+search, distrib, sumZ = 126515, cp, red, cp, llhood = -159798, pen = 268.977, obj = 160067
+18: obj = 160067
+search, distrib, sumZ = 126353, cp, red, cp, llhood = -157153, pen = 279.28, obj = 157433
+19: obj = 157433
+search, distrib, sumZ = 125411, cp, red, cp, llhood = -155192, pen = 300.919, obj = 155493
+20: obj = 155493
+search, distrib, sumZ = 126116, cp, red, cp, llhood = -153333, pen = 323.817, obj = 153656
+21: obj = 153656
+search, distrib, sumZ = 127418, cp, red, cp, llhood = -151523, pen = 352.08, obj = 151875
+22: obj = 151875
+search, distrib, sumZ = 130100, cp, red, cp, llhood = -149132, pen = 391.24, obj = 149523
+23: obj = 149523
+search, distrib, sumZ = 131617, cp, red, cp, llhood = -149376, pen = 470.357, obj = 149847
+zoom, distrib, sumZ = 130765, cp, red, cp, llhood = -147665, pen = 429.164, obj = 148095
+alpha = 0.5, phi(alpha) = 148095, phi'(alpha) = 352.048, CONDITION = 5474.79
+24: obj = 148095
+search, distrib, sumZ = 133329, cp, red, cp, llhood = -145430, pen = 463.891, obj = 145894
+25: obj = 145894
+search, distrib, sumZ = 134747, cp, red, cp, llhood = -143646, pen = 493.179, obj = 144139
+26: obj = 144139
+search, distrib, sumZ = 135578, cp, red, cp, llhood = -141736, pen = 536.493, obj = 142273
+27: obj = 142273
+search, distrib, sumZ = 137294, cp, red, cp, llhood = -140265, pen = 603.68, obj = 140869
+28: obj = 140869
+search, distrib, sumZ = 137014, cp, red, cp, llhood = -138594, pen = 620.3, obj = 139214
+29: obj = 139214
+search, distrib, sumZ = 137301, cp, red, cp, llhood = -136890, pen = 655.016, obj = 137545
+30: obj = 137545
+search, distrib, sumZ = 138629, cp, red, cp, llhood = -135627, pen = 698.292, obj = 136326
+31: obj = 136326
+search, distrib, sumZ = 142568, cp, red, cp, llhood = -133078, pen = 797.465, obj = 133876
+32: obj = 133876
+search, distrib, sumZ = 145923, cp, red, cp, llhood = -136503, pen = 950.006, obj = 137453
+zoom, distrib, sumZ = 144107, cp, red, cp, llhood = -132493, pen = 870.704, obj = 133364
+alpha = 0.5, phi(alpha) = 133364, phi'(alpha) = 3646.86, CONDITION = 5130.05
+33: obj = 133364
+search, distrib, sumZ = 145579, cp, red, cp, llhood = -131175, pen = 888.838, obj = 132064
+34: obj = 132064
+search, distrib, sumZ = 146246, cp, red, cp, llhood = -130671, pen = 896.97, obj = 131568
+35: obj = 131568
+search, distrib, sumZ = 146875, cp, red, cp, llhood = -129889, pen = 914.704, obj = 130804
+36: obj = 130804
+search, distrib, sumZ = 147477, cp, red, cp, llhood = -128421, pen = 962.554, obj = 129384
+37: obj = 129384
+search, distrib, sumZ = 148940, cp, red, cp, llhood = -126725, pen = 1085.53, obj = 127810
+38: obj = 127810
+search, distrib, sumZ = 148487, cp, red, cp, llhood = -125039, pen = 1160.76, obj = 126199
+39: obj = 126199
+search, distrib, sumZ = 148179, cp, red, cp, llhood = -124012, pen = 1159.54, obj = 125171
+40: obj = 125171
+search, distrib, sumZ = 148221, cp, red, cp, llhood = -123176, pen = 1173.94, obj = 124350
+41: obj = 124350
+search, distrib, sumZ = 149597, cp, red, cp, llhood = -121981, pen = 1223.42, obj = 123204
+42: obj = 123204
+search, distrib, sumZ = 154092, cp, red, cp, llhood = -121308, pen = 1379.86, obj = 122688
+43: obj = 122688
+search, distrib, sumZ = 155060, cp, red, cp, llhood = -119335, pen = 1398.71, obj = 120733
+44: obj = 120733
+search, distrib, sumZ = 155634, cp, red, cp, llhood = -118830, pen = 1405.47, obj = 120235
+45: obj = 120235
+search, distrib, sumZ = 157337, cp, red, cp, llhood = -117865, pen = 1464.83, obj = 119330
+46: obj = 119330
+search, distrib, sumZ = 158875, cp, red, cp, llhood = -117139, pen = 1587.32, obj = 118726
+47: obj = 118726
+search, distrib, sumZ = 160295, cp, red, cp, llhood = -115790, pen = 1654.72, obj = 117445
+48: obj = 117445
+search, distrib, sumZ = 160368, cp, red, cp, llhood = -115031, pen = 1698.33, obj = 116729
+49: obj = 116729
+search, distrib, sumZ = 160428, cp, red, cp, llhood = -114030, pen = 1777.17, obj = 115807
+50: obj = 115807
+search, distrib, sumZ = 161060, cp, red, cp, llhood = -112327, pen = 1928.96, obj = 114256
+51: obj = 114256
+search, distrib, sumZ = 163168, cp, red, cp, llhood = -112007, pen = 2226.47, obj = 114234
+zoom, distrib, sumZ = 162060, cp, red, cp, llhood = -111263, pen = 2073.26, obj = 113336
+alpha = 0.5, phi(alpha) = 113336, phi'(alpha) = -9.81286, CONDITION = 3306.72
+52: obj = 113336
+search, distrib, sumZ = 163068, cp, red, cp, llhood = -110291, pen = 2193.42, obj = 112485
+53: obj = 112485
+search, distrib, sumZ = 164179, cp, red, cp, llhood = -109596, pen = 2265.79, obj = 111862
+54: obj = 111862
+search, distrib, sumZ = 165086, cp, red, cp, llhood = -108657, pen = 2356.97, obj = 111014
+55: obj = 111014
+search, distrib, sumZ = 167112, cp, red, cp, llhood = -107168, pen = 2596.8, obj = 109765
+56: obj = 109765
+search, distrib, sumZ = 167706, cp, red, cp, llhood = -106118, pen = 2729.1, obj = 108847
+57: obj = 108847
+search, distrib, sumZ = 167653, cp, red, cp, llhood = -105496, pen = 2810.98, obj = 108307
+58: obj = 108307
+search, distrib, sumZ = 167329, cp, red, cp, llhood = -105004, pen = 2817.67, obj = 107821
+59: obj = 107821
+search, distrib, sumZ = 167279, cp, red, cp, llhood = -104436, pen = 2848.82, obj = 107285
+60: obj = 107285
+search, distrib, sumZ = 167694, cp, red, cp, llhood = -103787, pen = 2918.27, obj = 106705
+61: obj = 106705
+search, distrib, sumZ = 170540, cp, red, cp, llhood = -102908, pen = 3096.42, obj = 106004
+62: obj = 106004
+search, distrib, sumZ = 171900, cp, red, cp, llhood = -102037, pen = 3263.29, obj = 105300
+63: obj = 105300
+search, distrib, sumZ = 172498, cp, red, cp, llhood = -101560, pen = 3286.75, obj = 104847
+64: obj = 104847
+search, distrib, sumZ = 173915, cp, red, cp, llhood = -100643, pen = 3362.4, obj = 104006
+65: obj = 104006
+search, distrib, sumZ = 174506, cp, red, cp, llhood = -100044, pen = 3476.07, obj = 103521
+66: obj = 103521
+search, distrib, sumZ = 175427, cp, red, cp, llhood = -99153.8, pen = 3653.81, obj = 102808
+67: obj = 102808
+search, distrib, sumZ = 175632, cp, red, cp, llhood = -98265.2, pen = 3834.08, obj = 102099
+68: obj = 102099
+search, distrib, sumZ = 175585, cp, red, cp, llhood = -97509.7, pen = 3972.31, obj = 101482
+69: obj = 101482
+search, distrib, sumZ = 176554, cp, red, cp, llhood = -96962.6, pen = 4108.46, obj = 101071
+70: obj = 101071
+search, distrib, sumZ = 176717, cp, red, cp, llhood = -96363.6, pen = 4122.31, obj = 100486
+71: obj = 100486
+search, distrib, sumZ = 177611, cp, red, cp, llhood = -95919.3, pen = 4154.31, obj = 100074
+72: obj = 100074
+search, distrib, sumZ = 178525, cp, red, cp, llhood = -95615.7, pen = 4213.99, obj = 99829.6
+73: obj = 99829.6
+search, distrib, sumZ = 180342, cp, red, cp, llhood = -94789.8, pen = 4379.7, obj = 99169.5
+74: obj = 99169.5
+search, distrib, sumZ = 182378, cp, red, cp, llhood = -94131, pen = 4674.21, obj = 98805.2
+75: obj = 98805.2
+search, distrib, sumZ = 183738, cp, red, cp, llhood = -93163.8, pen = 4815.77, obj = 97979.6
+76: obj = 97979.6
+search, distrib, sumZ = 183286, cp, red, cp, llhood = -92834, pen = 4807.8, obj = 97641.8
+77: obj = 97641.8
+search, distrib, sumZ = 183067, cp, red, cp, llhood = -92184.6, pen = 4890.71, obj = 97075.3
+78: obj = 97075.3
+search, distrib, sumZ = 183138, cp, red, cp, llhood = -91843.8, pen = 5124.38, obj = 96968.2
+79: obj = 96968.2
+search, distrib, sumZ = 183631, cp, red, cp, llhood = -91175.3, pen = 5139.4, obj = 96314.7
+80: obj = 96314.7
+search, distrib, sumZ = 184404, cp, red, cp, llhood = -90791.2, pen = 5221.09, obj = 96012.3
+81: obj = 96012.3
+search, distrib, sumZ = 185614, cp, red, cp, llhood = -90286.4, pen = 5383.4, obj = 95669.8
+82: obj = 95669.8
+search, distrib, sumZ = 187065, cp, red, cp, llhood = -89570.6, pen = 5581.01, obj = 95151.6
+83: obj = 95151.6
+search, distrib, sumZ = 190037, cp, red, cp, llhood = -90714.6, pen = 5989.01, obj = 96703.6
+zoom, distrib, sumZ = 188498, cp, red, cp, llhood = -89263, pen = 5781.72, obj = 95044.7
+alpha = 0.5, phi(alpha) = 95044.7, phi'(alpha) = 1534.22, CONDITION = 1747.78
+84: obj = 95044.7
+search, distrib, sumZ = 189467, cp, red, cp, llhood = -88404.5, pen = 5919.61, obj = 94324.1
+85: obj = 94324.1
+search, distrib, sumZ = 189467, cp, red, cp, llhood = -88231.2, pen = 5915.83, obj = 94147
+86: obj = 94147
+search, distrib, sumZ = 189598, cp, red, cp, llhood = -87840.1, pen = 5934.87, obj = 93775
+87: obj = 93775
+search, distrib, sumZ = 190892, cp, red, cp, llhood = -87176.5, pen = 6072.76, obj = 93249.2
+88: obj = 93249.2
+search, distrib, sumZ = 191742, cp, red, cp, llhood = -86685.2, pen = 6285.94, obj = 92971.1
+89: obj = 92971.1
+search, distrib, sumZ = 192063, cp, red, cp, llhood = -86313.3, pen = 6277.72, obj = 92591.1
+90: obj = 92591.1
+search, distrib, sumZ = 192535, cp, red, cp, llhood = -86023.4, pen = 6330.37, obj = 92353.7
+91: obj = 92353.7
+search, distrib, sumZ = 193252, cp, red, cp, llhood = -85525.8, pen = 6463.65, obj = 91989.4
+92: obj = 91989.4
+search, distrib, sumZ = 194037, cp, red, cp, llhood = -84811.2, pen = 6742.9, obj = 91554.1
+93: obj = 91554.1
+search, distrib, sumZ = 194426, cp, red, cp, llhood = -84150.4, pen = 6988.16, obj = 91138.5
+94: obj = 91138.5
+search, distrib, sumZ = 194100, cp, red, cp, llhood = -83870.1, pen = 7008.73, obj = 90878.9
+95: obj = 90878.9
+search, distrib, sumZ = 193215, cp, red, cp, llhood = -83460.6, pen = 7086.95, obj = 90547.6
+96: obj = 90547.6
+search, distrib, sumZ = 193434, cp, red, cp, llhood = -83325.8, pen = 7238.51, obj = 90564.3
+zoom, distrib, sumZ = 193315, cp, red, cp, llhood = -83249.7, pen = 7162.31, obj = 90412
+alpha = 0.5, phi(alpha) = 90412, phi'(alpha) = 18.9956, CONDITION = 507.451
+97: obj = 90412
+search, distrib, sumZ = 193297, cp, red, cp, llhood = -83022.6, pen = 7218.44, obj = 90241.1
+98: obj = 90241.1
+search, distrib, sumZ = 193767, cp, red, cp, llhood = -82361.6, pen = 7445.38, obj = 89807
+99: obj = 89807
+search, distrib, sumZ = 194109, cp, red, cp, llhood = -82062.3, pen = 7555.04, obj = 89617.4
+100: obj = 89617.4
+search, distrib, sumZ = 194883, cp, red, cp, llhood = -81507.6, pen = 7772.22, obj = 89279.9
+101: obj = 89279.9
+search, distrib, sumZ = 195797, cp, red, cp, llhood = -80916.5, pen = 8036.86, obj = 88953.4
+102: obj = 88953.4
+search, distrib, sumZ = 195766, cp, red, cp, llhood = -80502.3, pen = 8095.27, obj = 88597.6
+103: obj = 88597.6
+search, distrib, sumZ = 195845, cp, red, cp, llhood = -80276.1, pen = 8102.62, obj = 88378.8
+104: obj = 88378.8
+search, distrib, sumZ = 196038, cp, red, cp, llhood = -80082.8, pen = 8142.26, obj = 88225.1
+105: obj = 88225.1
+search, distrib, sumZ = 196627, cp, red, cp, llhood = -79492, pen = 8322.36, obj = 87814.4
+106: obj = 87814.4
+search, distrib, sumZ = 198678, cp, red, cp, llhood = -78928, pen = 8662.68, obj = 87590.7
+107: obj = 87590.7
+search, distrib, sumZ = 198901, cp, red, cp, llhood = -78122, pen = 8938.4, obj = 87060.4
+108: obj = 87060.4
+search, distrib, sumZ = 198487, cp, red, cp, llhood = -77940.4, pen = 8972.59, obj = 86913
+109: obj = 86913
+search, distrib, sumZ = 198682, cp, red, cp, llhood = -77781.3, pen = 9009.45, obj = 86790.8
+110: obj = 86790.8
+search, distrib, sumZ = 198884, cp, red, cp, llhood = -77565.3, pen = 9090.56, obj = 86655.9
+111: obj = 86655.9
+search, distrib, sumZ = 199038, cp, red, cp, llhood = -77250, pen = 9205.54, obj = 86455.5
+112: obj = 86455.5
+search, distrib, sumZ = 199749, cp, red, cp, llhood = -76653.2, pen = 9448.32, obj = 86101.6
+113: obj = 86101.6
+search, distrib, sumZ = 200556, cp, red, cp, llhood = -76406, pen = 9799.55, obj = 86205.6
+zoom, distrib, sumZ = 200140, cp, red, cp, llhood = -76320.6, pen = 9621.98, obj = 85942.6
+alpha = 0.5, phi(alpha) = 85942.6, phi'(alpha) = 108.299, CONDITION = 667.372
+114: obj = 85942.6
+search, distrib, sumZ = 200556, cp, red, cp, llhood = -76035.9, pen = 9696.5, obj = 85732.4
+115: obj = 85732.4
+search, distrib, sumZ = 200648, cp, red, cp, llhood = -75832, pen = 9728.06, obj = 85560.1
+116: obj = 85560.1
+search, distrib, sumZ = 200605, cp, red, cp, llhood = -75619, pen = 9785.74, obj = 85404.7
+117: obj = 85404.7
+search, distrib, sumZ = 200338, cp, red, cp, llhood = -75120.3, pen = 10037, obj = 85157.4
+118: obj = 85157.4
+search, distrib, sumZ = 199734, cp, red, cp, llhood = -74699.1, pen = 10212.3, obj = 84911.4
+119: obj = 84911.4
+search, distrib, sumZ = 199540, cp, red, cp, llhood = -74489.5, pen = 10290.9, obj = 84780.4
+120: obj = 84780.4
+search, distrib, sumZ = 199169, cp, red, cp, llhood = -74258.7, pen = 10378, obj = 84636.7
+121: obj = 84636.7
+search, distrib, sumZ = 198515, cp, red, cp, llhood = -74036.2, pen = 10470.6, obj = 84506.8
+122: obj = 84506.8
+search, distrib, sumZ = 198066, cp, red, cp, llhood = -73663.5, pen = 10633, obj = 84296.5
+123: obj = 84296.5
+search, distrib, sumZ = 198360, cp, red, cp, llhood = -73257.6, pen = 10795.8, obj = 84053.4
+124: obj = 84053.4
+search, distrib, sumZ = 198898, cp, red, cp, llhood = -72989.4, pen = 10859.6, obj = 83849
+125: obj = 83849
+search, distrib, sumZ = 199471, cp, red, cp, llhood = -72882.1, pen = 10853.3, obj = 83735.4
+126: obj = 83735.4
+search, distrib, sumZ = 199855, cp, red, cp, llhood = -72758.8, pen = 10857.8, obj = 83616.6
+127: obj = 83616.6
+search, distrib, sumZ = 200340, cp, red, cp, llhood = -72556.3, pen = 10919.5, obj = 83475.8
+128: obj = 83475.8
+search, distrib, sumZ = 200039, cp, red, cp, llhood = -72351, pen = 10985.2, obj = 83336.2
+129: obj = 83336.2
+search, distrib, sumZ = 199181, cp, red, cp, llhood = -71997.2, pen = 11142.9, obj = 83140.1
+130: obj = 83140.1
+search, distrib, sumZ = 198579, cp, red, cp, llhood = -71726.5, pen = 11261.5, obj = 82988
+131: obj = 82988
+search, distrib, sumZ = 197571, cp, red, cp, llhood = -71347.2, pen = 11500.4, obj = 82847.7
+132: obj = 82847.7
+search, distrib, sumZ = 197488, cp, red, cp, llhood = -71158.4, pen = 11538.6, obj = 82697
+133: obj = 82697
+search, distrib, sumZ = 197935, cp, red, cp, llhood = -71128.5, pen = 11493.8, obj = 82622.2
+134: obj = 82622.2
+search, distrib, sumZ = 198340, cp, red, cp, llhood = -71030.7, pen = 11498.5, obj = 82529.1
+135: obj = 82529.1
+search, distrib, sumZ = 198786, cp, red, cp, llhood = -70807.2, pen = 11596.6, obj = 82403.9
+136: obj = 82403.9
+search, distrib, sumZ = 198902, cp, red, cp, llhood = -70593.1, pen = 11689, obj = 82282.1
+137: obj = 82282.1
+search, distrib, sumZ = 198784, cp, red, cp, llhood = -70379.9, pen = 11804.7, obj = 82184.6
+138: obj = 82184.6
+search, distrib, sumZ = 198463, cp, red, cp, llhood = -70066.8, pen = 11972.5, obj = 82039.3
+139: obj = 82039.3
+search, distrib, sumZ = 198058, cp, red, cp, llhood = -69775.8, pen = 12124.6, obj = 81900.4
+140: obj = 81900.4
+search, distrib, sumZ = 197968, cp, red, cp, llhood = -69606.6, pen = 12181.8, obj = 81788.4
+141: obj = 81788.4
+search, distrib, sumZ = 197811, cp, red, cp, llhood = -69496.7, pen = 12183.9, obj = 81680.6
+142: obj = 81680.6
+search, distrib, sumZ = 197641, cp, red, cp, llhood = -69350.4, pen = 12222.8, obj = 81573.2
+143: obj = 81573.2
+search, distrib, sumZ = 197443, cp, red, cp, llhood = -69111.9, pen = 12321.1, obj = 81432.9
+144: obj = 81432.9
+search, distrib, sumZ = 196967, cp, red, cp, llhood = -68934.2, pen = 12578.2, obj = 81512.4
+zoom, distrib, sumZ = 197198, cp, red, cp, llhood = -68913, pen = 12448.5, obj = 81361.5
+alpha = 0.5, phi(alpha) = 81361.5, phi'(alpha) = 80.5631, CONDITION = 330.73
+145: obj = 81361.5
+search, distrib, sumZ = 197155, cp, red, cp, llhood = -68759.1, pen = 12517, obj = 81276.1
+146: obj = 81276.1
+search, distrib, sumZ = 197188, cp, red, cp, llhood = -68646.7, pen = 12580.1, obj = 81226.9
+147: obj = 81226.9
+search, distrib, sumZ = 197299, cp, red, cp, llhood = -68537.9, pen = 12630.9, obj = 81168.9
+148: obj = 81168.9
+search, distrib, sumZ = 197526, cp, red, cp, llhood = -68311.3, pen = 12723.8, obj = 81035.2
+149: obj = 81035.2
+search, distrib, sumZ = 198020, cp, red, cp, llhood = -68161.9, pen = 12857, obj = 81018.9
+150: obj = 81018.9
+search, distrib, sumZ = 197645, cp, red, cp, llhood = -67981.8, pen = 12867.3, obj = 80849.1
+151: obj = 80849.1
+search, distrib, sumZ = 197423, cp, red, cp, llhood = -67935.4, pen = 12858.9, obj = 80794.2
+152: obj = 80794.2
+search, distrib, sumZ = 197042, cp, red, cp, llhood = -67831.2, pen = 12884.5, obj = 80715.8
+153: obj = 80715.8
+search, distrib, sumZ = 196610, cp, red, cp, llhood = -67694.6, pen = 12930.4, obj = 80625
+154: obj = 80625
+search, distrib, sumZ = 195844, cp, red, cp, llhood = -67469.4, pen = 13083.9, obj = 80553.3
+155: obj = 80553.3
+search, distrib, sumZ = 195729, cp, red, cp, llhood = -67314.2, pen = 13124.5, obj = 80438.7
+156: obj = 80438.7
+search, distrib, sumZ = 195873, cp, red, cp, llhood = -67246.2, pen = 13142.4, obj = 80388.6
+157: obj = 80388.6
+search, distrib, sumZ = 195988, cp, red, cp, llhood = -67103.5, pen = 13206.7, obj = 80310.2
+158: obj = 80310.2
+search, distrib, sumZ = 195753, cp, red, cp, llhood = -67022, pen = 13380.6, obj = 80402.6
+zoom, distrib, sumZ = 195865, cp, red, cp, llhood = -66972.7, pen = 13293, obj = 80265.7
+alpha = 0.5, phi(alpha) = 80265.7, phi'(alpha) = 91.5671, CONDITION = 242.2
+159: obj = 80265.7
+search, distrib, sumZ = 195889, cp, red, cp, llhood = -66866.8, pen = 13325.5, obj = 80192.3
+160: obj = 80192.3
+search, distrib, sumZ = 195804, cp, red, cp, llhood = -66746.6, pen = 13381, obj = 80127.5
+161: obj = 80127.5
+search, distrib, sumZ = 195738, cp, red, cp, llhood = -66664.7, pen = 13421.9, obj = 80086.6
+162: obj = 80086.6
+search, distrib, sumZ = 195675, cp, red, cp, llhood = -66446.5, pen = 13517.9, obj = 79964.3
+163: obj = 79964.3
+search, distrib, sumZ = 195080, cp, red, cp, llhood = -66203.5, pen = 13689.4, obj = 79892.9
+164: obj = 79892.9
+search, distrib, sumZ = 194866, cp, red, cp, llhood = -66054.3, pen = 13721.1, obj = 79775.4
+165: obj = 79775.4
+search, distrib, sumZ = 194837, cp, red, cp, llhood = -66024.7, pen = 13707.1, obj = 79731.8
+166: obj = 79731.8
+search, distrib, sumZ = 194510, cp, red, cp, llhood = -65957.1, pen = 13714.8, obj = 79672
+167: obj = 79672
+search, distrib, sumZ = 194224, cp, red, cp, llhood = -65800.3, pen = 13802.2, obj = 79602.5
+168: obj = 79602.5
+search, distrib, sumZ = 193803, cp, red, cp, llhood = -65677.4, pen = 13857.1, obj = 79534.5
+169: obj = 79534.5
+search, distrib, sumZ = 193244, cp, red, cp, llhood = -65501.4, pen = 13959.2, obj = 79460.5
+170: obj = 79460.5
+search, distrib, sumZ = 192972, cp, red, cp, llhood = -65401.2, pen = 14014.2, obj = 79415.4
+171: obj = 79415.4
+search, distrib, sumZ = 192413, cp, red, cp, llhood = -65214.6, pen = 14143, obj = 79357.6
+172: obj = 79357.6
+search, distrib, sumZ = 192418, cp, red, cp, llhood = -65153.6, pen = 14155.8, obj = 79309.4
+173: obj = 79309.4
+search, distrib, sumZ = 192506, cp, red, cp, llhood = -65141.9, pen = 14129.4, obj = 79271.3
+174: obj = 79271.3
+search, distrib, sumZ = 192519, cp, red, cp, llhood = -65119.2, pen = 14122.1, obj = 79241.3
+175: obj = 79241.3
+search, distrib, sumZ = 192425, cp, red, cp, llhood = -65065.7, pen = 14139.3, obj = 79205
+176: obj = 79205
+search, distrib, sumZ = 192125, cp, red, cp, llhood = -64926.6, pen = 14206.4, obj = 79133
+177: obj = 79133
+search, distrib, sumZ = 191855, cp, red, cp, llhood = -64748.1, pen = 14286.1, obj = 79034.2
+178: obj = 79034.2
+search, distrib, sumZ = 190848, cp, red, cp, llhood = -64571.7, pen = 14503.9, obj = 79075.6
+zoom, distrib, sumZ = 191347, cp, red, cp, llhood = -64587.7, pen = 14393.7, obj = 78981.4
+alpha = 0.5, phi(alpha) = 78981.4, phi'(alpha) = 39.9012, CONDITION = 224.577
+179: obj = 78981.4
+search, distrib, sumZ = 191299, cp, red, cp, llhood = -64451.4, pen = 14456, obj = 78907.4
+180: obj = 78907.4
+search, distrib, sumZ = 191280, cp, red, cp, llhood = -64408.6, pen = 14463.1, obj = 78871.7
+181: obj = 78871.7
+search, distrib, sumZ = 191227, cp, red, cp, llhood = -64332.3, pen = 14497.9, obj = 78830.2
+182: obj = 78830.2
+search, distrib, sumZ = 190878, cp, red, cp, llhood = -64239.7, pen = 14537.1, obj = 78776.8
+183: obj = 78776.8
+search, distrib, sumZ = 190619, cp, red, cp, llhood = -64134.6, pen = 14587, obj = 78721.6
+184: obj = 78721.6
+search, distrib, sumZ = 190079, cp, red, cp, llhood = -64006, pen = 14670.6, obj = 78676.6
+185: obj = 78676.6
+search, distrib, sumZ = 189985, cp, red, cp, llhood = -63957.8, pen = 14679.1, obj = 78636.9
+186: obj = 78636.9
+search, distrib, sumZ = 189954, cp, red, cp, llhood = -63930.1, pen = 14680.5, obj = 78610.6
+187: obj = 78610.6
+search, distrib, sumZ = 189837, cp, red, cp, llhood = -63866.8, pen = 14699, obj = 78565.8
+188: obj = 78565.8
+search, distrib, sumZ = 189660, cp, red, cp, llhood = -63788.7, pen = 14740.8, obj = 78529.5
+189: obj = 78529.5
+search, distrib, sumZ = 189642, cp, red, cp, llhood = -63732.8, pen = 14753.9, obj = 78486.7
+190: obj = 78486.7
+search, distrib, sumZ = 189598, cp, red, cp, llhood = -63672, pen = 14776.2, obj = 78448.2
+191: obj = 78448.2
+search, distrib, sumZ = 189537, cp, red, cp, llhood = -63623.5, pen = 14792, obj = 78415.5
+192: obj = 78415.5
+search, distrib, sumZ = 189240, cp, red, cp, llhood = -63511.2, pen = 14840.3, obj = 78351.5
+193: obj = 78351.5
+search, distrib, sumZ = 188844, cp, red, cp, llhood = -63587.8, pen = 14821.3, obj = 78409.1
+zoom, distrib, sumZ = 189039, cp, red, cp, llhood = -63494.4, pen = 14830.7, obj = 78325.1
+alpha = 0.5, phi(alpha) = 78325.1, phi'(alpha) = 56.9226, CONDITION = 145.446
+194: obj = 78325.1
+search, distrib, sumZ = 188795, cp, red, cp, llhood = -63411.2, pen = 14861.9, obj = 78273.1
+195: obj = 78273.1
+search, distrib, sumZ = 188544, cp, red, cp, llhood = -63379.5, pen = 14866.6, obj = 78246
+196: obj = 78246
+search, distrib, sumZ = 188363, cp, red, cp, llhood = -63355.4, pen = 14865, obj = 78220.4
+197: obj = 78220.4
+search, distrib, sumZ = 187979, cp, red, cp, llhood = -63327.4, pen = 14867.3, obj = 78194.7
+198: obj = 78194.7
+search, distrib, sumZ = 187608, cp, red, cp, llhood = -63282.2, pen = 14879.7, obj = 78161.9
+199: obj = 78161.9
+search, distrib, sumZ = 187381, cp, red, cp, llhood = -63221.9, pen = 14905.5, obj = 78127.4
+200: obj = 78127.4
+search, distrib, sumZ = 187148, cp, red, cp, llhood = -63145.7, pen = 14947.5, obj = 78093.2
+201: obj = 78093.2
+search, distrib, sumZ = 186963, cp, red, cp, llhood = -63053.9, pen = 14995, obj = 78048.8
+202: obj = 78048.8
+search, distrib, sumZ = 186426, cp, red, cp, llhood = -62979.4, pen = 15066.3, obj = 78045.7
+zoom, distrib, sumZ = 186693, cp, red, cp, llhood = -62985.6, pen = 15030.3, obj = 78015.9
+alpha = 0.5, phi(alpha) = 78015.9, phi'(alpha) = -3.36505, CONDITION = 115.352
+203: obj = 78015.9
+search, distrib, sumZ = 186540, cp, red, cp, llhood = -62911.4, pen = 15064.4, obj = 77975.8
+204: obj = 77975.8
+search, distrib, sumZ = 186378, cp, red, cp, llhood = -62863.8, pen = 15077.8, obj = 77941.5
+205: obj = 77941.5
+search, distrib, sumZ = 186000, cp, red, cp, llhood = -62807.5, pen = 15094.5, obj = 77902.1
+206: obj = 77902.1
+search, distrib, sumZ = 185616, cp, red, cp, llhood = -62770, pen = 15100.4, obj = 77870.4
+207: obj = 77870.4
+search, distrib, sumZ = 185146, cp, red, cp, llhood = -62724.5, pen = 15117, obj = 77841.6
+208: obj = 77841.6
+search, distrib, sumZ = 184597, cp, red, cp, llhood = -62674.3, pen = 15141.3, obj = 77815.6
+209: obj = 77815.6
+search, distrib, sumZ = 184450, cp, red, cp, llhood = -62631.6, pen = 15161.7, obj = 77793.4
+210: obj = 77793.4
+search, distrib, sumZ = 184356, cp, red, cp, llhood = -62585.2, pen = 15186.5, obj = 77771.6
+211: obj = 77771.6
+search, distrib, sumZ = 184115, cp, red, cp, llhood = -62545.2, pen = 15208.8, obj = 77754
+212: obj = 77754
+search, distrib, sumZ = 184116, cp, red, cp, llhood = -62516.3, pen = 15214.5, obj = 77730.8
+213: obj = 77730.8
+search, distrib, sumZ = 184118, cp, red, cp, llhood = -62485.7, pen = 15214, obj = 77699.6
+214: obj = 77699.6
+search, distrib, sumZ = 184073, cp, red, cp, llhood = -62465.7, pen = 15212.7, obj = 77678.4
+215: obj = 77678.4
+search, distrib, sumZ = 183860, cp, red, cp, llhood = -62411.2, pen = 15222.2, obj = 77633.4
+216: obj = 77633.4
+search, distrib, sumZ = 183330, cp, red, cp, llhood = -62364.9, pen = 15253.9, obj = 77618.9
+217: obj = 77618.9
+search, distrib, sumZ = 183178, cp, red, cp, llhood = -62311.5, pen = 15259.5, obj = 77571
+218: obj = 77571
+search, distrib, sumZ = 183105, cp, red, cp, llhood = -62290.1, pen = 15264.6, obj = 77554.6
+219: obj = 77554.6
+search, distrib, sumZ = 182927, cp, red, cp, llhood = -62247.2, pen = 15283, obj = 77530.3
+220: obj = 77530.3
+search, distrib, sumZ = 182599, cp, red, cp, llhood = -62195.7, pen = 15309.4, obj = 77505.1
+221: obj = 77505.1
+search, distrib, sumZ = 182525, cp, red, cp, llhood = -62160, pen = 15320.5, obj = 77480.5
+222: obj = 77480.5
+search, distrib, sumZ = 182345, cp, red, cp, llhood = -62129.8, pen = 15330, obj = 77459.8
+223: obj = 77459.8
+search, distrib, sumZ = 182297, cp, red, cp, llhood = -62110.1, pen = 15336.1, obj = 77446.2
+224: obj = 77446.2
+search, distrib, sumZ = 182144, cp, red, cp, llhood = -62089.5, pen = 15340.4, obj = 77429.9
+225: obj = 77429.9
+search, distrib, sumZ = 181612, cp, red, cp, llhood = -62040.9, pen = 15355, obj = 77396
+226: obj = 77396
+search, distrib, sumZ = 181381, cp, red, cp, llhood = -62020.8, pen = 15367.9, obj = 77388.6
+227: obj = 77388.6
+search, distrib, sumZ = 181395, cp, red, cp, llhood = -62006.4, pen = 15366.9, obj = 77373.3
+228: obj = 77373.3
+search, distrib, sumZ = 181335, cp, red, cp, llhood = -61992.3, pen = 15370.5, obj = 77362.7
+229: obj = 77362.7
+search, distrib, sumZ = 181168, cp, red, cp, llhood = -61970.6, pen = 15378.4, obj = 77349
+230: obj = 77349
+search, distrib, sumZ = 180835, cp, red, cp, llhood = -61938.5, pen = 15391.2, obj = 77329.6
+231: obj = 77329.6
+search, distrib, sumZ = 180080, cp, red, cp, llhood = -61885.5, pen = 15412.4, obj = 77297.9
+232: obj = 77297.9
+search, distrib, sumZ = 179318, cp, red, cp, llhood = -61847.6, pen = 15432.6, obj = 77280.2
+233: obj = 77280.2
+search, distrib, sumZ = 179501, cp, red, cp, llhood = -61836.1, pen = 15425.9, obj = 77262
+234: obj = 77262
+search, distrib, sumZ = 179549, cp, red, cp, llhood = -61829.8, pen = 15422.9, obj = 77252.7
+235: obj = 77252.7
+search, distrib, sumZ = 179514, cp, red, cp, llhood = -61816.7, pen = 15423.9, obj = 77240.6
+236: obj = 77240.6
+search, distrib, sumZ = 179208, cp, red, cp, llhood = -61796.1, pen = 15430.4, obj = 77226.5
+237: obj = 77226.5
+search, distrib, sumZ = 179116, cp, red, cp, llhood = -61768.2, pen = 15438.4, obj = 77206.6
+238: obj = 77206.6
+search, distrib, sumZ = 178955, cp, red, cp, llhood = -61748.9, pen = 15446.7, obj = 77195.5
+239: obj = 77195.5
+search, distrib, sumZ = 178761, cp, red, cp, llhood = -61732.4, pen = 15454.8, obj = 77187.2
+240: obj = 77187.2
+search, distrib, sumZ = 178552, cp, red, cp, llhood = -61714.5, pen = 15462.3, obj = 77176.8
+241: obj = 77176.8
+search, distrib, sumZ = 177991, cp, red, cp, llhood = -61691.5, pen = 15474.1, obj = 77165.6
+242: obj = 77165.6
+search, distrib, sumZ = 177768, cp, red, cp, llhood = -61655.2, pen = 15483.2, obj = 77138.5
+243: obj = 77138.5
+search, distrib, sumZ = 177755, cp, red, cp, llhood = -61646.5, pen = 15481.7, obj = 77128.1
+244: obj = 77128.1
+search, distrib, sumZ = 177692, cp, red, cp, llhood = -61638.1, pen = 15480.6, obj = 77118.7
+245: obj = 77118.7
+search, distrib, sumZ = 177588, cp, red, cp, llhood = -61626.1, pen = 15482.3, obj = 77108.4
+246: obj = 77108.4
+search, distrib, sumZ = 177173, cp, red, cp, llhood = -61587.2, pen = 15494.5, obj = 77081.7
+247: obj = 77081.7
+search, distrib, sumZ = 176574, cp, red, cp, llhood = -61589.1, pen = 15503.8, obj = 77092.8
+zoom, distrib, sumZ = 176873, cp, red, cp, llhood = -61571.3, pen = 15499, obj = 77070.3
+alpha = 0.5, phi(alpha) = 77070.3, phi'(alpha) = 11.1186, CONDITION = 50.9921
+248: obj = 77070.3
+search, distrib, sumZ = 176549, cp, red, cp, llhood = -61542.6, pen = 15511.8, obj = 77054.4
+249: obj = 77054.4
+search, distrib, sumZ = 176222, cp, red, cp, llhood = -61517.3, pen = 15523.2, obj = 77040.5
+250: obj = 77040.5
+search, distrib, sumZ = 175529, cp, red, cp, llhood = -61493.7, pen = 15540.1, obj = 77033.8
+251: obj = 77033.8
+search, distrib, sumZ = 175467, cp, red, cp, llhood = -61475.6, pen = 15542.9, obj = 77018.5
+252: obj = 77018.5
+search, distrib, sumZ = 175407, cp, red, cp, llhood = -61467.6, pen = 15542.3, obj = 77009.9
+253: obj = 77009.9
+search, distrib, sumZ = 175130, cp, red, cp, llhood = -61450.8, pen = 15546.5, obj = 76997.2
+254: obj = 76997.2
+search, distrib, sumZ = 174755, cp, red, cp, llhood = -61423.1, pen = 15556.4, obj = 76979.5
+255: obj = 76979.5
+search, distrib, sumZ = 173794, cp, red, cp, llhood = -61488.4, pen = 15597.8, obj = 77086.2
+zoom, distrib, sumZ = 174272, cp, red, cp, llhood = -61413, pen = 15576.6, obj = 76989.6
+alpha = 0.5, phi(alpha) = 76989.6, phi'(alpha) = 106.445, CONDITION = 59.0978
+zoom, distrib, sumZ = 174513, cp, red, cp, llhood = -61407.4, pen = 15566.3, obj = 76973.8
+alpha = 0.25, phi(alpha) = 76973.8, phi'(alpha) = 20.1926, CONDITION = 59.0978
+256: obj = 76973.8
+search, distrib, sumZ = 174262, cp, red, cp, llhood = -61385, pen = 15575.4, obj = 76960.4
+257: obj = 76960.4
+search, distrib, sumZ = 174195, cp, red, cp, llhood = -61374.5, pen = 15579.9, obj = 76954.4
+258: obj = 76954.4
+search, distrib, sumZ = 174098, cp, red, cp, llhood = -61357.3, pen = 15586.6, obj = 76943.9
+259: obj = 76943.9
+search, distrib, sumZ = 173852, cp, red, cp, llhood = -61332.3, pen = 15597, obj = 76929.3
+260: obj = 76929.3
+search, distrib, sumZ = 173279, cp, red, cp, llhood = -61346.6, pen = 15616.5, obj = 76963.1
+zoom, distrib, sumZ = 173564, cp, red, cp, llhood = -61320, pen = 15606.6, obj = 76926.5
+alpha = 0.5, phi(alpha) = 76926.5, phi'(alpha) = 33.6279, CONDITION = 40.1618
+261: obj = 76926.5
+search, distrib, sumZ = 173428, cp, red, cp, llhood = -61302.7, pen = 15608.8, obj = 76911.5
+262: obj = 76911.5
+search, distrib, sumZ = 173294, cp, red, cp, llhood = -61296.4, pen = 15609.1, obj = 76905.5
+263: obj = 76905.5
+search, distrib, sumZ = 173056, cp, red, cp, llhood = -61286.7, pen = 15611.2, obj = 76898
+264: obj = 76898
+search, distrib, sumZ = 172565, cp, red, cp, llhood = -61281.5, pen = 15613.1, obj = 76894.7
+265: obj = 76894.7
+search, distrib, sumZ = 172504, cp, red, cp, llhood = -61267, pen = 15617, obj = 76884
+266: obj = 76884
+search, distrib, sumZ = 172431, cp, red, cp, llhood = -61258.4, pen = 15620, obj = 76878.5
+267: obj = 76878.5
+search, distrib, sumZ = 172304, cp, red, cp, llhood = -61249, pen = 15623.6, obj = 76872.6
+268: obj = 76872.6
+search, distrib, sumZ = 172151, cp, red, cp, llhood = -61235.5, pen = 15626.7, obj = 76862.1
+269: obj = 76862.1
+search, distrib, sumZ = 171507, cp, red, cp, llhood = -61250.2, pen = 15633.6, obj = 76883.8
+zoom, distrib, sumZ = 171828, cp, red, cp, llhood = -61227.8, pen = 15630, obj = 76857.9
+alpha = 0.5, phi(alpha) = 76857.9, phi'(alpha) = 21.6811, CONDITION = 34.8913
+270: obj = 76857.9
+search, distrib, sumZ = 171865, cp, red, cp, llhood = -61212, pen = 15630.8, obj = 76842.8
+271: obj = 76842.8
+search, distrib, sumZ = 171877, cp, red, cp, llhood = -61207.6, pen = 15629.8, obj = 76837.4
+272: obj = 76837.4
+search, distrib, sumZ = 171853, cp, red, cp, llhood = -61200.6, pen = 15629.3, obj = 76830
+273: obj = 76830
+search, distrib, sumZ = 171669, cp, red, cp, llhood = -61189.4, pen = 15630.9, obj = 76820.3
+274: obj = 76820.3
+search, distrib, sumZ = 171168, cp, red, cp, llhood = -61180.3, pen = 15637.6, obj = 76818
+275: obj = 76818
+search, distrib, sumZ = 171179, cp, red, cp, llhood = -61168.6, pen = 15636.2, obj = 76804.7
+276: obj = 76804.7
+search, distrib, sumZ = 171123, cp, red, cp, llhood = -61164.5, pen = 15636.4, obj = 76800.8
+277: obj = 76800.8
+search, distrib, sumZ = 170861, cp, red, cp, llhood = -61156.4, pen = 15637.7, obj = 76794.1
+278: obj = 76794.1
+search, distrib, sumZ = 170545, cp, red, cp, llhood = -61159.1, pen = 15639.7, obj = 76798.8
+zoom, distrib, sumZ = 170703, cp, red, cp, llhood = -61151.7, pen = 15638.7, obj = 76790.4
+alpha = 0.5, phi(alpha) = 76790.4, phi'(alpha) = 4.70651, CONDITION = 17.6199
+279: obj = 76790.4
+search, distrib, sumZ = 170462, cp, red, cp, llhood = -61144.1, pen = 15639.7, obj = 76783.9
+280: obj = 76783.9
+search, distrib, sumZ = 170164, cp, red, cp, llhood = -61136.5, pen = 15640.7, obj = 76777.2
+281: obj = 76777.2
+search, distrib, sumZ = 170027, cp, red, cp, llhood = -61132.2, pen = 15640.8, obj = 76773
+282: obj = 76773
+search, distrib, sumZ = 169787, cp, red, cp, llhood = -61123.6, pen = 15640.9, obj = 76764.5
+283: obj = 76764.5
+search, distrib, sumZ = 169523, cp, red, cp, llhood = -61141, pen = 15638.8, obj = 76779.8
+zoom, distrib, sumZ = 169655, cp, red, cp, llhood = -61121.4, pen = 15639.8, obj = 76761.2
+alpha = 0.5, phi(alpha) = 76761.2, phi'(alpha) = 15.2886, CONDITION = 25.6058
+284: obj = 76761.2
+search, distrib, sumZ = 169585, cp, red, cp, llhood = -61113.1, pen = 15639.9, obj = 76753.1
+285: obj = 76753.1
+search, distrib, sumZ = 169561, cp, red, cp, llhood = -61109.2, pen = 15639.7, obj = 76748.9
+286: obj = 76748.9
+search, distrib, sumZ = 169492, cp, red, cp, llhood = -61105.1, pen = 15639.4, obj = 76744.4
+287: obj = 76744.4
+search, distrib, sumZ = 169214, cp, red, cp, llhood = -61096.1, pen = 15638.5, obj = 76734.6
+288: obj = 76734.6
+search, distrib, sumZ = 168903, cp, red, cp, llhood = -61108.2, pen = 15635.4, obj = 76743.6
+zoom, distrib, sumZ = 169058, cp, red, cp, llhood = -61094, pen = 15636.9, obj = 76730.9
+alpha = 0.5, phi(alpha) = 76730.9, phi'(alpha) = 9.02493, CONDITION = 21.2928
+289: obj = 76730.9
+search, distrib, sumZ = 168737, cp, red, cp, llhood = -61086, pen = 15636.9, obj = 76722.9
+290: obj = 76722.9
+search, distrib, sumZ = 168548, cp, red, cp, llhood = -61081.8, pen = 15636.9, obj = 76718.7
+291: obj = 76718.7
+search, distrib, sumZ = 168170, cp, red, cp, llhood = -61076.4, pen = 15636.4, obj = 76712.7
+292: obj = 76712.7
+search, distrib, sumZ = 167909, cp, red, cp, llhood = -61072.3, pen = 15635.3, obj = 76707.6
+293: obj = 76707.6
+search, distrib, sumZ = 167875, cp, red, cp, llhood = -61068.7, pen = 15634.9, obj = 76703.6
+294: obj = 76703.6
+search, distrib, sumZ = 167750, cp, red, cp, llhood = -61063.6, pen = 15634.1, obj = 76697.6
+295: obj = 76697.6
+search, distrib, sumZ = 167592, cp, red, cp, llhood = -61059.6, pen = 15633.4, obj = 76693
+296: obj = 76693
+search, distrib, sumZ = 166722, cp, red, cp, llhood = -61068.8, pen = 15632.3, obj = 76701
+zoom, distrib, sumZ = 167157, cp, red, cp, llhood = -61057.3, pen = 15632.7, obj = 76690
+alpha = 0.5, phi(alpha) = 76690, phi'(alpha) = 8.0702, CONDITION = 17.9266
+297: obj = 76690
+search, distrib, sumZ = 167028, cp, red, cp, llhood = -61050.1, pen = 15632, obj = 76682.1
+298: obj = 76682.1
+search, distrib, sumZ = 166922, cp, red, cp, llhood = -61046.3, pen = 15631.8, obj = 76678.1
+299: obj = 76678.1
+search, distrib, sumZ = 166816, cp, red, cp, llhood = -61042.7, pen = 15631.5, obj = 76674.2
+300: obj = 76674.2
+search, distrib, sumZ = 166679, cp, red, cp, llhood = -61037.9, pen = 15630.9, obj = 76668.8
+301: obj = 76668.8
+search, distrib, sumZ = 166381, cp, red, cp, llhood = -61031.6, pen = 15629.2, obj = 76660.8
+302: obj = 76660.8
+search, distrib, sumZ = 166082, cp, red, cp, llhood = -61024.6, pen = 15628.1, obj = 76652.7
+303: obj = 76652.7
+search, distrib, sumZ = 165982, cp, red, cp, llhood = -61021.1, pen = 15627.7, obj = 76648.8
+304: obj = 76648.8
+search, distrib, sumZ = 165962, cp, red, cp, llhood = -61018.1, pen = 15626.9, obj = 76645
+305: obj = 76645
+search, distrib, sumZ = 165797, cp, red, cp, llhood = -61014.6, pen = 15626.4, obj = 76641
+306: obj = 76641
+search, distrib, sumZ = 165470, cp, red, cp, llhood = -61008.2, pen = 15625, obj = 76633.2
+307: obj = 76633.2
+search, distrib, sumZ = 165124, cp, red, cp, llhood = -61004, pen = 15623.8, obj = 76627.8
+308: obj = 76627.8
+search, distrib, sumZ = 164919, cp, red, cp, llhood = -61004.4, pen = 15621.9, obj = 76626.3
+309: obj = 76626.3
+search, distrib, sumZ = 164965, cp, red, cp, llhood = -60999.6, pen = 15622.3, obj = 76621.9
+310: obj = 76621.9
+search, distrib, sumZ = 165004, cp, red, cp, llhood = -60998.2, pen = 15622.2, obj = 76620.4
+311: obj = 76620.4
+search, distrib, sumZ = 165023, cp, red, cp, llhood = -60996, pen = 15621.6, obj = 76617.6
+312: obj = 76617.6
+search, distrib, sumZ = 164980, cp, red, cp, llhood = -60993.2, pen = 15620.3, obj = 76613.4
+313: obj = 76613.4
+search, distrib, sumZ = 164845, cp, red, cp, llhood = -60988.3, pen = 15617.5, obj = 76605.8
+314: obj = 76605.8
+search, distrib, sumZ = 164641, cp, red, cp, llhood = -60997, pen = 15612.7, obj = 76609.7
+zoom, distrib, sumZ = 164743, cp, red, cp, llhood = -60986.9, pen = 15615.1, obj = 76602
+alpha = 0.5, phi(alpha) = 76602, phi'(alpha) = 3.88791, CONDITION = 17.158
+315: obj = 76602
+search, distrib, sumZ = 164614, cp, red, cp, llhood = -60983.4, pen = 15613.7, obj = 76597.1
+316: obj = 76597.1
+search, distrib, sumZ = 164562, cp, red, cp, llhood = -60981.4, pen = 15612.7, obj = 76594.1
+317: obj = 76594.1
+search, distrib, sumZ = 164520, cp, red, cp, llhood = -60979.6, pen = 15611.8, obj = 76591.4
+318: obj = 76591.4
+search, distrib, sumZ = 164485, cp, red, cp, llhood = -60980.2, pen = 15609.2, obj = 76589.4
+319: obj = 76589.4
+search, distrib, sumZ = 164472, cp, red, cp, llhood = -60976.5, pen = 15609.2, obj = 76585.7
+320: obj = 76585.7
+search, distrib, sumZ = 164478, cp, red, cp, llhood = -60974.7, pen = 15608.8, obj = 76583.6
+321: obj = 76583.6
+search, distrib, sumZ = 164477, cp, red, cp, llhood = -60972.7, pen = 15607.8, obj = 76580.5
+322: obj = 76580.5
+search, distrib, sumZ = 164276, cp, red, cp, llhood = -60977.6, pen = 15604.8, obj = 76582.4
+zoom, distrib, sumZ = 164376, cp, red, cp, llhood = -60972.2, pen = 15606.3, obj = 76578.5
+alpha = 0.5, phi(alpha) = 76578.5, phi'(alpha) = 1.85724, CONDITION = 8.9718
+323: obj = 76578.5
+search, distrib, sumZ = 164350, cp, red, cp, llhood = -60969.8, pen = 15605.1, obj = 76574.9
+324: obj = 76574.9
+search, distrib, sumZ = 164263, cp, red, cp, llhood = -60968.2, pen = 15603.8, obj = 76572
+325: obj = 76572
+search, distrib, sumZ = 164138, cp, red, cp, llhood = -60967.1, pen = 15602.4, obj = 76569.5
+326: obj = 76569.5
+search, distrib, sumZ = 163925, cp, red, cp, llhood = -60965.2, pen = 15599.9, obj = 76565.2
+327: obj = 76565.2
+search, distrib, sumZ = 163545, cp, red, cp, llhood = -60971.8, pen = 15595.3, obj = 76567.1
+zoom, distrib, sumZ = 163735, cp, red, cp, llhood = -60965.2, pen = 15597.6, obj = 76562.7
+alpha = 0.5, phi(alpha) = 76562.7, phi'(alpha) = 1.88667, CONDITION = 10.3825
+328: obj = 76562.7
+search, distrib, sumZ = 163555, cp, red, cp, llhood = -60962.6, pen = 15595.7, obj = 76558.3
+329: obj = 76558.3
+search, distrib, sumZ = 163510, cp, red, cp, llhood = -60961, pen = 15594.9, obj = 76556
+330: obj = 76556
+search, distrib, sumZ = 163435, cp, red, cp, llhood = -60959.5, pen = 15593.8, obj = 76553.3
+331: obj = 76553.3
+search, distrib, sumZ = 163359, cp, red, cp, llhood = -60962, pen = 15591.7, obj = 76553.7
+zoom, distrib, sumZ = 163397, cp, red, cp, llhood = -60958.9, pen = 15592.7, obj = 76551.7
+alpha = 0.5, phi(alpha) = 76551.7, phi'(alpha) = 0.442053, CONDITION = 6.20048
+332: obj = 76551.7
+search, distrib, sumZ = 163309, cp, red, cp, llhood = -60957.7, pen = 15591.6, obj = 76549.3
+333: obj = 76549.3
+search, distrib, sumZ = 163162, cp, red, cp, llhood = -60956.7, pen = 15590, obj = 76546.7
+334: obj = 76546.7
+search, distrib, sumZ = 162953, cp, red, cp, llhood = -60955.5, pen = 15588, obj = 76543.5
+335: obj = 76543.5
+search, distrib, sumZ = 162580, cp, red, cp, llhood = -60957.6, pen = 15584.8, obj = 76542.5
+336: obj = 76542.5
+search, distrib, sumZ = 162590, cp, red, cp, llhood = -60954.4, pen = 15584.9, obj = 76539.3
+337: obj = 76539.3
+search, distrib, sumZ = 162600, cp, red, cp, llhood = -60953.2, pen = 15585, obj = 76538.2
+338: obj = 76538.2
+search, distrib, sumZ = 162496, cp, red, cp, llhood = -60951.2, pen = 15583.9, obj = 76535.2
+339: obj = 76535.2
+search, distrib, sumZ = 162302, cp, red, cp, llhood = -60952.6, pen = 15581.5, obj = 76534.1
+340: obj = 76534.1
+search, distrib, sumZ = 162171, cp, red, cp, llhood = -60949.7, pen = 15580.2, obj = 76529.9
+341: obj = 76529.9
+search, distrib, sumZ = 162096, cp, red, cp, llhood = -60949.3, pen = 15579.2, obj = 76528.6
+342: obj = 76528.6
+search, distrib, sumZ = 161969, cp, red, cp, llhood = -60949, pen = 15577.5, obj = 76526.5
+343: obj = 76526.5
+search, distrib, sumZ = 161882, cp, red, cp, llhood = -60950.5, pen = 15575, obj = 76525.6
+344: obj = 76525.6
+search, distrib, sumZ = 161840, cp, red, cp, llhood = -60948.6, pen = 15574.8, obj = 76523.3
+345: obj = 76523.3
+search, distrib, sumZ = 161843, cp, red, cp, llhood = -60947.4, pen = 15574.6, obj = 76522
+346: obj = 76522
+search, distrib, sumZ = 161831, cp, red, cp, llhood = -60946.3, pen = 15574.1, obj = 76520.3
+347: obj = 76520.3
+search, distrib, sumZ = 161732, cp, red, cp, llhood = -60944.7, pen = 15572.5, obj = 76517.1
+348: obj = 76517.1
+search, distrib, sumZ = 161456, cp, red, cp, llhood = -60952.4, pen = 15567.3, obj = 76519.8
+zoom, distrib, sumZ = 161594, cp, red, cp, llhood = -60945.6, pen = 15569.9, obj = 76515.5
+alpha = 0.5, phi(alpha) = 76515.5, phi'(alpha) = 2.64105, CONDITION = 8.22702
+349: obj = 76515.5
+search, distrib, sumZ = 161503, cp, red, cp, llhood = -60944.3, pen = 15568.9, obj = 76513.2
+350: obj = 76513.2
+search, distrib, sumZ = 161438, cp, red, cp, llhood = -60943.9, pen = 15568.3, obj = 76512.2
+351: obj = 76512.2
+search, distrib, sumZ = 161347, cp, red, cp, llhood = -60943.5, pen = 15567.3, obj = 76510.8
+352: obj = 76510.8
+search, distrib, sumZ = 161167, cp, red, cp, llhood = -60942.9, pen = 15565, obj = 76507.9
+353: obj = 76507.9
+search, distrib, sumZ = 160895, cp, red, cp, llhood = -60953.9, pen = 15561.2, obj = 76515.1
+zoom, distrib, sumZ = 161031, cp, red, cp, llhood = -60944.7, pen = 15563.1, obj = 76507.7
+alpha = 0.5, phi(alpha) = 76507.7, phi'(alpha) = 7.23699, CONDITION = 7.04045
+zoom, distrib, sumZ = 161099, cp, red, cp, llhood = -60942.8, pen = 15564, obj = 76506.9
+alpha = 0.25, phi(alpha) = 76506.9, phi'(alpha) = -0.290115, CONDITION = 7.04045
+354: obj = 76506.9
+search, distrib, sumZ = 160998, cp, red, cp, llhood = -60942.4, pen = 15562.7, obj = 76505
+355: obj = 76505
+search, distrib, sumZ = 160952, cp, red, cp, llhood = -60941.7, pen = 15561.8, obj = 76503.6
+356: obj = 76503.6
+search, distrib, sumZ = 160866, cp, red, cp, llhood = -60941, pen = 15560.6, obj = 76501.6
+357: obj = 76501.6
+search, distrib, sumZ = 160824, cp, red, cp, llhood = -60940.9, pen = 15559.1, obj = 76500
+358: obj = 76500
+search, distrib, sumZ = 160760, cp, red, cp, llhood = -60939.8, pen = 15558.5, obj = 76498.3
+359: obj = 76498.3
+search, distrib, sumZ = 160706, cp, red, cp, llhood = -60938.9, pen = 15558, obj = 76496.9
+360: obj = 76496.9
+search, distrib, sumZ = 160639, cp, red, cp, llhood = -60938.3, pen = 15557.1, obj = 76495.4
+361: obj = 76495.4
+search, distrib, sumZ = 160427, cp, red, cp, llhood = -60941.1, pen = 15554.4, obj = 76495.5
+zoom, distrib, sumZ = 160533, cp, red, cp, llhood = -60938.5, pen = 15555.7, obj = 76494.2
+alpha = 0.5, phi(alpha) = 76494.2, phi'(alpha) = 0.0540782, CONDITION = 4.22094
+362: obj = 76494.2
+search, distrib, sumZ = 160457, cp, red, cp, llhood = -60937.7, pen = 15554.5, obj = 76492.2
+363: obj = 76492.2
+search, distrib, sumZ = 160396, cp, red, cp, llhood = -60937.2, pen = 15553.6, obj = 76490.8
+364: obj = 76490.8
+search, distrib, sumZ = 160322, cp, red, cp, llhood = -60936.8, pen = 15552.6, obj = 76489.4
+365: obj = 76489.4
+search, distrib, sumZ = 160237, cp, red, cp, llhood = -60936.5, pen = 15551.4, obj = 76487.9
+366: obj = 76487.9
+search, distrib, sumZ = 160040, cp, red, cp, llhood = -60939.9, pen = 15549, obj = 76488.9
+zoom, distrib, sumZ = 160138, cp, red, cp, llhood = -60936.8, pen = 15550.2, obj = 76487
+alpha = 0.5, phi(alpha) = 76487, phi'(alpha) = 0.969199, CONDITION = 4.17159
+367: obj = 76487
+search, distrib, sumZ = 160092, cp, red, cp, llhood = -60936, pen = 15549.5, obj = 76485.5
+368: obj = 76485.5
+search, distrib, sumZ = 160052, cp, red, cp, llhood = -60935.6, pen = 15548.9, obj = 76484.5
+369: obj = 76484.5
+search, distrib, sumZ = 160023, cp, red, cp, llhood = -60935.3, pen = 15548.3, obj = 76483.6
+370: obj = 76483.6
+search, distrib, sumZ = 159901, cp, red, cp, llhood = -60935.7, pen = 15546.8, obj = 76482.5
+371: obj = 76482.5
+search, distrib, sumZ = 159870, cp, red, cp, llhood = -60935.4, pen = 15545.9, obj = 76481.3
+372: obj = 76481.3
+search, distrib, sumZ = 159837, cp, red, cp, llhood = -60934.9, pen = 15545.3, obj = 76480.3
+373: obj = 76480.3
+search, distrib, sumZ = 159744, cp, red, cp, llhood = -60935, pen = 15544.2, obj = 76479.2
+374: obj = 76479.2
+search, distrib, sumZ = 159590, cp, red, cp, llhood = -60936.7, pen = 15542.5, obj = 76479.1
+zoom, distrib, sumZ = 159667, cp, red, cp, llhood = -60935.1, pen = 15543.3, obj = 76478.5
+alpha = 0.5, phi(alpha) = 76478.5, phi'(alpha) = -0.0769504, CONDITION = 2.54606
+375: obj = 76478.5
+search, distrib, sumZ = 159588, cp, red, cp, llhood = -60934.9, pen = 15542.5, obj = 76477.5
+376: obj = 76477.5
+search, distrib, sumZ = 159424, cp, red, cp, llhood = -60934.9, pen = 15540.9, obj = 76475.8
+377: obj = 76475.8
+search, distrib, sumZ = 159366, cp, red, cp, llhood = -60934.9, pen = 15540.2, obj = 76475.1
+378: obj = 76475.1
+search, distrib, sumZ = 159261, cp, red, cp, llhood = -60935, pen = 15538.7, obj = 76473.7
+379: obj = 76473.7
+search, distrib, sumZ = 159134, cp, red, cp, llhood = -60937.1, pen = 15536.3, obj = 76473.4
+380: obj = 76473.4
+search, distrib, sumZ = 159143, cp, red, cp, llhood = -60935.1, pen = 15536.5, obj = 76471.7
+381: obj = 76471.7
+search, distrib, sumZ = 159144, cp, red, cp, llhood = -60934.6, pen = 15536.4, obj = 76471
+382: obj = 76471
+search, distrib, sumZ = 159107, cp, red, cp, llhood = -60934.5, pen = 15535.7, obj = 76470.2
+383: obj = 76470.2
+search, distrib, sumZ = 159032, cp, red, cp, llhood = -60934.8, pen = 15534.4, obj = 76469.2
+384: obj = 76469.2
+search, distrib, sumZ = 158811, cp, red, cp, llhood = -60936.5, pen = 15531.7, obj = 76468.2
+385: obj = 76468.2
+search, distrib, sumZ = 158798, cp, red, cp, llhood = -60935.7, pen = 15531.4, obj = 76467.1
+386: obj = 76467.1
+search, distrib, sumZ = 158762, cp, red, cp, llhood = -60935.4, pen = 15531.1, obj = 76466.5
+387: obj = 76466.5
+search, distrib, sumZ = 158692, cp, red, cp, llhood = -60935.4, pen = 15530.2, obj = 76465.6
+388: obj = 76465.6
+search, distrib, sumZ = 158494, cp, red, cp, llhood = -60939.7, pen = 15526.9, obj = 76466.6
+zoom, distrib, sumZ = 158593, cp, red, cp, llhood = -60936.4, pen = 15528.5, obj = 76464.9
+alpha = 0.5, phi(alpha) = 76464.9, phi'(alpha) = 0.973156, CONDITION = 3.27092
+389: obj = 76464.9
+search, distrib, sumZ = 158492, cp, red, cp, llhood = -60936.5, pen = 15527.2, obj = 76463.7
+390: obj = 76463.7
+search, distrib, sumZ = 158455, cp, red, cp, llhood = -60936.6, pen = 15526.5, obj = 76463.1
+391: obj = 76463.1
+search, distrib, sumZ = 158399, cp, red, cp, llhood = -60936.9, pen = 15525.2, obj = 76462.1
+392: obj = 76462.1
+search, distrib, sumZ = 158288, cp, red, cp, llhood = -60938.5, pen = 15523.2, obj = 76461.7
+393: obj = 76461.7
+search, distrib, sumZ = 158269, cp, red, cp, llhood = -60937.7, pen = 15522.7, obj = 76460.5
+394: obj = 76460.5
+search, distrib, sumZ = 158256, cp, red, cp, llhood = -60937.3, pen = 15522.5, obj = 76459.9
+395: obj = 76459.9
+search, distrib, sumZ = 158214, cp, red, cp, llhood = -60937.3, pen = 15522, obj = 76459.3
+396: obj = 76459.3
+search, distrib, sumZ = 158130, cp, red, cp, llhood = -60937.3, pen = 15521, obj = 76458.2
+397: obj = 76458.2
+search, distrib, sumZ = 157866, cp, red, cp, llhood = -60946.8, pen = 15516.3, obj = 76463.1
+zoom, distrib, sumZ = 157998, cp, red, cp, llhood = -60939.9, pen = 15518.6, obj = 76458.5
+alpha = 0.5, phi(alpha) = 76458.5, phi'(alpha) = 4.86286, CONDITION = 3.44579
+zoom, distrib, sumZ = 158064, cp, red, cp, llhood = -60938.1, pen = 15519.8, obj = 76457.8
+alpha = 0.25, phi(alpha) = 76457.8, phi'(alpha) = 0.521315, CONDITION = 3.44579
+398: obj = 76457.8
+search, distrib, sumZ = 157953, cp, red, cp, llhood = -60938.2, pen = 15518.6, obj = 76456.8
+399: obj = 76456.8
+search, distrib, sumZ = 157879, cp, red, cp, llhood = -60938.4, pen = 15517.7, obj = 76456.1
+400: obj = 76456.1
+search, distrib, sumZ = 157779, cp, red, cp, llhood = -60938.8, pen = 15516.5, obj = 76455.3
+401: obj = 76455.3
+search, distrib, sumZ = 157677, cp, red, cp, llhood = -60939.3, pen = 15515.3, obj = 76454.5
+402: obj = 76454.5
+search, distrib, sumZ = 157547, cp, red, cp, llhood = -60940.8, pen = 15513.4, obj = 76454.2
+403: obj = 76454.2
+search, distrib, sumZ = 157567, cp, red, cp, llhood = -60939.7, pen = 15513.7, obj = 76453.4
+404: obj = 76453.4
+search, distrib, sumZ = 157581, cp, red, cp, llhood = -60939.2, pen = 15513.9, obj = 76453
+405: obj = 76453
+search, distrib, sumZ = 157565, cp, red, cp, llhood = -60938.8, pen = 15513.6, obj = 76452.4
+406: obj = 76452.4
+search, distrib, sumZ = 157439, cp, red, cp, llhood = -60939.4, pen = 15512.1, obj = 76451.5
+407: obj = 76451.5
+search, distrib, sumZ = 157338, cp, red, cp, llhood = -60939.7, pen = 15511, obj = 76450.6
+408: obj = 76450.6
+search, distrib, sumZ = 157304, cp, red, cp, llhood = -60939.5, pen = 15510.6, obj = 76450.2
+409: obj = 76450.2
+search, distrib, sumZ = 157231, cp, red, cp, llhood = -60939.9, pen = 15509.9, obj = 76449.8
+410: obj = 76449.8
+search, distrib, sumZ = 157166, cp, red, cp, llhood = -60940, pen = 15509.3, obj = 76449.3
+411: obj = 76449.3
+search, distrib, sumZ = 157019, cp, red, cp, llhood = -60941.1, pen = 15507.6, obj = 76448.7
+412: obj = 76448.7
+search, distrib, sumZ = 156947, cp, red, cp, llhood = -60941.1, pen = 15507.1, obj = 76448.2
+413: obj = 76448.2
+search, distrib, sumZ = 156991, cp, red, cp, llhood = -60940.5, pen = 15507.4, obj = 76447.9
+414: obj = 76447.9
+search, distrib, sumZ = 157017, cp, red, cp, llhood = -60940.1, pen = 15507.4, obj = 76447.5
+415: obj = 76447.5
+search, distrib, sumZ = 157017, cp, red, cp, llhood = -60940.1, pen = 15507.1, obj = 76447.2
+416: obj = 76447.2
+search, distrib, sumZ = 156963, cp, red, cp, llhood = -60940.4, pen = 15506.1, obj = 76446.6
+417: obj = 76446.6
+search, distrib, sumZ = 156912, cp, red, cp, llhood = -60942.1, pen = 15504.7, obj = 76446.8
+zoom, distrib, sumZ = 156937, cp, red, cp, llhood = -60940.8, pen = 15505.4, obj = 76446.2
+alpha = 0.5, phi(alpha) = 76446.2, phi'(alpha) = 0.267512, CONDITION = 1.51118
+418: obj = 76446.2
+search, distrib, sumZ = 156862, cp, red, cp, llhood = -60941.1, pen = 15504.6, obj = 76445.7
+419: obj = 76445.7
+search, distrib, sumZ = 156774, cp, red, cp, llhood = -60941.5, pen = 15503.7, obj = 76445.3
+420: obj = 76445.3
+search, distrib, sumZ = 156698, cp, red, cp, llhood = -60941.8, pen = 15503, obj = 76444.8
+421: obj = 76444.8
+search, distrib, sumZ = 156616, cp, red, cp, llhood = -60942.1, pen = 15502.2, obj = 76444.3
+422: obj = 76444.3
+search, distrib, sumZ = 156587, cp, red, cp, llhood = -60942, pen = 15501.9, obj = 76443.8
+423: obj = 76443.8
+search, distrib, sumZ = 156539, cp, red, cp, llhood = -60942.2, pen = 15501.2, obj = 76443.3
+424: obj = 76443.3
+search, distrib, sumZ = 156511, cp, red, cp, llhood = -60942.2, pen = 15500.7, obj = 76442.9
+425: obj = 76442.9
+search, distrib, sumZ = 156460, cp, red, cp, llhood = -60942.6, pen = 15499.9, obj = 76442.5
+426: obj = 76442.5
+search, distrib, sumZ = 156371, cp, red, cp, llhood = -60943.2, pen = 15498.8, obj = 76441.9
+427: obj = 76441.9
+search, distrib, sumZ = 156319, cp, red, cp, llhood = -60943.5, pen = 15498.1, obj = 76441.6
+428: obj = 76441.6
+search, distrib, sumZ = 156214, cp, red, cp, llhood = -60944.1, pen = 15496.9, obj = 76441
+429: obj = 76441
+search, distrib, sumZ = 156039, cp, red, cp, llhood = -60946.3, pen = 15495.4, obj = 76441.7
+zoom, distrib, sumZ = 156126, cp, red, cp, llhood = -60944.7, pen = 15496.1, obj = 76440.9
+alpha = 0.5, phi(alpha) = 76440.9, phi'(alpha) = 0.704137, CONDITION = 1.17416
+430: obj = 76440.9
+search, distrib, sumZ = 156093, cp, red, cp, llhood = -60944.7, pen = 15495.7, obj = 76440.4
+431: obj = 76440.4
+search, distrib, sumZ = 156063, cp, red, cp, llhood = -60944.7, pen = 15495.5, obj = 76440.1
+432: obj = 76440.1
+search, distrib, sumZ = 156004, cp, red, cp, llhood = -60944.8, pen = 15495, obj = 76439.8
+433: obj = 76439.8
+search, distrib, sumZ = 155882, cp, red, cp, llhood = -60945.2, pen = 15494, obj = 76439.2
+434: obj = 76439.2
+search, distrib, sumZ = 155731, cp, red, cp, llhood = -60946.2, pen = 15492.4, obj = 76438.6
+435: obj = 76438.6
+search, distrib, sumZ = 155643, cp, red, cp, llhood = -60946.7, pen = 15491.5, obj = 76438.2
+436: obj = 76438.2
+search, distrib, sumZ = 155658, cp, red, cp, llhood = -60946.4, pen = 15491.5, obj = 76438
+437: obj = 76438
+search, distrib, sumZ = 155676, cp, red, cp, llhood = -60946.3, pen = 15491.3, obj = 76437.6
+438: obj = 76437.6
+search, distrib, sumZ = 155564, cp, red, cp, llhood = -60947.7, pen = 15490.1, obj = 76437.8
+zoom, distrib, sumZ = 155620, cp, red, cp, llhood = -60946.7, pen = 15490.7, obj = 76437.4
+alpha = 0.5, phi(alpha) = 76437.4, phi'(alpha) = 0.22339, CONDITION = 0.764344
+439: obj = 76437.4
+search, distrib, sumZ = 155607, cp, red, cp, llhood = -60946.8, pen = 15490.4, obj = 76437.2
+440: obj = 76437.2
+search, distrib, sumZ = 155546, cp, red, cp, llhood = -60947.3, pen = 15489.6, obj = 76436.9
+441: obj = 76436.9
+search, distrib, sumZ = 155485, cp, red, cp, llhood = -60947.7, pen = 15489, obj = 76436.7
+442: obj = 76436.7
+search, distrib, sumZ = 155293, cp, red, cp, llhood = -60949.6, pen = 15487, obj = 76436.6
+zoom, distrib, sumZ = 155389, cp, red, cp, llhood = -60948.4, pen = 15488, obj = 76436.4
+alpha = 0.5, phi(alpha) = 76436.4, phi'(alpha) = -0.0083199, CONDITION = 1.01822
+443: obj = 76436.4
+search, distrib, sumZ = 155263, cp, red, cp, llhood = -60949, pen = 15486.9, obj = 76435.9
+444: obj = 76435.9
+search, distrib, sumZ = 155208, cp, red, cp, llhood = -60949.1, pen = 15486.6, obj = 76435.6
+445: obj = 76435.6
+search, distrib, sumZ = 155144, cp, red, cp, llhood = -60949.2, pen = 15486.1, obj = 76435.3
+446: obj = 76435.3
+search, distrib, sumZ = 155056, cp, red, cp, llhood = -60949.5, pen = 15485.4, obj = 76435
+447: obj = 76435
+search, distrib, sumZ = 154835, cp, red, cp, llhood = -60952.3, pen = 15483.5, obj = 76435.8
+zoom, distrib, sumZ = 154946, cp, red, cp, llhood = -60950.4, pen = 15484.5, obj = 76434.9
+alpha = 0.5, phi(alpha) = 76434.9, phi'(alpha) = 0.881104, CONDITION = 1.08459
+448: obj = 76434.9
+search, distrib, sumZ = 154925, cp, red, cp, llhood = -60950.3, pen = 15484.2, obj = 76434.5
+449: obj = 76434.5
+search, distrib, sumZ = 154910, cp, red, cp, llhood = -60950.4, pen = 15484, obj = 76434.4
+450: obj = 76434.4
+search, distrib, sumZ = 154869, cp, red, cp, llhood = -60950.6, pen = 15483.5, obj = 76434.2
+451: obj = 76434.2
+search, distrib, sumZ = 154786, cp, red, cp, llhood = -60951.1, pen = 15482.8, obj = 76433.8
+452: obj = 76433.8
+search, distrib, sumZ = 154580, cp, red, cp, llhood = -60954, pen = 15481.4, obj = 76435.5
+zoom, distrib, sumZ = 154683, cp, red, cp, llhood = -60951.9, pen = 15482.1, obj = 76434
+alpha = 0.5, phi(alpha) = 76434, phi'(alpha) = 1.63197, CONDITION = 0.962852
+zoom, distrib, sumZ = 154734, cp, red, cp, llhood = -60951.3, pen = 15482.4, obj = 76433.7
+alpha = 0.25, phi(alpha) = 76433.7, phi'(alpha) = 0.28064, CONDITION = 0.962852
+453: obj = 76433.7
+search, distrib, sumZ = 154664, cp, red, cp, llhood = -60951.7, pen = 15481.8, obj = 76433.5
+454: obj = 76433.5
+search, distrib, sumZ = 154629, cp, red, cp, llhood = -60951.8, pen = 15481.6, obj = 76433.3
+455: obj = 76433.3
+search, distrib, sumZ = 154571, cp, red, cp, llhood = -60951.9, pen = 15481.2, obj = 76433.1
+456: obj = 76433.1
+search, distrib, sumZ = 154499, cp, red, cp, llhood = -60952.1, pen = 15480.8, obj = 76432.9
+457: obj = 76432.9
+search, distrib, sumZ = 154486, cp, red, cp, llhood = -60952, pen = 15480.8, obj = 76432.7
+458: obj = 76432.7
+search, distrib, sumZ = 154471, cp, red, cp, llhood = -60951.9, pen = 15480.6, obj = 76432.6
+459: obj = 76432.6
+search, distrib, sumZ = 154436, cp, red, cp, llhood = -60952, pen = 15480.4, obj = 76432.4
+460: obj = 76432.4
+search, distrib, sumZ = 154317, cp, red, cp, llhood = -60952.6, pen = 15479.5, obj = 76432.1
+461: obj = 76432.1
+search, distrib, sumZ = 154275, cp, red, cp, llhood = -60952.5, pen = 15479.3, obj = 76431.8
+462: obj = 76431.8
+search, distrib, sumZ = 154258, cp, red, cp, llhood = -60952.5, pen = 15479.1, obj = 76431.6
+463: obj = 76431.6
+search, distrib, sumZ = 154208, cp, red, cp, llhood = -60952.7, pen = 15478.8, obj = 76431.4
+464: obj = 76431.4
+search, distrib, sumZ = 154133, cp, red, cp, llhood = -60952.9, pen = 15478.4, obj = 76431.3
+465: obj = 76431.3
+search, distrib, sumZ = 154017, cp, red, cp, llhood = -60953.4, pen = 15477.7, obj = 76431
+466: obj = 76431
+search, distrib, sumZ = 153990, cp, red, cp, llhood = -60953.2, pen = 15477.6, obj = 76430.9
+467: obj = 76430.9
+search, distrib, sumZ = 153952, cp, red, cp, llhood = -60953.2, pen = 15477.6, obj = 76430.7
+468: obj = 76430.7
+search, distrib, sumZ = 153910, cp, red, cp, llhood = -60953.1, pen = 15477.5, obj = 76430.6
+469: obj = 76430.6
+search, distrib, sumZ = 153735, cp, red, cp, llhood = -60953.7, pen = 15476.9, obj = 76430.6
+zoom, distrib, sumZ = 153822, cp, red, cp, llhood = -60953.3, pen = 15477.2, obj = 76430.4
+alpha = 0.5, phi(alpha) = 76430.4, phi'(alpha) = -0.0201307, CONDITION = 0.581825
+470: obj = 76430.4
+search, distrib, sumZ = 153731, cp, red, cp, llhood = -60953.4, pen = 15476.8, obj = 76430.2
+471: obj = 76430.2
+search, distrib, sumZ = 153716, cp, red, cp, llhood = -60953.4, pen = 15476.7, obj = 76430.1
+472: obj = 76430.1
+search, distrib, sumZ = 153689, cp, red, cp, llhood = -60953.4, pen = 15476.5, obj = 76429.9
+473: obj = 76429.9
+search, distrib, sumZ = 153658, cp, red, cp, llhood = -60953.5, pen = 15476.3, obj = 76429.7
+474: obj = 76429.7
+search, distrib, sumZ = 153594, cp, red, cp, llhood = -60953.7, pen = 15475.9, obj = 76429.6
+475: obj = 76429.6
+search, distrib, sumZ = 153566, cp, red, cp, llhood = -60953.6, pen = 15475.8, obj = 76429.4
+476: obj = 76429.4
+search, distrib, sumZ = 153559, cp, red, cp, llhood = -60953.5, pen = 15475.8, obj = 76429.3
+477: obj = 76429.3
+search, distrib, sumZ = 153514, cp, red, cp, llhood = -60953.5, pen = 15475.7, obj = 76429.2
+478: obj = 76429.2
+search, distrib, sumZ = 153491, cp, red, cp, llhood = -60953.4, pen = 15475.7, obj = 76429.1
+479: obj = 76429.1
+search, distrib, sumZ = 153447, cp, red, cp, llhood = -60953.4, pen = 15475.5, obj = 76428.9
+480: obj = 76428.9
+search, distrib, sumZ = 153409, cp, red, cp, llhood = -60953.4, pen = 15475.4, obj = 76428.8
+481: obj = 76428.8
+search, distrib, sumZ = 153360, cp, red, cp, llhood = -60953.4, pen = 15475.2, obj = 76428.6
+482: obj = 76428.6
+search, distrib, sumZ = 153309, cp, red, cp, llhood = -60954, pen = 15475, obj = 76429
+zoom, distrib, sumZ = 153334, cp, red, cp, llhood = -60953.5, pen = 15475.1, obj = 76428.6
+alpha = 0.5, phi(alpha) = 76428.6, phi'(alpha) = 0.382859, CONDITION = 0.495595
+483: obj = 76428.6
+BFGS has converged, objective = 76428.6

@@ -1,0 +1,1 @@
+/Users/galit/Desktop/Spring2019/AI in edu/zhorai/semantic-parser/ccg2lambda/candc-1.00

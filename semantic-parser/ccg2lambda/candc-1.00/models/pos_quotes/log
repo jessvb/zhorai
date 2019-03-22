@@ -1,0 +1,505 @@
+reading features in
+reading contexts in
+calculating correction constant maxC
+max_active = 18
+initialising BFGS solver
+0: obj = 2.11561e+06
+search, alpha = 1, phi(alpha) = 2.11299e+06, phi'(alpha) = -2618.95, COND = 2362.27
+grow, alpha = 2, phi(alpha) = 2.11037e+06, phi'(alpha) = -2613.12, COND = 2362.27
+grow, alpha = 4, phi(alpha) = 2.10516e+06, phi'(alpha) = -2601.34, COND = 2362.27
+grow, alpha = 8, phi(alpha) = 2.0948e+06, phi'(alpha) = -2577.32, COND = 2362.27
+grow, alpha = 16, phi(alpha) = 2.07438e+06, phi'(alpha) = -2527.44, COND = 2362.27
+grow, alpha = 32, phi(alpha) = 2.03478e+06, phi'(alpha) = -2420.48, COND = 2362.27
+grow
+1: obj = 1.96107e+06
+search
+2: obj = 1.50132e+06
+search
+3: obj = 1.37903e+06
+search
+4: obj = 1.29969e+06
+search
+5: obj = 1.20763e+06
+search
+6: obj = 1.14084e+06
+search
+7: obj = 1.09286e+06
+search
+8: obj = 1.06239e+06
+search
+9: obj = 1.02704e+06
+search
+10: obj = 1.00233e+06
+search
+11: obj = 975229
+search
+12: obj = 956800
+search
+13: obj = 941448
+search
+14: obj = 924343
+search
+15: obj = 907220
+search
+16: obj = 894766
+search
+17: obj = 881372
+search
+18: obj = 866534
+search
+19: obj = 852158
+search
+20: obj = 835794
+search
+21: obj = 821701
+search
+22: obj = 812117
+search
+23: obj = 798524
+search
+24: obj = 784386
+search
+25: obj = 775768
+search
+26: obj = 755917
+search, zoom
+alpha = 0.5, phi(alpha) = 748019, phi'(alpha) = 9128.19, COND = 36891.8
+
+27: obj = 748019
+search
+28: obj = 738243
+search
+29: obj = 726185
+search
+30: obj = 713801
+search
+31: obj = 692734
+search, zoom
+alpha = 0.5, phi(alpha) = 684691, phi'(alpha) = 25600.2, COND = 52873.9
+
+32: obj = 684691
+search
+33: obj = 667861
+search
+34: obj = 658855
+search
+35: obj = 648756
+search
+36: obj = 633742
+search, zoom
+alpha = 0.5, phi(alpha) = 620716, phi'(alpha) = -4571.28, COND = 41218.3
+
+37: obj = 620716
+search
+38: obj = 600771
+search
+39: obj = 585601
+search
+40: obj = 568130
+search
+41: obj = 553743
+search
+42: obj = 541190
+search
+43: obj = 520736
+search
+44: obj = 506691
+search
+45: obj = 483802
+search
+46: obj = 476720
+search
+47: obj = 457013
+search
+48: obj = 449719
+search
+49: obj = 437265
+search
+50: obj = 421720
+search
+51: obj = 409926
+search
+52: obj = 392965
+search
+53: obj = 383446
+search
+54: obj = 367631
+search
+55: obj = 354639
+search
+56: obj = 340965
+search
+57: obj = 329115
+search
+58: obj = 318281
+search
+59: obj = 307788
+search
+60: obj = 299745
+search
+61: obj = 292277
+search
+62: obj = 283517
+search
+63: obj = 273834
+search
+64: obj = 267762
+search
+65: obj = 260238
+search
+66: obj = 253451
+search
+67: obj = 247454
+search
+68: obj = 244757
+search
+69: obj = 239427
+search
+70: obj = 237182
+search
+71: obj = 233729
+search
+72: obj = 230020
+search
+73: obj = 229002
+search
+74: obj = 224911
+search
+75: obj = 223729
+search
+76: obj = 221627
+search
+77: obj = 218531
+search
+78: obj = 216836
+search
+79: obj = 214714
+search
+80: obj = 213647
+search
+81: obj = 212189
+search
+82: obj = 211888
+search
+83: obj = 209632
+search
+84: obj = 208925
+search
+85: obj = 208021
+search
+86: obj = 206727
+search, zoom
+alpha = 0.5, phi(alpha) = 206242, phi'(alpha) = 2306.75, COND = 3783.91
+
+87: obj = 206242
+search
+88: obj = 204978
+search
+89: obj = 204470
+search
+90: obj = 203815
+search
+91: obj = 202716
+search
+92: obj = 202376
+search
+93: obj = 201052
+search
+94: obj = 200641
+search
+95: obj = 200078
+search
+96: obj = 199692
+search
+97: obj = 199103
+search
+98: obj = 198718
+search
+99: obj = 198394
+search
+100: obj = 197824
+search, zoom
+alpha = 0.5, phi(alpha) = 197609, phi'(alpha) = 808.648, COND = 1477.99
+
+101: obj = 197609
+search
+102: obj = 197061
+search
+103: obj = 196839
+search
+104: obj = 196586
+search
+105: obj = 196386
+search
+106: obj = 196176
+search
+107: obj = 195928
+search
+108: obj = 195722
+search, zoom
+alpha = 0.5, phi(alpha) = 195578, phi'(alpha) = 183.325, COND = 680.6
+
+109: obj = 195578
+search
+110: obj = 195313
+search
+111: obj = 195194
+search
+112: obj = 195022
+search
+113: obj = 194812
+search, zoom
+alpha = 0.5, phi(alpha) = 194736, phi'(alpha) = 263.682, COND = 507.099
+
+114: obj = 194736
+search
+115: obj = 194570
+search
+116: obj = 194492
+search
+117: obj = 194381
+search, zoom
+alpha = 0.5, phi(alpha) = 194317, phi'(alpha) = 23.819, COND = 252.444
+
+118: obj = 194317
+search
+119: obj = 194231
+search
+120: obj = 194148
+search
+121: obj = 194078
+search
+122: obj = 193955
+search, zoom
+alpha = 0.5, phi(alpha) = 193890, phi'(alpha) = 24.2641, COND = 255.149
+
+123: obj = 193890
+search
+124: obj = 193839
+search
+125: obj = 193791
+search
+126: obj = 193735
+search
+127: obj = 193624
+search, zoom
+alpha = 0.5, phi(alpha) = 193630, phi'(alpha) = 265.111, COND = 214.528
+, zoom
+alpha = 0.25, phi(alpha) = 193596, phi'(alpha) = 11.2803, COND = 214.528
+
+128: obj = 193596
+search
+129: obj = 193534
+search
+130: obj = 193496
+search
+131: obj = 193485
+search
+132: obj = 193428
+search
+133: obj = 193403
+search
+134: obj = 193378
+search
+135: obj = 193350
+search, zoom
+alpha = 0.5, phi(alpha) = 193369, phi'(alpha) = 231.255, COND = 141.044
+, zoom
+alpha = 0.25, phi(alpha) = 193335, phi'(alpha) = 37.5332, COND = 141.044
+
+136: obj = 193335
+search
+137: obj = 193295
+search
+138: obj = 193273
+search
+139: obj = 193249
+search
+140: obj = 193214
+search, zoom
+alpha = 0.5, phi(alpha) = 193200, phi'(alpha) = 38.5916, COND = 87.3893
+
+141: obj = 193200
+search
+142: obj = 193166
+search
+143: obj = 193150
+search
+144: obj = 193131
+search
+145: obj = 193129
+search
+146: obj = 193100
+search
+147: obj = 193090
+search
+148: obj = 193079
+search
+149: obj = 193067
+search, zoom
+alpha = 0.5, phi(alpha) = 193061, phi'(alpha) = 32.6733, COND = 52.5858
+
+150: obj = 193061
+search
+151: obj = 193042
+search
+152: obj = 193034
+search
+153: obj = 193026
+search
+154: obj = 193010
+search, zoom
+alpha = 0.5, phi(alpha) = 193002, phi'(alpha) = 17.8501, COND = 45.4303
+
+155: obj = 193002
+search
+156: obj = 192983
+search
+157: obj = 192975
+search
+158: obj = 192965
+search
+159: obj = 192954
+search, zoom
+alpha = 0.5, phi(alpha) = 192947, phi'(alpha) = 6.68131, COND = 29.6838
+
+160: obj = 192947
+search
+161: obj = 192939
+search
+162: obj = 192934
+search
+163: obj = 192928
+search
+164: obj = 192920
+search
+165: obj = 192912
+search
+166: obj = 192907
+search
+167: obj = 192903
+search
+168: obj = 192897
+search
+169: obj = 192888
+search
+170: obj = 192887
+search
+171: obj = 192881
+search
+172: obj = 192878
+search
+173: obj = 192873
+search
+174: obj = 192869
+search
+175: obj = 192865
+search
+176: obj = 192862
+search
+177: obj = 192859
+search
+178: obj = 192856
+search, zoom
+alpha = 0.5, phi(alpha) = 192854, phi'(alpha) = 1.41912, COND = 9.54618
+
+179: obj = 192854
+search
+180: obj = 192851
+search
+181: obj = 192849
+search
+182: obj = 192846
+search
+183: obj = 192844
+search
+184: obj = 192842
+search
+185: obj = 192839
+search
+186: obj = 192837
+search
+187: obj = 192836
+search
+188: obj = 192833
+search, zoom
+alpha = 0.5, phi(alpha) = 192832, phi'(alpha) = 2.84213, COND = 7.23002
+
+189: obj = 192832
+search
+190: obj = 192830
+search
+191: obj = 192829
+search
+192: obj = 192828
+search
+193: obj = 192826
+search
+194: obj = 192825
+search
+195: obj = 192824
+search
+196: obj = 192823
+search
+197: obj = 192822
+search
+198: obj = 192821
+search
+199: obj = 192819
+search
+200: obj = 192818
+search
+201: obj = 192818
+search, zoom
+alpha = 0.5, phi(alpha) = 192817, phi'(alpha) = 1.00484, COND = 2.25742
+
+202: obj = 192817
+search
+203: obj = 192816
+search
+204: obj = 192816
+search
+205: obj = 192815
+search
+206: obj = 192814
+search, zoom
+alpha = 0.5, phi(alpha) = 192814, phi'(alpha) = 2.84923, COND = 2.53899
+, zoom
+alpha = 0.25, phi(alpha) = 192814, phi'(alpha) = 0.0136877, COND = 2.53899
+
+207: obj = 192814
+search
+208: obj = 192813
+search
+209: obj = 192813
+search
+210: obj = 192812
+search
+211: obj = 192811
+search, zoom
+alpha = 0.5, phi(alpha) = 192810, phi'(alpha) = 0.258671, COND = 2.01126
+
+212: obj = 192810
+search
+213: obj = 192810
+search
+214: obj = 192809
+search
+215: obj = 192809
+search, zoom
+alpha = 0.5, phi(alpha) = 192809, phi'(alpha) = -0.0176406, COND = 1.0778
+
+216: obj = 192809
+search
+217: obj = 192808
+search
+218: obj = 192808
+search
+219: obj = 192808
+search
+220: obj = 192808
+search
+221: obj = 192807
+search
+222: obj = 192807
+BFGS has converged, objective = 192807

@@ -1,0 +1,495 @@
+reading features in
+reading contexts in
+calculating correction constant maxC
+max_active = 18
+initialising BFGS solver
+0: obj = 2.37612e+06
+search, alpha = 1, phi(alpha) = 2.37285e+06, phi'(alpha) = -3270.73, COND = 2950.86
+grow, alpha = 2, phi(alpha) = 2.36958e+06, phi'(alpha) = -3262.66, COND = 2950.86
+grow, alpha = 4, phi(alpha) = 2.36307e+06, phi'(alpha) = -3246.35, COND = 2950.86
+grow, alpha = 8, phi(alpha) = 2.35015e+06, phi'(alpha) = -3213, COND = 2950.86
+grow, alpha = 16, phi(alpha) = 2.32472e+06, phi'(alpha) = -3143.41, COND = 2950.86
+grow, alpha = 32, phi(alpha) = 2.27561e+06, phi'(alpha) = -2993.06, COND = 2950.86
+grow
+1: obj = 2.18513e+06
+search
+2: obj = 1.6728e+06
+search
+3: obj = 1.51998e+06
+search
+4: obj = 1.42051e+06
+search
+5: obj = 1.30534e+06
+search
+6: obj = 1.22173e+06
+search
+7: obj = 1.17555e+06
+search
+8: obj = 1.1319e+06
+search
+9: obj = 1.09021e+06
+search
+10: obj = 1.05115e+06
+search
+11: obj = 1.0236e+06
+search
+12: obj = 1.00229e+06
+search
+13: obj = 981025
+search
+14: obj = 956517
+search
+15: obj = 937688
+search
+16: obj = 925044
+search
+17: obj = 915282
+search
+18: obj = 898229
+search
+19: obj = 886419
+search
+20: obj = 869879
+search
+21: obj = 860122
+search
+22: obj = 848295
+search
+23: obj = 837497
+search
+24: obj = 823069
+search
+25: obj = 811548
+search
+26: obj = 800048
+search
+27: obj = 788682
+search
+28: obj = 775324
+search
+29: obj = 764143
+search
+30: obj = 753440
+search
+31: obj = 744450
+search
+32: obj = 734020
+search
+33: obj = 721210
+search
+34: obj = 701851
+search
+35: obj = 686473
+search
+36: obj = 673159
+search
+37: obj = 661026
+search
+38: obj = 649715
+search
+39: obj = 633895
+search
+40: obj = 618304
+search
+41: obj = 604720
+search
+42: obj = 588807
+search
+43: obj = 573439
+search
+44: obj = 558160
+search
+45: obj = 540976
+search
+46: obj = 529236
+search
+47: obj = 513075
+search
+48: obj = 497513
+search
+49: obj = 487127
+search
+50: obj = 471809
+search
+51: obj = 453266
+search
+52: obj = 435169
+search
+53: obj = 420508
+search
+54: obj = 405764
+search
+55: obj = 392318
+search
+56: obj = 378581
+search
+57: obj = 368564
+search
+58: obj = 356489
+search
+59: obj = 351863
+search
+60: obj = 338760
+search
+61: obj = 334995
+search
+62: obj = 324783
+search
+63: obj = 318155
+search
+64: obj = 311883
+search
+65: obj = 302598
+search
+66: obj = 298365
+search
+67: obj = 288999
+search
+68: obj = 285344
+search
+69: obj = 279171
+search, zoom
+alpha = 0.5, phi(alpha) = 276082, phi'(alpha) = 1501.61, COND = 12328.8
+
+70: obj = 276082
+search
+71: obj = 272061
+search
+72: obj = 269111
+search
+73: obj = 266243
+search
+74: obj = 261432
+search
+75: obj = 259641
+search
+76: obj = 253392
+search
+77: obj = 251825
+search
+78: obj = 249146
+search
+79: obj = 247473
+search
+80: obj = 244649
+search
+81: obj = 243217
+search
+82: obj = 241624
+search
+83: obj = 239557
+search
+84: obj = 239172
+search
+85: obj = 236883
+search
+86: obj = 236162
+search
+87: obj = 234823
+search
+88: obj = 233022
+search
+89: obj = 230800
+search
+90: obj = 229165
+search
+91: obj = 228208
+search
+92: obj = 227313
+search
+93: obj = 226499
+search
+94: obj = 225716
+search
+95: obj = 224802
+search
+96: obj = 224312
+search
+97: obj = 223669
+search
+98: obj = 222755
+search
+99: obj = 221654
+search
+100: obj = 221342
+search
+101: obj = 220557
+search
+102: obj = 219757
+search, zoom
+alpha = 0.5, phi(alpha) = 219326, phi'(alpha) = 5.78925, COND = 1547.3
+
+103: obj = 219326
+search
+104: obj = 218653
+search
+105: obj = 218094
+search
+106: obj = 217693
+search
+107: obj = 217351
+search
+108: obj = 216849
+search
+109: obj = 216473
+search
+110: obj = 216023
+search
+111: obj = 215674
+search
+112: obj = 215449
+search
+113: obj = 215230
+search
+114: obj = 214968
+search
+115: obj = 214774
+search
+116: obj = 214409
+search
+117: obj = 214092
+search
+118: obj = 213894
+search
+119: obj = 213700
+search
+120: obj = 213501
+search
+121: obj = 213245
+search
+122: obj = 213068
+search
+123: obj = 212924
+search
+124: obj = 212781
+search
+125: obj = 212651
+search
+126: obj = 212506
+search
+127: obj = 212425
+search
+128: obj = 212317
+search
+129: obj = 212135
+search
+130: obj = 212063
+search
+131: obj = 211909
+search
+132: obj = 211830
+search
+133: obj = 211735
+search
+134: obj = 211575
+search, zoom
+alpha = 0.5, phi(alpha) = 211548, phi'(alpha) = 304.191, COND = 376.298
+
+135: obj = 211548
+search
+136: obj = 211386
+search
+137: obj = 211327
+search
+138: obj = 211255
+search
+139: obj = 211235
+search
+140: obj = 211151
+search
+141: obj = 211109
+search
+142: obj = 211058
+search
+143: obj = 210971
+search, zoom
+alpha = 0.5, phi(alpha) = 210912, phi'(alpha) = 6.5932, COND = 217.045
+
+144: obj = 210912
+search
+145: obj = 210831
+search
+146: obj = 210780
+search
+147: obj = 210726
+search
+148: obj = 210681
+search
+149: obj = 210640
+search
+150: obj = 210591
+search
+151: obj = 210554
+search
+152: obj = 210506
+search
+153: obj = 210477
+search
+154: obj = 210451
+search
+155: obj = 210424
+search
+156: obj = 210384
+search
+157: obj = 210327
+search, zoom
+alpha = 0.5, phi(alpha) = 210295, phi'(alpha) = 6.24805, COND = 119.982
+
+158: obj = 210295
+search
+159: obj = 210245
+search
+160: obj = 210217
+search
+161: obj = 210193
+search
+162: obj = 210171
+search
+163: obj = 210130
+search
+164: obj = 210104
+search
+165: obj = 210083
+search
+166: obj = 210074
+search
+167: obj = 210056
+search
+168: obj = 210033
+search
+169: obj = 210003
+search
+170: obj = 209989
+search
+171: obj = 209969
+search
+172: obj = 209960
+search
+173: obj = 209928
+search
+174: obj = 209915
+search
+175: obj = 209901
+search
+176: obj = 209889
+search
+177: obj = 209872
+search
+178: obj = 209861
+search
+179: obj = 209853
+search
+180: obj = 209843
+search
+181: obj = 209834
+search
+182: obj = 209821
+search
+183: obj = 209814
+search
+184: obj = 209801
+search
+185: obj = 209792
+search
+186: obj = 209786
+search
+187: obj = 209777
+search
+188: obj = 209770
+search
+189: obj = 209764
+search
+190: obj = 209758
+search
+191: obj = 209753
+search
+192: obj = 209748
+search
+193: obj = 209741
+search
+194: obj = 209739
+search
+195: obj = 209733
+search
+196: obj = 209729
+search
+197: obj = 209723
+search
+198: obj = 209720
+search
+199: obj = 209716
+search
+200: obj = 209713
+search
+201: obj = 209709
+search
+202: obj = 209706
+search
+203: obj = 209703
+search, zoom
+alpha = 0.5, phi(alpha) = 209701, phi'(alpha) = 1.25223, COND = 7.96313
+
+204: obj = 209701
+search
+205: obj = 209699
+search
+206: obj = 209697
+search
+207: obj = 209695
+search
+208: obj = 209692
+search
+209: obj = 209689
+search
+210: obj = 209687
+search
+211: obj = 209685
+search
+212: obj = 209684
+search
+213: obj = 209681
+search
+214: obj = 209680
+search
+215: obj = 209679
+search
+216: obj = 209677
+search
+217: obj = 209676
+search
+218: obj = 209674
+search
+219: obj = 209673
+search
+220: obj = 209672
+search
+221: obj = 209670
+search
+222: obj = 209669
+search
+223: obj = 209668
+search
+224: obj = 209668
+search
+225: obj = 209666
+search
+226: obj = 209666
+search
+227: obj = 209665
+search
+228: obj = 209664
+search, zoom
+alpha = 0.5, phi(alpha) = 209664, phi'(alpha) = 0.890182, COND = 2.46316
+
+229: obj = 209664
+search
+230: obj = 209663
+search
+231: obj = 209662
+search
+232: obj = 209662
+search
+233: obj = 209661
+search
+234: obj = 209661
+BFGS has converged, objective = 209661
