@@ -1,0 +1,735 @@
+reading features in
+reading contexts in
+calculating correction constant maxC
+max_active = 17
+initialising BFGS solver
+0: obj = 1.35056e+06
+search, alpha = 1, phi(alpha) = 1.34742e+06, phi'(alpha) = -3132.76, COND = 2841.7
+grow, alpha = 2, phi(alpha) = 1.3443e+06, phi'(alpha) = -3108.03, COND = 2841.7
+grow, alpha = 4, phi(alpha) = 1.33813e+06, phi'(alpha) = -3058.49, COND = 2841.7
+grow, alpha = 8, phi(alpha) = 1.32609e+06, phi'(alpha) = -2959.15, COND = 2841.7
+grow
+1: obj = 1.30322e+06
+search
+2: obj = 1.07613e+06
+search
+3: obj = 1.00867e+06
+search
+4: obj = 946138
+search
+5: obj = 893346
+search
+6: obj = 869847
+search
+7: obj = 844138
+search
+8: obj = 837838
+search
+9: obj = 826376
+search
+10: obj = 818776
+search
+11: obj = 812249
+search
+12: obj = 807171
+search
+13: obj = 801098
+search
+14: obj = 793203
+search
+15: obj = 787518
+search
+16: obj = 777065
+search
+17: obj = 773170
+search
+18: obj = 767444
+search
+19: obj = 760160
+search
+20: obj = 751912
+search
+21: obj = 747856
+search
+22: obj = 740653
+search, zoom
+alpha = 0.5, phi(alpha) = 738106, phi'(alpha) = 2116.69, COND = 10576.3
+
+23: obj = 738106
+search
+24: obj = 733392
+search
+25: obj = 728074
+search
+26: obj = 721303
+search
+27: obj = 717019
+search
+28: obj = 709640
+search
+29: obj = 704465
+search
+30: obj = 699667
+search
+31: obj = 691257
+search
+32: obj = 682664
+search
+33: obj = 676893
+search
+34: obj = 667203
+search
+35: obj = 660997
+search
+36: obj = 653971
+search
+37: obj = 643440
+search
+38: obj = 634575
+search
+39: obj = 627282
+search
+40: obj = 613935
+search
+41: obj = 613331
+search
+42: obj = 599593
+search
+43: obj = 594093
+search
+44: obj = 588498
+search
+45: obj = 578059
+search
+46: obj = 571781
+search
+47: obj = 562936
+search
+48: obj = 556048
+search
+49: obj = 545720
+search
+50: obj = 533858
+search
+51: obj = 522646
+search
+52: obj = 515399
+search
+53: obj = 502941
+search
+54: obj = 496361
+search
+55: obj = 488059
+search
+56: obj = 481274
+search
+57: obj = 473887
+search
+58: obj = 467020
+search
+59: obj = 461008
+search
+60: obj = 453167
+search
+61: obj = 443587
+search
+62: obj = 435673
+search
+63: obj = 429438
+search
+64: obj = 424468
+search
+65: obj = 418664
+search
+66: obj = 406328
+search, zoom
+alpha = 0.5, phi(alpha) = 399976, phi'(alpha) = 3956.38, COND = 26687.2
+
+67: obj = 399976
+search
+68: obj = 392033
+search
+69: obj = 385659
+search
+70: obj = 374610
+search
+71: obj = 367725
+search
+72: obj = 358060
+search
+73: obj = 350712
+search
+74: obj = 345957
+search
+75: obj = 340036
+search
+76: obj = 333916
+search
+77: obj = 329430
+search
+78: obj = 324962
+search
+79: obj = 319171
+search
+80: obj = 313656
+search
+81: obj = 308595
+search
+82: obj = 304200
+search
+83: obj = 298114
+search
+84: obj = 293994
+search
+85: obj = 286996
+search
+86: obj = 283683
+search
+87: obj = 278597
+search
+88: obj = 273137
+search
+89: obj = 267644
+search, zoom
+alpha = 0.5, phi(alpha) = 265180, phi'(alpha) = -264.289, COND = 8376.29
+
+90: obj = 265180
+search
+91: obj = 261992
+search
+92: obj = 259495
+search
+93: obj = 254854
+search
+94: obj = 250890
+search
+95: obj = 247413
+search
+96: obj = 244216
+search
+97: obj = 241137
+search
+98: obj = 237952
+search
+99: obj = 233818
+search
+100: obj = 230531
+search
+101: obj = 228656
+search
+102: obj = 227951
+search
+103: obj = 223803
+search
+104: obj = 222566
+search
+105: obj = 220813
+search
+106: obj = 218016
+search, zoom
+alpha = 0.5, phi(alpha) = 215628, phi'(alpha) = -282.523, COND = 8108.49
+
+107: obj = 215628
+search
+108: obj = 213426
+search
+109: obj = 211932
+search
+110: obj = 210622
+search
+111: obj = 206866
+search
+112: obj = 205739
+search
+113: obj = 203127
+search
+114: obj = 202052
+search
+115: obj = 200103
+search, zoom
+alpha = 0.5, phi(alpha) = 199310, phi'(alpha) = 1107.28, COND = 3924.61
+
+116: obj = 199310
+search
+117: obj = 198280
+search
+118: obj = 196857
+search
+119: obj = 196039
+search
+120: obj = 193928
+search, zoom
+alpha = 0.5, phi(alpha) = 192791, phi'(alpha) = 20.1611, COND = 4006.37
+
+121: obj = 192791
+search
+122: obj = 191505
+search
+123: obj = 190007
+search
+124: obj = 188910
+search
+125: obj = 187578
+search
+126: obj = 185923
+search
+127: obj = 185074
+search
+128: obj = 184004
+search
+129: obj = 183519
+search
+130: obj = 182609
+search
+131: obj = 181694
+search
+132: obj = 180582
+search
+133: obj = 179295
+search
+134: obj = 178350
+search
+135: obj = 177571
+search
+136: obj = 176911
+search
+137: obj = 176096
+search
+138: obj = 175521
+search
+139: obj = 174736
+search
+140: obj = 174323
+search
+141: obj = 173865
+search
+142: obj = 173108
+search
+143: obj = 172336
+search
+144: obj = 171749
+search
+145: obj = 171237
+search
+146: obj = 170413
+search
+147: obj = 169805
+search
+148: obj = 169123
+search
+149: obj = 168636
+search
+150: obj = 168294
+search, zoom
+alpha = 0.5, phi(alpha) = 168081, phi'(alpha) = 1.25561, COND = 771.99
+
+151: obj = 168081
+search
+152: obj = 167845
+search
+153: obj = 167456
+search
+154: obj = 167202
+search
+155: obj = 166852
+search
+156: obj = 166326
+search
+157: obj = 166147
+search
+158: obj = 165849
+search
+159: obj = 165441
+search
+160: obj = 164717
+search, zoom
+alpha = 0.5, phi(alpha) = 164708, phi'(alpha) = 1583.14, COND = 1407.71
+, zoom
+alpha = 0.25, phi(alpha) = 164516, phi'(alpha) = -31.6408, COND = 1407.71
+
+161: obj = 164516
+search
+162: obj = 164080
+search
+163: obj = 163833
+search, zoom
+alpha = 0.5, phi(alpha) = 163781, phi'(alpha) = 811.796, COND = 900.295
+
+164: obj = 163781
+search
+165: obj = 163499
+search
+166: obj = 163356
+search
+167: obj = 163208
+search
+168: obj = 163021
+search
+169: obj = 162808
+search
+170: obj = 162358
+search
+171: obj = 162211
+search
+172: obj = 162034
+search
+173: obj = 161870
+search
+174: obj = 161486
+search, zoom
+alpha = 0.5, phi(alpha) = 161306, phi'(alpha) = 118.853, COND = 743.481
+
+175: obj = 161306
+search
+176: obj = 161132
+search
+177: obj = 161020
+search, zoom
+alpha = 0.5, phi(alpha) = 161014, phi'(alpha) = 342.525, COND = 333.162
+, zoom
+alpha = 0.25, phi(alpha) = 160972, phi'(alpha) = -10.9048, COND = 333.162
+
+178: obj = 160972
+search
+179: obj = 160871
+search
+180: obj = 160628
+search
+181: obj = 160462
+search
+182: obj = 160345
+search
+183: obj = 160238
+search
+184: obj = 160101
+search
+185: obj = 159934
+search
+186: obj = 159787
+search
+187: obj = 159668
+search
+188: obj = 159555
+search
+189: obj = 159461
+search
+190: obj = 159413
+search
+191: obj = 159327
+search
+192: obj = 159280
+search
+193: obj = 159191
+search
+194: obj = 159057
+search
+195: obj = 159021
+search
+196: obj = 158879
+search
+197: obj = 158838
+search
+198: obj = 158763
+search
+199: obj = 158704
+search
+200: obj = 158622
+search
+201: obj = 158572
+search
+202: obj = 158509
+search, zoom
+alpha = 0.5, phi(alpha) = 158482, phi'(alpha) = 70.6509, COND = 160.696
+
+203: obj = 158482
+search
+204: obj = 158415
+search
+205: obj = 158370
+search
+206: obj = 158333
+search
+207: obj = 158272
+search, zoom
+alpha = 0.5, phi(alpha) = 158242, phi'(alpha) = 101.866, COND = 197.453
+
+208: obj = 158242
+search
+209: obj = 158160
+search
+210: obj = 158124
+search
+211: obj = 158081
+search
+212: obj = 158044
+search
+213: obj = 157996
+search
+214: obj = 157960
+search
+215: obj = 157918
+search, zoom
+alpha = 0.5, phi(alpha) = 157894, phi'(alpha) = 12.7909, COND = 100.33
+
+216: obj = 157894
+search
+217: obj = 157857
+search
+218: obj = 157831
+search
+219: obj = 157802
+search
+220: obj = 157763
+search
+221: obj = 157731
+search
+222: obj = 157706
+search
+223: obj = 157677
+search
+224: obj = 157652
+search
+225: obj = 157594
+search
+226: obj = 157579
+search
+227: obj = 157544
+search
+228: obj = 157530
+search
+229: obj = 157514
+search
+230: obj = 157493
+search
+231: obj = 157474
+search
+232: obj = 157460
+search
+233: obj = 157437
+search, zoom
+alpha = 0.5, phi(alpha) = 157432, phi'(alpha) = 64.6013, COND = 77.6099
+
+234: obj = 157432
+search
+235: obj = 157397
+search
+236: obj = 157384
+search
+237: obj = 157370
+search
+238: obj = 157350
+search
+239: obj = 157326
+search
+240: obj = 157306
+search
+241: obj = 157291
+search
+242: obj = 157283
+search
+243: obj = 157268
+search
+244: obj = 157241
+search
+245: obj = 157224
+search
+246: obj = 157214
+search
+247: obj = 157202
+search
+248: obj = 157185
+search
+249: obj = 157172
+search
+250: obj = 157161
+search
+251: obj = 157150
+search
+252: obj = 157141
+search, zoom
+alpha = 0.5, phi(alpha) = 157137, phi'(alpha) = -0.77206, COND = 15.5547
+
+253: obj = 157137
+search
+254: obj = 157130
+search
+255: obj = 157117
+search
+256: obj = 157109
+search
+257: obj = 157099
+search
+258: obj = 157090
+search
+259: obj = 157079
+search
+260: obj = 157071
+search
+261: obj = 157065
+search
+262: obj = 157054
+search
+263: obj = 157049
+search
+264: obj = 157040
+search
+265: obj = 157036
+search
+266: obj = 157032
+search
+267: obj = 157025
+search
+268: obj = 157019
+search
+269: obj = 157011
+search
+270: obj = 157005
+search
+271: obj = 157000
+search
+272: obj = 156995
+search
+273: obj = 156991
+search
+274: obj = 156983
+search
+275: obj = 156976
+search
+276: obj = 156971
+search
+277: obj = 156967
+search
+278: obj = 156963
+search
+279: obj = 156959
+search
+280: obj = 156957
+search
+281: obj = 156953
+search
+282: obj = 156950
+search
+283: obj = 156945
+search
+284: obj = 156943
+search
+285: obj = 156939
+search
+286: obj = 156936
+search
+287: obj = 156932
+search
+288: obj = 156930
+search
+289: obj = 156926
+search, zoom
+alpha = 0.5, phi(alpha) = 156924, phi'(alpha) = 1.6896, COND = 7.6242
+
+290: obj = 156924
+search
+291: obj = 156921
+search
+292: obj = 156919
+search
+293: obj = 156918
+search
+294: obj = 156915
+search
+295: obj = 156913
+search
+296: obj = 156909
+search
+297: obj = 156908
+search
+298: obj = 156905
+search
+299: obj = 156903
+search
+300: obj = 156901
+search
+301: obj = 156899
+search
+302: obj = 156898
+search
+303: obj = 156897
+search
+304: obj = 156896
+search
+305: obj = 156894
+search
+306: obj = 156893
+search
+307: obj = 156891
+search
+308: obj = 156889
+search
+309: obj = 156888
+search
+310: obj = 156887
+search, zoom
+alpha = 0.5, phi(alpha) = 156886, phi'(alpha) = -0.132243, COND = 4.01564
+
+311: obj = 156886
+search
+312: obj = 156884
+search
+313: obj = 156883
+search
+314: obj = 156883
+search
+315: obj = 156881
+search
+316: obj = 156881
+search
+317: obj = 156880
+search
+318: obj = 156879
+search
+319: obj = 156878
+search
+320: obj = 156876
+search
+321: obj = 156875
+search
+322: obj = 156874
+search
+323: obj = 156874
+search
+324: obj = 156873
+search
+325: obj = 156872
+search
+326: obj = 156871
+search
+327: obj = 156871
+search
+328: obj = 156870
+search
+329: obj = 156870
+search
+330: obj = 156869
+search
+331: obj = 156869
+search
+332: obj = 156868
+search, zoom
+alpha = 0.5, phi(alpha) = 156868, phi'(alpha) = 0.629008, COND = 2.38785
+
+333: obj = 156868
+search
+334: obj = 156867
+search
+335: obj = 156867
+search
+336: obj = 156866
+search
+337: obj = 156865
+search
+338: obj = 156865
+search
+339: obj = 156864
+search
+340: obj = 156864
+search
+341: obj = 156864
+BFGS has converged, objective = 156864

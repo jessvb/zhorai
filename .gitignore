@@ -59,3 +59,8 @@ typings/
 
 # next.js build output
 .next
+
+#python semantic_parser env
+semantic-parser/bin
+semantic-parser/include
+semantic-parser/lib
