@@ -7,10 +7,23 @@
 
 let currentStream = null;
 
+/* -------------- Helper Functions -------------- */
+function convertFloat32ToInt16(buffer) {
+    l = buffer.length;
+    buf = new Int16Array(l);
+    while (l--) {
+        buf[l] = Math.min(1, buffer[l]) * 0x7FFF;
+    }
+    return buf.buffer;
+}
+
 function streamOrStopAudio() {
     if (!currentStream) {
         // start streaming
-        let handleSuccess = function (stream) {
+
+        // Handle recording success:
+        let handleRecordSuccess = function (stream) {
+            // Recording requirements:
             let bufferSize = 2048;
 
             let context = new AudioContext();
@@ -20,19 +33,12 @@ function streamOrStopAudio() {
             source.connect(processor);
             processor.connect(context.destination);
 
-            // todo del:
-            if (window.URL) {
-                player.srcObject = stream;
-            } else {
-                player.src = stream;
-            }
-
             processor.onaudioprocess = function (e) {
-                // Do something with the data, i.e Convert this to WAV
-                // console.log(e.inputBuffer);
-                console.log("still running");
+                // Send the data to a server
                 let left = e.inputBuffer.getChannelData(0);
-                console.log(left);
+                // Start streaming to server!
+                // window.Stream.write(convertFloat32ToInt16(left));
+                console.log("int 16: " + convertFloat32ToInt16(left)); // todo del
             };
 
             console.log(source);
@@ -43,14 +49,14 @@ function streamOrStopAudio() {
                 audio: true,
                 video: false
             })
-            .then(handleSuccess);
+            .then(handleRecordSuccess);
     } else {
-        // stop streaming
-        currentStream.getTracks().forEach(function (track) {
-            console.log("stopping track: " + track);
-            track.stop();
-        });
-        currentStream = null;
+        // todo stop streaming (below doesn't work :( ))
+        // currentStream.getTracks().forEach(function (track) {
+        //     console.log("stopping track: " + track);
+        //     track.stop();
+        // });
+        // currentStream = null;
     }
 }
 
@@ -59,5 +65,13 @@ function streamOrStopAudio() {
 /* -------------- Once the page has loaded -------------- */
 document.addEventListener('DOMContentLoaded', function () {
     let recordBtn = document.getElementById('recordBtn');
+
+    // Stream to server requirements:
+    // let client = new BinaryClient('ws://localhost:9001');
+    // client.on('open', function () {
+    //     // for the sake of this example let's put the stream in the window
+    //     window.Stream = client.createStream();
+    // });
+
     recordBtn.addEventListener('click', streamOrStopAudio);
 }, false);
