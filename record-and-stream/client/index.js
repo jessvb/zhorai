@@ -37,7 +37,7 @@ function streamOrStopAudio() {
                 // Send the data to a server
                 let left = e.inputBuffer.getChannelData(0);
                 // Start streaming to server!
-                // window.Stream.write(convertFloat32ToInt16(left));
+                window.Stream.write(convertFloat32ToInt16(left));
                 console.log("int 16: " + convertFloat32ToInt16(left)); // todo del
             };
 
@@ -67,11 +67,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let recordBtn = document.getElementById('recordBtn');
 
     // Stream to server requirements:
-    // let client = new BinaryClient('ws://localhost:9001');
-    // client.on('open', function () {
-    //     // for the sake of this example let's put the stream in the window
-    //     window.Stream = client.createStream();
-    // });
+    let client = new BinaryClient('ws://localhost:9001');
+    client.on('open', function () {
+        // for the sake of this example let's put the stream in the window
+        window.Stream = client.createStream();
+    });
 
     recordBtn.addEventListener('click', streamOrStopAudio);
 }, false);

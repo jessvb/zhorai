@@ -26,5 +26,7 @@
   },
   "homepage": "https://github.com/jessvb/zhorai#readme",
   "dependencies": {
+    "binaryjs": "^0.2.1",
+    "wav": "^1.0.2"
   }
 }
