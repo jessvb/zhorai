@@ -25,8 +25,10 @@ server.on('connection', function (client) {
     client.on('stream', function (stream, meta) {
         // todo:
         console.log("streaming... ");
-        console.log(stream._socket._receiver.fragmentedBufferPool._buffer);
+        // console.log(stream._socket._receiver.fragmentedBufferPool._buffer);
 
+        // todo --> do we need to write to a wave file? otherwise, we can pipe the bytes 
+        // directly to the model
         stream.pipe(fileWriter);
 
         stream.on('end', function () {

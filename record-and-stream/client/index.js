@@ -6,6 +6,8 @@
 
 
 let currentStream = null;
+let bufferSize = 2048;
+let serverUrl = 'ws://localhost:9001';
 
 /* -------------- Helper Functions -------------- */
 function convertFloat32ToInt16(buffer) {
@@ -17,15 +19,23 @@ function convertFloat32ToInt16(buffer) {
     return buf.buffer;
 }
 
+function setupStream() {
+    // Stream to server requirements:
+    let client = new BinaryClient(serverUrl);
+    client.on('open', function () {
+        // for the sake of this example let's put the stream in the window
+        window.Stream = client.createStream();
+    });
+}
+
 function streamOrStopAudio() {
     if (!currentStream) {
         // start streaming
 
         // Handle recording success:
         let handleRecordSuccess = function (stream) {
+            setupStream();
             // Recording requirements:
-            let bufferSize = 2048;
-
             let context = new AudioContext();
             let source = context.createMediaStreamSource(stream);
             let processor = context.createScriptProcessor(bufferSize, 1, 1);
@@ -65,13 +75,6 @@ function streamOrStopAudio() {
 /* -------------- Once the page has loaded -------------- */
 document.addEventListener('DOMContentLoaded', function () {
     let recordBtn = document.getElementById('recordBtn');
-
-    // Stream to server requirements:
-    let client = new BinaryClient('ws://localhost:9001');
-    client.on('open', function () {
-        // for the sake of this example let's put the stream in the window
-        window.Stream = client.createStream();
-    });
 
     recordBtn.addEventListener('click', streamOrStopAudio);
 }, false);
