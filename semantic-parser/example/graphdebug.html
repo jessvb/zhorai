@@ -257,7 +257,7 @@
 </mrow>
 </mfrac>
 </math>
-<p>Premise 1, tree s1_ccg0: There is little water in the dessert .</p>
+<p>Premise 1, tree s1_ccg0: There is little water in the desert .</p>
 <math xmlns='http://www.w3.org/1998/Math/MathML'>
 <mfrac linethickness='0px'>
   <mrow><mrow><mo>rp</mo><mfrac linethickness='3px'>
@@ -418,7 +418,7 @@
 </mfrac>
 <mfrac linethickness='0px'>
   <mrow><mfrac linethickness='0px'>
-  <mrow><mtext  fontsize='1.0' color='Black'>dessert</mtext>
+  <mrow><mtext  fontsize='1.0' color='Black'>desert</mtext>
 </mrow>
   <mrow><mfrac linethickness='0px'>
   <mrow><mtext  fontsize='1.0' color='Green'>NN</mtext>
@@ -430,7 +430,7 @@
 </mrow>
 </mfrac>
 </mrow>
-  <mrow><mtext  fontsize='1.0' color='Blue'>\x._dessert(x)</mtext>
+  <mrow><mtext  fontsize='1.0' color='Blue'>\x._desert(x)</mtext>
 </mrow>
 </mfrac>
 </mrow>
@@ -443,7 +443,7 @@
 </mrow>
 </mfrac>
 </mrow></mrow>
-  <mrow><mtext  fontsize='1.0' color='Blue'>\F2 F3.exists x.(_dessert(x) &amp; F2(x) &amp; F3(x))</mtext>
+  <mrow><mtext  fontsize='1.0' color='Blue'>\F2 F3.exists x.(_desert(x) &amp; F2(x) &amp; F3(x))</mtext>
 </mrow>
 </mfrac>
 </mrow>
@@ -451,7 +451,7 @@
 </mrow>
 </mfrac>
 </mrow></mrow>
-  <mrow><mtext  fontsize='1.0' color='Blue'>\Q2 F1.Q2(\x.(exists z1.(_dessert(z1) &amp; TrueP &amp; _in(x,z1)) &amp; F1(x)))</mtext>
+  <mrow><mtext  fontsize='1.0' color='Blue'>\Q2 F1.Q2(\x.(exists z1.(_desert(z1) &amp; TrueP &amp; _in(x,z1)) &amp; F1(x)))</mtext>
 </mrow>
 </mfrac>
 </mrow>
@@ -459,7 +459,7 @@
 </mrow>
 </mfrac>
 </mrow></mrow>
-  <mrow><mtext  fontsize='1.0' color='Blue'>\F1 F2.exists x.(_little(x) &amp; _water(x) &amp; exists z1.(_dessert(z1) &amp; TrueP &amp; _in(x,z1)) &amp; F1(x) &amp; F2(x))</mtext>
+  <mrow><mtext  fontsize='1.0' color='Blue'>\F1 F2.exists x.(_little(x) &amp; _water(x) &amp; exists z1.(_desert(z1) &amp; TrueP &amp; _in(x,z1)) &amp; F1(x) &amp; F2(x))</mtext>
 </mrow>
 </mfrac>
 </mrow>
@@ -478,7 +478,7 @@
 </mrow>
 </mfrac>
 </mrow></mrow>
-  <mrow><mtext  fontsize='1.0' color='Blue'>\Q2.Q2(\w.TrueP,\x.exists z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_dessert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2)))</mtext>
+  <mrow><mtext  fontsize='1.0' color='Blue'>\Q2.Q2(\w.TrueP,\x.exists z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_desert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2)))</mtext>
 </mrow>
 </mfrac>
 </mrow>
@@ -491,7 +491,7 @@
 </mrow>
 </mfrac>
 </mrow></mrow>
-  <mrow><mtext  fontsize='1.0' color='Blue'>exists x z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_dessert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2))</mtext>
+  <mrow><mtext  fontsize='1.0' color='Blue'>exists x z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_desert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2))</mtext>
 </mrow>
 </mfrac>
 <mfrac linethickness='0px'>
@@ -514,7 +514,7 @@
 </mrow>
 </mfrac>
 </mrow></mrow>
-  <mrow><mtext  fontsize='1.0' color='Blue'>exists x z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_dessert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2))</mtext>
+  <mrow><mtext  fontsize='1.0' color='Blue'>exists x z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_desert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2))</mtext>
 </mrow>
 </mfrac>
 </math>
@@ -1366,7 +1366,6 @@ Parameter _camel : Entity -> Prop.
 Parameter _can : Prop -> Prop.
 Parameter _day : Entity -> Prop.
 Parameter _desert : Entity -> Prop.
-Parameter _dessert : Entity -> Prop.
 Parameter _dry : Entity -> Prop.
 Parameter _hot : Entity -> Prop.
 Parameter _in : Entity -> (Entity -> Prop).
@@ -1377,7 +1376,7 @@ Parameter _only : Entity -> Prop.
 Parameter _plant : Entity -> Prop.
 Parameter _sun : Entity -> Prop.
 Parameter _water : Entity -> Prop.
-Theorem t1: (exists x, (and (and (and (_desert x) True) (_hot x)) (_dry x))) -> (exists x z2, (and (and (and (and (_little z2) (_water z2)) (exists z1, (and (and (_dessert z1) True) (_in z2 z1)))) True) (x = z2))) -> (exists x, (and (and (and (and (_only x) (_plant x)) (exists z1, (and (and (_desert z1) True) (_in x z1)))) True) (exists z2, (and (and (_cactus z2) True) (x = z2))))) -> (exists x, (and (and (_camel x) True) (_day (fun Q => (Q (fun w => True) (fun x => (and (_be x) (exists z3, (and (and (_sun z3) True) (_in x z3))))))) (fun F1 F2 => (_can (F2 x)))))) -> (exists x, (and (and (and (_camel x) True) (_n't x)) (exists z3, (and (and (_water z3) True) (_need x z3))))). Set Firstorder Depth 1. nltac. Set Firstorder Depth 6. nltac. Qed.
+Theorem t1: (exists x, (and (and (and (_desert x) True) (_hot x)) (_dry x))) -> (exists x z2, (and (and (and (and (_little z2) (_water z2)) (exists z1, (and (and (_desert z1) True) (_in z2 z1)))) True) (x = z2))) -> (exists x, (and (and (and (and (_only x) (_plant x)) (exists z1, (and (and (_desert z1) True) (_in x z1)))) True) (exists z2, (and (and (_cactus z2) True) (x = z2))))) -> (exists x, (and (and (_camel x) True) (_day (fun Q => (Q (fun w => True) (fun x => (and (_be x) (exists z3, (and (and (_sun z3) True) (_in x z3))))))) (fun F1 F2 => (_can (F2 x)))))) -> (exists x, (and (and (and (_camel x) True) (_n't x)) (exists z3, (and (and (_water z3) True) (_need x z3))))). Set Firstorder Depth 1. nltac. Set Firstorder Depth 6. nltac. Qed.
 </pre>
 <pre>
 Require Export coqlib.
@@ -1387,7 +1386,6 @@ Parameter _camel : Entity -> Prop.
 Parameter _can : Prop -> Prop.
 Parameter _day : Entity -> Prop.
 Parameter _desert : Entity -> Prop.
-Parameter _dessert : Entity -> Prop.
 Parameter _dry : Entity -> Prop.
 Parameter _hot : Entity -> Prop.
 Parameter _in : Entity -> (Entity -> Prop).
@@ -1398,7 +1396,7 @@ Parameter _only : Entity -> Prop.
 Parameter _plant : Entity -> Prop.
 Parameter _sun : Entity -> Prop.
 Parameter _water : Entity -> Prop.
-Theorem t1: (exists x, (and (and (and (_desert x) True) (_hot x)) (_dry x))) -> (exists x z2, (and (and (and (and (_little z2) (_water z2)) (exists z1, (and (and (_dessert z1) True) (_in z2 z1)))) True) (x = z2))) -> (exists x, (and (and (and (and (_only x) (_plant x)) (exists z1, (and (and (_desert z1) True) (_in x z1)))) True) (exists z2, (and (and (_cactus z2) True) (x = z2))))) -> (exists x, (and (and (_camel x) True) (_day (fun Q => (Q (fun w => True) (fun x => (and (_be x) (exists z3, (and (and (_sun z3) True) (_in x z3))))))) (fun F1 F2 => (_can (F2 x)))))) -> (not (exists x, (and (and (and (_camel x) True) (_n't x)) (exists z3, (and (and (_water z3) True) (_need x z3)))))). Set Firstorder Depth 1. nltac. Set Firstorder Depth 6. nltac. Qed.
+Theorem t1: (exists x, (and (and (and (_desert x) True) (_hot x)) (_dry x))) -> (exists x z2, (and (and (and (and (_little z2) (_water z2)) (exists z1, (and (and (_desert z1) True) (_in z2 z1)))) True) (x = z2))) -> (exists x, (and (and (and (and (_only x) (_plant x)) (exists z1, (and (and (_desert z1) True) (_in x z1)))) True) (exists z2, (and (and (_cactus z2) True) (x = z2))))) -> (exists x, (and (and (_camel x) True) (_day (fun Q => (Q (fun w => True) (fun x => (and (_be x) (exists z3, (and (and (_sun z3) True) (_in x z3))))))) (fun F1 F2 => (_can (F2 x)))))) -> (not (exists x, (and (and (and (_camel x) True) (_n't x)) (exists z3, (and (and (_water z3) True) (_need x z3)))))). Set Firstorder Depth 1. nltac. Set Firstorder Depth 6. nltac. Qed.
 </pre>
     </body>
     </html>

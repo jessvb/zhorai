@@ -51,7 +51,7 @@
           <token start="3" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t1_3" surf="water" base="water"/>
           <token start="4" span="1" pos="IN" chunk="I-PP" entity="O" cat="(NP\NP)/NP" id="t1_4" surf="in" base="in"/>
           <token start="5" span="1" pos="DT" chunk="I-NP" entity="O" cat="NP[nb]/N" id="t1_5" surf="the" base="the"/>
-          <token start="6" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t1_6" surf="dessert" base="dessert"/>
+          <token start="6" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t1_6" surf="desert" base="desert"/>
           <token start="7" span="1" pos="." chunk="O" entity="O" cat="." id="t1_7" surf="." base="."/>
         </tokens>
         <ccg root="s1_sp0" id="s1_ccg0">
@@ -69,25 +69,25 @@
           <span start="4" span="1" pos="IN" chunk="I-PP" entity="O" id="s1_sp11" surf="in" base="in" terminal="t1_4" category="(NP\NP)/NP"/>
           <span id="s1_sp12" child="s1_sp13 s1_sp14" pos="None" category="NP[nb=true]" rule="fa"/>
           <span start="5" span="1" pos="DT" chunk="I-NP" entity="O" id="s1_sp13" surf="the" base="the" terminal="t1_5" category="NP[nb=true]/N"/>
-          <span start="6" span="1" pos="NN" chunk="I-NP" entity="O" id="s1_sp14" surf="dessert" base="dessert" terminal="t1_6" category="N"/>
+          <span start="6" span="1" pos="NN" chunk="I-NP" entity="O" id="s1_sp14" surf="desert" base="desert" terminal="t1_6" category="N"/>
           <span start="7" span="1" pos="." chunk="O" entity="O" id="s1_sp15" surf="." base="." terminal="t1_7" category="."/>
         </ccg>
         <semantics status="success" ccg_id="s1_ccg0" root="s1_sp0">
-          <span id="s1_sp0" child="s1_sp1 s1_sp15" sem="exists x z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_dessert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2))"/>
-          <span id="s1_sp1" child="s1_sp2 s1_sp3" sem="exists x z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_dessert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2))"/>
+          <span id="s1_sp0" child="s1_sp1 s1_sp15" sem="exists x z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_desert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2))"/>
+          <span id="s1_sp1" child="s1_sp2 s1_sp3" sem="exists x z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_desert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2))"/>
           <span id="s1_sp2" sem="\F1 F2.exists x.F2(x)"/>
-          <span id="s1_sp3" child="s1_sp4 s1_sp5" sem="\Q2.Q2(\w.TrueP,\x.exists z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_dessert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2)))"/>
+          <span id="s1_sp3" child="s1_sp4 s1_sp5" sem="\Q2.Q2(\w.TrueP,\x.exists z2.(_little(z2) &amp; _water(z2) &amp; exists z1.(_desert(z1) &amp; TrueP &amp; _in(z2,z1)) &amp; TrueP &amp; (x = z2)))"/>
           <span id="s1_sp4" sem="\Q1 Q2.Q2(\w.TrueP,\x.Q1(\w.TrueP,\y.(x = y)))"/>
-          <span id="s1_sp5" child="s1_sp6 s1_sp10" sem="\F1 F2.exists x.(_little(x) &amp; _water(x) &amp; exists z1.(_dessert(z1) &amp; TrueP &amp; _in(x,z1)) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s1_sp5" child="s1_sp6 s1_sp10" sem="\F1 F2.exists x.(_little(x) &amp; _water(x) &amp; exists z1.(_desert(z1) &amp; TrueP &amp; _in(x,z1)) &amp; F1(x) &amp; F2(x))"/>
           <span id="s1_sp6" child="s1_sp7" sem="\F1 F2.exists x.(_little(x) &amp; _water(x) &amp; F1(x) &amp; F2(x))"/>
           <span id="s1_sp7" child="s1_sp8 s1_sp9" sem="\x.(_little(x) &amp; _water(x))"/>
           <span id="s1_sp8" sem="\F x.(_little(x) &amp; F(x))" type="_little : Entity -&gt; Prop"/>
           <span id="s1_sp9" sem="\x._water(x)" type="_water : Entity -&gt; Prop"/>
-          <span id="s1_sp10" child="s1_sp11 s1_sp12" sem="\Q2 F1.Q2(\x.(exists z1.(_dessert(z1) &amp; TrueP &amp; _in(x,z1)) &amp; F1(x)))"/>
+          <span id="s1_sp10" child="s1_sp11 s1_sp12" sem="\Q2 F1.Q2(\x.(exists z1.(_desert(z1) &amp; TrueP &amp; _in(x,z1)) &amp; F1(x)))"/>
           <span id="s1_sp11" sem="\Q1 Q2 F1.Q2(\x.(Q1(\w.TrueP,\y._in(x,y)) &amp; F1(x)))" type="_in : Entity -&gt; Entity -&gt; Prop"/>
-          <span id="s1_sp12" child="s1_sp13 s1_sp14" sem="\F2 F3.exists x.(_dessert(x) &amp; F2(x) &amp; F3(x))"/>
+          <span id="s1_sp12" child="s1_sp13 s1_sp14" sem="\F2 F3.exists x.(_desert(x) &amp; F2(x) &amp; F3(x))"/>
           <span id="s1_sp13" sem="\F1 F2 F3.exists x.(F1(x) &amp; F2(x) &amp; F3(x))"/>
-          <span id="s1_sp14" sem="\x._dessert(x)" type="_dessert : Entity -&gt; Prop"/>
+          <span id="s1_sp14" sem="\x._desert(x)" type="_desert : Entity -&gt; Prop"/>
           <span id="s1_sp15" sem="\X.X"/>
         </semantics>
       </sentence>
