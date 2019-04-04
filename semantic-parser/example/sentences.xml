@@ -36,7 +36,7 @@
           <token start="3" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t1_3" surf="water" base="water"/>
           <token start="4" span="1" pos="IN" chunk="I-PP" entity="O" cat="(NP\NP)/NP" id="t1_4" surf="in" base="in"/>
           <token start="5" span="1" pos="DT" chunk="I-NP" entity="O" cat="NP[nb]/N" id="t1_5" surf="the" base="the"/>
-          <token start="6" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t1_6" surf="dessert" base="dessert"/>
+          <token start="6" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t1_6" surf="desert" base="desert"/>
           <token start="7" span="1" pos="." chunk="O" entity="O" cat="." id="t1_7" surf="." base="."/>
         </tokens>
         <ccg root="s1_sp0" id="s1_ccg0">
@@ -54,7 +54,7 @@
           <span start="4" span="1" pos="IN" chunk="I-PP" entity="O" id="s1_sp11" surf="in" base="in" terminal="t1_4" category="(NP\NP)/NP"/>
           <span id="s1_sp12" child="s1_sp13 s1_sp14" pos="None" category="NP[nb=true]" rule="fa"/>
           <span start="5" span="1" pos="DT" chunk="I-NP" entity="O" id="s1_sp13" surf="the" base="the" terminal="t1_5" category="NP[nb=true]/N"/>
-          <span start="6" span="1" pos="NN" chunk="I-NP" entity="O" id="s1_sp14" surf="dessert" base="dessert" terminal="t1_6" category="N"/>
+          <span start="6" span="1" pos="NN" chunk="I-NP" entity="O" id="s1_sp14" surf="desert" base="desert" terminal="t1_6" category="N"/>
           <span start="7" span="1" pos="." chunk="O" entity="O" id="s1_sp15" surf="." base="." terminal="t1_7" category="."/>
         </ccg>
       </sentence>
