@@ -4,14 +4,15 @@ const textToSpeech = require('@google-cloud/text-to-speech');
 // Import other required libraries
 const fs = require('fs');
 const util = require('util');
-async function main() {
+async function buildAudioFile() {
     // Creates a client
     var client;
     try {
         //const client = new textToSpeech.TextToSpeechClient();
         client = new textToSpeech.TextToSpeechClient();
         // The text to synthesize
-        const text = 'Hello, my name is Zhorai!';
+        var text = fs.readFileSync("./input.txt").toString('utf-8');
+        // const text = 'Hello, my name is Zhorai!';
 
         // Construct the request
         const request = {
@@ -35,4 +36,4 @@ async function main() {
         + err); }
 }
 
-main();
+buildAudioFile();
