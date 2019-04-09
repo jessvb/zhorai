@@ -11,7 +11,9 @@ async function main() {
         //const client = new textToSpeech.TextToSpeechClient();
         client = new textToSpeech.TextToSpeechClient();
         // The text to synthesize
-        const text = 'Hello, my name is Zhorai!';
+        var fs = require("fs");
+        var text = fs.readFileSync("./input.txt").toString('utf-8');
+        // const text = 'Hello, my name is Zhorai!';
 
         // Construct the request
         const request = {
