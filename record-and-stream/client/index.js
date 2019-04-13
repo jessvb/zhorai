@@ -62,12 +62,11 @@ function streamOrStopAudio() {
             .then(handleRecordSuccess);
     } else {
         // todo stop streaming (below doesn't work :( ))
-        console.log("iiiiinnnnnn");
-        currentStream.getTracks().forEach(function (track) {
-             console.log("stopping track: " + track);
-             track.stop();
-        });
-        currentStream = null;
+        // currentStream.getTracks().forEach(function (track) {
+        //     console.log("stopping track: " + track);
+        //     track.stop();
+        // });
+        // currentStream = null;
     }
 }
 
