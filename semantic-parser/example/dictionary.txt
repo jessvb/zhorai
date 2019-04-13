@@ -1,0 +1,1 @@
+{'desert': [('pos', 'dry'), ('pos', 'hot'), ('neg', 'water'), ('pos', 'only'), ('pos', 'plant'), ('pos', 'cactus')], 'camel': [('pos', 'sun'), ('pos', 'day'), ('neg', 'water')]}
