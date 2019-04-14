@@ -240,6 +240,380 @@
           <span id="s4_sp12" sem="\X.X"/>
         </semantics>
       </sentence>
+      <sentence>
+        <tokens>
+          <token start="0" span="1" pos="WRB" chunk="I-ADVP" entity="O" cat="(S/S)/S[dcl]" id="t5_0" surf="When" base="when"/>
+          <token start="1" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t5_1" surf="people" base="people"/>
+          <token start="2" span="1" pos="VBP" chunk="I-VP" entity="O" cat="(S[dcl]\NP)/PP" id="t5_2" surf="think" base="think"/>
+          <token start="3" span="1" pos="IN" chunk="I-PP" entity="O" cat="PP/NP" id="t5_3" surf="of" base="of"/>
+          <token start="4" span="1" pos="DT" chunk="I-NP" entity="O" cat="NP[nb]/N" id="t5_4" surf="a" base="a"/>
+          <token start="5" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t5_5" surf="desert" base="desert"/>
+          <token start="6" span="1" pos="," chunk="O" entity="O" cat="," id="t5_6" surf="," base=","/>
+          <token start="7" span="1" pos="PRP" chunk="I-NP" entity="O" cat="NP" id="t5_7" surf="they" base="they"/>
+          <token start="8" span="1" pos="RB" chunk="I-ADVP" entity="O" cat="(S\NP)/(S\NP)" id="t5_8" surf="usually" base="usually"/>
+          <token start="9" span="1" pos="VBP" chunk="I-VP" entity="O" cat="(S[dcl]\NP)/PP" id="t5_9" surf="think" base="think"/>
+          <token start="10" span="1" pos="IN" chunk="I-PP" entity="O" cat="PP/NP" id="t5_10" surf="of" base="of"/>
+          <token start="11" span="1" pos="DT" chunk="I-NP" entity="O" cat="NP[nb]/N" id="t5_11" surf="a" base="a"/>
+          <token start="12" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t5_12" surf="sandy" base="sandy"/>
+          <token start="13" span="1" pos="," chunk="O" entity="O" cat="," id="t5_13" surf="," base=","/>
+          <token start="14" span="1" pos="JJ" chunk="I-ADJP" entity="O" cat="N/N" id="t5_14" surf="hot" base="hot"/>
+          <token start="15" span="1" pos="," chunk="O" entity="O" cat="," id="t5_15" surf="," base=","/>
+          <token start="16" span="1" pos="CC" chunk="O" entity="O" cat="conj" id="t5_16" surf="and" base="and"/>
+          <token start="17" span="1" pos="JJ" chunk="I-NP" entity="O" cat="N/N" id="t5_17" surf="dry" base="dry"/>
+          <token start="18" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t5_18" surf="place" base="place"/>
+          <token start="19" span="1" pos="." chunk="O" entity="O" cat="." id="t5_19" surf="." base="."/>
+        </tokens>
+        <ccg root="s5_sp0" id="s5_ccg0">
+          <span root="true" id="s5_sp0" child="s5_sp1 s5_sp13" pos="None" category="S[dcl=true]" rule="fa"/>
+          <span id="s5_sp1" child="s5_sp2 s5_sp3" pos="None" category="S[X=true]/S[X=true]" rule="fa"/>
+          <span start="0" span="1" pos="WRB" chunk="I-ADVP" entity="O" id="s5_sp2" surf="When" base="when" terminal="t5_0" category="(S/S)/S[dcl=true]"/>
+          <span id="s5_sp3" child="s5_sp4 s5_sp6" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span id="s5_sp4" child="s5_sp5" pos="None" category="NP" rule="lex"/>
+          <span start="1" span="1" pos="NNS" chunk="I-NP" entity="O" id="s5_sp5" surf="people" base="people" terminal="t5_1" category="N"/>
+          <span id="s5_sp6" child="s5_sp7 s5_sp8" pos="None" category="S[dcl=true]\NP" rule="fa"/>
+          <span start="2" span="1" pos="VBP" chunk="I-VP" entity="O" id="s5_sp7" surf="think" base="think" terminal="t5_2" category="(S[dcl=true]\NP)/PP"/>
+          <span id="s5_sp8" child="s5_sp9 s5_sp10" pos="None" category="PP" rule="fa"/>
+          <span start="3" span="1" pos="IN" chunk="I-PP" entity="O" id="s5_sp9" surf="of" base="of" terminal="t5_3" category="PP/NP"/>
+          <span id="s5_sp10" child="s5_sp11 s5_sp12" pos="None" category="NP[nb=true]" rule="fa"/>
+          <span start="4" span="1" pos="DT" chunk="I-NP" entity="O" id="s5_sp11" surf="a" base="a" terminal="t5_4" category="NP[nb=true]/N"/>
+          <span start="5" span="1" pos="NN" chunk="I-NP" entity="O" id="s5_sp12" surf="desert" base="desert" terminal="t5_5" category="N"/>
+          <span id="s5_sp13" child="s5_sp14 s5_sp40" pos="None" category="S[dcl=true]" rule="rp"/>
+          <span id="s5_sp14" child="s5_sp15 s5_sp16" pos="None" category="S[dcl=true]" rule="lp"/>
+          <span start="6" span="1" pos="," chunk="O" entity="O" id="s5_sp15" surf="," base="," terminal="t5_6" category="=true,"/>
+          <span id="s5_sp16" child="s5_sp17 s5_sp18" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span start="7" span="1" pos="PRP" chunk="I-NP" entity="O" id="s5_sp17" surf="they" base="they" terminal="t5_7" category="NP"/>
+          <span id="s5_sp18" child="s5_sp19 s5_sp20" pos="None" category="S[dcl=true]\NP" rule="fa"/>
+          <span start="8" span="1" pos="RB" chunk="I-ADVP" entity="O" id="s5_sp19" surf="usually" base="usually" terminal="t5_8" category="(S\NP)/(S\NP)"/>
+          <span id="s5_sp20" child="s5_sp21 s5_sp22" pos="None" category="S[dcl=true]\NP" rule="fa"/>
+          <span start="9" span="1" pos="VBP" chunk="I-VP" entity="O" id="s5_sp21" surf="think" base="think" terminal="t5_9" category="(S[dcl=true]\NP)/PP"/>
+          <span id="s5_sp22" child="s5_sp23 s5_sp24" pos="None" category="PP" rule="fa"/>
+          <span start="10" span="1" pos="IN" chunk="I-PP" entity="O" id="s5_sp23" surf="of" base="of" terminal="t5_10" category="PP/NP"/>
+          <span id="s5_sp24" child="s5_sp25 s5_sp28" pos="None" category="NP" rule="ba"/>
+          <span id="s5_sp25" child="s5_sp26 s5_sp27" pos="None" category="NP[nb=true]" rule="fa"/>
+          <span start="11" span="1" pos="DT" chunk="I-NP" entity="O" id="s5_sp26" surf="a" base="a" terminal="t5_11" category="NP[nb=true]/N"/>
+          <span start="12" span="1" pos="NN" chunk="I-NP" entity="O" id="s5_sp27" surf="sandy" base="sandy" terminal="t5_12" category="N"/>
+          <span id="s5_sp28" child="s5_sp29 s5_sp30" pos="None" category="NP\NP" rule="conj"/>
+          <span start="13" span="1" pos="," chunk="O" entity="O" id="s5_sp29" surf="," base="," terminal="t5_13" category="=true,"/>
+          <span id="s5_sp30" child="s5_sp31" pos="None" category="NP" rule="lex"/>
+          <span id="s5_sp31" child="s5_sp32 s5_sp33" pos="None" category="N" rule="fa"/>
+          <span start="14" span="1" pos="JJ" chunk="I-ADJP" entity="O" id="s5_sp32" surf="hot" base="hot" terminal="t5_14" category="N/N"/>
+          <span id="s5_sp33" child="s5_sp34 s5_sp35" pos="None" category="N" rule="lp"/>
+          <span start="15" span="1" pos="," chunk="O" entity="O" id="s5_sp34" surf="," base="," terminal="t5_15" category="=true,"/>
+          <span id="s5_sp35" child="s5_sp36 s5_sp37" pos="None" category="N" rule="funny"/>
+          <span start="16" span="1" pos="CC" chunk="O" entity="O" id="s5_sp36" surf="and" base="and" terminal="t5_16" category="conj"/>
+          <span id="s5_sp37" child="s5_sp38 s5_sp39" pos="None" category="N" rule="fa"/>
+          <span start="17" span="1" pos="JJ" chunk="I-NP" entity="O" id="s5_sp38" surf="dry" base="dry" terminal="t5_17" category="N/N"/>
+          <span start="18" span="1" pos="NN" chunk="I-NP" entity="O" id="s5_sp39" surf="place" base="place" terminal="t5_18" category="N"/>
+          <span start="19" span="1" pos="." chunk="O" entity="O" id="s5_sp40" surf="." base="." terminal="t5_19" category="."/>
+        </ccg>
+        <semantics status="success" ccg_id="s5_ccg0" root="s5_sp0">
+          <span id="s5_sp0" child="s5_sp1 s5_sp13" sem="(exists x.(_people(x) &amp; TrueP &amp; _think(x) &amp; exists z3.(_desert(z3) &amp; TrueP &amp; _of(x,z3))) -&gt; exists x.(TrueP &amp; _usually(x) &amp; _think(x) &amp; exists z4.(_sandy(z4) &amp; TrueP &amp; _of(x,z4)) &amp; exists z5.(_hot(z5) &amp; _and(\z5.(_dry(z5) &amp; _place(z5)),\X.X,z5) &amp; TrueP &amp; _of(x,z5))))"/>
+          <span id="s5_sp1" child="s5_sp2 s5_sp3" sem="\S2.(exists x.(_people(x) &amp; TrueP &amp; _think(x) &amp; exists z3.(_desert(z3) &amp; TrueP &amp; _of(x,z3))) -&gt; S2)"/>
+          <span id="s5_sp2" sem="\S1 S2.(S1 -&gt; S2)"/>
+          <span id="s5_sp3" child="s5_sp4 s5_sp6" sem="exists x.(_people(x) &amp; TrueP &amp; _think(x) &amp; exists z3.(_desert(z3) &amp; TrueP &amp; _of(x,z3)))"/>
+          <span id="s5_sp4" child="s5_sp5" sem="\F1 F2.exists x.(_people(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s5_sp5" sem="\x._people(x)" type="_people : Entity -&gt; Prop"/>
+          <span id="s5_sp6" child="s5_sp7 s5_sp8" sem="\Q.Q(\w.TrueP,\x.(_think(x) &amp; exists z3.(_desert(z3) &amp; TrueP &amp; _of(x,z3))))"/>
+          <span id="s5_sp7" sem="\F Q.Q(\w.TrueP,\x.(_think(x) &amp; F(x)))" type="_think : Entity -&gt; Prop"/>
+          <span id="s5_sp8" child="s5_sp9 s5_sp10" sem="\x.exists z3.(_desert(z3) &amp; TrueP &amp; _of(x,z3))"/>
+          <span id="s5_sp9" sem="\Q x.Q(\w.TrueP,\y._of(x,y))" type="_of : Entity -&gt; Entity -&gt; Prop"/>
+          <span id="s5_sp10" child="s5_sp11 s5_sp12" sem="\F2 F3.exists x.(_desert(x) &amp; F2(x) &amp; F3(x))"/>
+          <span id="s5_sp11" sem="\F1 F2 F3.exists x.(F1(x) &amp; F2(x) &amp; F3(x))"/>
+          <span id="s5_sp12" sem="\x._desert(x)" type="_desert : Entity -&gt; Prop"/>
+          <span id="s5_sp13" child="s5_sp14 s5_sp40" sem="exists x.(TrueP &amp; _usually(x) &amp; _think(x) &amp; exists z4.(_sandy(z4) &amp; TrueP &amp; _of(x,z4)) &amp; exists z5.(_hot(z5) &amp; _and(\z5.(_dry(z5) &amp; _place(z5)),\X.X,z5) &amp; TrueP &amp; _of(x,z5)))"/>
+          <span id="s5_sp14" child="s5_sp15 s5_sp16" sem="exists x.(TrueP &amp; _usually(x) &amp; _think(x) &amp; exists z4.(_sandy(z4) &amp; TrueP &amp; _of(x,z4)) &amp; exists z5.(_hot(z5) &amp; _and(\z5.(_dry(z5) &amp; _place(z5)),\X.X,z5) &amp; TrueP &amp; _of(x,z5)))"/>
+          <span id="s5_sp15" sem="\X.X"/>
+          <span id="s5_sp16" child="s5_sp17 s5_sp18" sem="exists x.(TrueP &amp; _usually(x) &amp; _think(x) &amp; exists z4.(_sandy(z4) &amp; TrueP &amp; _of(x,z4)) &amp; exists z5.(_hot(z5) &amp; _and(\z5.(_dry(z5) &amp; _place(z5)),\X.X,z5) &amp; TrueP &amp; _of(x,z5)))"/>
+          <span id="s5_sp17" sem="\F1 F2.exists x.(F1(x) &amp; F2(x))"/>
+          <span id="s5_sp18" child="s5_sp19 s5_sp20" sem="\Q.Q(\w.TrueP,\x.(_usually(x) &amp; _think(x) &amp; exists z4.(_sandy(z4) &amp; TrueP &amp; _of(x,z4)) &amp; exists z5.(_hot(z5) &amp; _and(\z5.(_dry(z5) &amp; _place(z5)),\X.X,z5) &amp; TrueP &amp; _of(x,z5))))"/>
+          <span id="s5_sp19" sem="\V Q.Q(\w.TrueP,\x.(_usually(x) &amp; V(\F1 F2.F2(x))))" type="_usually : Entity -&gt; Prop"/>
+          <span id="s5_sp20" child="s5_sp21 s5_sp22" sem="\Q.Q(\w.TrueP,\x.(_think(x) &amp; exists z4.(_sandy(z4) &amp; TrueP &amp; _of(x,z4)) &amp; exists z5.(_hot(z5) &amp; _and(\z5.(_dry(z5) &amp; _place(z5)),\X.X,z5) &amp; TrueP &amp; _of(x,z5))))"/>
+          <span id="s5_sp21" sem="\F Q.Q(\w.TrueP,\x.(_think(x) &amp; F(x)))" type="_think : Entity -&gt; Prop"/>
+          <span id="s5_sp22" child="s5_sp23 s5_sp24" sem="\x.(exists z4.(_sandy(z4) &amp; TrueP &amp; _of(x,z4)) &amp; exists z5.(_hot(z5) &amp; _and(\z5.(_dry(z5) &amp; _place(z5)),\X.X,z5) &amp; TrueP &amp; _of(x,z5)))"/>
+          <span id="s5_sp23" sem="\Q x.Q(\w.TrueP,\y._of(x,y))" type="_of : Entity -&gt; Entity -&gt; Prop"/>
+          <span id="s5_sp24" child="s5_sp25 s5_sp28" sem="\F1 F2.(exists x.(_sandy(x) &amp; F1(x) &amp; F2(x)) &amp; exists x.(_hot(x) &amp; _and(\x.(_dry(x) &amp; _place(x)),\X.X,x) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s5_sp25" child="s5_sp26 s5_sp27" sem="\F2 F3.exists x.(_sandy(x) &amp; F2(x) &amp; F3(x))"/>
+          <span id="s5_sp26" sem="\F1 F2 F3.exists x.(F1(x) &amp; F2(x) &amp; F3(x))"/>
+          <span id="s5_sp27" sem="\x._sandy(x)" type="_sandy : Entity -&gt; Prop"/>
+          <span id="s5_sp28" child="s5_sp29 s5_sp30" sem="\Q2 F1 F2.(Q2(F1,F2) &amp; exists x.(_hot(x) &amp; _and(\x.(_dry(x) &amp; _place(x)),\X.X,x) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s5_sp29" sem="\X.X"/>
+          <span id="s5_sp30" child="s5_sp31" sem="\F1 F2.exists x.(_hot(x) &amp; _and(\x.(_dry(x) &amp; _place(x)),\X.X,x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s5_sp31" child="s5_sp32 s5_sp33" sem="\x.(_hot(x) &amp; _and(\x.(_dry(x) &amp; _place(x)),\X.X,x))"/>
+          <span id="s5_sp32" sem="\F x.(_hot(x) &amp; F(x))" type="_hot : Entity -&gt; Prop"/>
+          <span id="s5_sp33" child="s5_sp34 s5_sp35" sem="_and(\x.(_dry(x) &amp; _place(x)),\X.X)"/>
+          <span id="s5_sp34" sem="\X.X"/>
+          <span id="s5_sp35" child="s5_sp36 s5_sp37" sem="_and(\x.(_dry(x) &amp; _place(x)))"/>
+          <span id="s5_sp36" sem="_and"/>
+          <span id="s5_sp37" child="s5_sp38 s5_sp39" sem="\x.(_dry(x) &amp; _place(x))"/>
+          <span id="s5_sp38" sem="\F x.(_dry(x) &amp; F(x))" type="_dry : Entity -&gt; Prop"/>
+          <span id="s5_sp39" sem="\x._place(x)" type="_place : Entity -&gt; Prop"/>
+          <span id="s5_sp40" sem="\X.X"/>
+        </semantics>
+      </sentence>
+      <sentence>
+        <tokens>
+          <token start="0" span="1" pos="NNP" chunk="I-NP" entity="O" cat="N/N" id="t6_0" surf="Very" base="very"/>
+          <token start="1" span="1" pos="JJ" chunk="I-NP" entity="O" cat="N/N" id="t6_1" surf="few" base="few"/>
+          <token start="2" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t6_2" surf="plants" base="plant"/>
+          <token start="3" span="1" pos="CC" chunk="I-NP" entity="O" cat="conj" id="t6_3" surf="or" base="or"/>
+          <token start="4" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t6_4" surf="animals" base="animal"/>
+          <token start="5" span="1" pos="VBP" chunk="I-VP" entity="O" cat="S[dcl]\NP" id="t6_5" surf="live" base="live"/>
+          <token start="6" span="1" pos="IN" chunk="I-PP" entity="O" cat="((S\NP)\(S\NP))/NP" id="t6_6" surf="in" base="in"/>
+          <token start="7" span="1" pos="NN" chunk="I-NP" entity="O" cat="N/N" id="t6_7" surf="desert" base="desert"/>
+          <token start="8" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t6_8" surf="areas" base="area"/>
+          <token start="9" span="1" pos="." chunk="O" entity="O" cat="." id="t6_9" surf="." base="."/>
+        </tokens>
+        <ccg root="s6_sp0" id="s6_ccg0">
+          <span root="true" id="s6_sp0" child="s6_sp1 s6_sp21" pos="None" category="S[dcl=true]" rule="rp"/>
+          <span id="s6_sp1" child="s6_sp2 s6_sp13" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span id="s6_sp2" child="s6_sp3 s6_sp9" pos="None" category="NP" rule="ba"/>
+          <span id="s6_sp3" child="s6_sp4" pos="None" category="NP" rule="lex"/>
+          <span id="s6_sp4" child="s6_sp5 s6_sp6" pos="None" category="N" rule="fa"/>
+          <span start="0" span="1" pos="NNP" chunk="I-NP" entity="O" id="s6_sp5" surf="Very" base="very" terminal="t6_0" category="N/N"/>
+          <span id="s6_sp6" child="s6_sp7 s6_sp8" pos="None" category="N" rule="fa"/>
+          <span start="1" span="1" pos="JJ" chunk="I-NP" entity="O" id="s6_sp7" surf="few" base="few" terminal="t6_1" category="N/N"/>
+          <span start="2" span="1" pos="NNS" chunk="I-NP" entity="O" id="s6_sp8" surf="plants" base="plant" terminal="t6_2" category="N"/>
+          <span id="s6_sp9" child="s6_sp10 s6_sp11" pos="None" category="NP\NP" rule="conj"/>
+          <span start="3" span="1" pos="CC" chunk="I-NP" entity="O" id="s6_sp10" surf="or" base="or" terminal="t6_3" category="conj"/>
+          <span id="s6_sp11" child="s6_sp12" pos="None" category="NP" rule="lex"/>
+          <span start="4" span="1" pos="NNS" chunk="I-NP" entity="O" id="s6_sp12" surf="animals" base="animal" terminal="t6_4" category="N"/>
+          <span id="s6_sp13" child="s6_sp14 s6_sp15" pos="None" category="S[dcl=true]\NP" rule="ba"/>
+          <span start="5" span="1" pos="VBP" chunk="I-VP" entity="O" id="s6_sp14" surf="live" base="live" terminal="t6_5" category="S[dcl=true]\NP"/>
+          <span id="s6_sp15" child="s6_sp16 s6_sp17" pos="None" category="(S[X=true]\NP)\(S[X=true]\NP)" rule="fa"/>
+          <span start="6" span="1" pos="IN" chunk="I-PP" entity="O" id="s6_sp16" surf="in" base="in" terminal="t6_6" category="((S\NP)\(S\NP))/NP"/>
+          <span id="s6_sp17" child="s6_sp18" pos="None" category="NP" rule="lex"/>
+          <span id="s6_sp18" child="s6_sp19 s6_sp20" pos="None" category="N" rule="fa"/>
+          <span start="7" span="1" pos="NN" chunk="I-NP" entity="O" id="s6_sp19" surf="desert" base="desert" terminal="t6_7" category="N/N"/>
+          <span start="8" span="1" pos="NNS" chunk="I-NP" entity="O" id="s6_sp20" surf="areas" base="area" terminal="t6_8" category="N"/>
+          <span start="9" span="1" pos="." chunk="O" entity="O" id="s6_sp21" surf="." base="." terminal="t6_9" category="."/>
+        </ccg>
+        <semantics status="success" ccg_id="s6_ccg0" root="s6_sp0">
+          <span id="s6_sp0" child="s6_sp1 s6_sp21" sem="(-exists x.(_very(x) &amp; _few(x) &amp; _plant(x) &amp; TrueP &amp; exists z5.(_desert(z5) &amp; _area(z5) &amp; TrueP &amp; _in(x,z5) &amp; _live(x))) | exists x.(_animal(x) &amp; TrueP &amp; exists z5.(_desert(z5) &amp; _area(z5) &amp; TrueP &amp; _in(x,z5) &amp; _live(x))))"/>
+          <span id="s6_sp1" child="s6_sp2 s6_sp13" sem="(-exists x.(_very(x) &amp; _few(x) &amp; _plant(x) &amp; TrueP &amp; exists z5.(_desert(z5) &amp; _area(z5) &amp; TrueP &amp; _in(x,z5) &amp; _live(x))) | exists x.(_animal(x) &amp; TrueP &amp; exists z5.(_desert(z5) &amp; _area(z5) &amp; TrueP &amp; _in(x,z5) &amp; _live(x))))"/>
+          <span id="s6_sp2" child="s6_sp3 s6_sp9" sem="\F1 F2.(-exists x.(_very(x) &amp; _few(x) &amp; _plant(x) &amp; F1(x) &amp; F2(x)) | exists x.(_animal(x) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s6_sp3" child="s6_sp4" sem="\F1 F2.-exists x.(_very(x) &amp; _few(x) &amp; _plant(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s6_sp4" child="s6_sp5 s6_sp6" sem="\x.(_very(x) &amp; _few(x) &amp; _plant(x))"/>
+          <span id="s6_sp5" sem="\F x.(_very(x) &amp; F(x))" type="_very : Entity -&gt; Prop"/>
+          <span id="s6_sp6" child="s6_sp7 s6_sp8" sem="\x.(_few(x) &amp; _plant(x))"/>
+          <span id="s6_sp7" sem="\F x.(_few(x) &amp; F(x))" type="_few : Entity -&gt; Prop"/>
+          <span id="s6_sp8" sem="\x._plant(x)" type="_plant : Entity -&gt; Prop"/>
+          <span id="s6_sp9" child="s6_sp10 s6_sp11" sem="\Q2 F1 F2.(Q2(F1,F2) | exists x.(_animal(x) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s6_sp10" sem="_or"/>
+          <span id="s6_sp11" child="s6_sp12" sem="\F1 F2.exists x.(_animal(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s6_sp12" sem="\x._animal(x)" type="_animal : Entity -&gt; Prop"/>
+          <span id="s6_sp13" child="s6_sp14 s6_sp15" sem="\Q2.Q2(\w.TrueP,\x.exists z5.(_desert(z5) &amp; _area(z5) &amp; TrueP &amp; _in(x,z5) &amp; _live(x)))"/>
+          <span id="s6_sp14" sem="\Q.Q(\w.TrueP,\x._live(x))" type="_live : Entity -&gt; Prop"/>
+          <span id="s6_sp15" child="s6_sp16 s6_sp17" sem="\V Q2.Q2(\w.TrueP,\x.exists z5.(_desert(z5) &amp; _area(z5) &amp; TrueP &amp; _in(x,z5) &amp; V(\F1 F2.F2(x))))"/>
+          <span id="s6_sp16" sem="\Q1 V Q2.Q2(\w.TrueP,\x.Q1(\w.TrueP,\y.(_in(x,y) &amp; V(\F1 F2.F2(x)))))" type="_in : Entity -&gt; Entity -&gt; Prop"/>
+          <span id="s6_sp17" child="s6_sp18" sem="\F1 F2.exists x.(_desert(x) &amp; _area(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s6_sp18" child="s6_sp19 s6_sp20" sem="\x.(_desert(x) &amp; _area(x))"/>
+          <span id="s6_sp19" sem="\F x.(_desert(x) &amp; F(x))" type="_desert : Entity -&gt; Prop"/>
+          <span id="s6_sp20" sem="\x._area(x)" type="_area : Entity -&gt; Prop"/>
+          <span id="s6_sp21" sem="\X.X"/>
+        </semantics>
+      </sentence>
+      <sentence>
+        <tokens>
+          <token start="0" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t7_0" surf="Deserts" base="desert"/>
+          <token start="1" span="1" pos="VBP" chunk="I-VP" entity="O" cat="(S[dcl]\NP)/NP" id="t7_1" surf="are" base="be"/>
+          <token start="2" span="1" pos="JJ" chunk="I-NP" entity="O" cat="N/N" id="t7_2" surf="huge" base="huge"/>
+          <token start="3" span="1" pos="JJ" chunk="I-NP" entity="O" cat="N/N" id="t7_3" surf="dry" base="dry"/>
+          <token start="4" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t7_4" surf="areas" base="area"/>
+          <token start="5" span="1" pos="IN" chunk="I-PP" entity="O" cat="(NP\NP)/NP" id="t7_5" surf="with" base="with"/>
+          <token start="6" span="1" pos="RB" chunk="I-NP" entity="O" cat="(N/N)/(N/N)" id="t7_6" surf="very" base="very"/>
+          <token start="7" span="1" pos="JJ" chunk="I-NP" entity="O" cat="N/N" id="t7_7" surf="little" base="little"/>
+          <token start="8" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t7_8" surf="plants" base="plant"/>
+          <token start="9" span="1" pos="," chunk="O" entity="O" cat="," id="t7_9" surf="," base=","/>
+          <token start="10" span="1" pos="DT" chunk="I-NP" entity="O" cat="NP[nb]/N" id="t7_10" surf="a" base="a"/>
+          <token start="11" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t7_11" surf="couple" base="couple"/>
+          <token start="12" span="1" pos="IN" chunk="I-PP" entity="O" cat="(NP\NP)/NP" id="t7_12" surf="of" base="of"/>
+          <token start="13" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t7_13" surf="camels" base="camel"/>
+          <token start="14" span="1" pos="VBN" chunk="I-VP" entity="O" cat="S[pss]\NP" id="t7_14" surf="thrown" base="throw"/>
+          <token start="15" span="1" pos="IN" chunk="I-ADVP" entity="O" cat="(S\NP)\(S\NP)" id="t7_15" surf="in" base="in"/>
+          <token start="16" span="1" pos="CC" chunk="O" entity="O" cat="conj" id="t7_16" surf="and" base="and"/>
+          <token start="17" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t7_17" surf="miles" base="mile"/>
+          <token start="18" span="1" pos="CC" chunk="O" entity="O" cat="conj" id="t7_18" surf="and" base="and"/>
+          <token start="19" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t7_19" surf="miles" base="mile"/>
+          <token start="20" span="1" pos="IN" chunk="I-PP" entity="O" cat="(NP\NP)/NP" id="t7_20" surf="of" base="of"/>
+          <token start="21" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t7_21" surf="sand" base="sand"/>
+          <token start="22" span="1" pos="." chunk="O" entity="O" cat="." id="t7_22" surf="." base="."/>
+        </tokens>
+        <ccg root="s7_sp0" id="s7_ccg0">
+          <span root="true" id="s7_sp0" child="s7_sp1 s7_sp52" pos="None" category="S[dcl=true]" rule="rp"/>
+          <span id="s7_sp1" child="s7_sp2 s7_sp4" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span id="s7_sp2" child="s7_sp3" pos="None" category="NP" rule="lex"/>
+          <span start="0" span="1" pos="NNS" chunk="I-NP" entity="O" id="s7_sp3" surf="Deserts" base="desert" terminal="t7_0" category="N"/>
+          <span id="s7_sp4" child="s7_sp5 s7_sp6" pos="None" category="S[dcl=true]\NP" rule="fa"/>
+          <span start="1" span="1" pos="VBP" chunk="I-VP" entity="O" id="s7_sp5" surf="are" base="be" terminal="t7_1" category="(S[dcl=true]\NP)/NP"/>
+          <span id="s7_sp6" child="s7_sp7 s7_sp22" pos="None" category="NP" rule="ba"/>
+          <span id="s7_sp7" child="s7_sp8 s7_sp14" pos="None" category="NP" rule="ba"/>
+          <span id="s7_sp8" child="s7_sp9" pos="None" category="NP" rule="lex"/>
+          <span id="s7_sp9" child="s7_sp10 s7_sp11" pos="None" category="N" rule="fa"/>
+          <span start="2" span="1" pos="JJ" chunk="I-NP" entity="O" id="s7_sp10" surf="huge" base="huge" terminal="t7_2" category="N/N"/>
+          <span id="s7_sp11" child="s7_sp12 s7_sp13" pos="None" category="N" rule="fa"/>
+          <span start="3" span="1" pos="JJ" chunk="I-NP" entity="O" id="s7_sp12" surf="dry" base="dry" terminal="t7_3" category="N/N"/>
+          <span start="4" span="1" pos="NNS" chunk="I-NP" entity="O" id="s7_sp13" surf="areas" base="area" terminal="t7_4" category="N"/>
+          <span id="s7_sp14" child="s7_sp15 s7_sp16" pos="None" category="NP\NP" rule="fa"/>
+          <span start="5" span="1" pos="IN" chunk="I-PP" entity="O" id="s7_sp15" surf="with" base="with" terminal="t7_5" category="(NP\NP)/NP"/>
+          <span id="s7_sp16" child="s7_sp17" pos="None" category="NP" rule="lex"/>
+          <span id="s7_sp17" child="s7_sp18 s7_sp21" pos="None" category="N" rule="fa"/>
+          <span id="s7_sp18" child="s7_sp19 s7_sp20" pos="None" category="N/N" rule="fa"/>
+          <span start="6" span="1" pos="RB" chunk="I-NP" entity="O" id="s7_sp19" surf="very" base="very" terminal="t7_6" category="(N/N)/(N/N)"/>
+          <span start="7" span="1" pos="JJ" chunk="I-NP" entity="O" id="s7_sp20" surf="little" base="little" terminal="t7_7" category="N/N"/>
+          <span start="8" span="1" pos="NNS" chunk="I-NP" entity="O" id="s7_sp21" surf="plants" base="plant" terminal="t7_8" category="N"/>
+          <span id="s7_sp22" child="s7_sp23 s7_sp24" pos="None" category="NP\NP" rule="conj"/>
+          <span start="9" span="1" pos="," chunk="O" entity="O" id="s7_sp23" surf="," base="," terminal="t7_9" category="=true,"/>
+          <span id="s7_sp24" child="s7_sp25 s7_sp43" pos="None" category="NP" rule="ba"/>
+          <span id="s7_sp25" child="s7_sp26 s7_sp39" pos="None" category="NP" rule="ba"/>
+          <span id="s7_sp26" child="s7_sp27 s7_sp35" pos="None" category="NP" rule="ba"/>
+          <span id="s7_sp27" child="s7_sp28 s7_sp31" pos="None" category="NP" rule="ba"/>
+          <span id="s7_sp28" child="s7_sp29 s7_sp30" pos="None" category="NP[nb=true]" rule="fa"/>
+          <span start="10" span="1" pos="DT" chunk="I-NP" entity="O" id="s7_sp29" surf="a" base="a" terminal="t7_10" category="NP[nb=true]/N"/>
+          <span start="11" span="1" pos="NN" chunk="I-NP" entity="O" id="s7_sp30" surf="couple" base="couple" terminal="t7_11" category="N"/>
+          <span id="s7_sp31" child="s7_sp32 s7_sp33" pos="None" category="NP\NP" rule="fa"/>
+          <span start="12" span="1" pos="IN" chunk="I-PP" entity="O" id="s7_sp32" surf="of" base="of" terminal="t7_12" category="(NP\NP)/NP"/>
+          <span id="s7_sp33" child="s7_sp34" pos="None" category="NP" rule="lex"/>
+          <span start="13" span="1" pos="NNS" chunk="I-NP" entity="O" id="s7_sp34" surf="camels" base="camel" terminal="t7_13" category="N"/>
+          <span id="s7_sp35" child="s7_sp36" pos="None" category="NP\NP" rule="lex"/>
+          <span id="s7_sp36" child="s7_sp37 s7_sp38" pos="None" category="S[pss=true]\NP" rule="ba"/>
+          <span start="14" span="1" pos="VBN" chunk="I-VP" entity="O" id="s7_sp37" surf="thrown" base="throw" terminal="t7_14" category="S[pss=true]\NP"/>
+          <span start="15" span="1" pos="IN" chunk="I-ADVP" entity="O" id="s7_sp38" surf="in" base="in" terminal="t7_15" category="(S\NP)\(S\NP)"/>
+          <span id="s7_sp39" child="s7_sp40 s7_sp41" pos="None" category="NP\NP" rule="conj"/>
+          <span start="16" span="1" pos="CC" chunk="O" entity="O" id="s7_sp40" surf="and" base="and" terminal="t7_16" category="conj"/>
+          <span id="s7_sp41" child="s7_sp42" pos="None" category="NP" rule="lex"/>
+          <span start="17" span="1" pos="NNS" chunk="I-NP" entity="O" id="s7_sp42" surf="miles" base="mile" terminal="t7_17" category="N"/>
+          <span id="s7_sp43" child="s7_sp44 s7_sp45" pos="None" category="NP\NP" rule="conj"/>
+          <span start="18" span="1" pos="CC" chunk="O" entity="O" id="s7_sp44" surf="and" base="and" terminal="t7_18" category="conj"/>
+          <span id="s7_sp45" child="s7_sp46 s7_sp48" pos="None" category="NP" rule="ba"/>
+          <span id="s7_sp46" child="s7_sp47" pos="None" category="NP" rule="lex"/>
+          <span start="19" span="1" pos="NNS" chunk="I-NP" entity="O" id="s7_sp47" surf="miles" base="mile" terminal="t7_19" category="N"/>
+          <span id="s7_sp48" child="s7_sp49 s7_sp50" pos="None" category="NP\NP" rule="fa"/>
+          <span start="20" span="1" pos="IN" chunk="I-PP" entity="O" id="s7_sp49" surf="of" base="of" terminal="t7_20" category="(NP\NP)/NP"/>
+          <span id="s7_sp50" child="s7_sp51" pos="None" category="NP" rule="lex"/>
+          <span start="21" span="1" pos="NN" chunk="I-NP" entity="O" id="s7_sp51" surf="sand" base="sand" terminal="t7_21" category="N"/>
+          <span start="22" span="1" pos="." chunk="O" entity="O" id="s7_sp52" surf="." base="." terminal="t7_22" category="."/>
+        </ccg>
+        <semantics status="success" ccg_id="s7_ccg0" root="s7_sp0">
+          <span id="s7_sp0" child="s7_sp1 s7_sp52" sem="exists x.(_desert(x) &amp; TrueP &amp; exists z9.(_huge(z9) &amp; _dry(z9) &amp; _area(z9) &amp; exists z4.(_very(z4) &amp; _little(z4) &amp; _plant(z4) &amp; TrueP &amp; _with(z9,z4)) &amp; TrueP &amp; (x = z9)) &amp; exists z10.(_couple(z10) &amp; exists z5.(_camel(z5) &amp; TrueP &amp; _of(z10,z5)) &amp; _in(z10) &amp; _throw(z10) &amp; TrueP &amp; (x = z10)) &amp; exists z11.(_mile(z11) &amp; TrueP &amp; (x = z11)) &amp; exists z12.(_mile(z12) &amp; exists z8.(_sand(z8) &amp; TrueP &amp; _of(z12,z8)) &amp; TrueP &amp; (x = z12)))"/>
+          <span id="s7_sp1" child="s7_sp2 s7_sp4" sem="exists x.(_desert(x) &amp; TrueP &amp; exists z9.(_huge(z9) &amp; _dry(z9) &amp; _area(z9) &amp; exists z4.(_very(z4) &amp; _little(z4) &amp; _plant(z4) &amp; TrueP &amp; _with(z9,z4)) &amp; TrueP &amp; (x = z9)) &amp; exists z10.(_couple(z10) &amp; exists z5.(_camel(z5) &amp; TrueP &amp; _of(z10,z5)) &amp; _in(z10) &amp; _throw(z10) &amp; TrueP &amp; (x = z10)) &amp; exists z11.(_mile(z11) &amp; TrueP &amp; (x = z11)) &amp; exists z12.(_mile(z12) &amp; exists z8.(_sand(z8) &amp; TrueP &amp; _of(z12,z8)) &amp; TrueP &amp; (x = z12)))"/>
+          <span id="s7_sp2" child="s7_sp3" sem="\F1 F2.exists x.(_desert(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s7_sp3" sem="\x._desert(x)" type="_desert : Entity -&gt; Prop"/>
+          <span id="s7_sp4" child="s7_sp5 s7_sp6" sem="\Q2.Q2(\w.TrueP,\x.(exists z9.(_huge(z9) &amp; _dry(z9) &amp; _area(z9) &amp; exists z4.(_very(z4) &amp; _little(z4) &amp; _plant(z4) &amp; TrueP &amp; _with(z9,z4)) &amp; TrueP &amp; (x = z9)) &amp; exists z10.(_couple(z10) &amp; exists z5.(_camel(z5) &amp; TrueP &amp; _of(z10,z5)) &amp; _in(z10) &amp; _throw(z10) &amp; TrueP &amp; (x = z10)) &amp; exists z11.(_mile(z11) &amp; TrueP &amp; (x = z11)) &amp; exists z12.(_mile(z12) &amp; exists z8.(_sand(z8) &amp; TrueP &amp; _of(z12,z8)) &amp; TrueP &amp; (x = z12))))"/>
+          <span id="s7_sp5" sem="\Q1 Q2.Q2(\w.TrueP,\x.Q1(\w.TrueP,\y.(x = y)))"/>
+          <span id="s7_sp6" child="s7_sp7 s7_sp22" sem="\F1 F2.(exists x.(_huge(x) &amp; _dry(x) &amp; _area(x) &amp; exists z4.(_very(z4) &amp; _little(z4) &amp; _plant(z4) &amp; TrueP &amp; _with(x,z4)) &amp; F1(x) &amp; F2(x)) &amp; exists x.(_couple(x) &amp; exists z5.(_camel(z5) &amp; TrueP &amp; _of(x,z5)) &amp; _in(x) &amp; _throw(x) &amp; F1(x) &amp; F2(x)) &amp; exists x.(_mile(x) &amp; F1(x) &amp; F2(x)) &amp; exists x.(_mile(x) &amp; exists z8.(_sand(z8) &amp; TrueP &amp; _of(x,z8)) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s7_sp7" child="s7_sp8 s7_sp14" sem="\F1 F2.exists x.(_huge(x) &amp; _dry(x) &amp; _area(x) &amp; exists z4.(_very(z4) &amp; _little(z4) &amp; _plant(z4) &amp; TrueP &amp; _with(x,z4)) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s7_sp8" child="s7_sp9" sem="\F1 F2.exists x.(_huge(x) &amp; _dry(x) &amp; _area(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s7_sp9" child="s7_sp10 s7_sp11" sem="\x.(_huge(x) &amp; _dry(x) &amp; _area(x))"/>
+          <span id="s7_sp10" sem="\F x.(_huge(x) &amp; F(x))" type="_huge : Entity -&gt; Prop"/>
+          <span id="s7_sp11" child="s7_sp12 s7_sp13" sem="\x.(_dry(x) &amp; _area(x))"/>
+          <span id="s7_sp12" sem="\F x.(_dry(x) &amp; F(x))" type="_dry : Entity -&gt; Prop"/>
+          <span id="s7_sp13" sem="\x._area(x)" type="_area : Entity -&gt; Prop"/>
+          <span id="s7_sp14" child="s7_sp15 s7_sp16" sem="\Q2 F1.Q2(\x.(exists z4.(_very(z4) &amp; _little(z4) &amp; _plant(z4) &amp; TrueP &amp; _with(x,z4)) &amp; F1(x)))"/>
+          <span id="s7_sp15" sem="\Q1 Q2 F1.Q2(\x.(Q1(\w.TrueP,\y._with(x,y)) &amp; F1(x)))" type="_with : Entity -&gt; Entity -&gt; Prop"/>
+          <span id="s7_sp16" child="s7_sp17" sem="\F1 F2.exists x.(_very(x) &amp; _little(x) &amp; _plant(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s7_sp17" child="s7_sp18 s7_sp21" sem="\x.(_very(x) &amp; _little(x) &amp; _plant(x))"/>
+          <span id="s7_sp18" child="s7_sp19 s7_sp20" sem="\F x.(_very(x) &amp; _little(x) &amp; F(x))"/>
+          <span id="s7_sp19" sem="\A F x.(_very(x) &amp; A(F,x))" type="_very : Entity -&gt; Prop"/>
+          <span id="s7_sp20" sem="\F x.(_little(x) &amp; F(x))" type="_little : Entity -&gt; Prop"/>
+          <span id="s7_sp21" sem="\x._plant(x)" type="_plant : Entity -&gt; Prop"/>
+          <span id="s7_sp22" child="s7_sp23 s7_sp24" sem="\Q2 F1 F2.(Q2(F1,F2) &amp; exists x.(_couple(x) &amp; exists z5.(_camel(z5) &amp; TrueP &amp; _of(x,z5)) &amp; _in(x) &amp; _throw(x) &amp; F1(x) &amp; F2(x)) &amp; exists x.(_mile(x) &amp; F1(x) &amp; F2(x)) &amp; exists x.(_mile(x) &amp; exists z8.(_sand(z8) &amp; TrueP &amp; _of(x,z8)) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s7_sp23" sem="\X.X"/>
+          <span id="s7_sp24" child="s7_sp25 s7_sp43" sem="\F1 F2.(exists x.(_couple(x) &amp; exists z5.(_camel(z5) &amp; TrueP &amp; _of(x,z5)) &amp; _in(x) &amp; _throw(x) &amp; F1(x) &amp; F2(x)) &amp; exists x.(_mile(x) &amp; F1(x) &amp; F2(x)) &amp; exists x.(_mile(x) &amp; exists z8.(_sand(z8) &amp; TrueP &amp; _of(x,z8)) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s7_sp25" child="s7_sp26 s7_sp39" sem="\F1 F2.(exists x.(_couple(x) &amp; exists z5.(_camel(z5) &amp; TrueP &amp; _of(x,z5)) &amp; _in(x) &amp; _throw(x) &amp; F1(x) &amp; F2(x)) &amp; exists x.(_mile(x) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s7_sp26" child="s7_sp27 s7_sp35" sem="\F1 F3.exists x.(_couple(x) &amp; exists z5.(_camel(z5) &amp; TrueP &amp; _of(x,z5)) &amp; _in(x) &amp; _throw(x) &amp; F1(x) &amp; F3(x))"/>
+          <span id="s7_sp27" child="s7_sp28 s7_sp31" sem="\F1 F3.exists x.(_couple(x) &amp; exists z5.(_camel(z5) &amp; TrueP &amp; _of(x,z5)) &amp; F1(x) &amp; F3(x))"/>
+          <span id="s7_sp28" child="s7_sp29 s7_sp30" sem="\F2 F3.exists x.(_couple(x) &amp; F2(x) &amp; F3(x))"/>
+          <span id="s7_sp29" sem="\F1 F2 F3.exists x.(F1(x) &amp; F2(x) &amp; F3(x))"/>
+          <span id="s7_sp30" sem="\x._couple(x)" type="_couple : Entity -&gt; Prop"/>
+          <span id="s7_sp31" child="s7_sp32 s7_sp33" sem="\Q2 F1.Q2(\x.(exists z5.(_camel(z5) &amp; TrueP &amp; _of(x,z5)) &amp; F1(x)))"/>
+          <span id="s7_sp32" sem="\Q1 Q2 F1.Q2(\x.(Q1(\w.TrueP,\y._of(x,y)) &amp; F1(x)))" type="_of : Entity -&gt; Entity -&gt; Prop"/>
+          <span id="s7_sp33" child="s7_sp34" sem="\F1 F2.exists x.(_camel(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s7_sp34" sem="\x._camel(x)" type="_camel : Entity -&gt; Prop"/>
+          <span id="s7_sp35" child="s7_sp36" sem="\Q F1.Q(\x.(_in(x) &amp; _throw(x) &amp; F1(x)))"/>
+          <span id="s7_sp36" child="s7_sp37 s7_sp38" sem="\Q.Q(\w.TrueP,\x.(_in(x) &amp; _throw(x)))"/>
+          <span id="s7_sp37" sem="\Q.Q(\w.TrueP,\x._throw(x))" type="_throw : Entity -&gt; Prop"/>
+          <span id="s7_sp38" sem="\V Q.Q(\w.TrueP,\x.(_in(x) &amp; V(\F1 F2.F2(x))))" type="_in : Entity -&gt; Prop"/>
+          <span id="s7_sp39" child="s7_sp40 s7_sp41" sem="\Q2 F1 F2.(Q2(F1,F2) &amp; exists x.(_mile(x) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s7_sp40" sem="_and"/>
+          <span id="s7_sp41" child="s7_sp42" sem="\F1 F2.exists x.(_mile(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s7_sp42" sem="\x._mile(x)" type="_mile : Entity -&gt; Prop"/>
+          <span id="s7_sp43" child="s7_sp44 s7_sp45" sem="\Q2 F1 F2.(Q2(F1,F2) &amp; exists x.(_mile(x) &amp; exists z8.(_sand(z8) &amp; TrueP &amp; _of(x,z8)) &amp; F1(x) &amp; F2(x)))"/>
+          <span id="s7_sp44" sem="_and"/>
+          <span id="s7_sp45" child="s7_sp46 s7_sp48" sem="\F1 F2.exists x.(_mile(x) &amp; exists z8.(_sand(z8) &amp; TrueP &amp; _of(x,z8)) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s7_sp46" child="s7_sp47" sem="\F1 F2.exists x.(_mile(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s7_sp47" sem="\x._mile(x)" type="_mile : Entity -&gt; Prop"/>
+          <span id="s7_sp48" child="s7_sp49 s7_sp50" sem="\Q2 F1.Q2(\x.(exists z8.(_sand(z8) &amp; TrueP &amp; _of(x,z8)) &amp; F1(x)))"/>
+          <span id="s7_sp49" sem="\Q1 Q2 F1.Q2(\x.(Q1(\w.TrueP,\y._of(x,y)) &amp; F1(x)))" type="_of : Entity -&gt; Entity -&gt; Prop"/>
+          <span id="s7_sp50" child="s7_sp51" sem="\F1 F2.exists x.(_sand(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s7_sp51" sem="\x._sand(x)" type="_sand : Entity -&gt; Prop"/>
+          <span id="s7_sp52" sem="\X.X"/>
+        </semantics>
+      </sentence>
+      <sentence>
+        <tokens>
+          <token start="0" span="1" pos="JJS" chunk="I-NP" entity="O" cat="N/N" id="t8_0" surf="Most" base="most"/>
+          <token start="1" span="1" pos="NNS" chunk="I-NP" entity="O" cat="N" id="t8_1" surf="deserts" base="desert"/>
+          <token start="2" span="1" pos="VBP" chunk="I-VP" entity="O" cat="(S[dcl]\NP)/(S[adj]\NP)" id="t8_2" surf="are" base="be"/>
+          <token start="3" span="1" pos="RB" chunk="I-ADJP" entity="O" cat="(S[adj]\NP)/(S[adj]\NP)" id="t8_3" surf="very" base="very"/>
+          <token start="4" span="1" pos="JJ" chunk="I-ADJP" entity="O" cat="S[adj]\NP" id="t8_4" surf="dry" base="dry"/>
+          <token start="5" span="1" pos="CC" chunk="O" entity="O" cat="conj" id="t8_5" surf="and" base="and"/>
+          <token start="6" span="1" pos="PRP" chunk="I-NP" entity="O" cat="NP" id="t8_6" surf="they" base="they"/>
+          <token start="7" span="1" pos="VBP" chunk="I-VP" entity="O" cat="(S[dcl]\NP)/(S[b]\NP)" id="t8_7" surf="don’t" base="don’t"/>
+          <token start="8" span="1" pos="VB" chunk="I-VP" entity="O" cat="(S[b]\NP)/NP" id="t8_8" surf="get" base="get"/>
+          <token start="9" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t8_9" surf="rain" base="rain"/>
+          <token start="10" span="1" pos="." chunk="O" entity="O" cat="." id="t8_10" surf="." base="."/>
+        </tokens>
+        <ccg root="s8_sp0" id="s8_ccg0">
+          <span root="true" id="s8_sp0" child="s8_sp1 s8_sp22" pos="None" category="S[dcl=true]" rule="rp"/>
+          <span id="s8_sp1" child="s8_sp2 s8_sp12" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span id="s8_sp2" child="s8_sp3 s8_sp7" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span id="s8_sp3" child="s8_sp4" pos="None" category="NP" rule="lex"/>
+          <span id="s8_sp4" child="s8_sp5 s8_sp6" pos="None" category="N" rule="fa"/>
+          <span start="0" span="1" pos="JJS" chunk="I-NP" entity="O" id="s8_sp5" surf="Most" base="most" terminal="t8_0" category="N/N"/>
+          <span start="1" span="1" pos="NNS" chunk="I-NP" entity="O" id="s8_sp6" surf="deserts" base="desert" terminal="t8_1" category="N"/>
+          <span id="s8_sp7" child="s8_sp8 s8_sp9" pos="None" category="S[dcl=true]\NP" rule="fa"/>
+          <span start="2" span="1" pos="VBP" chunk="I-VP" entity="O" id="s8_sp8" surf="are" base="be" terminal="t8_2" category="(S[dcl=true]\NP)/(S[adj=true]\NP)"/>
+          <span id="s8_sp9" child="s8_sp10 s8_sp11" pos="None" category="S[adj=true]\NP" rule="fa"/>
+          <span start="3" span="1" pos="RB" chunk="I-ADJP" entity="O" id="s8_sp10" surf="very" base="very" terminal="t8_3" category="(S[adj=true]\NP)/(S[adj=true]\NP)"/>
+          <span start="4" span="1" pos="JJ" chunk="I-ADJP" entity="O" id="s8_sp11" surf="dry" base="dry" terminal="t8_4" category="S[adj=true]\NP"/>
+          <span id="s8_sp12" child="s8_sp13 s8_sp14" pos="None" category="S[dcl=true]\S[dcl=true]" rule="conj"/>
+          <span start="5" span="1" pos="CC" chunk="O" entity="O" id="s8_sp13" surf="and" base="and" terminal="t8_5" category="conj"/>
+          <span id="s8_sp14" child="s8_sp15 s8_sp16" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span start="6" span="1" pos="PRP" chunk="I-NP" entity="O" id="s8_sp15" surf="they" base="they" terminal="t8_6" category="NP"/>
+          <span id="s8_sp16" child="s8_sp17 s8_sp18" pos="None" category="S[dcl=true]\NP" rule="fa"/>
+          <span start="7" span="1" pos="VBP" chunk="I-VP" entity="O" id="s8_sp17" surf="don’t" base="don’t" terminal="t8_7" category="(S[dcl=true]\NP)/(S[b=true]\NP)"/>
+          <span id="s8_sp18" child="s8_sp19 s8_sp20" pos="None" category="S[b=true]\NP" rule="fa"/>
+          <span start="8" span="1" pos="VB" chunk="I-VP" entity="O" id="s8_sp19" surf="get" base="get" terminal="t8_8" category="(S[b=true]\NP)/NP"/>
+          <span id="s8_sp20" child="s8_sp21" pos="None" category="NP" rule="lex"/>
+          <span start="9" span="1" pos="NN" chunk="I-NP" entity="O" id="s8_sp21" surf="rain" base="rain" terminal="t8_9" category="N"/>
+          <span start="10" span="1" pos="." chunk="O" entity="O" id="s8_sp22" surf="." base="." terminal="t8_10" category="."/>
+        </ccg>
+        <semantics status="success" ccg_id="s8_ccg0" root="s8_sp0">
+          <span id="s8_sp0" child="s8_sp1 s8_sp22" sem="(exists x.(TrueP &amp; _don’t(exists z8.(_rain(z8) &amp; TrueP &amp; _get(x,z8)))) &amp; Most(\x.(_desert(x) &amp; TrueP),\x.(_very(x) &amp; _dry(x))))"/>
+          <span id="s8_sp1" child="s8_sp2 s8_sp12" sem="(exists x.(TrueP &amp; _don’t(exists z8.(_rain(z8) &amp; TrueP &amp; _get(x,z8)))) &amp; Most(\x.(_desert(x) &amp; TrueP),\x.(_very(x) &amp; _dry(x))))"/>
+          <span id="s8_sp2" child="s8_sp3 s8_sp7" sem="Most(\x.(_desert(x) &amp; TrueP),\x.(_very(x) &amp; _dry(x)))"/>
+          <span id="s8_sp3" child="s8_sp4" sem="\F2 F3.Most(\x.(_desert(x) &amp; F2(x)),F3)"/>
+          <span id="s8_sp4" child="s8_sp5 s8_sp6" sem="\F2 F3.Most(\x.(_desert(x) &amp; F2(x)),F3)"/>
+          <span id="s8_sp5" sem="\F1 F2 F3.Most(\x.(F1(x) &amp; F2(x)),F3)"/>
+          <span id="s8_sp6" sem="\x._desert(x)" type="_desert : Entity -&gt; Prop"/>
+          <span id="s8_sp7" child="s8_sp8 s8_sp9" sem="\Q.Q(\w.TrueP,\x.(_very(x) &amp; _dry(x)))"/>
+          <span id="s8_sp8" sem="\X.X"/>
+          <span id="s8_sp9" child="s8_sp10 s8_sp11" sem="\Q.Q(\w.TrueP,\x.(_very(x) &amp; _dry(x)))"/>
+          <span id="s8_sp10" sem="\V Q.Q(\w.TrueP,\x.(_very(x) &amp; V(\F1 F2.F2(x))))" type="_very : Entity -&gt; Prop"/>
+          <span id="s8_sp11" sem="\Q.Q(\w.TrueP,\x._dry(x))" type="_dry : Entity -&gt; Prop"/>
+          <span id="s8_sp12" child="s8_sp13 s8_sp14" sem="\S2.(exists x.(TrueP &amp; _don’t(exists z8.(_rain(z8) &amp; TrueP &amp; _get(x,z8)))) &amp; S2)"/>
+          <span id="s8_sp13" sem="_and"/>
+          <span id="s8_sp14" child="s8_sp15 s8_sp16" sem="exists x.(TrueP &amp; _don’t(exists z8.(_rain(z8) &amp; TrueP &amp; _get(x,z8))))"/>
+          <span id="s8_sp15" sem="\F1 F2.exists x.(F1(x) &amp; F2(x))"/>
+          <span id="s8_sp16" child="s8_sp17 s8_sp18" sem="\Q.Q(\w.TrueP,\x._don’t(exists z8.(_rain(z8) &amp; TrueP &amp; _get(x,z8))))"/>
+          <span id="s8_sp17" sem="\V Q.Q(\w.TrueP,\x.V(\F1 F2._don’t(F2(x))))" type="_don’t : Prop -&gt; Prop"/>
+          <span id="s8_sp18" child="s8_sp19 s8_sp20" sem="\Q2.Q2(\w.TrueP,\x.exists z8.(_rain(z8) &amp; TrueP &amp; _get(x,z8)))"/>
+          <span id="s8_sp19" sem="\Q1 Q2.Q2(\w.TrueP,\x.Q1(\w.TrueP,\y._get(x,y)))" type="_get : Entity -&gt; Entity -&gt; Prop"/>
+          <span id="s8_sp20" child="s8_sp21" sem="\F1 F2.exists x.(_rain(x) &amp; F1(x) &amp; F2(x))"/>
+          <span id="s8_sp21" sem="\x._rain(x)" type="_rain : Entity -&gt; Prop"/>
+          <span id="s8_sp22" sem="\X.X"/>
+        </semantics>
+      </sentence>
     </sentences>
   </document>
 </root>
