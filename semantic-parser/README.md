@@ -1,7 +1,7 @@
 # Semantic Parser
 
 This parser will use the ccg2lambda library to parse the sentences. Then it will reduce the space to ecosystems and animals.
-The input of this section is a corpus of sentences about the ecosystem/animals.
+The input of this section is a corpus of sentences about the ecosystems/animals.
 The outputs of this section are:
   1. Dictionary used as the input to the word embedder. The keys are the ecosystems and animals that appeared in the corpus. The values are lists of tuples where each tuple has two values. The first value is 'pos' or 'neg' and the second value is the word. The first value describes the relationship between the word and the key.
   2. Visualizations that can be used to show the students about the parser's output.
@@ -10,11 +10,11 @@ The outputs of this section are:
 
 This is a tool to derive formal semantic representations of
 natural language sentences given CCG derivation trees and semantic templates.
-For full explanation, read the README file under the ccg2lambda folder.
+For the full explanation, read the README file under the ccg2lambda directory.
 
 ## Installation
 
-In order to run most part of this software, it is necessary to install python3,
+In order to run this software, it is necessary to install python3,
 nltk 3, lxml, simplejson and yaml python libraries. I recommend installing the packages in the virtual environment of this project with `pip`:
 
 ```bash
@@ -50,7 +50,7 @@ coqc coqlib.v
 cd ..
 ```
 
-Next, install the[C&C parser](http://www.cl.cam.ac.uk/~sc609/candc-1.00.html) for the CCG structures.
+Next, install the [C&C parser](http://www.cl.cam.ac.uk/~sc609/candc-1.00.html) for the CCG structures.
 
 You can download and install the C&C syntactic parser by running the following script
 from the semantic-parser directory:
@@ -66,7 +66,7 @@ If that fails, you may succeed by following [these alternative instructions](htt
 echo "/path/to/candc-1.00/" > ccg2lambda/en/candc_location.txt
 ```
 
-## How to Run Semantic Parser
+## How to Run the Semantic Parser
 
 Simply run the following command
 ```bash
@@ -81,7 +81,7 @@ sh parse.sh example/input.txt example/
 where input.txt is the corpus and the rest of the files in example/ are output files of the parser.
 
 ## Open Issues
-1. To limit the space and create only (key, values) that are valuable, I've hard coded ecosystems. The list of hard coded animals has not yet been created and is not as simple (so far, contains only "camel"). It might be easier to recognize animals within a sentence. This is work in progress.
+1. To limit the space and create only (key, values) that are valuable, I've hard coded ecosystems. The list of hard coded animals has not yet been created and is not as simple (so far, contains only "camel"). It might be easier to recognize animals within a sentence. This is a work in progress.
 2. There is no implementation yet of synonyms and antonyms. I'm not convinced we need this at this point so I'll bring it up in the next meeting and will implement if needed.
-3. There is a bug for sentence structures where there is an adverb that describes a verb which describes a noun (such as Deserts don't get much rain.) This is work in progress.
+3. There is a bug for sentence structures in which there is an adverb that describes a verb that describes a noun (such as "Deserts don't get much rain."") This is a work in progress.
 4. It is possible for a word to appear with a positive and negative correlation. For example, there could be the following two sentences: "There are almost no plants in the desert." and "There are plants in the desert.". We should discuss what to do in the scenario (use both, take the sign that appears most times, ignore this word).
