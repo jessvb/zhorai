@@ -4,7 +4,6 @@ ecosystems = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
 animals = ["camel"]
 negatives = ["n't","not","no","little","small","few"]
 
-
 def combine(id, structureData):
     if len(structureData[id]) == 2:
         return structureData[id]
@@ -55,15 +54,12 @@ for doc in root:
                     structureData[span.attrib['id']] = (span.attrib['base'], span.attrib['pos'])
             s.append(combine(subRoot, structureData))
 
-words = []
-for sentence in s:
-    words.append(extractWords(sentence))
-
 res = {}
-for wList in words:
-    subjects = [subject[1] for subject in wList if subject[0] == 'subject']
+for sentence in s:
+    words = extractWords(sentence)
+    subjects = [subject[1] for subject in words if subject[0] == 'subject']
     isNeg = False
-    for corr, w in wList:
+    for corr, w in words:
         if corr == 'subject':
             continue
         if corr == 'neg':
@@ -82,5 +78,8 @@ for wList in words:
                     res[i].append(('pos',w))
                 else:
                     res[i] = [('pos',w)]
+
+for k,val in res.items():
+    res[k] = list(set(val))
 
 print(res)
