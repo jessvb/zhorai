@@ -1,7 +1,8 @@
+import sys
 import xml.etree.ElementTree as ET
 
 ecosystems = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
-animals = ["camel"]
+animals = ["alligator","ant","antelope","baboon","bat","bear","beaver","bee","bird","butterfly","camel","cat","coyote","cheetah","chicken","chimpanzee","cow","crocodile","deer","dog","dolphin","donkey","duck","eagle","elephant","fish","firefly","flamingo","fly","fox","frog","gerbil","giraffe","goat","goldfish","gorilla","hamster","hippopotamus","horse","jellyfish","kangaroo","kitten","koala","ladybug","leopard","lion","llama","lobster","monkey","moose","octopus","ostrich","otter","owl","panda","panther","peacock","penguin","pig","puma","puppy","rabbit","rat","rhinoceros","scorpion","seal","seahorse","shark","sheep","sloth","snail","snake","starfish","spider","squirrel","swordfish","tiger","walrus","weasel","whale","turtle","wildcat","whale","wolf","zebra"]
 negatives = ["n't","not","no","little","small","few"]
 
 def combine(id, structureData):
@@ -37,7 +38,7 @@ def extractWords(part):
                 words = words + res
     return words
 
-tree = ET.parse('example/sentences.xml')
+tree = ET.parse(sys.argv[1] + '/sentences.xml')
 root = tree.getroot()
 
 for doc in root:
@@ -79,7 +80,7 @@ for sentence in s:
                 else:
                     res[i] = [('pos',w)]
 
-for k,val in res.items():
-    res[k] = list(set(val))
+#for k,val in res.items():
+#    res[k] = list(set(val))
 
 print(res)

@@ -81,7 +81,6 @@ sh parse.sh example/input.txt example/
 where input.txt is the corpus and the rest of the files in example/ are output files of the parser.
 
 ## Open Issues
-1. To limit the space and create only (key, values) that are valuable, I've hard coded ecosystems. The list of hard coded animals has not yet been created and is not as simple (so far, contains only "camel"). It might be easier to recognize animals within a sentence. This is a work in progress.
-2. There is no implementation yet of synonyms and antonyms. I'm not convinced we need this at this point so I'll bring it up in the next meeting and will implement if needed.
-3. There is a bug for sentence structures in which there is an adverb that describes a verb that describes a noun (such as "Deserts don't get much rain."") This is a work in progress.
-4. It is possible for a word to appear with a positive and negative correlation. For example, there could be the following two sentences: "There are almost no plants in the desert." and "There are plants in the desert.". We should discuss what to do in the scenario (use both, take the sign that appears most times, ignore this word).
+1. There is a bug for sentence structures in which there is an adverb that describes a verb that describes a noun (such as "Deserts don't get much rain."") This is a work in progress.
+2. It is possible for a word to appear with a positive and negative correlation. For example, there could be the following two sentences: "There are almost no plants in the desert." and "There are plants in the desert.". We should discuss what to do in the scenario (use both, take the sign that appears most times, ignore this word).
+3. What do we want to happen when a student describes an animal using another animal? For example, "tigers are scary cats"?
