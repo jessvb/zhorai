@@ -31,6 +31,7 @@ function setupStream() {
 function streamOrStopAudio() {
     if (!currentStream) {
         // start streaming
+        // todo: change button to say "stop recording"
 
         // Handle recording success:
         let handleRecordSuccess = function (stream) {
@@ -61,12 +62,19 @@ function streamOrStopAudio() {
             })
             .then(handleRecordSuccess);
     } else {
-        // todo stop streaming (below doesn't work :( ))
-        // currentStream.getTracks().forEach(function (track) {
-        //     console.log("stopping track: " + track);
-        //     track.stop();
-        // });
-        // currentStream = null;
+        // todo: change button to say "record"
+        // TODO: stop recording (below doesn't work :( )) 
+        // --> causes jittery streaming after clicking record more than once because it's trying 
+        // to send a bunch of streams at once :/
+        console.log("Stopping stream.");
+        currentStream.getTracks().forEach(function (track) {
+            console.log("stopping track: " + track);
+            track.stop();
+        });
+        currentStream = null;
+
+        // Close the websocket:
+        window.Stream.end();
     }
 }
 

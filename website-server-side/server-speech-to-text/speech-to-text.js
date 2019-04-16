@@ -3,8 +3,13 @@
 // See https://github.com/gabrielpoca/browser-pcm-stream/blob/master/app.js
 // from https://subvisual.co/blog/posts/39-tutorial-html-audio-capture-streaming-to-node-js-no-browser-extensions/
 
+// Import libraries for streaming
 let binaryServer = require('binaryjs').BinaryServer;
 let wav = require('wav');
+
+// Import libraries for speech-to-text
+const speechToText = require('@google-cloud/speech');
+const fs = require('fs');
 
 let dataDir = 'data/';
 let wavFilename = dataDir + 'speech.wav';
@@ -14,6 +19,9 @@ let server = binaryServer({
     port: 9001
 });
 
+/* ------------------------------------------------------------------- */
+/* --------- Start capturing stream and generating wave file --------- */
+/* ------------------------------------------------------------------- */
 server.on('connection', function (client) {
     // todo:
     console.log("Connected!");
@@ -34,6 +42,7 @@ server.on('connection', function (client) {
         stream.pipe(fileWriter);
 
         stream.on('end', function () {
+            // TODO: this is never called... (never stops streaming?)
             fileWriter.end();
             console.log('Wrote wave file: ' + wavFilename);
 
@@ -43,6 +52,9 @@ server.on('connection', function (client) {
     });
 });
 
+/* ------------------------------------------------------------------ */
+/* --------- Create a text file from the captured wave file --------- */
+/* ------------------------------------------------------------------ */
 async function buildTextFile() {
     // Creates a client
     const client = new speechToText.SpeechClient();
