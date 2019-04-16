@@ -16,6 +16,6 @@ python ccg2lambda/en/candc2transccg.py $outpath/sentences.candc.xml > $outpath/s
 #python ccg2lambda/scripts/semparse.py $outpath/sentences.xml ccg2lambda/en/semantic_templates_en_emnlp2015.yaml $outpath/sentences.sem.xml
 #python ccg2lambda/scripts/prove.py $outpath/sentences.sem.xml --graph_out $outpath/graphdebug.html
 #create visualization that can be shown in website
-python ccg2lambda/scripts/visualize.py $outpath/sentences.xml > $outpath/sentences.html
+#python ccg2lambda/scripts/visualize.py $outpath/sentences.xml > $outpath/sentences.html
 #build dictionary output for word embedder
-python buildDict.py > $outpath/dictionary.txt
+python buildDict.py $outpath > $outpath/dictionary.txt
