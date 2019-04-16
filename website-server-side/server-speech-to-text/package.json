@@ -1,0 +1,33 @@
+{
+  "name": "zhorai",
+  "version": "1.0.0",
+  "description": "An interactive conversational agent for AI education.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessvb/zhorai.git"
+  },
+  "keywords": [
+    "education",
+    "AI",
+    "conversational",
+    "AI",
+    "conversational",
+    "agent",
+    "zhorai"
+  ],
+  "author": "jessvb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jessvb/zhorai/issues"
+  },
+  "homepage": "https://github.com/jessvb/zhorai#readme",
+  "dependencies": {
+    "binaryjs": "^0.2.1",
+    "wav": "^1.0.2",
+    "@google-cloud/speech": "^2.3.1"
+  }
+}
