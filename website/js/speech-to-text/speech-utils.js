@@ -51,6 +51,10 @@ function showButtons(style) {
     current_style = style;
 }
 
+function chooseRandomPhrase(phrases) {
+    return phrases[Math.floor(Math.random() * phrases.length)];
+}
+
 
 /* -------------- Once the page has loaded -------------- */
 document.addEventListener('DOMContentLoaded', function () {
@@ -124,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sendText(final_transcript);
 
             if (afterRecordingCallback) {
-                afterRecordingCallback();
+                afterRecordingCallback(final_transcript);
                 afterRecordingCallback = null;
             }
         };
