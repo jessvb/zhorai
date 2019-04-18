@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var final_transcript = '';
     var recognizing = false;
-    textFileBtn.disabled = false;
+    if (textFileBtn) {
+        textFileBtn.disabled = false;
+    }
     var ignore_onend;
     var start_timestamp;
     if (!('webkitSpeechRecognition' in window)) {
@@ -21,7 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
         recognition.interimResults = true;
         recognition.onstart = function () {
             recognizing = true;
-            textFileBtn.disabled = true;
+            if (textFileBtn) {
+                textFileBtn.disabled = true;
+            }
             showInfo('info_speak_now');
             start_img.src = imgDir + 'mic-animate.gif';
         };
@@ -47,7 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         recognition.onend = function () {
             recognizing = false;
-            textFileBtn.disabled = false;
+            if (textFileBtn) {
+                textFileBtn.disabled = false;
+            }
             if (ignore_onend) {
                 return;
             }
@@ -102,9 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    record_button.addEventListener("click", startButtonClick);
-
-    function startButtonClick(event) {
+    function recordButtonClick(event) {
         if (recognizing) {
             recognition.stop();
         } else {
@@ -141,4 +145,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         current_style = style;
     }
+    
+    /* --- Button Click Handlers --- */
+    record_button.addEventListener("click", recordButtonClick);
+
 }, false);
