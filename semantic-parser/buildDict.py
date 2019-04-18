@@ -1,19 +1,10 @@
 import sys
 import xml.etree.ElementTree as ET
+import utils
 
 ecosystems = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
 animals = ["alligator","ant","antelope","baboon","bat","bear","beaver","bee","bird","butterfly","camel","cat","coyote","cheetah","chicken","chimpanzee","cow","crocodile","deer","dog","dolphin","donkey","duck","eagle","elephant","fish","firefly","flamingo","fly","fox","frog","gerbil","giraffe","goat","goldfish","gorilla","hamster","hippopotamus","horse","jellyfish","kangaroo","kitten","koala","ladybug","leopard","lion","llama","lobster","monkey","moose","octopus","ostrich","otter","owl","panda","panther","peacock","penguin","pig","puma","puppy","rabbit","rat","rhinoceros","scorpion","seal","seahorse","shark","sheep","sloth","snail","snake","starfish","spider","squirrel","swordfish","tiger","walrus","weasel","whale","turtle","wildcat","whale","wolf","zebra"]
 negatives = ["n't","not","no","little","small","few"]
-
-def combine(id, structureData):
-    if len(structureData[id]) == 2:
-        return structureData[id]
-    else:
-        children = structureData[id].split(' ')
-        sentenceStruct = []
-        for c in children:
-            sentenceStruct.append(combine(c, structureData))
-    return sentenceStruct
 
 def extractWords(part):
     if type(part) is tuple:
@@ -41,19 +32,11 @@ def extractWords(part):
 tree = ET.parse(sys.argv[1] + '/sentences.xml')
 root = tree.getroot()
 
+# only one doc
 for doc in root:
+    # only one set of sentences per doc
     for sentences in doc:
-        s = []
-        for sentence in sentences:
-            structureData = {}
-            ccg = sentence[1]
-            subRoot = ccg.attrib['root']
-            for span in ccg:
-                if span.attrib['pos'] == "None":
-                    structureData[span.attrib['id']] = (span.attrib['child'])
-                else:
-                    structureData[span.attrib['id']] = (span.attrib['base'], span.attrib['pos'])
-            s.append(combine(subRoot, structureData))
+        s = utils.getStructure(sentences)
 
 res = {}
 for sentence in s:
