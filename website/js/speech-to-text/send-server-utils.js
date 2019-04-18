@@ -28,5 +28,7 @@ function makeTextFile() {
 /* -------------- Once the page has loaded -------------- */
 document.addEventListener('DOMContentLoaded', function () {
     textFileBtn = document.getElementById('textFileBtn');
-    textFileBtn.addEventListener('click', makeTextFile);
+    if (textFileBtn) {
+        textFileBtn.addEventListener('click', makeTextFile);
+    }
 });
