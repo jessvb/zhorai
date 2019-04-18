@@ -24,3 +24,9 @@ function makeTextFile() {
         socket.close();
     };
 }
+
+/* -------------- Once the page has loaded -------------- */
+document.addEventListener('DOMContentLoaded', function () {
+    textFileBtn = document.getElementById('textFileBtn');
+    textFileBtn.addEventListener('click', makeTextFile);
+});
