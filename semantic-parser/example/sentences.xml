@@ -378,6 +378,66 @@
           <span start="10" span="1" pos="." chunk="O" entity="O" id="s8_sp22" surf="." base="." terminal="t8_10" category="."/>
         </ccg>
       </sentence>
+      <sentence>
+        <tokens>
+          <token start="0" span="1" pos="PRP$" chunk="I-NP" entity="O" cat="NP[nb]/N" id="t9_0" surf="My" base="my"/>
+          <token start="1" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t9_1" surf="name" base="name"/>
+          <token start="2" span="1" pos="VBZ" chunk="I-VP" entity="O" cat="(S[dcl]\NP)/NP" id="t9_2" surf="is" base="be"/>
+          <token start="3" span="1" pos="NNP" chunk="I-NP" entity="I-PER" cat="N" id="t9_3" surf="Jessica" base="jessica"/>
+          <token start="4" span="1" pos="." chunk="O" entity="O" cat="." id="t9_4" surf="." base="."/>
+        </tokens>
+        <ccg root="s9_sp0" id="s9_ccg0">
+          <span root="true" id="s9_sp0" child="s9_sp1 s9_sp9" pos="None" category="S[dcl=true]" rule="rp"/>
+          <span id="s9_sp1" child="s9_sp2 s9_sp5" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span id="s9_sp2" child="s9_sp3 s9_sp4" pos="None" category="NP[nb=true]" rule="fa"/>
+          <span start="0" span="1" pos="PRP$" chunk="I-NP" entity="O" id="s9_sp3" surf="My" base="my" terminal="t9_0" category="NP[nb=true]/N"/>
+          <span start="1" span="1" pos="NN" chunk="I-NP" entity="O" id="s9_sp4" surf="name" base="name" terminal="t9_1" category="N"/>
+          <span id="s9_sp5" child="s9_sp6 s9_sp7" pos="None" category="S[dcl=true]\NP" rule="fa"/>
+          <span start="2" span="1" pos="VBZ" chunk="I-VP" entity="O" id="s9_sp6" surf="is" base="be" terminal="t9_2" category="(S[dcl=true]\NP)/NP"/>
+          <span id="s9_sp7" child="s9_sp8" pos="None" category="NP" rule="lex"/>
+          <span start="3" span="1" pos="NNP" chunk="I-NP" entity="I-PER" id="s9_sp8" surf="Jessica" base="jessica" terminal="t9_3" category="N"/>
+          <span start="4" span="1" pos="." chunk="O" entity="O" id="s9_sp9" surf="." base="." terminal="t9_4" category="."/>
+        </ccg>
+      </sentence>
+      <sentence>
+        <tokens>
+          <token start="0" span="1" pos="PRP$" chunk="I-NP" entity="O" cat="NP[nb]/N" id="t10_0" surf="My" base="my"/>
+          <token start="1" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t10_1" surf="name" base="name"/>
+          <token start="2" span="1" pos="VBZ" chunk="I-VP" entity="O" cat="(S[dcl]\NP)/NP" id="t10_2" surf="is" base="be"/>
+          <token start="3" span="1" pos="NNP" chunk="I-NP" entity="I-ORG" cat="N" id="t10_3" surf="Galit" base="galit"/>
+          <token start="4" span="1" pos="." chunk="O" entity="O" cat="." id="t10_4" surf="." base="."/>
+        </tokens>
+        <ccg root="s10_sp0" id="s10_ccg0">
+          <span root="true" id="s10_sp0" child="s10_sp1 s10_sp9" pos="None" category="S[dcl=true]" rule="rp"/>
+          <span id="s10_sp1" child="s10_sp2 s10_sp5" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span id="s10_sp2" child="s10_sp3 s10_sp4" pos="None" category="NP[nb=true]" rule="fa"/>
+          <span start="0" span="1" pos="PRP$" chunk="I-NP" entity="O" id="s10_sp3" surf="My" base="my" terminal="t10_0" category="NP[nb=true]/N"/>
+          <span start="1" span="1" pos="NN" chunk="I-NP" entity="O" id="s10_sp4" surf="name" base="name" terminal="t10_1" category="N"/>
+          <span id="s10_sp5" child="s10_sp6 s10_sp7" pos="None" category="S[dcl=true]\NP" rule="fa"/>
+          <span start="2" span="1" pos="VBZ" chunk="I-VP" entity="O" id="s10_sp6" surf="is" base="be" terminal="t10_2" category="(S[dcl=true]\NP)/NP"/>
+          <span id="s10_sp7" child="s10_sp8" pos="None" category="NP" rule="lex"/>
+          <span start="3" span="1" pos="NNP" chunk="I-NP" entity="I-ORG" id="s10_sp8" surf="Galit" base="galit" terminal="t10_3" category="N"/>
+          <span start="4" span="1" pos="." chunk="O" entity="O" id="s10_sp9" surf="." base="." terminal="t10_4" category="."/>
+        </ccg>
+      </sentence>
+      <sentence>
+        <tokens>
+          <token start="0" span="1" pos="PRP" chunk="I-NP" entity="O" cat="NP" id="t11_0" surf="I" base="i"/>
+          <token start="1" span="1" pos="VBP" chunk="I-VP" entity="O" cat="(S[dcl]\NP)/NP" id="t11_1" surf="am" base="be"/>
+          <token start="2" span="1" pos="NNP" chunk="I-NP" entity="O" cat="N" id="t11_2" surf="Zhorai" base="zhorai"/>
+          <token start="3" span="1" pos="." chunk="O" entity="O" cat="." id="t11_3" surf="." base="."/>
+        </tokens>
+        <ccg root="s11_sp0" id="s11_ccg0">
+          <span root="true" id="s11_sp0" child="s11_sp1 s11_sp7" pos="None" category="S[dcl=true]" rule="rp"/>
+          <span id="s11_sp1" child="s11_sp2 s11_sp3" pos="None" category="S[dcl=true]" rule="ba"/>
+          <span start="0" span="1" pos="PRP" chunk="I-NP" entity="O" id="s11_sp2" surf="I" base="i" terminal="t11_0" category="NP"/>
+          <span id="s11_sp3" child="s11_sp4 s11_sp5" pos="None" category="S[dcl=true]\NP" rule="fa"/>
+          <span start="1" span="1" pos="VBP" chunk="I-VP" entity="O" id="s11_sp4" surf="am" base="be" terminal="t11_1" category="(S[dcl=true]\NP)/NP"/>
+          <span id="s11_sp5" child="s11_sp6" pos="None" category="NP" rule="lex"/>
+          <span start="2" span="1" pos="NNP" chunk="I-NP" entity="O" id="s11_sp6" surf="Zhorai" base="zhorai" terminal="t11_2" category="N"/>
+          <span start="3" span="1" pos="." chunk="O" entity="O" id="s11_sp7" surf="." base="." terminal="t11_3" category="."/>
+        </ccg>
+      </sentence>
     </sentences>
   </document>
 </root>
