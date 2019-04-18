@@ -11,7 +11,7 @@
   <title>Zhorai</title>
 
   <!-- Recording-->
-  <script src="js/record-and-stream/stream-audio-client.js"></script>
+  <script src="js/speech-to-text/speech-utils.js"></script>
   <script src="https://rawgit.com/binaryjs/binaryjs/master/dist/binary.min.js"></script>
 
   <!-- Bootstrap core CSS -->
@@ -75,7 +75,38 @@
     <div class="container">
       <h2 class="text-center text-uppercase text-secondary mb-0">Module 1: Teaching Zhorai</h2>
       <img class="img-fluid mb-5 d-block mx-auto" src="img/zhorai.png" alt="">
-      <button class="btn btn-info" id="recordBtn">Record</button>
+      <!-- <button class="btn btn-info" id="recordBtn">Record</button> -->
+      <!-- Record info -->
+      <div id="info">
+        <p id="info_start" hidden="true">Click on the microphone icon and begin speaking.</p>
+        <p id="info_speak_now" hidden="true">Speak now.</p>
+        <p id="info_no_speech" hidden="true">No speech was detected. You may need to adjust your
+          <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+            microphone settings</a>.</p>
+        <p id="info_no_microphone" style="display:none" hidden="true">
+          No microphone was found. Ensure that a microphone is installed and that
+          <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+          microphone settings</a> are configured correctly.</p>
+        <p id="info_allow" hidden="true">Click the "Allow" button above to enable your microphone.</p>
+        <p id="info_denied" hidden="true">Permission to use microphone was denied.</p>
+        <p id="info_blocked" hidden="true">Permission to use microphone is blocked. To change,
+          go to chrome://settings/contentExceptions#media-stream</p>
+        <p id="info_upgrade" hidden="true">Web Speech API is not supported by this browser.
+           Upgrade to <a href="//www.google.com/chrome">Chrome</a>
+           version 25 or later.</p>
+      </div>
+      <!-- Record button -->
+      <div class="right">
+        <button id="start_button">
+          <img id="start_img" src="img/mic.gif" alt="Start"></button>
+      </div>
+      <!-- Textbox for results -->
+      <div id="results">
+        <span id="final_span" class="final"></span>
+        <span id="interim_span" class="interim"></span>
+        <p>
+      </div>
+      
     </div>
   </section>
 
