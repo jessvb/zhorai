@@ -25,3 +25,15 @@ function makeTextFile(filename) {
         socket.close();
     };
 }
+
+function clearMemory(filename) {
+    var json = {
+        'command': 'clearMem'
+    };
+
+    if (filename) {
+        json['textFilename'] = filename;
+    }
+
+    sendJson(json);
+}

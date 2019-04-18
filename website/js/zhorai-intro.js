@@ -76,8 +76,6 @@ function startStage() {
             // 1. prep mic button:
             recordButton.hidden = false;
             zhoraiSpeakBtn.hidden = true;
-            // todo check what the student said to make sure they say hi/hello/greet/etc.
-
             break;
         case 'zAskName':
             // todo have zhorai say, "Hi there! What’s your name?"
@@ -120,7 +118,10 @@ function onRecord() {
 function afterRecording() {
     // TODO -- startStage() if ending recording
     console.log("AFTER RECORDING!");
-
+    // todo:
+    // switch (stages[currStage]) {
+    //     case 'sayHi':
+    //         // test to see if what they said was correct...
 }
 
 /* -------------- Once the page has loaded -------------- */

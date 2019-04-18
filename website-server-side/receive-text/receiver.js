@@ -45,6 +45,16 @@ wsServer.on('request', function (request) {
                 allText = '';
             }
 
+            // remove all remembered data:
+            if (jsonMsg.command == 'clearMem') {
+                allText = '';
+                if (jsonMsg.textFilename) {
+                    // write empty file
+                    console.log('emptying file: ' + jsonMsg.textFilename);
+                    writeToFile(dataDir + jsonMsg.textFilename, allText);
+                }
+            }
+
             console.log('text thus far:');
             console.log(allText);
         }
