@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (recognizing) {
             recognition.stop();
             console.log("stopped recognition. outputting to txt file:");
-            // TODO: sendToServer({text: final_transcript});
+            // TODO: appendToFile(final_transcript);
         } else {
             final_transcript = '';
             // recognition.lang = select_dialect.value;
