@@ -3,7 +3,7 @@
 const imgDir = 'img/';
 /* -------------- Once the page has loaded -------------- */
 document.addEventListener('DOMContentLoaded', function () {
-    var start_button = document.getElementById('start_button');
+    var record_button = document.getElementById('record_button');
     var start_img = document.getElementById('start_img');
     var textFileBtn = document.getElementById('textFileBtn');
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!('webkitSpeechRecognition' in window)) {
         upgrade();
     } else {
-        start_button.style.display = 'inline-block';
+        record_button.style.display = 'inline-block';
         var recognition = new webkitSpeechRecognition();
         recognition.continuous = true;
         recognition.interimResults = true;
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function upgrade() {
-        start_button.style.visibility = 'hidden';
+        record_button.style.visibility = 'hidden';
         showInfo('info_upgrade');
     }
     var two_line = /\n\n/g;
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    start_button.addEventListener("click", startButtonClick);
+    record_button.addEventListener("click", startButtonClick);
 
     function startButtonClick(event) {
         if (recognizing) {
