@@ -6,7 +6,6 @@ var port = 8080;
 /* to write to txt file: */
 var fs = require('fs');
 var dataDir = 'data/';
-var textFilename = 'sentences.txt';
 var allText = '';
 
 
@@ -32,15 +31,16 @@ wsServer.on('request', function (request) {
             // process WebSocket message
             console.log(message.utf8Data);
 
+            jsonMsg = JSON.parse(message.utf8Data);
             // Add received text to allText:
-            if (JSON.parse(message.utf8Data).text) {
-                allText += JSON.parse(message.utf8Data).text + '\n';
+            if (jsonMsg.text) {
+                allText += jsonMsg.text + '\n';
             }
 
             // make a text file:
-            if (JSON.parse(message.utf8Data).command == 'makeTextFile') {
+            if (jsonMsg.command == 'makeTextFile') {
                 // make a text file with allText
-                writeToFile(dataDir + textFilename, allText);
+                writeToFile(dataDir + jsonMsg.textFilename, allText);
                 // reset allText for next text file
                 allText = '';
             }

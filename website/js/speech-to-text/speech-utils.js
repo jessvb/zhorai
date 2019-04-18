@@ -1,14 +1,65 @@
 // From https://developers.google.com/web/updates/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API
 // NOTE: Pages hosted on HTTPS do not need to ask repeatedly for permission, whereas HTTP hosted pages do.
-const imgDir = 'img/';
+var imgDir = 'img/';
+var start_img;
+var final_transcript;
+var recognizing;
+var recognition;
+var current_style;
+var afterRecordingCallback;
+
+// These functions are called outside this js file (thus we leave them outside
+// the DOMContentLoaded event):
+function recordButtonClick(event) {
+    if (recognizing) {
+        recognition.stop();
+    } else {
+        final_transcript = '';
+        recognition.start();
+        console.log("started recognition...");
+        ignore_onend = false;
+        final_span.innerHTML = '';
+        interim_span.innerHTML = '';
+        start_img.src = imgDir + 'mic-slash.gif';
+        showInfo('info_allow');
+        showButtons('none');
+        start_timestamp = event.timeStamp;
+    }
+
+    if (event.callback) {
+        afterRecordingCallback = event.callback;
+    }
+}
+
+function showInfo(s) {
+    if (s) {
+        for (var child = info.firstChild; child; child = child.nextSibling) {
+            if (child.style) {
+                child.style.display = child.id == s ? 'inline' : 'none';
+            }
+        }
+        info.style.visibility = 'visible';
+    } else {
+        info.style.visibility = 'hidden';
+    }
+}
+
+function showButtons(style) {
+    if (style == current_style) {
+        return;
+    }
+    current_style = style;
+}
+
+
 /* -------------- Once the page has loaded -------------- */
 document.addEventListener('DOMContentLoaded', function () {
     var record_button = document.getElementById('record_button');
-    var start_img = document.getElementById('start_img');
+    start_img = document.getElementById('start_img');
     var textFileBtn = document.getElementById('textFileBtn');
 
-    var final_transcript = '';
-    var recognizing = false;
+    final_transcript = '';
+    recognizing = false;
     if (textFileBtn) {
         textFileBtn.disabled = false;
     }
@@ -18,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         upgrade();
     } else {
         record_button.style.display = 'inline-block';
-        var recognition = new webkitSpeechRecognition();
+        recognition = new webkitSpeechRecognition();
         recognition.continuous = true;
         recognition.interimResults = true;
         recognition.onstart = function () {
@@ -71,6 +122,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             console.log("stopped recognition. sending to server:" + final_transcript);
             sendText(final_transcript);
+
+            if (afterRecordingCallback) {
+                afterRecordingCallback();
+                afterRecordingCallback = null;
+            }
         };
         recognition.onresult = function (event) {
             var interim_transcript = '';
@@ -107,46 +163,4 @@ document.addEventListener('DOMContentLoaded', function () {
             return m.toUpperCase();
         });
     }
-
-    function recordButtonClick(event) {
-        if (recognizing) {
-            recognition.stop();
-        } else {
-            final_transcript = '';
-            recognition.start();
-            console.log("started recognition...");
-            ignore_onend = false;
-            final_span.innerHTML = '';
-            interim_span.innerHTML = '';
-            start_img.src = imgDir + 'mic-slash.gif';
-            showInfo('info_allow');
-            showButtons('none');
-            start_timestamp = event.timeStamp;
-        }
-    }
-
-    function showInfo(s) {
-        if (s) {
-            for (var child = info.firstChild; child; child = child.nextSibling) {
-                if (child.style) {
-                    child.style.display = child.id == s ? 'inline' : 'none';
-                }
-            }
-            info.style.visibility = 'visible';
-        } else {
-            info.style.visibility = 'hidden';
-        }
-    }
-    var current_style;
-
-    function showButtons(style) {
-        if (style == current_style) {
-            return;
-        }
-        current_style = style;
-    }
-    
-    /* --- Button Click Handlers --- */
-    record_button.addEventListener("click", recordButtonClick);
-
 }, false);

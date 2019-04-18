@@ -15,20 +15,13 @@ function sendJson(json) {
     };
 }
 
-function makeTextFile() {
+function makeTextFile(filename) {
     var socket = new WebSocket(url);
     socket.onopen = function (event) {
         socket.send(JSON.stringify({
-            'command': 'makeTextFile'
+            'command': 'makeTextFile',
+            'textFilename': filename
         }));
         socket.close();
     };
 }
-
-/* -------------- Once the page has loaded -------------- */
-document.addEventListener('DOMContentLoaded', function () {
-    textFileBtn = document.getElementById('textFileBtn');
-    if (textFileBtn) {
-        textFileBtn.addEventListener('click', makeTextFile);
-    }
-});
