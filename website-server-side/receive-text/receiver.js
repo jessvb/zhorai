@@ -1,8 +1,14 @@
+/* to connect to website via websocket: */
 var WebSocketServer = require('websocket').server;
 var http = require('http');
-
 var port = 8080;
+
+/* to write to txt file: */
+var fs = require('fs');
+var dataDir = 'data/';
+var textFilename = 'sentences.txt';
 var allText = '';
+
 
 var server = http.createServer(function (request, response) {
     // process HTTP request. Since we're writing just WebSockets
@@ -33,8 +39,8 @@ wsServer.on('request', function (request) {
 
             // make a text file:
             if (JSON.parse(message.utf8Data).command == 'makeTextFile') {
-                // TODO: make a text file with allText
-                console.log(JSON.parse(message.utf8Data).command);
+                // make a text file with allText
+                writeToFile(dataDir + textFilename, allText);
                 // reset allText for next text file
                 allText = '';
             }
@@ -49,3 +55,13 @@ wsServer.on('request', function (request) {
         console.log("Closed connection.");
     });
 });
+
+function writeToFile(filename, text) {
+    fs.writeFile(filename, text, function (err) {
+        if (err) {
+            console.err("Error writing to file: " + err);
+        } else {
+            console.log('File successfully written!');
+        }
+    });
+}

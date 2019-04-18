@@ -5,10 +5,11 @@ const imgDir = 'img/';
 document.addEventListener('DOMContentLoaded', function () {
     var start_button = document.getElementById('start_button');
     var start_img = document.getElementById('start_img');
+    var textFileBtn = document.getElementById('textFileBtn');
 
-    // var create_email = false;
     var final_transcript = '';
     var recognizing = false;
+    textFileBtn.disabled = false;
     var ignore_onend;
     var start_timestamp;
     if (!('webkitSpeechRecognition' in window)) {
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         recognition.interimResults = true;
         recognition.onstart = function () {
             recognizing = true;
+            textFileBtn.disabled = true;
             showInfo('info_speak_now');
             start_img.src = imgDir + 'mic-animate.gif';
         };
@@ -45,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         recognition.onend = function () {
             recognizing = false;
+            textFileBtn.disabled = false;
             if (ignore_onend) {
                 return;
             }
@@ -60,10 +63,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 range.selectNode(document.getElementById('final_span'));
                 window.getSelection().addRange(range);
             }
-            // if (create_email) {
-            //     create_email = false;
-            //     createEmail();
-            // }
+            console.log("stopped recognition. sending to server:" + final_transcript);
+            sendText(final_transcript);
         };
         recognition.onresult = function (event) {
             var interim_transcript = '';
@@ -106,11 +107,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function startButtonClick(event) {
         if (recognizing) {
             recognition.stop();
-            console.log("stopped recognition. outputting to txt file:");
-            // TODO: appendToFile(final_transcript);
         } else {
             final_transcript = '';
-            // recognition.lang = select_dialect.value;
             recognition.start();
             console.log("started recognition...");
             ignore_onend = false;
@@ -142,9 +140,5 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
         current_style = style;
-        // copy_button.style.display = style;
-        // email_button.style.display = style;
-        // copy_info.style.display = 'none';
-        // email_info.style.display = 'none';
     }
 }, false);
