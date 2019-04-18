@@ -14,7 +14,7 @@ var currBtnIsMic = true;
 
 /* -------------- Initialize functions -------------- */
 // Speaks with the voice set by zhoraiVoice
-function speakText(text) {
+function speakText(text, callback) {
     // FROM https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
     var msg = new SpeechSynthesisUtterance(makePhonetic(text));
 
@@ -25,6 +25,10 @@ function speakText(text) {
     msg.pitch = 1.5; // 0 to 2
     // msg.text = 'Sounds like a cool place! I\'ve never heard of Boston before';
     msg.lang = 'en-US';
+
+    if (callback) {
+        msg.onend = callback;
+    }
 
     window.speechSynthesis.speak(msg);
 }
@@ -69,16 +73,20 @@ function buttonSwap() {
 }
 
 function startStage() {
-    // TODO
+    var zhoraiSpeech = '';
     switch (stages[currStage]) {
         case 'sayHi':
             // have student say, "Hi Zhorai"
-            // 1. prep mic button:
+            // 1. write, "Say hi" in textbox
+            // TODO
+            // 2. prep mic button:
             recordButton.hidden = false;
             zhoraiSpeakBtn.hidden = true;
             break;
         case 'zAskName':
-            // todo have zhorai say, "Hi there! What’s your name?"
+            // have zhorai say, "Hi there! What’s your name?"
+            var phrases = ["Hello! What's your name?", "Hi there! What’s your name?"];
+            zhoraiSpeech = chooseRandomPhrase(phrases);
             break;
         case 'respondWithName':
             // todo have student say, "I’m <name>" or "<name>" etc.
@@ -94,15 +102,19 @@ function startStage() {
             // I have never heard of <place> before."
             break;
         default:
-            console.err("Unknown stage for conversation with Zhorai: " + stages[stage]);
+            console.err("Unknown stage for conversation with Zhorai: " + stages[currStage]);
     }
 
-    // todo swap the mic button / zhorai talk button
-    // buttonSwap();
-
-    // prepare for next stage (but don't go to next if it's the last stage)
-    if (currStage < stages.length - 1) {
-        currStage += 1;
+    showPurpleText(zhoraiSpeech);
+    if (zhoraiSpeech) {
+        speakText(zhoraiSpeech, function () {
+            // after speaking, change to mic again and increment stage
+            if (currStage < stages.length - 1) {
+                currStage += 1;
+            }
+            buttonSwap();
+            startStage();
+        });
     }
 }
 
@@ -115,13 +127,49 @@ function onRecord() {
 
 }
 
-function afterRecording() {
-    // TODO -- startStage() if ending recording
+function afterRecording(recordedSpeech) {
+    var recordingIsGood = false;
+    var zhoraiSpeech = '';
     console.log("AFTER RECORDING!");
-    // todo:
-    // switch (stages[currStage]) {
-    //     case 'sayHi':
-    //         // test to see if what they said was correct...
+    switch (stages[currStage]) {
+        case 'sayHi':
+            // test to see if what they said was correct... e.g., "I didn't quite catch that"
+            var greetings = ['hi', 'hello', 'hey', 'yo', 'howdy', 'sup', 'hiya',
+                'g\'day', 'what\'s up', 'good morning', 'good afternoon', 'meet'
+            ];
+            var regex = new RegExp(greetings.join("|"), "i");
+            var saidHi = regex.test(recordedSpeech);
+            if (saidHi) {
+                recordingIsGood = true;
+            } else {
+                var phrases = ["Sorry, what was that?", "Oh, pardon?"];
+                zhoraiSpeech = chooseRandomPhrase(phrases);
+            }
+            break;
+        case 'respondWithName':
+            // test to see if what they said was correct... e.g., "I didn't quite catch that"
+            break;
+        case 'respondWithPlace':
+            // test to see if what they said was correct... e.g., "I didn't quite catch that"
+            break;
+        default:
+            console.err("Unknown stage for ending a recording: " + stages[currStage]);
+    }
+
+    speakText(zhoraiSpeech);
+    showPurpleText(zhoraiSpeech);
+
+    if (recordingIsGood) {
+        // prepare for next stage (but don't go to next if it's the last stage)
+        if (currStage < stages.length - 1) {
+            currStage += 1;
+        }
+        // swap the mic button / zhorai talk button
+        buttonSwap();
+
+        // start the next stage
+        startStage();
+    }
 }
 
 /* -------------- Once the page has loaded -------------- */
@@ -131,6 +179,9 @@ document.addEventListener('DOMContentLoaded', function () {
     recordButton = document.getElementById('record_button');
     zhoraiSpeakBtn = document.getElementById('zhoraiSpeakBtn');
     zhoraiSpeechBox = document.getElementById('final_span');
+
+    // remove any memory from previous activites:
+    clearMemory("sentences.txt");
 
     startStage();
 
