@@ -63,7 +63,8 @@ for sentence in s:
                 else:
                     res[i] = [('pos',w)]
 
-#for k,val in res.items():
-#    res[k] = list(set(val))
-
 print(res)
+
+file = open("../website-server-side/receive-text/data/topic.txt","w")
+file.write(next(iter(res)))
+file.close()
