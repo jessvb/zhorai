@@ -11,7 +11,7 @@ var zhoraiVoice = window.speechSynthesis.getVoices().filter(function (voice) {
     return voice.name == 'Google US English';
 })[0];
 var currBtnIsMic = true;
-var dataFilename = "../../website-server-side/receive-text/data/names.txt";
+var dataFilename = "../../website-server-side/receive-text/data/name.txt";
 var currName = '';
 var currPlace = '';
 
