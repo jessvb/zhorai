@@ -382,3 +382,13 @@ a:focus, a:hover, a:active {
   background-color: #1a252f;
   border-color: #1a252f;
 }
+
+
+.link line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.labels text {
+  pointer-events: none;
+  font: 10px sans-serif;
