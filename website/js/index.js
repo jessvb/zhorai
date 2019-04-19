@@ -24,8 +24,8 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
 var nd;
 for (var i=0; i<graph.nodes.length; i++) {
   nd = graph.nodes[i];
-  nd.rx = nd.id.length * 4.5; 
-  nd.ry = 12;
+  nd.rx = nd.id.length * 8.5; 
+  nd.ry = 20;
   // console.log(nd);
 } 
 
@@ -44,6 +44,7 @@ var node = svg.append("g")
     //     .on("end", dragended));
 
 var link_force = d3.forceLink()
+	.distance(200)
 	.id(function(d) {return d.id;});
 
 var simulation = d3.forceSimulation()
@@ -66,7 +67,8 @@ var text = svg.append("g")
     .attr("dy", 2)
     .attr("text-anchor", "middle")
     .text(function(d) {return d.id})
-    .attr("fill", "white");
+    .attr("fill", "white")
+    .style("font-size", "20px");
 
 
 simulation
