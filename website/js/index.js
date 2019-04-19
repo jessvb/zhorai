@@ -12,9 +12,6 @@ var graph = {
 	{"source": "water", "target": "desert", "value": 1}]
 };
 
-console.log(graph.nodes);
-console.log(graph.links);
-
 //Building the mindmap functions
 
 //create svg to put the mindmap
