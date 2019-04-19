@@ -18,5 +18,4 @@ python ccg2lambda/en/candc2transccg.py $outpath/sentences.candc.xml > $outpath/s
 #create visualization that can be shown in website
 #python ccg2lambda/scripts/visualize.py $outpath/sentences.xml > $outpath/sentences.html
 #build dictionary output for word embedder
-python buildDict.py $outpath > $outpath/dictionary.txt
-python identifyName.py $outpath > $outpath/name.txt
+python parserOutput.py $outpath
