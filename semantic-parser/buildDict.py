@@ -52,16 +52,16 @@ for sentence in s:
         if isNeg == True:
             for i in subjects:
                 if i in res.keys():
-                    res[i].append(('neg',w))
+                    res[i].append(['neg',w])
                 else:
-                    res[i] = [('neg',w)]
+                    res[i] = [['neg',w]]
             isNeg = False
         else:
             for i in subjects:
                 if i in res.keys():
-                    res[i].append(('pos',w))
+                    res[i].append(['pos',w])
                 else:
-                    res[i] = [('pos',w)]
+                    res[i] = [['pos',w]]
 
 print(res)
 
