@@ -27,6 +27,7 @@ wsServer.on('request', function (request) {
     // This is the most important callback for us, we'll handle
     // all messages from users here.
     connection.on('message', function (message) {
+        var sendEnd = false;
         if (message.type === 'utf8') {
             // process WebSocket message
             console.log(message.utf8Data);
@@ -35,33 +36,48 @@ wsServer.on('request', function (request) {
             // Add received text to allText:
             if (jsonMsg.text) {
                 allText += jsonMsg.text + '\n';
-            }
-
-            // make a text file:
-            if (jsonMsg.command == 'makeTextFile') {
+                sendEnd = true;
+            } else if (jsonMsg.command == 'makeTextFile') {
                 // make a text file with allText
                 writeToFile(dataDir + jsonMsg.textFilename, allText);
                 // reset allText for next text file
                 allText = '';
-            }
-
-            // remove all remembered data:
-            if (jsonMsg.command == 'clearMem') {
+                sendEnd = true;
+            } else if (jsonMsg.command == 'clearMem') {
+                // remove all remembered data:
                 allText = '';
                 if (jsonMsg.textFilename) {
                     // write empty file
                     console.log('emptying file: ' + jsonMsg.textFilename);
                     writeToFile(dataDir + jsonMsg.textFilename, allText);
                 }
+                sendEnd = true;
+            } else if (jsonMsg.command == 'readFile') {
+                // get file data
+                fs.readFile(jsonMsg.filename, function (err, data) {
+                    if (err) {
+                        console.error("Error reading file, " + filename + ": " + err);
+                    } else {
+                        console.log("read from file: " + data);
+                        connection.sendUTF(JSON.stringify({
+                            'filedata': new TextDecoder().decode(data),
+                            'stage': jsonMsg.stage
+                        }));
+                        sendDone(connection);
+                    }
+                });
+                sendEnd = false;
             }
-
             console.log('text thus far:');
             console.log(allText);
+            if (sendEnd) {
+                sendDone(connection);
+            }
         }
     });
 
     connection.on('close', function (connection) {
-        // close user connection
+        // client closed connection
         console.log("Closed connection.");
     });
 });
@@ -69,9 +85,16 @@ wsServer.on('request', function (request) {
 function writeToFile(filename, text) {
     fs.writeFile(filename, text, function (err) {
         if (err) {
-            console.err("Error writing to file: " + err);
+            console.error("Error writing to file: " + err);
         } else {
             console.log('File successfully written!');
         }
     });
+}
+
+function sendDone(connection) {
+    // tell the client to close the connection
+    connection.sendUTF(JSON.stringify({
+        'done': true
+    }));
 }
