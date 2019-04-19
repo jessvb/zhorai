@@ -29,7 +29,7 @@ for doc in root:
         s = utils.getStructure(sentences)
 
 res = {}
-for sentence in s:
-    name = extractName(sentence)
-    if name:
-        print(name)
+sentence = s[-1]
+name = extractName(sentence)
+if name:
+    print(name[-1])
