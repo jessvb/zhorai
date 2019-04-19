@@ -1,15 +1,19 @@
-//import * as d3 from "./d3.v4.min.js";
 
 //Mindmap Input Variables
 var graph = {
 	"nodes": [
-	{"id": "desert", "group": 1}],
+	{"id": "desert", "group": 1},
+	{"id": "dry", "group": 2},
+	{"id": "hot", "group": 2},
+	{"id": "water", "group": 2}],
 	"links": [
 	{"source": "dry", "target": "desert", "value": 1},
 	{"source": "hot", "target": "desert", "value": 1},
 	{"source": "water", "target": "desert", "value": 1}]
 };
 
+console.log(graph.nodes);
+console.log(graph.links);
 
 //Building the mindmap functions
 
@@ -25,10 +29,28 @@ for (var i=0; i<graph.nodes.length; i++) {
   nd = graph.nodes[i];
   nd.rx = nd.id.length * 4.5; 
   nd.ry = 12;
+  // console.log(nd);
 } 
 
+
+var node = svg.append("g")
+    .attr("class", "node")
+  .selectAll("ellipse")
+  .data(graph.nodes)
+  .enter().append("ellipse")  
+    .attr("rx", function(d) { return d.rx; })
+    .attr("ry", function(d) { return d.ry; })
+    .attr("fill", function(d) { return color(d.group); });
+    // .call(d3.drag()
+    //     .on("start", dragstarted)
+    //     .on("drag", dragged)
+    //     .on("end", dragended));
+
+var link_force = d3.forceLink()
+	.id(function(d) {return d.id;});
+
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("link", link_force)
     .force("collide", d3.ellipseForce(6, 0.5, 5))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
@@ -38,19 +60,6 @@ var link = svg.append("g")
   .data(graph.links)
   .enter().append("line")
     .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
-
-var node = svg.append("g")
-    .attr("class", "node")
-  .selectAll("ellipse")
-  .data(graph.nodes)
-  .enter().append("ellipse")  
-    .attr("rx", function(d) { return d.rx; })
-    .attr("ry", function(d) { return d.ry; })
-    .attr("fill", function(d) { return color(d.group); })
-    .call(d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended));
 
 var text = svg.append("g")
     .attr("class", "labels")
