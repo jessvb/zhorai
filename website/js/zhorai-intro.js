@@ -1,15 +1,16 @@
 /* -------------- Initialize variables -------------- */
 var zhoraiTextColour = "#5d3e9f";
-var stages = ['sayHi', 'zAskName', 'respondWithName', 'zAskPlace', 'respondWithPlace', 'zFinish'];
+var stages = ['sayHi',
+    'zAskName',
+    'respondWithName',
+    'zAskPlace', 'respondWithPlace', 'zFinish'
+];
 var currStage = 0;
 var infoLabel;
 var recordButton;
 var zhoraiSpeakBtn;
 var zhoraiSpeechBox;
-// good voices: Alex pitch 2, Google US English 1.5, Google UK English Female 1.5, Google UK English Male 2
-var zhoraiVoice = window.speechSynthesis.getVoices().filter(function (voice) {
-    return voice.name == 'Google US English';
-})[0];
+var zhoraiVoice;
 var currBtnIsMic = true;
 var dataFilename = "../../website-server-side/receive-text/data/name.txt";
 var currName = '';
@@ -26,6 +27,7 @@ function speakText(text, callback) {
     // FROM https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
     var msg = new SpeechSynthesisUtterance(makePhonetic(text));
 
+    console.log("voice: " + zhoraiVoice);
     msg.voice = zhoraiVoice; // Note: some voices don't support altering params
     //msg.voiceURI = 'native';
     msg.volume = 1; // 0 to 1
@@ -39,7 +41,9 @@ function speakText(text, callback) {
     }
 
     // set the button to the "hear again" button
-    msg.onstart = switchButtonTo('speakBtn');
+    msg.onstart = function () {
+        switchButtonTo('speakBtn');
+    };
 
     window.speechSynthesis.speak(msg);
 }
@@ -149,7 +153,10 @@ function startStage() {
             toButton = 'micBtn';
             break;
         case 'zAskPlace':
-            // todo have zhorai say, "Hello <name>, pleased to meet you. Where are you from?"
+            // 1. write "Where are you from?"
+            infoLabel.innerHTML = 'Zhorai says, "Where are you from?"';
+            // have zhorai say, "Where are you from?"
+            toButton = 'micBtn';
             break;
         case 'respondWithPlace':
             // todo have student say, "I’m from <place>" or "<place>" etc.
@@ -157,8 +164,9 @@ function startStage() {
             // method and zhorai will respond
             break;
         case 'zFinish':
-            // todo have zhorai say, "That sounds like an interesting place! 
-            // I have never heard of <place> before."
+            // todo have zhorai say, "Interesting! I've never heard of <place>, before. 
+            // I'd love to learn more." 
+            // todo create button for Teach Zhorai about earth
             break;
         default:
             console.error("Unknown stage for conversation with Zhorai: " + stages[currStage]);
@@ -229,7 +237,6 @@ function introReceiveData(filedata) {
                     "Nice to meet you, " + currName + "! Where are you from?",
                     currName + ". What a nice name! Where are you from?"
                 ];
-                infoLabel.innerHTML = 'Zhorai says, "Where are you from?"';
             } else {
                 phrases = ["I didn't quite catch that.", "Sorry, I missed that.", "Pardon?",
                     "Sorry, could you repeat that?"
@@ -312,6 +319,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // remove any memory from previous activites:
     clearMemory("sentences.txt");
+
+    // Prepare Zhorai's voice:
+    window.speechSynthesis.onvoiceschanged = function () {
+        // good voices: Alex pitch 2, Google US English 1.5, Google UK English Female 1.5, Google UK English Male 2
+        zhoraiVoice = window.speechSynthesis.getVoices().filter(function (voice) {
+            return voice.name == 'Google US English';
+            // return voice.name == 'Google UK English Female';
+            // return voice.name == 'Google UK English Male';
+            // return voice.name == 'Alex';
+        })[0];
+    };
 
     startStage();
 
