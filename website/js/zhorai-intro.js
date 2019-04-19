@@ -2,6 +2,7 @@
 var zhoraiTextColour = "#5d3e9f";
 var stages = ['sayHi', 'zAskName', 'respondWithName', 'zAskPlace', 'respondWithPlace', 'zFinish'];
 var currStage = 0;
+var infoLabel;
 var recordButton;
 var zhoraiSpeakBtn;
 var zhoraiSpeechBox;
@@ -78,7 +79,7 @@ function startStage() {
         case 'sayHi':
             // have student say, "Hi Zhorai"
             // 1. write, "Say hi" in textbox
-            // TODO
+            infoLabel.innerHTML = 'Say "hi"!';
             // 2. prep mic button:
             recordButton.hidden = false;
             zhoraiSpeakBtn.hidden = true;
@@ -90,6 +91,7 @@ function startStage() {
             break;
         case 'respondWithName':
             // todo have student say, "I’m <name>" or "<name>" etc.
+            infoLabel.innerHTML = 'Zhorai says, "What\'s your name?"';
             break;
         case 'zAskPlace':
             // todo have zhorai say, "Hello <name>, pleased to meet you. Where are you from?"
@@ -176,6 +178,7 @@ function afterRecording(recordedSpeech) {
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize variables:
     currStage = 0;
+    infoLabel = document.getElementById('z_info_label');
     recordButton = document.getElementById('record_button');
     zhoraiSpeakBtn = document.getElementById('zhoraiSpeakBtn');
     zhoraiSpeechBox = document.getElementById('final_span');
