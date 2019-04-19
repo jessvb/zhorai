@@ -5,9 +5,9 @@ infile=$1
 outpath=$2
 
 #splitting sentences so that each sentence appears in new line
-python prepareCorpus.py $infile > $outpath/sentences.txt
+python prepareCorpus.py $infile > $outpath/splitSentences.txt
 #splitting words up into tokens
-cat $outpath/sentences.txt | sed -f ccg2lambda/en/tokenizer.sed > $outpath/sentences.tok
+cat $outpath/splitSentences.txt | sed -f ccg2lambda/en/tokenizer.sed > $outpath/sentences.tok
 #label tokens
 ccg2lambda/candc-1.00/bin/candc --models ccg2lambda/candc-1.00/models --candc-printer xml --input $outpath/sentences.tok > $outpath/sentences.candc.xml
 #parse sentence besed on labels
@@ -19,4 +19,4 @@ python ccg2lambda/en/candc2transccg.py $outpath/sentences.candc.xml > $outpath/s
 #python ccg2lambda/scripts/visualize.py $outpath/sentences.xml > $outpath/sentences.html
 #build dictionary output for word embedder
 python buildDict.py $outpath > $outpath/dictionary.txt
-python identifyName.py $outpath > $outpath/names.txt
+python identifyName.py $outpath > $outpath/name.txt
