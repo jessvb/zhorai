@@ -1,4 +1,1 @@
-['very']
-['jessica']
-['galit']
-['hi', 'zhorai']
+zhorai
