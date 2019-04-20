@@ -181,7 +181,6 @@ function startStage() {
  * when the record button is clicked, start recording and prep for the next stage
  */
 function onRecord() {
-    // TODO -- recordButtonClick --> pass in afterRecording??
     recordButtonClick({
         callback: afterRecording
     });
@@ -212,6 +211,8 @@ function afterRecording(recordedSpeech) {
         case 'respondWithName':
         case 'respondWithPlace':
             // get name/place from server:
+            // TODO: parseSpeech(recordedSpeech, callbackName)
+            // todo put this as callback from parseSpeech():
             readFile(dataFilename, stages[currStage] + '_intro');
             // zhorai responds in the introReceiveData() method
             break;
@@ -219,7 +220,7 @@ function afterRecording(recordedSpeech) {
             console.error("Unknown stage for ending a recording: " + stages[currStage]);
     }
 
-    finishStage(recordingIsGood, zhoraiSpeech);
+    finishStage(recordingIsGood, zhoraiSpeech, 'micBtn');
 }
 
 function introReceiveData(filedata) {
@@ -268,6 +269,11 @@ function introReceiveData(filedata) {
     finishStage(recordingIsGood, zhoraiSpeech, toButton);
 }
 
+function parseSpeechCallback(callbackName) {
+    // TODO:
+    // readFile(dataFilename, stages[currStage] + '_intro');
+}
+
 /**
  * 
  * @param {*} goToNext boolean: if true, the currStage will be incremented and 
@@ -298,7 +304,7 @@ function finishStage(goToNext, zhoraiSpeech, toButton) {
         }
     } else {
         if (zhoraiSpeech) {
-            speakText(zhoraiSpeech, function (toButton) {
+            speakText(zhoraiSpeech, function () {
                 switchButtonTo(toButton);
             });
         } else {

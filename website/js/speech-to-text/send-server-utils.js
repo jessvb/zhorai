@@ -9,6 +9,7 @@ function sendText(text) {
 
 function sendJson(json) {
     var socket = new WebSocket(url);
+
     socket.onopen = function (event) {
         socket.send(JSON.stringify(json));
     };
@@ -59,4 +60,20 @@ function onReceive(event, socket) {
     if (jsonMsg.done == true) {
         socket.close();
     }
+}
+
+function parseSpeech(recordedSpeech, callbackName) {
+    if (typeof (callbackName) == 'function') {
+        callbackName = callbackName.name;
+    }
+    if (typeof (callbackName) != 'string') {
+        console.error('The second argument of parseSpeech must' +
+            ' be a string (the *name* of the callback), but received a ' +
+            typeof (callbackName) + '. callbackName: ' + callbackName);
+    }
+    sendJson({
+        'command': 'parse',
+        'speech': recordedSpeech,
+        'callback': callbackName
+    });
 }
