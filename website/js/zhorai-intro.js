@@ -1,15 +1,18 @@
 /* -------------- Initialize variables -------------- */
+var nextPagePath = 'index.html';
 var zhoraiTextColour = "#5d3e9f";
-var stages = ['sayHi', 'zAskName', 'respondWithName', 'zAskPlace', 'respondWithPlace', 'zFinish'];
+var stages = ['sayHi',
+    'zAskName',
+    'respondWithName',
+    'respondWithPlace',
+    'zFinish'
+];
 var currStage = 0;
 var infoLabel;
 var recordButton;
 var zhoraiSpeakBtn;
 var zhoraiSpeechBox;
-// good voices: Alex pitch 2, Google US English 1.5, Google UK English Female 1.5, Google UK English Male 2
-var zhoraiVoice = window.speechSynthesis.getVoices().filter(function (voice) {
-    return voice.name == 'Google US English';
-})[0];
+var zhoraiVoice;
 var currBtnIsMic = true;
 var dataFilename = "../../website-server-side/receive-text/data/name.txt";
 var currName = '';
@@ -26,6 +29,7 @@ function speakText(text, callback) {
     // FROM https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
     var msg = new SpeechSynthesisUtterance(makePhonetic(text));
 
+    console.log("voice: " + zhoraiVoice);
     msg.voice = zhoraiVoice; // Note: some voices don't support altering params
     //msg.voiceURI = 'native';
     msg.volume = 1; // 0 to 1
@@ -39,7 +43,9 @@ function speakText(text, callback) {
     }
 
     // set the button to the "hear again" button
-    msg.onstart = switchButtonTo('speakBtn');
+    msg.onstart = function () {
+        switchButtonTo('speakBtn');
+    };
 
     window.speechSynthesis.speak(msg);
 }
@@ -109,12 +115,16 @@ function switchButtonTo(toButton) {
         recordButton.hidden = true;
         zhoraiSpeakBtn.hidden = false;
         currBtnIsMic = false;
+    } else if (toButton == 'mod1Btn') {
+        document.getElementById('mod1Btn').hidden = false;
+        recordButton.hidden = true;
+        zhoraiSpeakBtn.hidden = true;
+        currBtnIsMic = false;
     } else if (!toButton) {
         console.log('No button specified. Not switching button.');
     } else {
         console.error('Unknown button: ' + toButton + '. Did not switch button.');
     }
-
 }
 
 function startStage() {
@@ -123,7 +133,6 @@ function startStage() {
     var toButton = null;
     switch (stages[currStage]) {
         case 'sayHi':
-            console.log("starting sayHi stage... with micbtn");
             // have student say, "Hi Zhorai"
             // 1. write, "Say hi" in textbox
             infoLabel.innerHTML = 'Say "hi"!';
@@ -143,28 +152,28 @@ function startStage() {
         case 'respondWithName':
             // 1. write "what's your name?"
             infoLabel.innerHTML = 'Zhorai says, "What\'s your name?"';
-            // have student say, "I’m <name>" or "<name>" etc.
-            // this will take us to the "afterRecording" and then "introReceiveData()" 
-            // method and zhorai will respond
+            // 2. have student say, "I’m <name>" or "<name>" etc.
+            // 3. this will take us to the "afterRecording" and then "introReceiveData()" 
+            // method
+            // 4. zhorai will respond, asking where they're from
             toButton = 'micBtn';
             break;
-        case 'zAskPlace':
-            // todo have zhorai say, "Hello <name>, pleased to meet you. Where are you from?"
-            break;
         case 'respondWithPlace':
-            // todo have student say, "I’m from <place>" or "<place>" etc.
-            // this will take us to the "afterRecording" and then "introReceiveData()" 
-            // method and zhorai will respond
+            // 1. have student say, "I’m from <place>" or "<place>" etc.
+            infoLabel.innerHTML = 'Zhorai says, "Where are you from?"';
+            // 2. this will take us to the "afterRecording" and then "introReceiveData()" 
+            // method 
+            // 3. zhorai will respond with "Interesting! I've never heard of <place>, before. 
+            // I'd love to learn more."
+            toButton = 'micBtn';
             break;
         case 'zFinish':
-            // todo have zhorai say, "That sounds like an interesting place! 
-            // I have never heard of <place> before."
+            // change button to module 1 button: Teach Zhorai about earth
+            toButton = 'mod1Btn';
             break;
         default:
             console.error("Unknown stage for conversation with Zhorai: " + stages[currStage]);
     }
-    console.log('startstage gotonext: ' + goToNext);
-    console.log('startstage speech: ' + zhoraiSpeech);
     finishStage(goToNext, zhoraiSpeech, toButton);
 }
 
@@ -229,7 +238,6 @@ function introReceiveData(filedata) {
                     "Nice to meet you, " + currName + "! Where are you from?",
                     currName + ". What a nice name! Where are you from?"
                 ];
-                infoLabel.innerHTML = 'Zhorai says, "Where are you from?"';
             } else {
                 phrases = ["I didn't quite catch that.", "Sorry, I missed that.", "Pardon?",
                     "Sorry, could you repeat that?"
@@ -242,11 +250,10 @@ function introReceiveData(filedata) {
                 // got a name! Capitalize it:
                 currPlace = filedata.charAt(0).toUpperCase() + filedata.slice(1);
                 recordingIsGood = true;
-                phrases = ["Ooo, " + currPlace + " sounds interesting! I've never heard of it before. Tell me more!",
-                    currPlace + " sounds cool! I have no idea where that is! I want to hear more!",
-                    "Interesting! I've never heard of " + currPlace + " before. Can you tell me more?"
+                phrases = ["Ooo, " + currPlace + " sounds interesting! I'm from planet Igbruhmmelkin, so I've never heard of " + currPlace + " before! Tell me more!",
+                    currPlace + " sounds cool! I have no idea where that is, since I'm from another planet! I'd love to hear more!",
+                    "Interesting! I'm from planet Igbruhmmelkin. I've never heard of " + currPlace + " before. Can you tell me more?"
                 ];
-                infoLabel.innerHTML = 'Zhorai says, "Where are you from?"';
             } else {
                 phrases = ["I didn't quite catch that.", "Sorry, I missed that.", "Pardon?",
                     "Sorry, could you repeat that, " + currName + "?"
@@ -270,7 +277,6 @@ function introReceiveData(filedata) {
  * before starting the next stage (or right away, if not starting the next stage)
  */
 function finishStage(goToNext, zhoraiSpeech, toButton) {
-    console.log('finishstage,' + stages[currStage] + ', gotonext: ' + goToNext);
     showPurpleText(zhoraiSpeech);
 
     if (goToNext) {
@@ -313,9 +319,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // remove any memory from previous activites:
     clearMemory("sentences.txt");
 
+    // Prepare Zhorai's voice:
+    window.speechSynthesis.onvoiceschanged = function () {
+        // good voices: Alex pitch 2, Google US English 1.5, Google UK English Female 1.5, Google UK English Male 2
+        zhoraiVoice = window.speechSynthesis.getVoices().filter(function (voice) {
+            return voice.name == 'Google US English';
+            // return voice.name == 'Google UK English Female';
+            // return voice.name == 'Google UK English Male';
+            // return voice.name == 'Alex';
+        })[0];
+    };
+
     startStage();
 
     // Add click handlers
     zhoraiSpeakBtn.addEventListener("click", startStage);
     recordButton.addEventListener("click", onRecord);
+    document.getElementById('mod1Btn').addEventListener("click", function () {
+        window.location.href = nextPagePath;
+    });
 });
