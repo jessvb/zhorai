@@ -67,8 +67,13 @@ wsServer.on('request', function (request) {
                     }
                 });
                 sendEnd = false;
+            } else if (jsonMsg.command == 'parse') {
+                // Parse speech for name/dictionary/etc.
+                console.log("parsing '" + jsonMsg.speech + "'");
+                
+                console.log("parsed and wrote to file: " + dataDir);
             }
-            console.log('text thus far:');
+            console.log('text in current memory:');
             console.log(allText);
             if (sendEnd) {
                 sendDone(connection);
