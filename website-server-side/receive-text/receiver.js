@@ -6,8 +6,13 @@ var port = 8080;
 /* to write to txt file: */
 var fs = require('fs');
 var dataDir = 'data/';
-var semParserInputFilepath = dataDir + 'input.txt';
+var semParserPath = '../../semantic-parser/';
+var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
+var semParserInputPath = dataDirRelPath + 'input.txt'; // relative to semparserfilepath
 var allText = '';
+
+/* to execute bash scripts */
+var exec = require('child_process').exec;
 
 
 var server = http.createServer(function (request, response) {
@@ -59,11 +64,28 @@ wsServer.on('request', function (request) {
                 readFileReturnToClient(jsonMsg.filename, jsonMsg.stage, connection);
                 sendEnd = false;
             } else if (jsonMsg.command == 'parse') {
-                // Parse speech for name/dictionary/etc.
-                console.log("parsing '" + jsonMsg.speech + "'");
-                writeToFile(semParserInputFilepath, jsonMsg.speech);
-                // TODO: execute bash script and call readFileReturnToClient
-                console.log("parsed and wrote to file: " + dataDir);
+                // Parse text for name/dictionary/etc.
+                console.log("parsing '" + jsonMsg.text + "'");
+
+                // Create file for parser to parse:
+                writeToFile(semParserInputFilepath, jsonMsg.text);
+
+                // Execute parsing bash script and call readFileReturnToClient
+                var parseCmd = 'cd ' + semParserPath +
+                    ' && sh parse.sh ' + semParserInputPath + ' ' + dataDirRelPath;
+                console.log(parseCmd);
+                exec(parseCmd, function (error, stdout, stderr) {
+                    if (stdout) {
+                        console.log('Parser output:\n' + stdout);
+                    }
+                    if (error) {
+                        console.log('function error:\n' + error);
+                    }
+                    console.log('Finished parsing and wrote to file: ' + dataDir);
+
+                    // return the parsed information to client:
+                    readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt');
+                });
                 sendEnd = false;
             }
             console.log('text in current memory:');

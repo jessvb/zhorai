@@ -62,19 +62,18 @@ function onReceive(event, socket) {
     }
 }
 
-function parseSpeech(recordedSpeech, stage) {
-    // if (typeof (callbackName) == 'function') {
-    //     callbackName = callbackName.name;
-    // }
-    // if (typeof (callbackName) != 'string') {
-    //     console.error('The second argument of parseSpeech must' +
-    //         ' be a string (the *name* of the callback), but received a ' +
-    //         typeof (callbackName) + '. callbackName: ' + callbackName);
-    // }
+/**
+ * Parses given text and retuns it with a call to onReceive.
+ * @param {*} recordedText : the text you want parsed
+ * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
+ * @param {*} stage : the current zhorai stage you're in, if applicable. 
+ * (This informs 'onReceive' what to do)
+ */
+function parseText(recordedText, typeOutput, stage) {
     sendJson({
         'command': 'parse',
-        'speech': recordedSpeech,
+        'text': recordedText,
+        'typeOutput': typeOutput, // e.g., 'topic', 'name', 'dictionary', etc.
         'stage': stage
-        // 'callback': callbackName
     });
 }
