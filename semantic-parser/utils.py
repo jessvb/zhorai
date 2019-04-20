@@ -104,3 +104,18 @@ def getName(s):
     else:
         res = " "
     return res
+
+def getMindMap(topics):
+    mindMap = {"nodes": [], "links": []}
+    pos = 1
+    neg = 2
+    colorsIndex = 3
+    for key, val in topics.items():
+        mindMap["nodes"].append({"id": key, "group": colorsIndex})
+        for (corr,word) in val:
+            if corr == "pos":
+                mindMap["links"].append({"source": word, "target": key, "value": pos})
+            elif corr == "neg":
+                mindMap["links"].append({"source": word, "target": key, "value": neg})
+        colorsIndex = colorsIndex + 1
+    return mindMap
