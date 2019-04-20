@@ -14,12 +14,14 @@ for doc in root:
 #output dictionary
 file = open(sys.argv[1] + "/dictionary.txt","w")
 res = utils.buildDict(s)
-file.write(str(res))
+if res:
+    file.write(str(res))
 file.close()
 
 #output ecosystem/animal
 file = open(sys.argv[1] + "/topic.txt","w")
-file.write(next(iter(res)))
+if res:
+    file.write(next(iter(res)))
 file.close()
 
 #output name
@@ -28,6 +30,6 @@ file.write(utils.getName(s))
 file.close()
 
 #output mindmap
-# file = open(sys.argv[1] + "/mindmap.txt","w")
-# file.write()
-# file.close()
+file = open(sys.argv[1] + "/mindmap.txt","w")
+file.write(str(utils.getMindMap(res)))
+file.close()
