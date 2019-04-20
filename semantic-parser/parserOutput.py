@@ -22,6 +22,12 @@ file.close()
 file = open(sys.argv[1] + "/topic.txt","w")
 if res:
     file.write(next(iter(res)))
+else:
+    with open(sys.argv[1] + 'sentences.tok','r') as f:
+        for line in f:
+            for word in line.split():
+                if utils.isTopic(word):
+                    file.write(word)
 file.close()
 
 #output name
