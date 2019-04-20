@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (afterRecordingCallback) {
                 afterRecordingCallback(final_transcript);
-                afterRecordingCallback = null;
+                // afterRecordingCallback = null;
             }
         };
         recognition.onresult = function (event) {

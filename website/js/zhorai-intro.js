@@ -13,6 +13,8 @@ var recordButton;
 var zhoraiSpeakBtn;
 var zhoraiSpeechBox;
 var zhoraiVoice;
+var mod1Btn;
+var loadingGif;
 var currBtnIsMic = true;
 var dataFilename = "../../website-server-side/receive-text/data/name.txt";
 var currName = '';
@@ -106,18 +108,30 @@ function buttonSwap(toButton) {
  * @param {*} toButton 
  */
 function switchButtonTo(toButton) {
+    console.log('TODO DEL currStage= ' + stages[currStage] + '. switching button to : ' + toButton);
     if (toButton == 'micBtn') {
         recordButton.hidden = false;
         zhoraiSpeakBtn.hidden = true;
+        mod1Btn.hidden = true;
+        loadingGif.hidden = true;
         currBtnIsMic = true;
     } else if (toButton == 'speakBtn') {
         recordButton.hidden = true;
         zhoraiSpeakBtn.hidden = false;
+        mod1Btn.hidden = true;
+        loadingGif.hidden = true;
         currBtnIsMic = false;
     } else if (toButton == 'mod1Btn') {
-        document.getElementById('mod1Btn').hidden = false;
+        mod1Btn.hidden = false;
         recordButton.hidden = true;
         zhoraiSpeakBtn.hidden = true;
+        loadingGif.hidden = true;
+        currBtnIsMic = false;
+    } else if (toButton == 'loading') {
+        loadingGif.hidden = false;
+        recordButton.hidden = true;
+        zhoraiSpeakBtn.hidden = true;
+        mod1Btn.hidden = true;
         currBtnIsMic = false;
     } else if (!toButton) {
         console.log('No button specified. Not switching button.');
@@ -211,8 +225,7 @@ function afterRecording(recordedText) {
         case 'respondWithName':
         case 'respondWithPlace':
             // get name/place from server:
-            // TODO: del readfile and instead: parseText(recordedText, typeOutput, stages[currStage])
-            readFile(dataFilename, stages[currStage] + "_intro");
+            parseText(recordedText, 'name', stages[currStage] + "_intro");
             // this will call the introReceiveData() method, in which zhorai responds
             break;
         default:
@@ -230,7 +243,7 @@ function introReceiveData(filedata) {
     switch (stages[currStage]) {
         case 'respondWithName':
             // test to see if what they said was correct... e.g., "I didn't quite catch that"
-            if (filedata) {
+            if (filedata.trim()) {
                 // got a name! Capitalize and store it:
                 currName = filedata.charAt(0).toUpperCase() + filedata.slice(1);
                 recordingIsGood = true;
@@ -246,7 +259,7 @@ function introReceiveData(filedata) {
             break;
         case 'respondWithPlace':
             // test to see if what they said was correct... e.g., "I didn't quite catch that"
-            if (filedata) {
+            if (filedata.trim()) {
                 // got a name! Capitalize it:
                 currPlace = filedata.charAt(0).toUpperCase() + filedata.slice(1);
                 recordingIsGood = true;
@@ -292,16 +305,20 @@ function finishStage(goToNext, zhoraiSpeech, toButton) {
         };
 
         if (zhoraiSpeech) {
+            // speak and then go to the next stage
             speakText(zhoraiSpeech, nextStage);
         } else {
+            // immediately go to the next stage
             nextStage();
         }
     } else {
         if (zhoraiSpeech) {
             speakText(zhoraiSpeech, function () {
+                // wait to switch the button until after speaking
                 switchButtonTo(toButton);
             });
         } else {
+            // immediately switch the button
             switchButtonTo(toButton);
         }
     }
@@ -315,6 +332,8 @@ document.addEventListener('DOMContentLoaded', function () {
     recordButton = document.getElementById('record_button');
     zhoraiSpeakBtn = document.getElementById('zhoraiSpeakBtn');
     zhoraiSpeechBox = document.getElementById('final_span');
+    mod1Btn = document.getElementById('mod1Btn');
+    loadingGif = document.getElementById('loadingGif');
 
     // remove any memory from previous activites:
     clearMemory("sentences.txt");

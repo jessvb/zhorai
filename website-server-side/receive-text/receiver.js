@@ -6,9 +6,10 @@ var port = 8080;
 /* to write to txt file: */
 var fs = require('fs');
 var dataDir = 'data/';
+var semParserInputFilename = 'input.txt';
 var semParserPath = '../../semantic-parser/';
 var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
-var semParserInputPath = dataDirRelPath + 'input.txt'; // relative to semparserfilepath
+var semParserInputPath = dataDirRelPath + semParserInputFilename; // relative to semparserfilepath
 var allText = '';
 
 /* to execute bash scripts */
@@ -36,14 +37,11 @@ wsServer.on('request', function (request) {
         var sendEnd = false;
         if (message.type === 'utf8') {
             // process WebSocket message
-            console.log(message.utf8Data);
+            console.log('\nReceived message:\n' + message.utf8Data);
 
-            jsonMsg = JSON.parse(message.utf8Data);
+            var jsonMsg = JSON.parse(message.utf8Data);
             // Add received text to allText:
-            if (jsonMsg.text) {
-                allText += jsonMsg.text + '\n';
-                sendEnd = true;
-            } else if (jsonMsg.command == 'makeTextFile') {
+            if (jsonMsg.command == 'makeTextFile') {
                 // make a text file with allText
                 writeToFile(dataDir + jsonMsg.textFilename, allText);
                 // reset allText for next text file
@@ -60,7 +58,7 @@ wsServer.on('request', function (request) {
                 sendEnd = true;
             } else if (jsonMsg.command == 'readFile') {
                 // get file data and return it to the client
-                console.log('READING FILE COMMAND... filename' + jsonMsg.filename);
+                console.log('Reading file: ' + jsonMsg.filename);
                 readFileReturnToClient(jsonMsg.filename, jsonMsg.stage, connection);
                 sendEnd = false;
             } else if (jsonMsg.command == 'parse') {
@@ -68,25 +66,30 @@ wsServer.on('request', function (request) {
                 console.log("parsing '" + jsonMsg.text + "'");
 
                 // Create file for parser to parse:
-                writeToFile(semParserInputFilepath, jsonMsg.text);
+                writeToFile(dataDir + semParserInputFilename, jsonMsg.text, function () {
+                    // Execute parsing bash script and return name with readFileReturnToClient
+                    var parseCmd = 'cd ' + semParserPath +
+                        ' && sh parse.sh ' + semParserInputPath + ' ' + dataDirRelPath;
 
-                // Execute parsing bash script and call readFileReturnToClient
-                var parseCmd = 'cd ' + semParserPath +
-                    ' && sh parse.sh ' + semParserInputPath + ' ' + dataDirRelPath;
-                console.log(parseCmd);
-                exec(parseCmd, function (error, stdout, stderr) {
-                    if (stdout) {
-                        console.log('Parser output:\n' + stdout);
-                    }
-                    if (error) {
-                        console.log('function error:\n' + error);
-                    }
-                    console.log('Finished parsing and wrote to file: ' + dataDir);
+                    console.log(parseCmd);
+                    exec(parseCmd, function (error, stdout, stderr) {
+                        if (stdout) {
+                            console.log('Parser command output:\n' + stdout);
+                        }
+                        if (error) {
+                            console.log('Function error:\n' + error);
+                        }
+                        console.log('Finished parsing and wrote to file: ' + dataDir);
 
-                    // return the parsed information to client:
-                    readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt');
+                        // return the parsed information to client:
+                        readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
+                    });
                 });
+
                 sendEnd = false;
+            } else if (jsonMsg.text) {
+                allText += jsonMsg.text + '\n';
+                sendEnd = true;
             }
             console.log('text in current memory:');
             console.log(allText);
@@ -98,22 +101,25 @@ wsServer.on('request', function (request) {
 
     connection.on('close', function (connection) {
         // client closed connection
-        console.log("Closed connection.");
+        console.log("Closed connection.\n");
     });
 });
 
-function writeToFile(filename, text) {
+function writeToFile(filename, text, callback) {
     fs.writeFile(filename, text, function (err) {
         if (err) {
             console.error("Error writing to file: " + err);
         } else {
             console.log('File successfully written!');
+            if (callback) {
+                callback();
+            }
         }
     });
 }
 
 function readFileReturnToClient(filename, stage, connection) {
-    console.log('READING FILE COMMAND... filename' + filename);
+    console.log('Reading file: ' + filename);
     fs.readFile(filename, function (err, data) {
         if (err) {
             console.error("Error reading file, " + filename + ": " + err);
@@ -134,3 +140,5 @@ function sendDone(connection) {
         'done': true
     }));
 }
+
+console.log("Zhorai's brain is ready for info!");

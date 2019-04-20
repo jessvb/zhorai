@@ -50,8 +50,7 @@ function readFile(filename, stage) {
 function onReceive(event, socket) {
     var jsonMsg = JSON.parse(event.data);
     if (jsonMsg.filedata) {
-        console.log(jsonMsg.stage);
-        console.log(jsonMsg.filedata);
+        console.log("received message in stage, " + jsonMsg.stage + ": " + jsonMsg.filedata);
         if (jsonMsg.stage.toLowerCase().includes('intro')) {
             introReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]);
         }
