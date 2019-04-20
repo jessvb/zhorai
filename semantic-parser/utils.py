@@ -5,6 +5,11 @@ ecosystems = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
 animals = ["alligator","ant","antelope","baboon","bat","bear","beaver","bee","bird","butterfly","camel","cat","coyote","cheetah","chicken","chimpanzee","cow","crocodile","deer","dog","dolphin","donkey","duck","eagle","elephant","fish","firefly","flamingo","fly","fox","frog","gerbil","giraffe","goat","goldfish","gorilla","hamster","hippopotamus","horse","jellyfish","kangaroo","kitten","koala","ladybug","leopard","lion","llama","lobster","monkey","moose","octopus","ostrich","otter","owl","panda","panther","peacock","penguin","pig","puma","puppy","rabbit","rat","rhinoceros","scorpion","seal","seahorse","shark","sheep","sloth","snail","snake","starfish","spider","squirrel","swordfish","tiger","walrus","weasel","whale","turtle","wildcat","whale","wolf","zebra"]
 negatives = ["n't","not","no","little","small","few"]
 
+def isTopic(word):
+    if word in ecosystems or word in animals:
+        return True
+    return False
+    
 def combine(id, structureData):
     if len(structureData[id]) == 2:
         return structureData[id]
@@ -73,27 +78,28 @@ def buildDict(s):
     res = {}
     for sentence in s:
         words = extractWords(sentence)
-        subjects = [subject[1] for subject in words if subject[0] == 'subject']
-        isNeg = False
-        for corr, w in words:
-            if corr == 'subject':
-                continue
-            if corr == 'neg':
-                isNeg = True
-                continue
-            if isNeg == True:
-                for i in subjects:
-                    if i in res.keys():
-                        res[i].append(['neg',w])
-                    else:
-                        res[i] = [['neg',w]]
-                isNeg = False
-            else:
-                for i in subjects:
-                    if i in res.keys():
-                        res[i].append(['pos',w])
-                    else:
-                        res[i] = [['pos',w]]
+        if words:
+            subjects = [subject[1] for subject in words if subject[0] == 'subject']
+            isNeg = False
+            for corr, w in words:
+                if corr == 'subject':
+                    continue
+                if corr == 'neg':
+                    isNeg = True
+                    continue
+                if isNeg == True:
+                    for i in subjects:
+                        if i in res.keys():
+                            res[i].append(['neg',w])
+                        else:
+                            res[i] = [['neg',w]]
+                    isNeg = False
+                else:
+                    for i in subjects:
+                        if i in res.keys():
+                            res[i].append(['pos',w])
+                        else:
+                            res[i] = [['pos',w]]
     return res
 
 def getName(s):
