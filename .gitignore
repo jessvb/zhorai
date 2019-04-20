@@ -74,6 +74,8 @@ semantic-parser/ccg2lambda/scripts/__pycache__/
 # macos
 .DS_Store
 
-# don't need to keep committing the generated txt file:
-**/data/sentences.txt
+# don't need to keep committing the generated txt files:
+**/data
+semantic-parser/example
+
 
