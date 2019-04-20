@@ -30,6 +30,6 @@ file.write(utils.getName(s))
 file.close()
 
 #output mindmap
-# file = open(sys.argv[1] + "/mindmap.txt","w")
-# file.write()
-# file.close()
+file = open(sys.argv[1] + "/mindmap.txt","w")
+file.write(str(utils.getMindMap(res)))
+file.close()
