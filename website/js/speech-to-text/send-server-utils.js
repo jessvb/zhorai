@@ -62,18 +62,19 @@ function onReceive(event, socket) {
     }
 }
 
-function parseSpeech(recordedSpeech, callbackName) {
-    if (typeof (callbackName) == 'function') {
-        callbackName = callbackName.name;
-    }
-    if (typeof (callbackName) != 'string') {
-        console.error('The second argument of parseSpeech must' +
-            ' be a string (the *name* of the callback), but received a ' +
-            typeof (callbackName) + '. callbackName: ' + callbackName);
-    }
+function parseSpeech(recordedSpeech, stage) {
+    // if (typeof (callbackName) == 'function') {
+    //     callbackName = callbackName.name;
+    // }
+    // if (typeof (callbackName) != 'string') {
+    //     console.error('The second argument of parseSpeech must' +
+    //         ' be a string (the *name* of the callback), but received a ' +
+    //         typeof (callbackName) + '. callbackName: ' + callbackName);
+    // }
     sendJson({
         'command': 'parse',
         'speech': recordedSpeech,
-        'callback': callbackName
+        'stage': stage
+        // 'callback': callbackName
     });
 }

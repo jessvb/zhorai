@@ -29,7 +29,6 @@ function speakText(text, callback) {
     // FROM https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
     var msg = new SpeechSynthesisUtterance(makePhonetic(text));
 
-    console.log("voice: " + zhoraiVoice);
     msg.voice = zhoraiVoice; // Note: some voices don't support altering params
     //msg.voiceURI = 'native';
     msg.volume = 1; // 0 to 1
@@ -211,10 +210,9 @@ function afterRecording(recordedSpeech) {
         case 'respondWithName':
         case 'respondWithPlace':
             // get name/place from server:
-            // TODO: parseSpeech(recordedSpeech, callbackName)
-            // todo put this as callback from parseSpeech():
-            readFile(dataFilename, stages[currStage] + '_intro');
-            // zhorai responds in the introReceiveData() method
+            // TODO: del readfile and instead: parseSpeech(recordedSpeech, stages[currStage])
+            readFile(dataFilename, stages[currStage] + "_intro");
+            // this will call the introReceiveData() method, in which zhorai responds
             break;
         default:
             console.error("Unknown stage for ending a recording: " + stages[currStage]);
@@ -267,11 +265,6 @@ function introReceiveData(filedata) {
 
     zhoraiSpeech = chooseRandomPhrase(phrases);
     finishStage(recordingIsGood, zhoraiSpeech, toButton);
-}
-
-function parseSpeechCallback(callbackName) {
-    // TODO:
-    // readFile(dataFilename, stages[currStage] + '_intro');
 }
 
 /**

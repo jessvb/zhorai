@@ -6,6 +6,7 @@ var port = 8080;
 /* to write to txt file: */
 var fs = require('fs');
 var dataDir = 'data/';
+var semParserInputFilepath = dataDir + 'input.txt';
 var allText = '';
 
 
@@ -53,25 +54,17 @@ wsServer.on('request', function (request) {
                 }
                 sendEnd = true;
             } else if (jsonMsg.command == 'readFile') {
-                // get file data
-                fs.readFile(jsonMsg.filename, function (err, data) {
-                    if (err) {
-                        console.error("Error reading file, " + filename + ": " + err);
-                    } else {
-                        console.log("read from file: " + data);
-                        connection.sendUTF(JSON.stringify({
-                            'filedata': new TextDecoder().decode(data),
-                            'stage': jsonMsg.stage
-                        }));
-                        sendDone(connection);
-                    }
-                });
+                // get file data and return it to the client
+                console.log('READING FILE COMMAND... filename' + jsonMsg.filename);
+                readFileReturnToClient(jsonMsg.filename, jsonMsg.stage, connection);
                 sendEnd = false;
             } else if (jsonMsg.command == 'parse') {
                 // Parse speech for name/dictionary/etc.
                 console.log("parsing '" + jsonMsg.speech + "'");
-                
+                writeToFile(semParserInputFilepath, jsonMsg.speech);
+                // TODO: execute bash script and call readFileReturnToClient
                 console.log("parsed and wrote to file: " + dataDir);
+                sendEnd = false;
             }
             console.log('text in current memory:');
             console.log(allText);
@@ -93,6 +86,22 @@ function writeToFile(filename, text) {
             console.error("Error writing to file: " + err);
         } else {
             console.log('File successfully written!');
+        }
+    });
+}
+
+function readFileReturnToClient(filename, stage, connection) {
+    console.log('READING FILE COMMAND... filename' + filename);
+    fs.readFile(filename, function (err, data) {
+        if (err) {
+            console.error("Error reading file, " + filename + ": " + err);
+        } else {
+            console.log("read from file: " + data);
+            connection.sendUTF(JSON.stringify({
+                'filedata': new TextDecoder().decode(data),
+                'stage': stage
+            }));
+            sendDone(connection);
         }
     });
 }
