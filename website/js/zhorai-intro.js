@@ -1,5 +1,5 @@
 /* -------------- Initialize variables -------------- */
-var nextPagePath = 'index.html';
+var nextPagePath = 'module-1.html';
 var zhoraiTextColour = "#5d3e9f";
 var stages = ['sayHi',
     'zAskName',
@@ -167,6 +167,7 @@ function startStage() {
             toButton = 'micBtn';
             break;
         case 'zFinish':
+            infoLabel.innerHTML = 'Zhorai would like to learn more about your planet!';
             // change button to module 1 button: Teach Zhorai about earth
             toButton = 'mod1Btn';
             break;
@@ -186,7 +187,7 @@ function onRecord() {
 
 }
 
-function afterRecording(recordedSpeech) {
+function afterRecording(recordedText) {
     var recordingIsGood = false;
     var zhoraiSpeech = '';
     console.log("AFTER RECORDING!");
@@ -197,7 +198,7 @@ function afterRecording(recordedSpeech) {
                 'g\'day', 'what\'s up', 'good morning', 'good afternoon', 'meet'
             ];
             var regex = new RegExp(greetings.join("|"), "i");
-            var saidHi = regex.test(recordedSpeech);
+            var saidHi = regex.test(recordedText);
             if (saidHi) {
                 recordingIsGood = true;
             } else {
@@ -210,7 +211,7 @@ function afterRecording(recordedSpeech) {
         case 'respondWithName':
         case 'respondWithPlace':
             // get name/place from server:
-            // TODO: del readfile and instead: parseSpeech(recordedSpeech, stages[currStage])
+            // TODO: del readfile and instead: parseText(recordedText, typeOutput, stages[currStage])
             readFile(dataFilename, stages[currStage] + "_intro");
             // this will call the introReceiveData() method, in which zhorai responds
             break;
