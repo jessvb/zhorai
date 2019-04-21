@@ -32,21 +32,17 @@ function speakText(text, callback) {
     var msg = new SpeechSynthesisUtterance(makePhonetic(text));
 
     msg.voice = zhoraiVoice; // Note: some voices don't support altering params
-    //msg.voiceURI = 'native';
     msg.volume = 1; // 0 to 1
     msg.rate = 1.1; // 0.1 to 10
     msg.pitch = 1.5; // 0 to 2
     msg.lang = 'en-US';
 
+    // set the button to the "hear again" button -- todo function before speaking
+    switchButtonTo('speakBtn');
+
     if (callback) {
-        console.log('callback!! ' + callback);
         msg.onend = callback;
     }
-
-    // set the button to the "hear again" button
-    msg.onstart = function () {
-        switchButtonTo('speakBtn');
-    };
 
     window.speechSynthesis.speak(msg);
 }
@@ -108,7 +104,6 @@ function buttonSwap(toButton) {
  * @param {*} toButton 
  */
 function switchButtonTo(toButton) {
-    console.log('TODO DEL currStage= ' + stages[currStage] + '. switching button to : ' + toButton);
     if (toButton == 'micBtn') {
         recordButton.hidden = false;
         zhoraiSpeakBtn.hidden = true;
@@ -143,14 +138,11 @@ function switchButtonTo(toButton) {
 function startStage() {
     var zhoraiSpeech = '';
     var goToNext = false;
-    var toButton = null;
     switch (stages[currStage]) {
         case 'sayHi':
             // have student say, "Hi Zhorai"
             // 1. write, "Say hi" in textbox
             infoLabel.innerHTML = 'Say "hi"!';
-            // 2. prep mic button:
-            toButton = 'micBtn';
             break;
         case 'zAskName':
             // have zhorai say, "Hi there! What’s your name?"
@@ -160,7 +152,6 @@ function startStage() {
             ];
             zhoraiSpeech = chooseRandomPhrase(phrases);
             goToNext = true;
-            toButton = 'micBtn';
             break;
         case 'respondWithName':
             // 1. write "what's your name?"
@@ -169,7 +160,6 @@ function startStage() {
             // 3. this will take us to the "afterRecording" and then "introReceiveData()" 
             // method
             // 4. zhorai will respond, asking where they're from
-            toButton = 'micBtn';
             break;
         case 'respondWithPlace':
             // 1. have student say, "I’m from <place>" or "<place>" etc.
@@ -178,27 +168,15 @@ function startStage() {
             // method 
             // 3. zhorai will respond with "Interesting! I've never heard of <place>, before. 
             // I'd love to learn more."
-            toButton = 'micBtn';
             break;
         case 'zFinish':
             infoLabel.innerHTML = 'Zhorai would like to learn more about your planet!';
             // change button to module 1 button: Teach Zhorai about earth
-            toButton = 'mod1Btn';
             break;
         default:
             console.error("Unknown stage for conversation with Zhorai: " + stages[currStage]);
     }
-    finishStage(goToNext, zhoraiSpeech, toButton);
-}
-
-/**
- * when the record button is clicked, start recording and prep for the next stage
- */
-function onRecord() {
-    recordButtonClick({
-        callback: afterRecording
-    });
-
+    finishStage(goToNext, zhoraiSpeech);
 }
 
 function afterRecording(recordedText) {
@@ -232,14 +210,13 @@ function afterRecording(recordedText) {
             console.error("Unknown stage for ending a recording: " + stages[currStage]);
     }
 
-    finishStage(recordingIsGood, zhoraiSpeech, 'micBtn');
+    finishStage(recordingIsGood, zhoraiSpeech);
 }
 
 function introReceiveData(filedata) {
     var phrases = [];
     var zhoraiSpeech = '';
     var recordingIsGood = false;
-    var toButton = 'micBtn';
     switch (stages[currStage]) {
         case 'respondWithName':
             // test to see if what they said was correct... e.g., "I didn't quite catch that"
@@ -278,48 +255,49 @@ function introReceiveData(filedata) {
     }
 
     zhoraiSpeech = chooseRandomPhrase(phrases);
-    finishStage(recordingIsGood, zhoraiSpeech, toButton);
+    finishStage(recordingIsGood, zhoraiSpeech);
 }
 
 /**
  * 
  * @param {*} goToNext boolean: if true, the currStage will be incremented and 
- * the gui prepared for next stage
- * @param {*} zhoraiSpeech string: if specified, zhorai will speak
- * @param {*} toButton string: if specified, the button will be set to 'micBtn' or 'speakBtn'
- * before starting the next stage (or right away, if not starting the next stage)
+ * the gui prepared for next stage (button changed)
+ * @param {*} zhoraiSpeech string: if specified, zhorai will speak, and then the button will 
+ * automatically change depending on the current/next stage.
  */
-function finishStage(goToNext, zhoraiSpeech, toButton) {
+function finishStage(goToNext, zhoraiSpeech) {
     showPurpleText(zhoraiSpeech);
 
-    if (goToNext) {
-        var nextStage = function () {
+    if (goToNext && zhoraiSpeech) {
+        // speak and then increment stage & switch to mic:
+        speakText(zhoraiSpeech, function () {
             // prepare for next stage (but don't go to next if it's the last stage)
             if (currStage < stages.length - 1) {
                 currStage += 1;
             }
-            // swap the mic button / zhorai talk button
-            switchButtonTo(toButton);
+            // switch to mic button
+            switchButtonTo('micBtn');
             // start the next stage
             startStage();
-        };
-
-        if (zhoraiSpeech) {
-            // speak and then go to the next stage
-            speakText(zhoraiSpeech, nextStage);
-        } else {
-            // immediately go to the next stage
-            nextStage();
+        });
+    } else if (goToNext && !zhoraiSpeech) {
+        // immediately increment, don't switch buttons
+        if (currStage < stages.length - 1) {
+            currStage += 1;
         }
-    } else {
-        if (zhoraiSpeech) {
-            speakText(zhoraiSpeech, function () {
-                // wait to switch the button until after speaking
-                switchButtonTo(toButton);
-            });
-        } else {
-            // immediately switch the button
-            switchButtonTo(toButton);
+        startStage();
+    } else if (!goToNext && zhoraiSpeech) {
+        // speak text & switch buttons, don't go to next stage
+        speakText(zhoraiSpeech, function () {
+            switchButtonTo('micBtn');
+        });
+    } else if (!goToNext && !zhoraiSpeech) {
+        // no more stages and no more speech means we're at the very start or very end:
+        // if at beginning, switch to mic btn
+        if (currStage == 0) {
+            switchButtonTo('micBtn');
+        } else if (currStage == stages.length - 1) {
+            switchButtonTo('mod1Btn');
         }
     }
 }
@@ -353,7 +331,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add click handlers
     zhoraiSpeakBtn.addEventListener("click", startStage);
-    recordButton.addEventListener("click", onRecord);
+    recordButton.addEventListener("click", function () {
+        recordButtonClick({
+            callback: afterRecording,
+            onClickStop: buttonSwap,
+            onClickStopParam: 'loading'
+        });
+    });
     document.getElementById('mod1Btn').addEventListener("click", function () {
         window.location.href = nextPagePath;
     });
