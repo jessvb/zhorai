@@ -7,16 +7,46 @@ var recognizing;
 var recognition;
 var current_style;
 var afterRecordingCallback;
+var onClickStop;
+var onClickStopParam;
+var doneProcessing = false;
+var doneRecording = false;
 
 // These functions are called outside this js file (thus we leave them outside
 // the DOMContentLoaded event):
 function recordButtonClick(event) {
+    // save callbacks for after recording/processing
+    if (event.callback) {
+        afterRecordingCallback = event.callback;
+    }
+    if (event.onClickStop) {
+        onClickStop = event.onClickStop;
+        if (event.onClickStopParam) {
+            onClickStopParam = event.onClickStopParam;
+        }
+    }
+
+    // start or stop recording
     if (recognizing) {
+        // clicked to stop recording 
         recognition.stop();
+        doneRecording = true;
+        // stopped recording callback
+        if (onClickStop) {
+            // e.g., change to loading icon
+            onClickStop(onClickStopParam);
+        }
+        // if we're done processing and recording, then:
+        if (doneProcessing && doneRecording) {
+            whenDoneRecAndProcessing();
+        }
     } else {
+        // clicked to start recording
+        doneProcessing = false;
+        doneRecording = false;
+
         final_transcript = '';
         recognition.start();
-        console.log("started recognition...");
         ignore_onend = false;
         final_span.innerHTML = '';
         interim_span.innerHTML = '';
@@ -24,10 +54,6 @@ function recordButtonClick(event) {
         showInfo('info_allow');
         showButtons('none');
         start_timestamp = event.timeStamp;
-    }
-
-    if (event.callback) {
-        afterRecordingCallback = event.callback;
     }
 }
 
@@ -55,6 +81,12 @@ function chooseRandomPhrase(phrases) {
     return phrases[Math.floor(Math.random() * phrases.length)];
 }
 
+function whenDoneRecAndProcessing() {
+    // TODO callback
+    if (afterRecordingCallback) {
+        afterRecordingCallback(final_transcript);
+    }
+}
 
 /* -------------- Once the page has loaded -------------- */
 document.addEventListener('DOMContentLoaded', function () {
@@ -106,6 +138,14 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         recognition.onend = function () {
             recognizing = false;
+            doneProcessing = true;
+            // if we're done processing and recording, then:
+            if (doneProcessing && doneRecording) {
+                whenDoneRecAndProcessing();
+            }
+            // send the transcript to the server
+            sendText(final_transcript);
+
             if (textFileBtn) {
                 textFileBtn.disabled = false;
             }
@@ -123,13 +163,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 var range = document.createRange();
                 range.selectNode(document.getElementById('final_span'));
                 window.getSelection().addRange(range);
-            }
-            console.log("stopped recognition. sending to server:" + final_transcript);
-            sendText(final_transcript);
-
-            if (afterRecordingCallback) {
-                afterRecordingCallback(final_transcript);
-                // afterRecordingCallback = null;
             }
         };
         recognition.onresult = function (event) {
