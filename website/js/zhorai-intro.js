@@ -12,7 +12,6 @@ var infoLabel;
 var recordButton;
 var zhoraiSpeakBtn;
 var zhoraiSpeechBox;
-var zhoraiVoice;
 var mod1Btn;
 var loadingGif;
 var currBtnIsMic = true;
@@ -22,31 +21,6 @@ var currPlace = '';
 
 
 /* -------------- Initialize functions -------------- */
-/**
- * Speaks with the voice set by zhoraiVoice
- * @param {*} text 
- * @param {*} callback 
- */
-function speakText(text, callback) {
-    // FROM https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
-    var msg = new SpeechSynthesisUtterance(makePhonetic(text));
-
-    msg.voice = zhoraiVoice; // Note: some voices don't support altering params
-    msg.volume = 1; // 0 to 1
-    msg.rate = 1.1; // 0.1 to 10
-    msg.pitch = 1.5; // 0 to 2
-    msg.lang = 'en-US';
-
-    // set the button to the "hear again" button -- todo function before speaking
-    switchButtonTo('speakBtn');
-
-    if (callback) {
-        msg.onend = callback;
-    }
-
-    window.speechSynthesis.speak(msg);
-}
-
 function showPurpleText(text) {
     zhoraiSpeechBox.innerHTML = '<p style="color:' + zhoraiTextColour + '">' + text + '</p>';
 }
@@ -70,7 +44,6 @@ function getEnglishVoices() {
     englishVoices = [];
     speechSynthesis.getVoices().forEach(function (voice) {
         if (voice.lang.includes("en")) {
-            // console.log(voice.name, voice.default ? voice.default : '');
             englishVoices.push(voice);
         }
     });
@@ -182,7 +155,6 @@ function startStage() {
 function afterRecording(recordedText) {
     var recordingIsGood = false;
     var zhoraiSpeech = '';
-    console.log("AFTER RECORDING!");
     switch (stages[currStage]) {
         case 'sayHi':
             // test to see if what they said was correct... e.g., "I didn't quite catch that"
@@ -269,8 +241,10 @@ function finishStage(goToNext, zhoraiSpeech) {
     showPurpleText(zhoraiSpeech);
 
     if (goToNext && zhoraiSpeech) {
-        // speak and then increment stage & switch to mic:
+        // switch button to speak button, speak and then increment stage & switch to mic:
         speakText(zhoraiSpeech, function () {
+            switchButtonTo('speakBtn');
+        }, function () {
             // prepare for next stage (but don't go to next if it's the last stage)
             if (currStage < stages.length - 1) {
                 currStage += 1;
@@ -289,6 +263,8 @@ function finishStage(goToNext, zhoraiSpeech) {
     } else if (!goToNext && zhoraiSpeech) {
         // speak text & switch buttons, don't go to next stage
         speakText(zhoraiSpeech, function () {
+            switchButtonTo('speakBtn');
+        }, function () {
             switchButtonTo('micBtn');
         });
     } else if (!goToNext && !zhoraiSpeech) {
@@ -315,17 +291,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // remove any memory from previous activites:
     clearMemory("sentences.txt");
-
-    // Prepare Zhorai's voice:
-    window.speechSynthesis.onvoiceschanged = function () {
-        // good voices: Alex pitch 2, Google US English 1.5, Google UK English Female 1.5, Google UK English Male 2
-        zhoraiVoice = window.speechSynthesis.getVoices().filter(function (voice) {
-            return voice.name == 'Google US English';
-            // return voice.name == 'Google UK English Female';
-            // return voice.name == 'Google UK English Male';
-            // return voice.name == 'Alex';
-        })[0];
-    };
 
     startStage();
 
