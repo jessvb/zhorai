@@ -299,11 +299,11 @@ document.addEventListener('DOMContentLoaded', function () {
     recordButton.addEventListener("click", function () {
         recordButtonClick({
             callback: afterRecording,
-            onClickStop: buttonSwap,
+            onClickStop: switchButtonTo,
             onClickStopParam: 'loading'
         });
     });
-    document.getElementById('mod1Btn').addEventListener("click", function () {
+    mod1Btn.addEventListener("click", function () {
         window.location.href = nextPagePath;
     });
 });
