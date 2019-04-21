@@ -82,7 +82,6 @@ function chooseRandomPhrase(phrases) {
 }
 
 function whenDoneRecAndProcessing() {
-    // TODO callback
     if (afterRecordingCallback) {
         afterRecordingCallback(final_transcript);
     }
