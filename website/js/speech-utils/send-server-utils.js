@@ -52,7 +52,9 @@ function onReceive(event, socket) {
     if (jsonMsg.filedata) {
         console.log("received message in stage, " + jsonMsg.stage + ": " + jsonMsg.filedata);
         if (jsonMsg.stage.toLowerCase().includes('intro')) {
-            introReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]);
+            introReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]); // remove intro from stage
+        } else if (jsonMsg.stage.toLowerCase().includes('mod1')) {
+            mod1ReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]); // remove mod1 from stage
         }
     }
 
