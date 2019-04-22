@@ -82,5 +82,4 @@ where input.txt is the corpus and the rest of the files in example/ are output f
 
 ## Open Issues
 1. There is a bug for sentence structures in which there is an adverb that describes a verb that describes a noun (such as "Deserts don't get much rain."") This is a work in progress.
-2. It is possible for a word to appear with a positive and negative correlation. For example, there could be the following two sentences: "There are almost no plants in the desert." and "There are plants in the desert.". We should discuss what to do in the scenario (use both, take the sign that appears most times, ignore this word).
-3. What do we want to happen when a student describes an animal using another animal? For example, "tigers are scary cats"?
+2. What do we want to happen when a student describes an animal using another animal? For example, "tigers are scary cats"?
