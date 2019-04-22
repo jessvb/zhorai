@@ -38,5 +38,7 @@ file.close()
 
 #output mindmap
 file = open(sys.argv[1] + "/mindmap.txt","w")
-file.write(json.dumps(utils.getMindMap(res)))
+map = utils.getMindMap(res)
+if map:
+    file.write(json.dumps(map))
 file.close()
