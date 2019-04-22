@@ -64,7 +64,7 @@ function onReceive(event, socket) {
 }
 
 /**
- * Parses given text and retuns it with a call to onReceive.
+ * Parses given text and returns it with a call to onReceive.
  * @param {*} recordedText : the text you want parsed
  * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
  * @param {*} stage : the current zhorai stage you're in, if applicable. 
@@ -75,6 +75,21 @@ function parseText(recordedText, typeOutput, stage) {
         'command': 'parse',
         'text': recordedText,
         'typeOutput': typeOutput, // e.g., 'topic', 'name', 'dictionary', etc.
+        'stage': stage
+    });
+}
+
+/**
+ * Parses given text and returns it with a call to onReceive.
+ * @param {*} recordedText : the text you want parsed
+ * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
+ * @param {*} stage : the current zhorai stage you're in, if applicable. 
+ * (This informs 'onReceive' what to do)
+ */
+function parseMem(typeOutput, stage) {
+    sendJson({
+        'command': 'parse',
+        'typeOutput': typeOutput, // e.g., 'topic', 'name', 'mindmap', etc.
         'stage': stage
     });
 }
