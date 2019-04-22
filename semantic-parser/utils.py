@@ -9,7 +9,7 @@ def isTopic(word):
     if word in ecosystems or word in animals:
         return True
     return False
-    
+
 def combine(id, structureData):
     if len(structureData[id]) == 2:
         return structureData[id]
@@ -90,16 +90,16 @@ def buildDict(s):
                 if isNeg == True:
                     for i in subjects:
                         if i in res.keys():
-                            res[i].append(['neg',w])
+                            res[i].append(["neg",w])
                         else:
-                            res[i] = [['neg',w]]
+                            res[i] = [["neg",w]]
                     isNeg = False
                 else:
                     for i in subjects:
                         if i in res.keys():
-                            res[i].append(['pos',w])
+                            res[i].append(["pos",w])
                         else:
-                            res[i] = [['pos',w]]
+                            res[i] = [["pos",w]]
     return res
 
 def getName(s):
@@ -120,8 +120,10 @@ def getMindMap(topics):
         mindMap["nodes"].append({"id": key, "group": colorsIndex})
         for (corr,word) in val:
             if corr == "pos":
+                mindMap["nodes"].append({"id": word, "group": pos})
                 mindMap["links"].append({"source": word, "target": key, "value": pos})
             elif corr == "neg":
+                mindMap["nodes"].append({"id": word, "group": neg})
                 mindMap["links"].append({"source": word, "target": key, "value": neg})
         colorsIndex = colorsIndex + 1
     return mindMap

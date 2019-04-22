@@ -1,5 +1,6 @@
 import sys
 import xml.etree.ElementTree as ET
+import json
 import utils
 
 tree = ET.parse(sys.argv[1] + '/sentences.xml')
@@ -15,7 +16,7 @@ for doc in root:
 file = open(sys.argv[1] + "/dictionary.txt","w")
 res = utils.buildDict(s)
 if res:
-    file.write(str(res))
+    file.write(json.dumps(res))
 file.close()
 
 #output ecosystem/animal
@@ -37,5 +38,5 @@ file.close()
 
 #output mindmap
 file = open(sys.argv[1] + "/mindmap.txt","w")
-file.write(str(utils.getMindMap(res)))
+file.write(json.dumps(utils.getMindMap(res)))
 file.close()
