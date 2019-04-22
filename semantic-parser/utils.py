@@ -111,6 +111,24 @@ def getName(s):
         res = " "
     return res
 
+def inMindMap(corr,word,nodes,type,key):
+    if type =="nodes":
+        for dict in nodes:
+            if dict["id"] == word:
+                return True
+        return False
+    else:
+        for dict in nodes:
+            if dict["source"] == word and dict["target"] == key:
+                return True
+        return False
+
+def getIndexVal(word,key,links):
+    for i in range(len(links)):
+        links[i]["source"] == word and links[i]["target"] == key
+        return i, links[i]["value"]
+    return False, False
+
 def getMindMap(topics):
     mindMap = {"nodes": [], "links": []}
     pos = 1
@@ -119,11 +137,19 @@ def getMindMap(topics):
     for key, val in topics.items():
         mindMap["nodes"].append({"id": key, "group": colorsIndex})
         for (corr,word) in val:
-            if corr == "pos":
-                mindMap["nodes"].append({"id": word, "group": pos})
-                mindMap["links"].append({"source": word, "target": key, "value": pos})
-            elif corr == "neg":
-                mindMap["nodes"].append({"id": word, "group": neg})
-                mindMap["links"].append({"source": word, "target": key, "value": neg})
+            if inMindMap(corr,word,mindMap["nodes"],"nodes",key):
+                if inMindMap(corr,word,mindMap["links"],"links",key):
+                    ind, value = getIndexVal(word,key,mindMap["links"])
+                    if value:
+                        mindMap["links"][ind] = {"source": word, "target": key, "value": value + 1}
+                else:
+                    mindMap["links"].append({"source": word, "target": key, "value": 1})
+            else:
+                if corr == "pos":
+                    mindMap["nodes"].append({"id": word, "group": pos})
+                    mindMap["links"].append({"source": word, "target": key, "value": 1})
+                elif corr == "neg":
+                    mindMap["nodes"].append({"id": word, "group": neg})
+                    mindMap["links"].append({"source": word, "target": key, "value": 1})
         colorsIndex = colorsIndex + 1
     return mindMap
