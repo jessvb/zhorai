@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadingGif = document.getElementById('loadingGif');
 
     // remove any memory from previous activites:
-    clearMemory("sentences.txt");
+    clearMemory('input.txt');
 
     startStage();
 

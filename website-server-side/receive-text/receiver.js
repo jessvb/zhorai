@@ -65,30 +65,23 @@ wsServer.on('request', function (request) {
                 // Parse text for name/dictionary/etc.
                 console.log("parsing '" + jsonMsg.text + "'");
 
-                // Create file for parser to parse:
-                writeToFile(dataDir + semParserInputFilename, jsonMsg.text, function () {
-                    // Execute parsing bash script and return name with readFileReturnToClient
-                    var parseCmd = 'cd ' + semParserPath +
-                        ' && sh parse.sh ' + semParserInputPath + ' ' + dataDirRelPath;
-
-                    console.log(parseCmd);
-                    exec(parseCmd, function (error, stdout, stderr) {
-                        if (stdout) {
-                            console.log('Parser command output:\n' + stdout);
-                        }
-                        if (error) {
-                            console.log('Function error:\n' + error);
-                        }
-                        console.log('Finished parsing and wrote to file: ' + dataDir);
-
-                        // return the parsed information to client:
-                        readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
+                // if there's text, then write that text to a file and parse it
+                if (jsonMsg.text) {
+                    // Create file for parser to parse:
+                    writeToFile(dataDir + semParserInputFilename, jsonMsg.text, function () {
+                        parseAndReturnToClient(jsonMsg, connection);
                     });
-                });
+                } else {
+                    // there's no text, so let's parse the memory
+                    // first, write the memory to the data file, and then parse it
+                    writeToFile(dataDir + semParserInputFilename, allText, function () {
+                        parseAndReturnToClient(jsonMsg, connection);
+                    });
+                }
 
                 sendEnd = false;
             } else if (jsonMsg.text) {
-                allText += jsonMsg.text + '\n';
+                allText += jsonMsg.text + '.\n';
                 sendEnd = true;
             }
             console.log('text in current memory:');
@@ -131,6 +124,26 @@ function readFileReturnToClient(filename, stage, connection) {
             }));
             sendDone(connection);
         }
+    });
+}
+
+function parseAndReturnToClient(jsonMsg, connection) {
+    // Execute parsing bash script and return name with readFileReturnToClient
+    var parseCmd = 'cd ' + semParserPath +
+        ' && sh parse.sh ' + semParserInputPath + ' ' + dataDirRelPath;
+
+    console.log(parseCmd);
+    exec(parseCmd, function (error, stdout, stderr) {
+        if (stdout) {
+            console.log('Parser command output:\n' + stdout);
+        }
+        if (error) {
+            console.log('Function error:\n' + error);
+        }
+        console.log('Finished parsing and wrote to file: ' + dataDir);
+
+        // return the parsed information to client:
+        readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
     });
 }
 
