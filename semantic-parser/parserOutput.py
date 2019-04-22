@@ -39,6 +39,7 @@ file.close()
 #output mindmap
 file = open(sys.argv[1] + "/mindmap.txt","w")
 map = utils.getMindMap(res)
-if map:
+emptyMap = {"nodes": [], "links": []}
+if map != {"nodes": [], "links": []}:
     file.write(json.dumps(map))
 file.close()
