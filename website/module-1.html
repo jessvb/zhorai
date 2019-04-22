@@ -16,7 +16,7 @@
 
   <!-- Zhorai's voice -->
   <script src="js/speech-utils/voice-utils.js"></script>
-  
+
   <!-- Bootstrap core CSS -->
   <link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -95,35 +95,45 @@
       </div>
     </div>
 
-      <!-- Info label (e.g., "Teach Zhorai about ecosystems") -->
+    <!-- Info label (e.g., "Teach Zhorai about ecosystems") -->
+    <div class="text-center">
       <h3 class="font-weight-light mb-0" id="z_info_label"></h3>
-      <!-- Textbox for speech results -->
+    </div>
+
+    <!-- Textbox for speech results -->
+    <div class="text-center">
       <div id="results">
         <span id="final_span" class="final"></span>
         <span id="interim_span" class="interim"></span>
         <p>
       </div>
-      <!-- Record button -->
-      <div class="text-center">
-        <button id="record_button">
-          <img id="start_img" src="img/mic.gif" alt="Start"></button>
-      </div>
-      <div class="text-center">
-      <!-- Tell Zhorai to speak button -->
-        <button class="btn btn-info" id="zhoraiSpeakBtn" hidden="true">Hear Zhorai's response</button>
-      </div>
-      <!-- Make text file button -->
-      <div class="text-center">
-        <button class="btn btn-info" id="textFileBtn">What is Zhorai thinking?</button>
-      </div>
-      <div class="text-center">
-      <!-- Loading icon -->
+    </div>
+
+    <!-- Record button -->
+    <div class="text-center">
+      <button id="record_button">
+        <img id="start_img" src="img/mic.gif" alt="Start"></button>
+    </div>
+
+    <!-- Tell Zhorai to speak button -->
+    <div class="text-center">
+      <button class="btn btn-info" id="zhoraiSpeakBtn" hidden="true">Hear Zhorai's response</button>
+    </div>
+
+    <!-- Make text file button -->
+    <div class="text-center">
+      <button class="btn btn-info" id="textFileBtn">What is Zhorai thinking?</button>
+    </div>
+      
+    <!-- Loading icon -->
+    <div class="text-center">
         <img src="img/loading.gif" id="loadingGif" alt="loading..." height="80" hidden="true">
-      </div>
-      <div class="text-center">
-      <!--Mindmap SVG-->
+    </div>
+
+    <!--Mindmap SVG-->
+    <div class="text-center">
         <svg width="960" height="600"></svg>
-      </div>
+    </div>
   </section>
 
 
