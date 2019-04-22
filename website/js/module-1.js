@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function () {
     currStage = 0;
     infoLabel = document.getElementById('z_info_label');
     recordButton = document.getElementById('record_button');
-    // zhoraiSpeakBtn = document.getElementById('zhoraiSpeakBtn');
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
     textFileBtn = document.getElementById('textFileBtn');
@@ -107,6 +106,15 @@ document.addEventListener('DOMContentLoaded', function () {
     record_button.addEventListener("click", recordButtonClick);
     textFileBtn.addEventListener('click', function () {
         switchButtonTo('loading');
+        // say something about how we're going to display Zhorai's thoughts after parsing
+        var phrases = ['Thanks for teaching me about Earth! Let me think about all these new things and show you my thoughts.',
+            "Wow, Earth sounds really interesting! Let me think for a bit and then I'll show you my thoughts.",
+            "Interesting! Now I want to visit earth and see everything! I'll show you what I understand about Earth after I think for a little while."
+        ];
+        var toSpeak = chooseRandomPhrase(phrases);
+        showPurpleText(toSpeak);
+        speakText(toSpeak);
+
         // send a command to the server to parse what's in the memory,
         parseMem('mindmap', 'parsing' + '_mod1');
         // when done parsing, create the mind map (in mod1ReceiveData)
