@@ -14,7 +14,7 @@ function showPurpleText(text) {
 
 /**
  * Replaces "Zhorai" with "Zor-eye":
- * @param {*} text 
+ * @param {*} text
  */
 function makePhonetic(text) {
     text = text.replace(/Zhorai/gi, 'Zor-eye');
@@ -39,7 +39,7 @@ function getEnglishVoices() {
 
 /**
  * Switches the button to the specified button (either 'micBtn' or 'speakBtn')
- * @param {*} toButton 
+ * @param {*} toButton
  */
 function switchButtonTo(toButton) {
     if (toButton == 'micBtn') {
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     clearMemory("input.txt");
 
     // insert prompt
-    infoLabel.innerHTML = 'Teach Zhorai about the earth by saying things like, "Deserts are hot and dry."';
+    // infoLabel.innerHTML = 'Teach Zhorai about the earth by saying things like, "Deserts are hot and dry."';
 
     // Add click handlers
     record_button.addEventListener("click", recordButtonClick);
