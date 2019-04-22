@@ -125,8 +125,8 @@ def inMindMap(corr,word,nodes,type,key):
 
 def getIndexVal(word,key,links):
     for i in range(len(links)):
-        links[i]["source"] == word and links[i]["target"] == key
-        return i, links[i]["value"]
+        if links[i]["source"] == word and links[i]["target"] == key:
+            return i, links[i]["value"]
     return False, False
 
 def getMindMap(topics):
