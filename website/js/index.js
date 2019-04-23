@@ -101,3 +101,8 @@ function createMindmap(graph) {
 
 
 }
+
+function deleteMindmap() {
+	var svg = d3.select("svg");
+	svg.remove();
+}
