@@ -24,7 +24,7 @@ with open("embedding_corpus.txt", 'r') as f:
 					words[w] = 1
 words = sorted(words.items(), key=operator.itemgetter(0), reverse=True)
 words = [x for x, y in words][0:50]
-prefixes = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
+prefixes = ['biome', 'ecosystem', "forest", "desert", "rainforest", "grassland", "tundra", "plain"]
 for p in prefixes:
 	words.append(p)
 embedding = bert(words)
