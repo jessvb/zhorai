@@ -14,9 +14,10 @@ def clean_html(raw_html):
 	clean_text = [re.sub('\n+', '', val) for val in clean_text]
 	return clean_text
 
+prefixes = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
+
 class EcosystemsSpider(scrapy.Spider):
 	name = "ecosystem_spider"
-	prefixes = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
 	base_urls = ["https://www.google.com/search?q={0}%20ecosystem",
 			 "https://www.google.com/search?q={0}%20ecosystem%20characteristics",
 			 "https://www.google.com/search?q={0}%20biome",
@@ -33,17 +34,21 @@ class EcosystemsSpider(scrapy.Spider):
 	start_urls = [b.format(p) for (p, b) in prefixes_and_bases]
 	start_urls = start_urls + [s + "%20for%20kids" for s in start_urls]
 	custom_settings = {
-		'DEPTH_LIMIT': 5,
-		'CONCURRENT_REQUESTS': 100,
+		'DEPTH_LIMIT': 6,
+		'CONCURRENT_REQUESTS': 1000,
 		'USER_AGENT': 'Googlebot',
 	}
 	def parse(self, response):
 		DESCRIPTION_SELECTOR = '//span[@class="st"]'
 		CONTENT_SELECTOR = '//div/p[1]/text()'
-		yield {
-			'description': clean_html(response.xpath(DESCRIPTION_SELECTOR).extract()),
-			'content': clean_html(response.xpath(CONTENT_SELECTOR).extract())
-		}	
+		descr = clean_html(response.xpath(DESCRIPTION_SELECTOR).extract())
+		for l in descr:
+			for e in prefixes:
+				if e.lower() in l.lower():
+					yield {
+						'description': descr,
+					}
+					break
 		NEXT_PAGE_SELECTOR = '.fl a ::attr(href)'
 		next_page = response.css(NEXT_PAGE_SELECTOR).extract();
 		NEXT_PAGE_SELECTOR = '.r a ::attr(href)'
