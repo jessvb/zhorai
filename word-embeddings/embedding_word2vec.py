@@ -343,8 +343,7 @@ def plot_with_labels(low_dim_embs, labels):
 		margin=dict(l=0, r=0, b=0, t=0)
 	)
 	fig = go.Figure(data=data, layout=layout)
-	py.plot(fig, filename='word2vec-embedding')
-	pio.write_image(fig, 'results/embedding_word2vec.png')
+	py.plot(fig, filename='embedding-word2vec')
 		
 try:
 	# pylint: disable=g-import-not-at-top
@@ -353,7 +352,6 @@ try:
 	import plotly.plotly as py
 	import plotly.graph_objs as go
 	from sklearn.decomposition import PCA
-	import plotly.io as pio
 
 	words = {}
 	with open(corpus_filename, 'r') as f:

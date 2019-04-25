@@ -2,7 +2,6 @@ import tensorflow_hub as hub
 import tensorflow as tf
 import plotly.plotly as py
 import plotly.graph_objs as go
-import plotly.io as pio
 import numpy as np
 import operator
 from sklearn.decomposition import PCA
@@ -53,4 +52,3 @@ layout = go.Layout(
 )
 fig = go.Figure(data=data, layout=layout)
 py.plot(fig, filename='embedding-bert')
-pio.write_image(fig, 'results/bert_embedding.png')

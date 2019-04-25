@@ -2,7 +2,6 @@ import tensorflow_hub as hub
 import tensorflow as tf
 import plotly.plotly as py
 import plotly.graph_objs as go
-import plotly.io as pio
 import numpy as np
 import operator
 from sklearn.decomposition import PCA
@@ -22,7 +21,6 @@ with open("embedding_corpus.txt", 'r') as f:
 				else:
 					words[w] = 1
 words = sorted(words.items(), key=operator.itemgetter(0), reverse=True)
-print(len(words))
 words = [x for x, y in words][0:50]
 prefixes = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
 for p in prefixes:
@@ -33,9 +31,7 @@ sess = tf.Session()
 with sess.as_default():
 	sess.run(tf.global_variables_initializer())
 	embedding = elmo(words).eval()
-	print(embedding.shape)
 	principalComponents = pca.fit_transform(embedding)
-	print(principalComponents.shape)
 
 trace1 = go.Scatter(
 	x=principalComponents[:, 0],
@@ -58,4 +54,3 @@ layout = go.Layout(
 )
 fig = go.Figure(data=data, layout=layout)
 py.plot(fig, filename='embedding-elmo')
-pio.write_image(fig, 'results/elmo_embedding.png')
