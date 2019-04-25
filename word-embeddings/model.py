@@ -9,12 +9,17 @@ class EmbeddingModel(nn.Module):
 		self.l1 = nn.Linear(256, 128)
 		self.l2 = nn.Linear(128, num_classes)
 
-
 	def forward(self, x):
 		x, hidden = self.lstm1(x)
 		x = x.squeeze()[-1].unsqueeze(0)
 		x = self.l1(x)
 		x = self.l2(x)
+		return x
+	
+	def embedding(self, x):
+		x, hidden = self.lstm1(x)
+		x = x.squeeze()[-1].unsqueeze(0)
+		x = self.l1(x)
 		return x
 
 	
