@@ -81,5 +81,4 @@ sh parse.sh example/input.txt example/
 where input.txt is the corpus and the rest of the files in example/ are output files of the parser.
 
 ## Open Issues
-1. There is a bug for sentence structures in which there is an adverb that describes a verb that describes a noun (such as "Deserts don't get much rain."") This is a work in progress.
-2. What do we want to happen when a student describes an animal using another animal? For example, "tigers are scary cats"?
+1. What do we want to happen when a student describes an animal using another animal? For example, "tigers are scary cats"?
