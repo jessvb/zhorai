@@ -1,17 +1,20 @@
-import tensorflow as tf
-from tensorflow.keras.layers import Bidirectional, Dense, Activation, LSTM
+import torch
+from torch import nn
+from torch.nn import functional as F
 
-class EmbeddingModel(tf.keras.Model):
+class EmbeddingModel(nn.Module):
 	def __init__(self, num_classes):
 		super(EmbeddingModel, self).__init__()
-		self.b1 = Bidirectional(LSTM(128, return_sequences=True))
-		self.b2 = Bidirectional(LSTM(128))
-		self.d1 = Dense(256)
-		self.d2 = Dense(num_classes)
+		self.lstm1 = nn.LSTM(768, 128, 2, batch_first=True, bidirectional=True)
+		self.l1 = nn.Linear(256, 128)
+		self.l2 = nn.Linear(128, num_classes)
 
-	def call(self, x):
-		x = self.b1(x)
-		x = self.b2(x)
-		x = self.d1(x)
-		x = self.d2(x)
+
+	def forward(self, x):
+		x, hidden = self.lstm1(x)
+		x = x.squeeze()[-1].unsqueeze(0)
+		x = self.l1(x)
+		x = self.l2(x)
 		return x
+
+	
