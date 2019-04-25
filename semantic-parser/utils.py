@@ -38,13 +38,13 @@ def extractWords(part):
     if type(part) is tuple:
         word = part[0]
         pos = part[1]
-        if pos == 'NN' or pos == 'JJ' or pos == 'RB'or pos == 'NNS':
+        if pos == 'NN' or pos == 'JJ' or pos == 'RB' or pos == 'NNS':
             if (word in ecosystems) or (word in animals):
                 return ('subject',word)
             else:
                 if word in negatives:
                     return ('neg',word)
-                else:
+                elif pos == 'NN' or pos == 'NNS':
                     return ('pos',word)
         return
     else:
