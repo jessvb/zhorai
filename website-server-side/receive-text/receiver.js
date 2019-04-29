@@ -62,17 +62,17 @@ wsServer.on('request', function (request) {
                 readFileReturnToClient(jsonMsg.filename, jsonMsg.stage, connection);
                 sendEnd = false;
             } else if (jsonMsg.command == 'parse') {
-                // Parse text for name/dictionary/etc.
-                console.log("parsing '" + jsonMsg.text + "'");
-
                 // if there's text, then write that text to a file and parse it
                 if (jsonMsg.text) {
+                    // Parse text for name/dictionary/etc.
+                    console.log("parsing '" + jsonMsg.text + "'");
                     // Create file for parser to parse:
                     writeToFile(dataDir + semParserInputFilename, jsonMsg.text, function () {
                         parseAndReturnToClient(jsonMsg, connection);
                     });
                 } else {
                     // there's no text, so let's parse the memory
+                    console.log("parsing '" + dataDir + semParserInputFilename + "'");
                     // first, write the memory to the data file, and then parse it
                     writeToFile(dataDir + semParserInputFilename, allText, function () {
                         parseAndReturnToClient(jsonMsg, connection);
