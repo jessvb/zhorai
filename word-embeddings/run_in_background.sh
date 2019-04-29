@@ -1,2 +1,2 @@
 #!/bin/bash
-python -u train.py | tee output_0429.txt
+python -u train.py --load-embedding-from-file | tee results/output_0429.txt
