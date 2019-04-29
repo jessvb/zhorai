@@ -4,22 +4,25 @@ import numpy as np
 import random
 import pickle
 
-def getBertEmbedding(sentence):
-	bert = BertEmbedding()
-	words = sentence.split()
-	embedding_dict = dict([(x[0], y[0]) for x, y in bert(words)])
+def getBertEmbedding(sentences):
 	data = []
-	for word in words:
-		s = [w for w in words if w is not word] 
-		x = [np.array(embedding_dict[w]) for w in s if w in embedding_dict]
-		x = np.array(x)
-		x = torch.tensor(x, dtype=torch.float)
-		x = x.unsqueeze(0)
-		print(x.shape)
-		data.append((x, word))
+	if isinstance(sentences, str):
+		sentences = [sentences]
+	for sentence in sentences:
+		bert = BertEmbedding()
+		words = sentence.split()
+		embedding_dict = dict([(x[0], y[0]) for x, y in bert(words)])
+		for word in words:
+			s = [w for w in words if w is not word] 
+			x = [np.array(embedding_dict[w]) for w in s if w in embedding_dict]
+			x = np.array(x)
+			x = torch.tensor(x, dtype=torch.float)
+			x = x.unsqueeze(0)
+			print(x.shape)
+			data.append((x, word))
 	return data
 
-def generateData(corpus_file, classes, split_percentage, load_embedding_from_file=False):
+def generateData(corpus_file, classes, split_percentage, load_embedding_from_file=False, save_embedding_dict=False):
 	random.seed(10)
 	sentences = []
 	# Read in corpus
@@ -44,8 +47,9 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 	else:
 		bert = BertEmbedding()
 		embedding_dict = dict([(x[0], y[0]) for x, y in bert(words)])
-		with open('embedding_dict.pkl', 'wb') as f:
-			pickle.dump(embedding_dict, f, pickle.HIGHEST_PROTOCOL)
+		if save_embedding_dict:
+			with open('embedding_dict.pkl', 'wb') as f:
+				pickle.dump(embedding_dict, f, pickle.HIGHEST_PROTOCOL)
 
 	print("Preparing dataset...")
 	def create_dataset(dataset, max_len):
