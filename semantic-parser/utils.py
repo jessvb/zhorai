@@ -40,12 +40,11 @@ def extractWords(part):
         pos = part[1]
         if pos == 'NN' or pos == 'JJ' or pos == 'RB' or pos == 'NNS':
             if (word in ecosystems) or (word in animals):
-                return ('subject',word)
+                return ('subject', word, pos)
             else:
                 if word in negatives:
-                    return ('neg',word)
-                elif pos == 'NN' or pos == 'NNS':
-                    return ('pos',word)
+                    return ('neg', word, pos)
+                return ('pos', word, pos)
         return
     else:
         words = []
@@ -81,7 +80,7 @@ def buildDict(s):
         if words:
             subjects = [subject[1] for subject in words if subject[0] == 'subject']
             isNeg = False
-            for corr, w in words:
+            for corr, w, pos in words:
                 if corr == 'subject':
                     continue
                 if corr == 'neg':
@@ -89,11 +88,12 @@ def buildDict(s):
                     continue
                 if isNeg == True:
                     for i in subjects:
-                        if i in res.keys():
-                            res[i].append(["neg",w])
-                        else:
-                            res[i] = [["neg",w]]
-                    isNeg = False
+                        if pos == 'NN' or pos == 'NNS':
+                            if i in res.keys():
+                                res[i].append(["neg",w])
+                            else:
+                                res[i] = [["neg",w]]
+                            isNeg = False
                 else:
                     for i in subjects:
                         if i in res.keys():
