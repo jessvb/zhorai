@@ -22,4 +22,9 @@ class EmbeddingModel(nn.Module):
 		x = self.l1(x)
 		return x
 
+	def embeddingLSTM(self, x):
+		x, hidden = self.lstm1(x)
+		x = x.squeeze()[-1].unsqueeze(0)
+		return x
+
 	

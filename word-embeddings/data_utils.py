@@ -29,7 +29,7 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 			if any(w in line for w in classes):
 				sentences.append(line.strip().replace('-', ' '))
 	random.shuffle(sentences)
-	sentences = sentences[0:50]
+	#sentences = sentences[0:50]
 	print("Computing Bert Embeddings...")
 	# split into train and test sets
 	num_train = int(len(sentences)*split_percentage)
@@ -56,11 +56,11 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 				word = classes[i]
 				if word in sentence:
 					s = sentence.lower().split()
-					x = [np.array(embedding_dict[w]) for w in s if w is not word and w in embedding_dict]
+					#x = [np.array(embedding_dict[w]) for w in s if w is not word and w in embedding_dict]
+					x = [np.array(embedding_dict[w]) for w in s if w is not word]
 					x = np.array(x)
 					max_len = max_len if x.shape[0] < max_len else x.shape[0]
 					x = torch.tensor(x, dtype=torch.float)
-					
 					x = x.unsqueeze(0)
 					data.append(x)
 					y = [i]
