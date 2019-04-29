@@ -25,10 +25,12 @@ args = parser.parse_args()
 if torch.cuda.is_available():
 	args.device = torch.device('cuda')
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
-	#torch.backends.cudnn.enabled = True 
+	torch.backends.cudnn.enabled = True 
 args.classes = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
 train_set, train_labels, test_set, test_labels, max_len = generateData(args.corpus_file, args.classes, args.train_split_percentage, args.load_embedding_from_file)
 model = EmbeddingModel(len(args.classes))
+if torch.cuda.is_available():
+	model = model.cuda()
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=args.learning_rate)
 model = model.train()
@@ -46,6 +48,9 @@ for epoch in progressbar(range(starting_epoch, args.epochs)):
 	for i in range(len(train_set)):
 		inputs = train_set[i]
 		labels = train_labels[i]
+		if torch.cuda.is_available():
+			inputs = inputs.cuda()
+			labels = labels.cuda()
 		optimizer.zero_grad()
 		outputs = model(inputs)
 		loss = criterion(outputs, labels)
@@ -70,6 +75,9 @@ for epoch in progressbar(range(starting_epoch, args.epochs)):
 		for k in range(len(train_set)):
 			inputs = train_set[k]
 			labels = train_labels[k]
+			if torch.cuda.is_available():
+				inputs = inputs.cuda()
+				labels = labels.cuda()
 			outputs = model(inputs)
 			_, predicted = torch.max(outputs.data, 1)
 			total += labels.size(0)
@@ -80,6 +88,9 @@ for epoch in progressbar(range(starting_epoch, args.epochs)):
 		for k in range(len(test_set)):
 			inputs = test_set[k]
 			labels = test_labels[k]
+			if torch.cuda.is_available():
+				inputs = inputs.cuda()
+				labels = labels.cuda()
 			outputs = model(inputs)
 			_, predicted = torch.max(outputs.data, 1)
 			total += labels.size(0)
