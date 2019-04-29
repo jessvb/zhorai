@@ -17,7 +17,7 @@ parser.add_argument('--save-frequency', type=int, default=250, metavar='N', help
 parser.add_argument('--display-frequency', type=int, default=100, metavar='N', help='Display model every N epochs')
 parser.add_argument('--learning-rate', type=float, default=0.001, metavar='lr', help='Learning rate for training')
 parser.add_argument('--train-split-percentage', type=float, default=0.8, metavar='x', help='Percentage of data for training')
-parser.add_argument('--load-embedding-from-file', action='store_false', help='Load precomputed embeddings from file')
+parser.add_argument('--load-embedding-from-file', action='store_true', help='Load precomputed embeddings from file')
 parser.add_argument('--model-checkpoint', type=str, default='', help='Model checkpoint to resume training')
 
 args = parser.parse_args()
