@@ -8,10 +8,10 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding')
-parser.add_argument('--corpus-file', type=str, default='embedding_corpus.txt', metavar='FILE', help='Name of corpus file')
-parser.add_argument('--eval-file', type=str, default='animal-sentences.txt', metavar='FILE', help='Name of evaluation file')
+parser.add_argument('--corpus-file', type=str, default='ecosystem-eval-sentences.txt', metavar='FILE', help='Name of corpus file')
+parser.add_argument('--eval-file', type=str, default='animal-eval-sentences.txt', metavar='FILE', help='Name of evaluation file')
 parser.add_argument('--eval-words-file', type=str, default='animal-list.txt')
-parser.add_argument('--model-checkpoint', type=str, default='results/model-1000.tar', metavar='CHECKPOINT', help='Name of model checkpoint file')
+parser.add_argument('--model-checkpoint', type=str, default='results/initial_model/model-1000.tar', metavar='CHECKPOINT', help='Name of model checkpoint file')
 
 args = parser.parse_args()
 
@@ -21,7 +21,7 @@ with open(args.eval_words_file, 'r') as f:
 	for line in f:
 		eval_list.append(line.strip().lower())
 
-dataset, labels, _, __, ___ = generateData(args.corpus_file, args.classes, 1.0, True)
+dataset, labels, _, __, ___ = generateData(args.corpus_file, args.classes, 1.0)
 eval_dataset, eval_labels, _, __, ___ = generateData(args.eval_file, eval_list, 1.0)
 embedding_dict = {}
 model = EmbeddingModel(len(args.classes))
