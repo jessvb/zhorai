@@ -43,7 +43,6 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 	# Create dictionary of training/test sets
 	words = [w.lower() for line in train_set + test_set for w in line.split()]
 	words = list(set(words))
-	classes = words
 	if load_embedding_from_file:
 		with open('embedding_dict.pkl', 'rb') as f:
 			embedding_dict = pickle.load(f)
