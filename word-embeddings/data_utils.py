@@ -29,9 +29,11 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 	print("Loading corpus...")
 	with open(corpus_file, 'r') as f:
 		for line in f:
-			if any(w in line for w in classes):
+			if any(w.lower() in line.lower() for w in classes):
 				sentences.append(line.strip().replace('-', ' '))
 	random.shuffle(sentences)
+	for sentence in sentences:
+		print(sentence)
 	#sentences = sentences[0:50]
 	print("Computing Bert Embeddings...")
 	# split into train and test sets
@@ -41,6 +43,7 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 	# Create dictionary of training/test sets
 	words = [w.lower() for line in train_set + test_set for w in line.split()]
 	words = list(set(words))
+	classes = words
 	if load_embedding_from_file:
 		with open('embedding_dict.pkl', 'rb') as f:
 			embedding_dict = pickle.load(f)
@@ -58,9 +61,11 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 		for sentence in dataset:
 			for i in range(len(classes)):
 				word = classes[i]
-				if word in sentence:
+				if word.lower() in sentence.lower():
 					s = sentence.lower().split()
-					x = [np.array(embedding_dict[w]) for w in s if w is not word and w in embedding_dict]
+					print(word, s)
+					x = [np.array(embedding_dict[w]) for w in s.lower().split() if w is not word.lower() and w in embedding_dict]
+					print(len(s))
 					x = np.array(x)
 					max_len = max_len if x.shape[0] < max_len else x.shape[0]
 					x = torch.tensor(x, dtype=torch.float)
@@ -72,7 +77,7 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 		return data, labels, max_len		
 	train_set, train_labels, max_len = create_dataset(train_set, 0)
 	test_set, test_labels, max_len = create_dataset(test_set, max_len)
-	return train_set, train_labels, test_set, test_labels, max_len 
+	return train_set, train_labels, test_set, test_labels, classes 
 
 
 

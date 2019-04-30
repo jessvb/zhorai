@@ -45,6 +45,7 @@ for x, y, classes in zip(datasets, label_sets, class_sets):
 data = []
 words = []
 for x in embedding_dict:
+	print(x, len(embedding_dict[x]))
 	embedding = embedding_dict[x][0].detach().squeeze().numpy()
 	embedding = embedding/embedding_dict[x][1]
 	data.append(embedding)

@@ -28,7 +28,8 @@ if torch.cuda.is_available():
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
 	torch.backends.cudnn.enabled = True 
 args.classes = ["forest", "desert", "rainforest", "grassland", "tundra"]
-train_set, train_labels, test_set, test_labels, max_len = generateData(args.corpus_file, args.classes, args.train_split_percentage, args.load_embedding_from_file, args.save_embedding_dict)
+train_set, train_labels, test_set, test_labels, classes = generateData(args.corpus_file, args.classes, args.train_split_percentage, args.load_embedding_from_file, args.save_embedding_dict)
+args.classes = classes
 model = EmbeddingModel(len(args.classes))
 if torch.cuda.is_available():
 	model = model.cuda()
