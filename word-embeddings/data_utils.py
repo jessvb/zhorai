@@ -18,7 +18,6 @@ def getBertEmbedding(sentences):
 			x = np.array(x)
 			x = torch.tensor(x, dtype=torch.float)
 			x = x.unsqueeze(0)
-			print(x.shape)
 			data.append((x, word))
 	return data
 
@@ -32,8 +31,6 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 			if any(w.lower() in line.lower() for w in classes):
 				sentences.append(line.strip().replace('-', ' '))
 	random.shuffle(sentences)
-	for sentence in sentences:
-		print(sentence)
 	#sentences = sentences[0:50]
 	print("Computing Bert Embeddings...")
 	# split into train and test sets
@@ -62,9 +59,7 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 				word = classes[i]
 				if word.lower() in sentence.lower():
 					s = sentence.lower().split()
-					print(word, s)
-					x = [np.array(embedding_dict[w]) for w in s.lower().split() if w is not word.lower() and w in embedding_dict]
-					print(len(s))
+					x = [np.array(embedding_dict[w]) for w in s if w is not word.lower() and w in embedding_dict]
 					x = np.array(x)
 					max_len = max_len if x.shape[0] < max_len else x.shape[0]
 					x = torch.tensor(x, dtype=torch.float)

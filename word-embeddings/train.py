@@ -9,10 +9,10 @@ import os
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding')
 parser.add_argument('--epochs', type=int, default=1000, metavar='EPOCHS', help='Epochs to train embedding model')
-parser.add_argument('--corpus-file', type=str, default='ecosystem-sentences.txt', metavar='FILE', help='Name of corpus file') 
+parser.add_argument('--corpus-file', type=str, default='embedding_corpus.txt', metavar='FILE', help='Name of corpus file') 
 parser.add_argument('--verbose', action='store_true', help='display tensorflow error messages')
 parser.add_argument('--results-dir', type=str, default='results', metavar='DIR', help='Directory to store results')
-parser.add_argument('--checkpoint-prefix', type=str, default='model', metavar='PATH', help='Prefix of filename to save checkpoint')
+parser.add_argument('--checkpoint-prefix', type=str, default='model', metavar='PREFIX', help='Prefix of filename to save checkpoint')
 parser.add_argument('--save-frequency', type=int, default=250, metavar='N', help='Save model every N epochs')
 parser.add_argument('--display-frequency', type=int, default=100, metavar='N', help='Display model every N epochs')
 parser.add_argument('--learning-rate', type=float, default=0.001, metavar='lr', help='Learning rate for training')
@@ -29,7 +29,7 @@ if torch.cuda.is_available():
 	torch.backends.cudnn.enabled = True 
 args.classes = ["forest", "desert", "rainforest", "grassland", "tundra"]
 train_set, train_labels, test_set, test_labels, classes = generateData(args.corpus_file, args.classes, args.train_split_percentage, args.load_embedding_from_file, args.save_embedding_dict)
-args.classes = classes
+print(len(args.classes))
 model = EmbeddingModel(len(args.classes))
 if torch.cuda.is_available():
 	model = model.cuda()
