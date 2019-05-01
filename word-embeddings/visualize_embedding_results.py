@@ -63,17 +63,19 @@ for x in embedding_dict:
 	words.append(x)
 	eco_predictions.append(args.classes[prediction])
 
-tsne = TSNE(n_components=2).fit_transform(data)
+pca = PCA(n_components=2).fit_transform(data)
+#tsne = TSNE(n_components=2).fit_transform(data)
+decomp = pca
 for i in range(len(data)):
-	print(words[i], tsne[i, 0], tsne[i, 1], eco_predictions[i])
+	print(words[i], decomp[i, 0], decomp[i, 1], eco_predictions[i])
 trace1 = go.Scatter(
-	x = tsne[:, 0],
-	y = tsne[:, 1],
+	x = decomp[:, 0],
+	y = decomp[:, 1],
 	mode='markers+text',
 	text=words,
 	marker=dict(
 		size=12,
-		color=tsne[:, 1],
+		color=decomp[:, 1],
 		colorscale='Viridis',
 		opacity=0.8
 	),
