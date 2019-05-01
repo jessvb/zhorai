@@ -22,7 +22,6 @@ def getBertEmbedding(sentences):
 	return data
 
 def generateData(corpus_file, classes, split_percentage, load_embedding_from_file=False, save_embedding_dict=False):
-	random.seed(10)
 	sentences = []
 	# Read in corpus
 	print("Loading corpus...")

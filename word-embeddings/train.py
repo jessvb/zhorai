@@ -28,8 +28,6 @@ if torch.cuda.is_available():
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
 	torch.backends.cudnn.enabled = True 
 args.classes = ["desert", "rainforest", "grassland", "tundra", "ocean"]
-train_set, train_labels, test_set, test_labels, classes = generateData(args.corpus_file, args.classes, args.train_split_percentage, args.load_embedding_from_file, args.save_embedding_dict)
-print(len(train_set))
 model = EmbeddingModel(len(args.classes))
 if torch.cuda.is_available():
 	model = model.cuda()
@@ -38,14 +36,16 @@ optimizer = optim.Adam(model.parameters(), lr=args.learning_rate)
 model = model.train()
 starting_epoch = 0
 running_loss = 0.0
-print('Training model...')
 if len(args.model_checkpoint) > 0:
 	checkpoint = torch.load(args.model_checkpoint)
 	model.load_state_dict(checkpoint['model_state_dict'])
 	optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 	starting_epoch = checkpoint['epoch']
 	running_loss = checkpoint['running_loss']
-	print('Resuming from epoch %d' % (starting_epoch + 1))
+train_set, train_labels, test_set, test_labels, classes = generateData(args.corpus_file, args.classes, args.train_split_percentage, args.load_embedding_from_file, args.save_embedding_dict)
+print(len(train_set))
+print('Training model...')
+print('Resuming from epoch %d' % (starting_epoch + 1))
 for epoch in progressbar(range(starting_epoch, args.epochs)):
 	for i in range(len(train_set)):
 		inputs = train_set[i]
