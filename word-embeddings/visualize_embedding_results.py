@@ -1,11 +1,10 @@
 import torch
 from data_utils import generateData, getBertEmbedding
 import argparse
-from model import EmbeddingModel
-import os
-from sklearn.decomposition import PCA
+from model import EmbeddingModel, AttentionEmbeddingModel
 import plotly.plotly as py
 import plotly.graph_objs as go
+from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding')
@@ -23,10 +22,13 @@ with open(args.eval_words_file, 'r') as f:
 	for line in f:
 		eval_list.append(line.strip().lower())
 
-if args.embedding_type is 'embedding':
+print(args.embedding_type)
+if args.embedding_type == 'embedding':
 	model = EmbeddingModel(len(args.classes))
+	print("Using plain embedding model")
 else:
 	model = AttentionEmbeddingModel(len(args.classes)) 
+	print("Using attention embedding model")
 if len(args.model_checkpoint) > 0:
 	checkpoint = torch.load(args.model_checkpoint, map_location='cpu')
 	model.load_state_dict(checkpoint['model_state_dict'])
@@ -43,7 +45,7 @@ for x, y, classes in zip(datasets, label_sets, class_sets):
 		label = y[i]
 		if inputs.shape[1] < 2:
 			continue
-		embedding = model.embedding(inputs)
+		embedding = model.embeddingLSTM(inputs)
 		output = model(inputs)
 		_, predicted = torch.max(output.data, 1)
 		if classes[label] in embedding_dict:
@@ -67,13 +69,16 @@ for x in embedding_dict:
 	words.append(x)
 	eco_predictions.append(args.classes[prediction])
 
-pca = PCA(n_components=2).fit_transform(data)
-#tsne = TSNE(n_components=2).fit_transform(data)
-decomp = pca
+#pca = PCA(n_components=2).fit_transform(data)
+tsne = TSNE(n_components=2).fit_transform(data)
+decomp = tsne
 for i in range(len(data)):
 	print(words[i], decomp[i, 0], decomp[i, 1], eco_predictions[i])
+	if words[i] in args.classes:
+		words[i] = "<b>{0}<b>".format(words[i])
+
 trace1 = go.Scatter(
-	x = decomp[:, 0],
+		x = decomp[:, 0],
 	y = decomp[:, 1],
 	mode='markers+text',
 	text=words,
@@ -90,4 +95,4 @@ layout = go.Layout(
 	margin=dict(l=0, r=0, b=0, t=0)
 )
 fig = go.Figure(data=dataTrace, layout=layout)
-py.plot(fig, filename='embedding-context-dependent')
+py.plot(fig, filename='{0}-context-dependent'.format(args.embedding_type))
