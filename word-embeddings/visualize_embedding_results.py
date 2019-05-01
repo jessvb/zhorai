@@ -6,6 +6,7 @@ import os
 from sklearn.decomposition import PCA
 import plotly.plotly as py
 import plotly.graph_objs as go
+from sklearn.manifold import TSNE
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding')
 parser.add_argument('--corpus-file', type=str, default='ecosystem-sentences.txt', metavar='FILE', help='Name of corpus file')
@@ -15,19 +16,20 @@ parser.add_argument('--model-checkpoint', type=str, default='results/model_eco-0
 
 args = parser.parse_args()
 
-args.classes = ["desert", "rainforest", "grassland", "tundra"]
+args.classes = ["desert", "rainforest", "grassland", "tundra", "ocean"]
 eval_list = []
 with open(args.eval_words_file, 'r') as f:
 	for line in f:
 		eval_list.append(line.strip().lower())
 
+model = EmbeddingModel(len(args.classes))
+if len(args.model_checkpoint) > 0:
+	checkpoint = torch.load(args.model_checkpoint, map_location='cpu')
+	model.load_state_dict(checkpoint['model_state_dict'])
+
 dataset, labels, _, __, ___ = generateData(args.corpus_file, args.classes, 1.0)
 eval_dataset, eval_labels, _, __, ___ = generateData(args.eval_file, eval_list, 1.0)
 embedding_dict = {}
-model = EmbeddingModel(len(args.classes))
-if len(args.model_checkpoint) > 0:
-	checkpoint = torch.load(args.model_checkpoint)
-	model.load_state_dict(checkpoint['model_state_dict'])
 datasets = [dataset, eval_dataset]
 label_sets = [labels, eval_labels]
 class_sets = [args.classes, eval_list]
@@ -39,13 +41,11 @@ for x, y, classes in zip(datasets, label_sets, class_sets):
 			continue
 		embedding = model.embedding(inputs)
 		output = model(inputs)
-		print(output.data)
 		_, predicted = torch.max(output.data, 1)
-		print(label.detach().squeeze().numpy(), predicted)
 		if classes[label] in embedding_dict:
 			embedding = embedding + embedding_dict[classes[label]][0]
 			count = embedding_dict[classes[label]][1] + 1.0
-			predictions = embedding_dict[args.classes[label]][2]
+			predictions = embedding_dict[classes[label]][2]
 			predictions.append(predicted)
 			embedding_dict[classes[label]] = (embedding, count, predictions)
 		else:
@@ -55,7 +55,6 @@ data = []
 words = []
 eco_predictions = []
 for x in embedding_dict:
-	print(x, embedding_dict[x][2])
 	embedding = embedding_dict[x][0].detach().squeeze().numpy()
 	embedding = embedding/embedding_dict[x][1]
 	predictions = embedding_dict[x][2]
@@ -64,18 +63,17 @@ for x in embedding_dict:
 	words.append(x)
 	eco_predictions.append(args.classes[prediction])
 
-pca = PCA(n_components = 2)
-pc = pca.fit_transform(data)
+tsne = TSNE(n_components=2).fit_transform(data)
 for i in range(len(data)):
-	print(words[i], pc[i, 0], pc[i, 1], eco_predictions[i])
+	print(words[i], tsne[i, 0], tsne[i, 1], eco_predictions[i])
 trace1 = go.Scatter(
-	x = pc[:, 0],
-	y = pc[:, 1],
+	x = tsne[:, 0],
+	y = tsne[:, 1],
 	mode='markers+text',
 	text=words,
 	marker=dict(
 		size=12,
-		color=pc[:, 1],
+		color=tsne[:, 1],
 		colorscale='Viridis',
 		opacity=0.8
 	),

@@ -27,7 +27,7 @@ if torch.cuda.is_available():
 	args.device = torch.device('cuda')
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
 	torch.backends.cudnn.enabled = True 
-args.classes = ["desert", "rainforest", "grassland", "tundra"]
+args.classes = ["desert", "rainforest", "grassland", "tundra", "ocean"]
 train_set, train_labels, test_set, test_labels, classes = generateData(args.corpus_file, args.classes, args.train_split_percentage, args.load_embedding_from_file, args.save_embedding_dict)
 print(len(train_set))
 model = EmbeddingModel(len(args.classes))
