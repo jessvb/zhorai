@@ -3,7 +3,7 @@ import torch.optim as optim
 import numpy as np
 from data_utils import generateData
 import argparse
-from model import EmbeddingModel
+from model import EmbeddingModel, AttentionEmbeddingModel
 from progressbar import progressbar
 import os
 
@@ -20,6 +20,7 @@ parser.add_argument('--train-split-percentage', type=float, default=0.8, metavar
 parser.add_argument('--save-embedding-dict', action='store_true', help='Save computed embeddings to file')
 parser.add_argument('--load-embedding-from-file', action='store_true', help='Load precomputed embeddings from file')
 parser.add_argument('--model-checkpoint', type=str, default='', help='Model checkpoint to resume training')
+parser.add_argument('--embedding-type', type=str, default='attention', metavar='TYPE', help='Type of model. accepted values are "attention" and "embedding". Defaults to attention.')
 
 args = parser.parse_args()
 
@@ -28,7 +29,10 @@ if torch.cuda.is_available():
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
 	torch.backends.cudnn.enabled = True 
 args.classes = ["desert", "rainforest", "grassland", "tundra", "ocean"]
-model = EmbeddingModel(len(args.classes))
+if args.embedding_type is 'embedding':
+	model = EmbeddingModel(len(args.classes))
+else:
+	model = AttentionEmbeddingModel(len(args.classes)) 
 if torch.cuda.is_available():
 	model = model.cuda()
 criterion = torch.nn.CrossEntropyLoss()
