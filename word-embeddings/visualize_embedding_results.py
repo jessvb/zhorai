@@ -47,7 +47,7 @@ for x, y, classes in zip(datasets, label_sets, class_sets):
 		label = y[i]
 		if inputs.shape[1] < 2:
 			continue
-		embedding = model.embeddingLSTM(inputs)
+		embedding = model.embedding(inputs)
 		output = model(inputs)
 		_, predicted = torch.max(output.data, 1)
 		if classes[label] in embedding_dict:
