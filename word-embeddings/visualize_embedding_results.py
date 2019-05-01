@@ -9,7 +9,7 @@ import plotly.graph_objs as go
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding')
 parser.add_argument('--corpus-file', type=str, default='ecosystem-sentences.txt', metavar='FILE', help='Name of corpus file')
-parser.add_argument('--eval-file', type=str, default='animal-eval-sentences.txt', metavar='FILE', help='Name of evaluation file')
+parser.add_argument('--eval-file', type=str, default='animal-sentences.txt', metavar='FILE', help='Name of evaluation file')
 parser.add_argument('--eval-words-file', type=str, default='animal-list.txt')
 parser.add_argument('--model-checkpoint', type=str, default='results/model_eco-0100.tar', metavar='CHECKPOINT', help='Name of model checkpoint file')
 
@@ -25,6 +25,9 @@ dataset, labels, _, __, ___ = generateData(args.corpus_file, args.classes, 1.0)
 eval_dataset, eval_labels, _, __, ___ = generateData(args.eval_file, eval_list, 1.0)
 embedding_dict = {}
 model = EmbeddingModel(len(args.classes))
+if len(args.model_checkpoint) > 0:
+	checkpoint = torch.load(args.model_checkpoint)
+	model.load_state_dict(checkpoint['model_state_dict'])
 datasets = [dataset, eval_dataset]
 label_sets = [labels, eval_labels]
 class_sets = [args.classes, eval_list]
@@ -36,8 +39,9 @@ for x, y, classes in zip(datasets, label_sets, class_sets):
 			continue
 		embedding = model.embedding(inputs)
 		output = model(inputs)
+		print(output.data)
 		_, predicted = torch.max(output.data, 1)
-		print(label, args.classes[predicted])
+		print(label.detach().squeeze().numpy(), predicted)
 		if classes[label] in embedding_dict:
 			embedding = embedding + embedding_dict[classes[label]][0]
 			count = embedding_dict[classes[label]][1] + 1.0
