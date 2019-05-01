@@ -17,7 +17,7 @@ if torch.cuda.is_available():
 	args.device = torch.device('cuda')
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
 	#torch.backends.cudnn.enabled = True 
-args.classes = ["forest", "desert", "rainforest", "grassland", "tundra"]
+args.classes = ["desert", "rainforest", "grassland", "tundra"]
 model = EmbeddingModel(len(args.classes))
 checkpoint = torch.load(args.model_checkpoint)
 model.load_state_dict(checkpoint['model_state_dict'])
