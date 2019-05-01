@@ -8,10 +8,8 @@ The desert is very hot and sunny
 The desert is cold at night
 Deserts don’t have much rain
 Deserts dont have many trees 
-Deserts have few people
 Deserts are hard to walk in
 It is hard to find water in the desert
-The desert can have scopions
 The rainforest is very wet
 The rainforest has lots of life
 The rainforest has a lot of trees
@@ -38,12 +36,6 @@ There are not very many trees or bushes in the tundra
 The desert has animals that live in the cold
 Not many things live in the tundra
 there are not many plants in the tundra
-The tundra is very far north
-Not many animals live in the tundra
-The tundra is in Canada
-Not many humans live in the tundra
-The tundra is very far south
-The tundra is cold and dry
 The tundra is in Antarctic
 The tundra has blizzards
 The tundra is very windy
@@ -80,11 +72,6 @@ Grasslands can have shrubs
 grasslands have weeds
 The grassland is can be cool or warm
 grasslands can be windy
-Grasslands are pretty dry
-grasslands can be wet or dry
-There are savannahs in the grassland
-grasslands can have savannahs
-Grasslands are a large open areas of country covered with grass
 grasslands are very large with lots of grass
 Grasslands have some rain
 grasslands can be cold sometimes
@@ -98,3 +85,27 @@ Grasslands don’t have trees
 grasslands are not very tall
 grasslands are mostly flat with lots of grass
 grasslands can have flowers
+oceans have lots of water
+oceans are very salty
+oceans contain coral reefs
+oceans have lots of fish and whales
+oceans have lots of wet plants
+oceans are really big like the sea
+oceans are usually cold
+oceans are made of salt water
+oceans have many fish
+oceans make sea food
+oceans are at the beach
+the ocean is very large with lots of salt
+the ocean has lots of fish and whales
+the ocean has pretty coral reefs
+the ocean is very big
+oceans are big wide spaces full of water
+oceans are very wet
+the ocean is big and blue
+the ocean sometimes has green stuff in it
+the ocean is very big
+the ocean has many different types of fish
+the ocean is cold sometimes
+the ocean is warm sometimes
+ 

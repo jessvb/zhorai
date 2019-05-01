@@ -1,85 +1,30 @@
-Alligators are always wet.
-Ants are small and are always in the ground.
-Antelopes live in Africa.
-Baboons live in the trees.
-Bats fly around from tree to tree.
-Bears need a lot of food.
-Beavers build homes from wood.
-Bees need trees to make honey.
-Birds are always flying from place to place.
-Butterflies are always in humid places.
-Camels don’t need much water.
-Cats live in homes.
-Coyotes are like wolves.
-Cheetahs are scary cats.
-Chickens live on farms.
-Chimpanzees 
-Cows eat grass
-Crocodiles are like alligators
-Deers like to eat grass.
-Dogs like to play with people.
-Dolphins jump out of the water.
-Donkey are like small horses
-Ducks feet are made to swim
-Eagles catch animals with their feet and fly away.
-Elephants drink water from their trunks.
-Fish are easy catch when fishing from a boat.
-Fireflies glow in the dark.
-Flamingos always have one leg in the water.
-Flies like smelly things.
-Foxes eat reptiles, birds, and insects.
-Frogs jump around the water and land.
-Gerbils like running on hamster wheels.
-Giraffes can reach high in the trees because of their long neck.
-Goats eat weeds.
-Goldfish are orange so they can be easily seen in the water.
-Gorillas are like big monkeys.
-Hamsters live with people.
-Hippopotamus are sometimes in the water and sometimes on land.
-Horses need a lot of space to trot on the grass.
-Jellyfish can bite you at the beach.
-Kangaroos live in Australia.
-Kittens are baby cats.
-Koalas feet are like hands so that they can climb.
-Ladybugs don’t live in the cold.
-Leopards need space to run.
-Lions hunt in the wide open space.
-Llamas remind me of camels.
-Lobsters are sea food.
-Monkeys swing from trees.
-Moose eat plants and don’t live in extreme temperatures.
-Octopuses have 8 legs and swim funny.
-Ostrich live in Africa.
-Otters are great swimmers.
-Owls are a type of bird.
-Pandas like to climb trees
-Panthers are very fast.
-Peacocks are pretty colors.
-Penguins live in Antarctica.
-Pigs are smelly and live on farms.
-Pumas run fast to hunt.
-Puppies
-Rabbits jump into holes in the ground
-Rats live everywhere.
-Rhinoceros eat leaves, grass, and bushes.
-Scorpions don’t need much water and can sting their prey.
-Seals are always wet.
-Seahorse are small and are seen in coral reefs.
-Sharks are dangerous animals in the water
-Sheep eat grass and hay.
-Sloths eat the leaves off of trees
-Snails slowly move across the ground.
-Snakes live in the ground
-Starfish are in coral reefs.
-Spiders can walk up walls. 
-Squirrels like eating nuts.
-Swordfish uses the sword to prey other fish
-Tigers are like panthers
-Turtles live in the water
-Walrus live around snow.
-Weasels live in holes in the ground.
-Whales eat other fish
-Wildcats eat hamsters.
-Whales are large and eat all of the other fish/
-Wolves eat deer.
-Zebras are in heards
+ants are small and are always in the ground.
+baboons live in the trees.
+beavers build homes from wood.
+bees need trees to make honey.
+birds are always flying from place to place.
+butterflies are pretty insects.
+camels don’t need much water.
+cows eat grass.
+dolphins live in salt water.
+elephants eat from tall trees.
+fish are found in coral reefs.
+fireflies glow in the dark.
+foxes eat reptiles, birds, and insects.
+goldfish are orange so they can be easily seen in the water.
+jellyfish can bite you at the beach.
+kangaroos live in australia.
+koalas feet are like hands so that they can climb.
+leopards need space to run.
+lions hunt in the wide open space.
+llamas remind me of camels.
+lobsters are sea food.
+moose eat plants and don’t live in extreme temperatures.
+owls are a type of bird.
+polarbears live in places with snow and ice.
+starfish are in coral reefs.
+swordfish uses the sword to prey other fish
+tigers are like panthers
+whales eat many fish
+whales are large and eat all of the other fish
+zebras are in herds

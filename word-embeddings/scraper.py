@@ -14,7 +14,7 @@ def clean_html(raw_html):
 	clean_text = [re.sub('\n+', '', val) for val in clean_text]
 	return clean_text
 
-prefixes = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
+prefixes = ["forest", "desert", "rainforest", "grassland", "tundra", "ocean"]
 animals = []
 with open('animal-list.txt', 'r') as f:
 	for line in f:
@@ -35,16 +35,7 @@ class EcosystemsSpider(scrapy.Spider):
 			 "https://www.google.com/search?q=understanding%20{0}%20ecosystems",
 			]
 	prefixes_and_bases = list(itertools.product(prefixes, base_urls))
-	base_urls_animals = ["https://www.google.com/search?q={0}%20ecosystem",
-			 "https://www.google.com/search?q={0}%20biome",
-			 "https://www.google.com/search?q={0}%20characteristics",
-			 "https://www.google.com/search?q={0}%20plants%20and%20animals",
-			 "https://www.google.com/search?q={0}%20facts",
-			 "https://www.google.com/search?q=understanding%20{0}",
-			]
-	prefixes_and_bases_animals = list(itertools.product(animals, base_urls_animals))
 	start_urls = [b.format(p) for (p, b) in prefixes_and_bases]
-	start_urls = start_urls + [b.format(p) for (p, b) in prefixes_and_bases_animals]
 	print(start_urls) 
 	custom_settings = {
 		'DEPTH_LIMIT': 6,
