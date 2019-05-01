@@ -30,8 +30,6 @@ There are rivers in the rainforests
 Rainforests are hard to walk through
 The tundra is very cold
 The tundra has lots of ice
-The tundra is very dry
-The tundra has little liquid water
 There are not very many trees or bushes in the tundra
 The desert has animals that live in the cold
 Not many things live in the tundra
@@ -43,7 +41,6 @@ The tundra has lots of wind
 There is a lot of snow in the tundra
 It snows a lot in the tundra
 There are not many animals in the tundra
-The tundra is not hot
 There is a permafrost in the tundra
 There is lots of snow and ice in the tundra
 Snow doesn’t melt very often in the tundra
