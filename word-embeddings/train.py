@@ -3,7 +3,7 @@ import torch.optim as optim
 import numpy as np
 from data_utils import generateData
 import argparse
-from model import EmbeddingModel, AttentionEmbeddingModel
+from model import EmbeddingModel
 from progressbar import progressbar
 import os
 
@@ -29,10 +29,7 @@ if torch.cuda.is_available():
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
 	torch.backends.cudnn.enabled = True 
 args.classes = ["desert", "rainforest", "grassland", "tundra", "ocean"]
-if args.embedding_type is 'embedding':
-	model = EmbeddingModel(len(args.classes))
-else:
-	model = AttentionEmbeddingModel(len(args.classes)) 
+model = EmbeddingModel(len(args.classes), args.embedding_type)
 if torch.cuda.is_available():
 	model = model.cuda()
 criterion = torch.nn.CrossEntropyLoss()
