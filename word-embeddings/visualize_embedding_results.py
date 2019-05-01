@@ -2,6 +2,8 @@ import torch
 from data_utils import generateData, getBertEmbedding
 import argparse
 from model import EmbeddingModel, AttentionEmbeddingModel
+import os
+from sklearn.decomposition import PCA
 import plotly.plotly as py
 import plotly.graph_objs as go
 from sklearn.decomposition import PCA

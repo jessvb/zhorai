@@ -49,7 +49,7 @@ if len(args.model_checkpoint) > 0:
 train_set, train_labels, test_set, test_labels, classes = generateData(args.corpus_file, args.classes, args.train_split_percentage, args.load_embedding_from_file, args.save_embedding_dict)
 print(len(train_set))
 print('Training model...')
-print('Resuming from epoch %d' % (starting_epoch + 1))
+print('Starting from epoch %d' % (starting_epoch + 1))
 for epoch in progressbar(range(starting_epoch, args.epochs)):
 	for i in range(len(train_set)):
 		inputs = train_set[i]
