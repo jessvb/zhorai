@@ -24,7 +24,7 @@ class EmbeddingModel(nn.Module):
 
 class AttentionEmbeddingModel(nn.Module):
 	def __init__(self, num_classes):
-		super(EmbeddingModel, self).__init__()
+		super(AttentionEmbeddingModel, self).__init__()
 		self.lstm1 = nn.LSTM(768, 128, 2, batch_first=True, bidirectional=True)
 		self.l1 = nn.Linear(256, 128)
 		self.l2 = nn.Linear(128, num_classes)
