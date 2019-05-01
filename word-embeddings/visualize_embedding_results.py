@@ -13,6 +13,7 @@ parser.add_argument('--corpus-file', type=str, default='ecosystem-sentences.txt'
 parser.add_argument('--eval-file', type=str, default='animal-sentences.txt', metavar='FILE', help='Name of evaluation file')
 parser.add_argument('--eval-words-file', type=str, default='animal-list.txt')
 parser.add_argument('--model-checkpoint', type=str, default='results/model_eco-0100.tar', metavar='CHECKPOINT', help='Name of model checkpoint file')
+parser.add_argument('--embedding-type', type=str, default='attention', metavar='TYPE', help='Type of model. accepted values are "attention" and "embedding". Defaults to attention.')
 
 args = parser.parse_args()
 
@@ -22,7 +23,10 @@ with open(args.eval_words_file, 'r') as f:
 	for line in f:
 		eval_list.append(line.strip().lower())
 
-model = EmbeddingModel(len(args.classes))
+if args.embedding_type is 'embedding':
+	model = EmbeddingModel(len(args.classes))
+else:
+	model = AttentionEmbeddingModel(len(args.classes)) 
 if len(args.model_checkpoint) > 0:
 	checkpoint = torch.load(args.model_checkpoint, map_location='cpu')
 	model.load_state_dict(checkpoint['model_state_dict'])
