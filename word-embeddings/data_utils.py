@@ -59,7 +59,7 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 				word = classes[i]
 				if word.lower() in sentence.lower():
 					s = sentence.lower().split()
-					x = [np.array(embedding_dict[w]) for w in s if w is not word.lower() and w in embedding_dict]
+					x = [np.array(embedding_dict[w]) for w in s if w not in word.lower() and w in embedding_dict]
 					x = np.array(x)
 					max_len = max_len if x.shape[0] < max_len else x.shape[0]
 					x = torch.tensor(x, dtype=torch.float)
