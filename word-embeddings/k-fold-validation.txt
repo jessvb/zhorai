@@ -1,0 +1,238 @@
+Loading corpus...
+Computing Bert Embeddings...
+107 0
+Preparing dataset...
+Performing K-Fold Cross Validation...
+Leaving out fold #1
+
+Model saved to results_eco/results_fold_0/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 169.671
+	Train accuracy = 84.375% 
+	Test accuracy = 72.727% 
+
+Model saved to results_eco/results_fold_0/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 14.058
+	Train accuracy = 100.000% 
+	Test accuracy = 63.636% 
+
+Model saved to results_eco/results_fold_0/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 0.333
+	Train accuracy = 100.000% 
+	Test accuracy = 63.636% 
+Leaving out fold #2
+
+Model saved to results_eco/results_fold_1/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 166.781
+	Train accuracy = 88.542% 
+	Test accuracy = 63.636% 
+
+Model saved to results_eco/results_fold_1/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 12.705
+	Train accuracy = 100.000% 
+	Test accuracy = 63.636% 
+
+Model saved to results_eco/results_fold_1/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 0.276
+	Train accuracy = 100.000% 
+	Test accuracy = 63.636% 
+Leaving out fold #3
+
+Model saved to results_eco/results_fold_2/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 170.916
+	Train accuracy = 84.375% 
+	Test accuracy = 72.727% 
+
+Model saved to results_eco/results_fold_2/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 16.951
+	Train accuracy = 98.958% 
+	Test accuracy = 72.727% 
+
+Model saved to results_eco/results_fold_2/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 0.713
+	Train accuracy = 100.000% 
+	Test accuracy = 72.727% 
+Leaving out fold #4
+
+Model saved to results_eco/results_fold_3/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 168.870
+	Train accuracy = 84.375% 
+	Test accuracy = 81.818% 
+
+Model saved to results_eco/results_fold_3/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 16.864
+	Train accuracy = 98.958% 
+	Test accuracy = 81.818% 
+
+Model saved to results_eco/results_fold_3/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 0.910
+	Train accuracy = 100.000% 
+	Test accuracy = 90.909% 
+Leaving out fold #5
+
+Model saved to results_eco/results_fold_4/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 169.493
+	Train accuracy = 85.417% 
+	Test accuracy = 72.727% 
+
+Model saved to results_eco/results_fold_4/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 14.427
+	Train accuracy = 100.000% 
+	Test accuracy = 63.636% 
+
+Model saved to results_eco/results_fold_4/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 0.444
+	Train accuracy = 100.000% 
+	Test accuracy = 63.636% 
+Leaving out fold #6
+
+Model saved to results_eco/results_fold_5/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 170.203
+	Train accuracy = 87.500% 
+	Test accuracy = 72.727% 
+
+Model saved to results_eco/results_fold_5/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 17.137
+	Train accuracy = 100.000% 
+	Test accuracy = 90.909% 
+
+Model saved to results_eco/results_fold_5/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 0.626
+	Train accuracy = 100.000% 
+	Test accuracy = 90.909% 
+Leaving out fold #7
+
+Model saved to results_eco/results_fold_6/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 169.349
+	Train accuracy = 83.333% 
+	Test accuracy = 81.818% 
+
+Model saved to results_eco/results_fold_6/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 16.558
+	Train accuracy = 100.000% 
+	Test accuracy = 90.909% 
+
+Model saved to results_eco/results_fold_6/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 1.016
+	Train accuracy = 100.000% 
+	Test accuracy = 81.818% 
+Leaving out fold #8
+
+Model saved to results_eco/results_fold_7/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 168.770
+	Train accuracy = 87.500% 
+	Test accuracy = 63.636% 
+
+Model saved to results_eco/results_fold_7/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 13.035
+	Train accuracy = 100.000% 
+	Test accuracy = 63.636% 
+
+Model saved to results_eco/results_fold_7/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 0.559
+	Train accuracy = 100.000% 
+	Test accuracy = 63.636% 
+Leaving out fold #9
+
+Model saved to results_eco/results_fold_8/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 168.794
+	Train accuracy = 85.417% 
+	Test accuracy = 72.727% 
+
+Model saved to results_eco/results_fold_8/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 14.850
+	Train accuracy = 98.958% 
+	Test accuracy = 72.727% 
+
+Model saved to results_eco/results_fold_8/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 0.862
+	Train accuracy = 100.000% 
+	Test accuracy = 72.727% 
+Leaving out fold #10
+
+Model saved to results_eco/results_fold_9/model_eco-0020.tar
+
+Epoch 20:
+	Loss = 169.546
+	Train accuracy = 82.828% 
+	Test accuracy = 87.500% 
+
+Model saved to results_eco/results_fold_9/model_eco-0025.tar
+
+Epoch 25:
+	Loss = 16.525
+	Train accuracy = 100.000% 
+	Test accuracy = 87.500% 
+
+Model saved to results_eco/results_fold_9/model_eco-0030.tar
+
+Epoch 30:
+	Loss = 0.563
+	Train accuracy = 100.000% 
+	Test accuracy = 87.500% 
+Training Complete.
+Fold 0: Train Acc: 1.0, Test Acc: 0.6363636363636364
+Fold 1: Train Acc: 1.0, Test Acc: 0.6363636363636364
+Fold 2: Train Acc: 1.0, Test Acc: 0.7272727272727273
+Fold 3: Train Acc: 1.0, Test Acc: 0.9090909090909091
+Fold 4: Train Acc: 1.0, Test Acc: 0.6363636363636364
+Fold 5: Train Acc: 1.0, Test Acc: 0.9090909090909091
+Fold 6: Train Acc: 1.0, Test Acc: 0.8181818181818182
+Fold 7: Train Acc: 1.0, Test Acc: 0.6363636363636364
+Fold 8: Train Acc: 1.0, Test Acc: 0.7272727272727273
+Fold 9: Train Acc: 1.0, Test Acc: 0.875
+Average train accuracy: 1.0
+Average test accuracy: 0.7511363636363637
