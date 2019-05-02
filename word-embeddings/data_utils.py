@@ -21,35 +21,36 @@ def getBertEmbedding(sentences):
 			data.append((x, word))
 	return data
 
-def generateData(corpus_file, classes, split_percentage, load_embedding_from_file=False, save_embedding_dict=False):
+def generateData(corpus_file, classes, split_percentage, load_embedding_from_file=False, save_embedding_dict=False, verbose=True, embedding_dict_filename="embedding_dict.pkl", shuffle=True):
 	sentences = []
 	# Read in corpus
-	print("Loading corpus...")
+	if verbose: print("Loading corpus...")
 	with open(corpus_file, 'r') as f:
 		for line in f:
 			if any(w.lower() in line.lower() for w in classes):
 				sentences.append(line.strip().replace('-', ' '))
-	random.shuffle(sentences)
+	if shuffle: random.shuffle(sentences)
 	#sentences = sentences[0:50]
-	print("Computing Bert Embeddings...")
+	if verbose: print("Computing Bert Embeddings...")
 	# split into train and test sets
 	num_train = int(len(sentences)*split_percentage)
 	train_set = sentences[0:num_train] 
 	test_set = sentences[num_train:]
 	# Create dictionary of training/test sets
+	if verbose: print(len(train_set), len(test_set))
 	words = [w.lower() for line in train_set + test_set for w in line.split()]
 	words = list(set(words))
 	if load_embedding_from_file:
-		with open('embedding_dict.pkl', 'rb') as f:
+		with open(embedding_dict_filename, 'rb') as f:
 			embedding_dict = pickle.load(f)
 	else:
 		bert = BertEmbedding()
 		embedding_dict = dict([(x[0], y[0]) for x, y in bert(words)])
 		if save_embedding_dict:
-			with open('embedding_dict.pkl', 'wb') as f:
+			with open(embedding_dict_filename, 'wb') as f:
 				pickle.dump(embedding_dict, f, pickle.HIGHEST_PROTOCOL)
 
-	print("Preparing dataset...")
+	if verbose: print("Preparing dataset...")
 	def create_dataset(dataset, max_len):
 		data = []
 		labels = []
