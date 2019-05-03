@@ -26,7 +26,6 @@ class SimpleLSTM(nn.Module):
 class EmbeddingModel(nn.Module):
 	def __init__(self, num_classes, model_type):
 		super(EmbeddingModel, self).__init__()
-		#self.lstm1 = nn.LSTM(768, 128, 2, batch_first=True, bidirectional=True)
 		self.lstm1 = SimpleLSTM(768, 512, False)
 		self.lstm2 = SimpleLSTM(512, 256, True)
 		self.l1 = nn.Linear(256, 128)

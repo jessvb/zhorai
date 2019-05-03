@@ -13,3 +13,5 @@ polarbears
 starfish
 swordfish
 whales
+penguins
+scorpions
