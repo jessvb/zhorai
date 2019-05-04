@@ -10,8 +10,10 @@
 execute `python train.py --help` to see command line options. Typical execution can be done with `python train.py`.
 
 ### Embedding Classification Model Evaluation
-`eval.py`: This loads an existing model (trained using train.py) and outputs a CSV file containing word,x,y,prediction tuples. word is the relevant word, x and y are the PCA reduced coordinates for the embedding, and prediction is the predicted ecosystem for the word based on the input sentence. 
+`visualize_embedding_results`: This loads an existing model (trained using train.py) and outputs a CSV file containing word,x,y,prediction tuples. prediction is not output if `--igonre-plot` is set. word is the relevant word, x and y are the PCA reduced coordinates for the embedding, and prediction is the predicted ecosystem for the word based on the input sentence. 
 
-example execution: `python eval.py --model-checkpoint model-0005.tar --eval-sentence "camels do not need water"`
+execute `python visualize_embedding_results.py --corpus-file embedding_corpus.txt --eval-file test-sentence.py --eval-words-file animal-list.txt  --embedding-type embedding --ignore-plot --model-checkpoint results/model_initial-0050.tar --load-embedding-dict-from-file`
 
-execute `python eval.py --help` to see details about commmand line options.
+execute `python visualize_embedding_results.py --help` to see details about commmand line options.
+
+
