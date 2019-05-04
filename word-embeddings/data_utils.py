@@ -21,7 +21,9 @@ def getBertEmbedding(sentences):
 			data.append((x, word))
 	return data
 
-def generateData(corpus_file, classes, split_percentage, load_embedding_from_file=False, save_embedding_dict=False, verbose=True, embedding_dict_filename="embedding_dict.pkl", shuffle=True):
+def generateData(corpus_file, classes, split_percentage, load_embedding_from_file=False, save_embedding_dict=False, verbose=True, embedding_dict_filename="embedding_dict.pkl", shuffle=True, ignore_words=None):
+	if ignore_words is None:
+		ignore_words = []
 	sentences = []
 	# Read in corpus
 	if verbose: print("Loading corpus...")
@@ -59,7 +61,7 @@ def generateData(corpus_file, classes, split_percentage, load_embedding_from_fil
 				word = classes[i]
 				if word.lower() in sentence.lower():
 					s = sentence.lower().split()
-					x = [np.array(embedding_dict[w]) for w in s if w not in word.lower() and w in embedding_dict]
+					x = [np.array(embedding_dict[w]) for w in s if w not in word.lower() and w not in ignore_words and w in embedding_dict]
 					x = np.array(x)
 					max_len = max_len if x.shape[0] < max_len else x.shape[0]
 					x = torch.tensor(x, dtype=torch.float)

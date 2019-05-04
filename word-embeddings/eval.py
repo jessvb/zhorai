@@ -10,6 +10,7 @@ from sklearn.decomposition import PCA
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding Evaluation')
 parser.add_argument('--model-checkpoint', type=str, help='Model checkpoint to use for evaluation')
 parser.add_argument('--eval-sentence', type=str, help='Sentence to return embedding')
+parser.add_argument('--model-type', type=str, help='attention (for self attention) or embedding (for plain embedding)')
 
 args = parser.parse_args()
 
@@ -18,7 +19,7 @@ if torch.cuda.is_available():
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
 	#torch.backends.cudnn.enabled = True 
 args.classes = ["desert", "rainforest", "grassland", "tundra"]
-model = EmbeddingModel(len(args.classes))
+model = EmbeddingModel(len(args.classes), args.model_type)
 checkpoint = torch.load(args.model_checkpoint)
 model.load_state_dict(checkpoint['model_state_dict'])
 inputs = getBertEmbedding(args.eval_sentence)

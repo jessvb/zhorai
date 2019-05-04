@@ -34,13 +34,13 @@ class EmbeddingModel(nn.Module):
 
 	def forward(self, x):
 		x = self.embedding(x)
-		x = self.l1(x)
 		x = self.l2(x)
 		return x
 	
 	def embedding(self, x):
 		x = self.lstm1(x)
 		x = self.lstm2(x)
+		x = self.l1(x)
 		#x = x.squeeze()[-1].unsqueeze(0)
 		if self.model_type == "attention":
 			x = x + x * x
