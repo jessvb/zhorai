@@ -32,7 +32,7 @@ with open(args.eval_words_file, 'r') as f:
 model = EmbeddingModel(len(args.classes), args.embedding_type)
 
 #dataset, labels, _, __, ___ = generateData(args.corpus_file, args.classes, 1.0, args.load_embedding_dict_from_file, not args.load_embedding_dict_from_file, args.verbose, 'eval_embedding_dict.pckl', True)
-eval_dataset, eval_labels, _, __, ___ = generateData(args.eval_file, eval_list, 1.0, args.load_embedding_dict_from_file, not args.load_embedding_dict_from_file, args.verbose, 'animal_embedding_dict.pckl', True, args.classes)
+eval_dataset, eval_labels, _, __, ___ = generateData(args.eval_file, eval_list, 1.0, args.load_embedding_dict_from_file, not args.load_embedding_dict_from_file, args.verbose, 'animal_embedding_dict.pckl', False, args.classes)
 embedding_dict = {}
 #datasets = [dataset, eval_dataset]
 #label_sets = [labels, eval_labels]
