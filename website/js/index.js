@@ -121,15 +121,15 @@ function createScatterplot(plot_data) {
         width = +svg.attr("width"),
 	    height = +svg.attr("height");
 
-    var xScale = d3.scale.linear()
-                .domain([0, d3.max(data_scatter, function(d) {
+    var xScale = d3.scaleLinear()
+                .domain([0, d3.max(plot_data, function(d) {
                     return d[1];  // get the input domain as first column of array
                 })])
                 .range([padding, canvas_width - padding * 2])  // set the output range
                 .nice();  // Make decimals round up nicely
 
-	var yScale = d3.scale.linear()
-			    .domain([0, d3.max(data_scatter, function(d) {
+	var yScale = d3.scaleLinear()
+			    .domain([0, d3.max(plot_data, function(d) {
 			        return d[2];  // gets the input domain as the second column of array
 			    })])
 			    .range([canvas_height - padding, padding])  // set the output range
@@ -137,7 +137,7 @@ function createScatterplot(plot_data) {
 
 	// Add circles from data
     svg.selectAll("circle")
-        .data(data_scatter)
+        .data(plot_data)
         .enter()
         .append("circle")
         .attr("x", function(d) {
@@ -163,20 +163,19 @@ function createScatterplot(plot_data) {
             return d[0];
         })
         .attr("x", function(d) {
-            return xScale(d[1]);  // Returns scaled location of x
+            return xScale(d[1])+8;  // Returns scaled location of x
         })
         .attr("y", function(d) {
             return yScale(d[2]);  // Returns scaled circle y
         })
         .attr("font_family", "sans-serif")  // Font type
-        .attr("font-size", "11px")  // Font size
+        .attr("font-size", "18px")  // Font size
         .attr("fill", "darkgreen");   // Font color
 
     // Define X axis and attach to graph
-    var xAxis = d3.svg.axis()  // Create an x axis
+    var xAxis = d3.axisBottom()  // Create an x axis
         .scale(xScale)      // Scale x axis
-        .orient("bottom")  // Put text on bottom of axis line
-        .ticks(10);  // Set rough # of ticks (optional)
+        .ticks(5);  // Set rough # of ticks (optional)
 
     svg.append("g")     // Append a group element (itself invisible, but helps 'group' elements)
         .attr("class", "axis")  // Assign the 'axis' CSS
@@ -184,9 +183,8 @@ function createScatterplot(plot_data) {
         .call(xAxis);  // Call function to create axis
 
     // Define Y axis and attach to graph
-    var yAxis = d3.svg.axis()  // Create a y axis
+    var yAxis = d3.axisLeft()  // Create a y axis
         .scale(yScale)  // Scale y axis
-        .orient("left")
         .ticks(5);  // Set rough # of ticks (optional)
 
     svg.append("g")
