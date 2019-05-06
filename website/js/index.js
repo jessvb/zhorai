@@ -117,10 +117,9 @@ function createScatterplot(plot_data) {
 	var plot_data = [["fish", 1, 2, "ocean"], ["tiger", 5, 6, "forest"]];
 
 	//create SVG element
-	var svg = d3.select("h3")  // This is where we put our vis
-                .append("svg")
-                .attr("width", canvas_width)
-                .attr("height", canvas_height)
+	var svg = d3.select("svg")  // This is where we put our plot
+        width = +svg.attr("width"),
+	    height = +svg.attr("height");
 
     var xScale = d3.scale.linear()
                 .domain([0, d3.max(data_scatter, function(d) {
