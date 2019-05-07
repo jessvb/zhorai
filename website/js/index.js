@@ -116,6 +116,8 @@ function createScatterplot(plot_data) {
 
 	var plot_data = [["fish", 1, 2, "ocean"], ["tiger", 5, 6, "forest"]];
 
+	var color = d3.scaleOrdinal(d3.schemeCategory20);
+
 	//create SVG element
 	var svg = d3.select("svg")  // This is where we put our plot
         width = +svg.attr("width"),
@@ -152,7 +154,10 @@ function createScatterplot(plot_data) {
         })
         .attr("cy", function(d) {
             return yScale(d[2]);  // Returns scaled circle y
-        });
+        .attr("fill", function(d) {
+        	return color(d[3]);
+        })
+    });
 
     // Add Text Labels
     svg.selectAll("text")
@@ -170,7 +175,7 @@ function createScatterplot(plot_data) {
         })
         .attr("font_family", "sans-serif")  // Font type
         .attr("font-size", "18px")  // Font size
-        .attr("fill", "darkgreen");   // Font color
+        .attr("fill", "black");   // Font color
 
     // Define X axis and attach to graph
     var xAxis = d3.axisBottom()  // Create an x axis
