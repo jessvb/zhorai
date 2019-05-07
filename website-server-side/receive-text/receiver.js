@@ -6,10 +6,15 @@ var port = 8080;
 /* to write to txt file: */
 var fs = require('fs');
 var dataDir = 'data/';
+var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
+
 var semParserInputFilename = 'input.txt';
 var semParserPath = '../../semantic-parser/';
-var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
 var semParserInputPath = dataDirRelPath + semParserInputFilename; // relative to semparserfilepath
+
+var embedInputFilename = 'embed-sentence.txt';
+var embedPath = '../../word-embeddings/';
+var embedInputPath = dataDirRelPath + embedInputFilename; // relative to embedfilepath
 var allText = '';
 
 /* to execute bash scripts */
@@ -78,7 +83,26 @@ wsServer.on('request', function (request) {
                         parseAndReturnToClient(jsonMsg, connection);
                     });
                 }
-
+                sendEnd = false;
+            } else if (jsonMsg.command == 'getEmbeddingCoord') {
+                // if there's text, then write that text to a file and send it to the embedder
+                if (jsonMsg.text) {
+                    console.log("getting coords for '" + jsonMsg.text + "'");
+                    // Create file for parser to parse:
+                    writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
+                        getCoordsAndReturnToClient(jsonMsg, connection);
+                    });
+                } else {
+                    // TODO!
+                    console.log('TODO: coordinates without text sent explicitly');
+                    // // there's no text, so let's get coords for the info in the memory
+                    // console.log("getting coords for '" + dataDir + "'");
+                    // console.log("parsing '" + dataDir + semParserInputFilename + "'");
+                    // // first, write the memory to the data file, and then parse it
+                    // writeToFile(dataDir + semParserInputFilename, allText, function () {
+                    //     parseAndReturnToClient(jsonMsg, connection);
+                    // });
+                }
                 sendEnd = false;
             } else if (jsonMsg.text) {
                 allText += jsonMsg.text + '.\n';
@@ -109,6 +133,19 @@ function writeToFile(filename, text, callback) {
             }
         }
     });
+}
+
+function returnTextToClient(text, stage, connection) {
+    console.log("Returning text to client: " + JSON.stringify({
+        'filedata': text,
+        'stage': stage
+    }));
+    connection.sendUTF(
+        JSON.stringify({
+        'filedata': text,
+        'stage': stage
+    }));
+    sendDone(connection);
 }
 
 function readFileReturnToClient(filename, stage, connection) {
@@ -145,6 +182,32 @@ function parseAndReturnToClient(jsonMsg, connection) {
         // return the parsed information to client:
         readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
     });
+}
+
+function getCoordsAndReturnToClient(jsonMsg, connection) {
+    // Execute embedder bash script and return coords with readFileReturnToClient
+    console.log('Getting coords and return to client...');
+    var embedCmd = 'cd ' + embedPath +
+        ' && python3 visualize_embedding_results.py --corpus-file embedding_corpus.txt --eval-file ' +
+        embedInputPath + ' --eval-words-file animal-list.txt --embedding-type embedding ' +
+        '--ignore-plot --model-checkpoint results/model_initial-0050.tar';
+    console.log(embedCmd);
+
+    exec(embedCmd, function (error, stdout, stderr) {
+        var textToSend = "";
+        if (stdout) {
+            console.log('Parser command output:\n' + stdout);
+            textToSend = stdout;
+        }
+        if (error) {
+            console.log('Function error:\n' + error);
+            textToSend = error;
+        }
+
+        // Send text back to client:
+        returnTextToClient(textToSend, jsonMsg.stage, connection);
+    });
+
 }
 
 function sendDone(connection) {
