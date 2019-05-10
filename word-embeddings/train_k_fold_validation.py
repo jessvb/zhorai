@@ -20,7 +20,6 @@ parser.add_argument('--train-split-percentage', type=float, default=0.8, metavar
 parser.add_argument('--save-embedding-dict', action='store_true', help='Save computed embeddings to file')
 parser.add_argument('--load-embedding-from-file', action='store_true', help='Load precomputed embeddings from file')
 parser.add_argument('--model-checkpoint', type=str, default='', help='Model checkpoint to resume training')
-parser.add_argument('--embedding-type', type=str, default='attention', metavar='TYPE', help='Type of model. accepted values are "attention" and "embedding". Defaults to attention.')
 parser.add_argument('--k', type=int, default=10, metavar='NUM_FOLDS', help='Num folds for k-fold cross validation')
 
 args = parser.parse_args()
@@ -38,7 +37,7 @@ acc = []
 for i in range(len(folds)):
 	train_acc = 0.0
 	test_acc = 0.0
-	model = EmbeddingModel(len(args.classes), args.embedding_type)
+	model = EmbeddingModel(len(args.classes))
 	if torch.cuda.is_available():
 		model = model.cuda()
 	criterion = torch.nn.CrossEntropyLoss()

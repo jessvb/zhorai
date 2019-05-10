@@ -24,13 +24,12 @@ class SimpleLSTM(nn.Module):
 		return hidden.zero_(), cell.zero_()
 
 class EmbeddingModel(nn.Module):
-	def __init__(self, num_classes, model_type):
+	def __init__(self, num_classes):
 		super(EmbeddingModel, self).__init__()
 		self.lstm1 = SimpleLSTM(768, 512, False)
 		self.lstm2 = SimpleLSTM(512, 256, True)
 		self.l1 = nn.Linear(256, 128)
 		self.l2 = nn.Linear(128, num_classes)
-		self.model_type = model_type
 
 	def forward(self, x):
 		x = self.embedding(x)
@@ -41,9 +40,6 @@ class EmbeddingModel(nn.Module):
 		x = self.lstm1(x)
 		x = self.lstm2(x)
 		x = self.l1(x)
-		#x = x.squeeze()[-1].unsqueeze(0)
-		if self.model_type == "attention":
-			x = x + x * x
 		return x
 
 
