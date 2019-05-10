@@ -3,24 +3,23 @@ import torch.optim as optim
 import numpy as np
 from data_utils import generateData
 import argparse
-from model import EmbeddingModel
+from model import EmbeddingModel, ConvolutionalEmbeddingModel
 from progressbar import progressbar
 import os
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding k-fold cross validation')
-parser.add_argument('--epochs', type=int, default=10, metavar='EPOCHS', help='Epochs to train each embedding model')
+parser.add_argument('--epochs', type=int, default=25, metavar='EPOCHS', help='Epochs to train each embedding model')
 parser.add_argument('--corpus-file', type=str, default='embedding_corpus.txt', metavar='FILE', help='Name of corpus file') 
-parser.add_argument('--verbose', action='store_true', help='display tensorflow error messages')
 parser.add_argument('--results-dir', type=str, default='results_k_fold', metavar='DIR', help='Directory to store results')
 parser.add_argument('--checkpoint-prefix', type=str, default='model', metavar='PREFIX', help='Prefix of filename to save checkpoint')
 parser.add_argument('--save-frequency', type=int, default=5, metavar='N', help='Save model every N epochs')
 parser.add_argument('--display-frequency', type=int, default=50, metavar='N', help='Display model every N epochs')
 parser.add_argument('--learning-rate', type=float, default=0.001, metavar='lr', help='Learning rate for training')
-parser.add_argument('--train-split-percentage', type=float, default=0.8, metavar='x', help='Percentage of data for training')
 parser.add_argument('--save-embedding-dict', action='store_true', help='Save computed embeddings to file')
 parser.add_argument('--load-embedding-from-file', action='store_true', help='Load precomputed embeddings from file')
 parser.add_argument('--model-checkpoint', type=str, default='', help='Model checkpoint to resume training')
 parser.add_argument('--k', type=int, default=10, metavar='NUM_FOLDS', help='Num folds for k-fold cross validation')
+parser.add_argument('--embedding-type', type=str, default='linear', help='Model type: linear or conv')
 
 args = parser.parse_args()
 
@@ -37,7 +36,12 @@ acc = []
 for i in range(len(folds)):
 	train_acc = 0.0
 	test_acc = 0.0
-	model = EmbeddingModel(len(args.classes))
+	if args.embedding_type == 'linear':
+		model = EmbeddingModel(len(args.classes))
+	elif args.embedding_type == 'conv':
+		model = ConvolutionalEmbeddingModel(len(args.classes))
+	else:
+		print("Model type [{0}] not supported".format(args.embedding_type))
 	if torch.cuda.is_available():
 		model = model.cuda()
 	criterion = torch.nn.CrossEntropyLoss()
