@@ -14,8 +14,11 @@ def clean_html(raw_html):
 	clean_text = [re.sub('\n+', '', val) for val in clean_text]
 	return clean_text
 
-prefixes = ['polar bears', 'bees', 'birds', 'butterflies', 'camels', 'cows', 'dolphins', 'fish', 'fireflies', 'leopards', 'lobsters', 'owls', 'starfish', 'swordfish', 'whales', 'penguins', 'scorpions']
-ecosystems = ['tundra', 'rainforest', 'rainforest', 'rainforest', 'desert', 'grassland', 'ocean', 'ocean', 'grassland', 'rainforest', 'ocean', 'grassland', 'ocean', 'ocean', 'ocean', 'tundra', 'desert']
+#prefixes = ['polar bears', 'bees', 'birds', 'butterflies', 'camels', 'cows', 'dolphins', 'fish', 'fireflies', 'leopards', 'lobsters', 'owls', 'starfish', 'swordfish', 'whales', 'penguins', 'scorpions']
+prefixes = ['arctic fox', 'yak', 'reindeer', 'elephant', 'giraffe', 'lion']
+
+#ecosystems = ['tundra', 'rainforest', 'rainforest', 'rainforest', 'desert', 'grassland', 'ocean', 'ocean', 'grassland', 'rainforest', 'ocean', 'grassland', 'ocean', 'ocean', 'ocean', 'tundra', 'desert']
+ecosystems = ['tundra', 'tundra', 'tundra', 'desert', 'desert', 'desert']
 p_e = zip(prefixes, ecosystems)
 
 class EcosystemsSpider(scrapy.Spider):

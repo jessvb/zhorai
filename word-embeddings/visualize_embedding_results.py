@@ -16,10 +16,12 @@ parser.add_argument('--eval-file', type=str, default='animal-sentences.txt', met
 parser.add_argument('--eval-words-file', type=str, default='animal-list.txt')
 parser.add_argument('--model-checkpoint', type=str, default='results/model_eco-0100.tar', metavar='CHECKPOINT', help='Name of model checkpoint file')
 parser.add_argument('--embedding-type', type=str, default='attention', metavar='TYPE', help='Type of model. accepted values are "attention" and "embedding". Defaults to attention.')
-parser.add_argument('--plot-tag', type=str, default='0', metavar='TAG', help='tag of plotly plot')
+parser.add_argument('--plot-tag', type=str, default='initial', metavar='TAG', help='tag of plotly plot')
 parser.add_argument('--ignore-plot', action='store_true', help='If set, ignores plotting')
 parser.add_argument('--verbose', action='store_true', help='Verbose data generation')
-parser.add_argument('--load-embedding-dict-from-file', action='store_true', help='If true, loads embedding dictionaries from file')
+parser.add_argument('--load-embedding-dict-from-file', action='store_true', help='If set, loads embedding dictionaries from file and saves updated dictionaries to file.')
+parser.add_argument('--save-embedding-dict', action='store_true', help='If set, loads embedding dictionaries from file and saves updated dictionaries to file.')
+parser.add_argument('--decomp-type', type=str, default='pca', help='Type of dimensionality reduction. Default is pca. Accepted values are "pca" and "tsne"')
 
 args = parser.parse_args()
 
@@ -29,14 +31,49 @@ with open(args.eval_words_file, 'r') as f:
 	for line in f:
 		eval_list.append(line.strip().lower())
 
+if not args.ignore_plot:
+	all_words = args.classes + eval_list
+	embedding = getBertEmbedding(all_words)
+	data = []
+	words = []
+	for word in embedding:
+		data.append(embedding[word])
+		words.append(word)
+	data = np.array(data)
+	if args.decomp_type == 'pca':
+		decomp = PCA(n_components=2, whiten=True).fit_transform(data)
+	elif args.decomp_type == 'tsne':
+		decomp = TSNE(n_components=2).fit_transform(data)
+	for i in range(len(data)):
+		if words[i] in args.classes:
+			words[i] = "<b>{0}<b>".format(words[i])
+
+	trace1 = go.Scatter(
+			x = decomp[:, 0],
+			y = decomp[:, 1],
+		mode='markers+text',
+		text=words,
+		marker=dict(
+			size=12,
+			color=decomp[:, 1],
+			colorscale='Viridis',
+			opacity=0.8
+		),
+		textposition='bottom center'
+	)
+	dataTrace = [trace1]
+	layout = go.Layout(
+		margin=dict(l=0, r=0, b=0, t=0),
+		font=dict(size=20)
+	)
+	fig = go.Figure(data=dataTrace, layout=layout)
+	py.plot(fig, filename='bert-embedding-initial')
+
+
 model = EmbeddingModel(len(args.classes), args.embedding_type)
 
-#dataset, labels, _, __, ___ = generateData(args.corpus_file, args.classes, 1.0, args.load_embedding_dict_from_file, not args.load_embedding_dict_from_file, args.verbose, 'eval_embedding_dict.pckl', True)
-eval_dataset, eval_labels, _, __, ___ = generateData(args.eval_file, eval_list, 1.0, args.load_embedding_dict_from_file, not args.load_embedding_dict_from_file, args.verbose, 'animal_embedding_dict.pckl', False, args.classes)
+eval_dataset, eval_labels, _, __, ___ = generateData(args.eval_file, eval_list, 1.0, args.load_embedding_dict_from_file, args.save_embedding_dict, args.verbose, 'embedding_dicts/animal_embedding_dict.pkl', False, args.classes)
 embedding_dict = {}
-#datasets = [dataset, eval_dataset]
-#label_sets = [labels, eval_labels]
-#class_sets = [args.classes, eval_list]
 if len(args.model_checkpoint) > 0:
 	checkpoint = torch.load(args.model_checkpoint, map_location='cpu')
 	model.load_state_dict(checkpoint['model_state_dict'])
@@ -63,7 +100,10 @@ for i in range(len(x)):
 data = []
 words = []
 eco_predictions = []
-for x in embedding_dict:
+accuracies = []
+total = 0.0
+correct = 0.0
+for x in args.classes + eval_list:
 	predictions = embedding_dict[x][1]
 	prediction = max(set(predictions), key=predictions.count)
 	embedding = torch.zeros(embedding_dict[x][0][0].shape)
@@ -72,6 +112,8 @@ for x in embedding_dict:
 		if predictions[i] == prediction:
 			embedding = embedding + embedding_dict[x][0][i]
 			count += 1.0
+			correct += 1.0
+		total += 1.0
 	embedding = embedding.detach().squeeze().numpy()
 	embedding /= count
 	embedding /= np.linalg.norm(embedding)
@@ -80,9 +122,13 @@ for x in embedding_dict:
 	eco_predictions.append(args.classes[prediction])
 data = np.array(data)
 
-pca = PCA(n_components=2, whiten=True).fit_transform(data)
-#tsne = TSNE(n_components=2).fit_transform(data)
-decomp = pca
+if args.verbose:
+	print("Accuracy is {0}".format(correct/total))
+
+if args.decomp_type == 'pca':
+	decomp = PCA(n_components=2, whiten=True).fit_transform(data)
+elif args.decomp_type == 'tsne':
+	decomp = TSNE(n_components=2).fit_transform(data)
 for i in range(len(data)):
 	print('{0},{1},{2},{3}'.format(words[i], decomp[i, 0], decomp[i, 1], eco_predictions[i]))
 	if words[i] in args.classes:
@@ -105,7 +151,8 @@ trace1 = go.Scatter(
 )
 dataTrace = [trace1]
 layout = go.Layout(
-	margin=dict(l=0, r=0, b=0, t=0)
+	margin=dict(l=0, r=0, b=0, t=0),
+	font=dict(size=20)
 )
 fig = go.Figure(data=dataTrace, layout=layout)
 py.plot(fig, filename='{0}-context-dependent-{1}'.format(args.embedding_type, args.plot_tag))
