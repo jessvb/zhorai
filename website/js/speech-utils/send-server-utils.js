@@ -55,6 +55,10 @@ function onReceive(event, socket) {
             introReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]); // remove intro from stage
         } else if (jsonMsg.stage.toLowerCase().includes('mod1')) {
             mod1ReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]); // remove mod1 from stage
+        } else if (jsonMsg.stage.toLowerCase().includes('mod2')) {
+            mod2ReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]); // remove mod1 from stage
+        } else {
+            console.log('onReceive did not understand the current stage, ' + jsonMsg.stage + '.');
         }
     }
 
@@ -93,3 +97,21 @@ function parseMem(typeOutput, stage) {
         'stage': stage
     });
 }
+
+/**
+ * Sends sentences about animals to the server, starts the word embedder, and 
+ * returns an array of an array to onReceive with the coordinates of the ecosystems 
+ * as well as the animals in the sentences. 
+ * 
+ * @param {*} animalSentences : sentences about animals separated by newlines.
+ * @param {*} stage : the current zhorai stage you're in, if applicable. 
+ * (This informs 'onReceive' what to do)
+ */
+function getEmbeddingCoord(animalSentences, stage) {
+    sendJson({
+        'command': 'getEmbeddingCoord',
+        'text': animalSentences,
+        'stage': stage
+    });
+}
+   
