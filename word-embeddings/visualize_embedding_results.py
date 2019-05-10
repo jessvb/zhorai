@@ -11,11 +11,10 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding')
-parser.add_argument('--corpus-file', type=str, default='corpus_files/ecosystem-sentences.txt', metavar='FILE', help='Name of corpus file')
-parser.add_argument('--eval-file', type=str, default='corpus_files/animal-sentences.txt', metavar='FILE', help='Name of evaluation file')
+parser.add_argument('--corpus-file', type=str, default='corpus_files/embedding_corpus.txt', metavar='FILE', help='Name of corpus file')
+parser.add_argument('--eval-file', type=str, default='corpus_files/embedding_animal_corpus_clean.txt', metavar='FILE', help='Name of evaluation file')
 parser.add_argument('--eval-words-file', type=str, default='corpus_files/animal-list.txt')
-parser.add_argument('--model-checkpoint', type=str, default='results/model_eco-0100.tar', metavar='CHECKPOINT', help='Name of model checkpoint file')
-parser.add_argument('--embedding-type', type=str, default='attention', metavar='TYPE', help='Type of model. accepted values are "attention" and "embedding". Defaults to attention.')
+parser.add_argument('--model-checkpoint', type=str, default='results/model_initial-0500.tar', metavar='CHECKPOINT', help='Name of model checkpoint file')
 parser.add_argument('--plot-tag', type=str, default='initial', metavar='TAG', help='tag of plotly plot')
 parser.add_argument('--ignore-plot', action='store_true', help='If set, ignores plotting')
 parser.add_argument('--verbose', action='store_true', help='Verbose data generation')
