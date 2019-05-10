@@ -9,7 +9,7 @@ def getBertEmbedding(words):
 	embedding_dict = dict([(x[0], y[0]) for x, y in bert(words)])
 	return embedding_dict
 
-def generateData(corpus_file, classes, split_percentage, load_embedding_from_file=False, save_embedding_dict=False, verbose=True, embedding_dict_filename="embedding_dict.pkl", shuffle=True, ignore_words=None):
+def generateData(corpus_file, classes, split_percentage, load_embedding_from_file=False, save_embedding_dict=False, verbose=True, embedding_dict_filename="embedding_dicts/embedding_dict.pkl", shuffle=True, ignore_words=None):
 	if ignore_words is None:
 		ignore_words = []
 	sentences = []
