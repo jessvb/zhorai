@@ -107,16 +107,16 @@ function deleteMindmap() {
 	svg.remove();
 }
 
-function createScatterplot(plot_data) {
+// function createScatterplot(plot_data) {
 
 	//setup settings for scatterplot
 	var canvas_width = 500;
 	var canvas_height = 500;
 	var padding = 25;
 
-	var plot_data = [["fish", 1, 2, "ocean"], ["tiger", 5, 6, "forest"]];
+	var plot_data = [["fish", 1, 2, "ocean"], ["tiger", 5, 6, "ocean"]];
 
-	var color = d3.scaleOrdinal(d3.schemeCategory20);
+	var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 	//create SVG element
 	var svg = d3.select("svg")  // This is where we put our plot
@@ -154,10 +154,10 @@ function createScatterplot(plot_data) {
         })
         .attr("cy", function(d) {
             return yScale(d[2]);  // Returns scaled circle y
-        .attr("fill", function(d) {
-        	return color(d[3]);
         })
-    });
+        .style("fill", function(d) {
+        	return color(d[3]);
+        });
 
     // Add Text Labels
     svg.selectAll("text")
@@ -197,4 +197,4 @@ function createScatterplot(plot_data) {
         .attr("transform", "translate(" + padding + ",0)")
         .call(yAxis);
 
-}
+// }
