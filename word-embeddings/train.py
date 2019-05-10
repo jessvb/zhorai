@@ -9,7 +9,7 @@ import os
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding')
 parser.add_argument('--epochs', type=int, default=100, metavar='EPOCHS', help='Epochs to train embedding model')
-parser.add_argument('--corpus-file', type=str, default='data/embedding_corpus.txt', metavar='FILE', help='Name of corpus file') 
+parser.add_argument('--corpus-file', type=str, default='corpus_files/embedding_corpus.txt', metavar='FILE', help='Name of corpus file') 
 parser.add_argument('--verbose', action='store_true', help='display tensorflow error messages')
 parser.add_argument('--results-dir', type=str, default='results', metavar='DIR', help='Directory to store results')
 parser.add_argument('--checkpoint-prefix', type=str, default='model', metavar='PREFIX', help='Prefix of filename to save checkpoint')
