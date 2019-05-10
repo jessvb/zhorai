@@ -106,3 +106,95 @@ function deleteMindmap() {
 	var svg = d3.select("svg");
 	svg.remove();
 }
+
+function createScatterplot(plot_data) {
+
+	//setup settings for scatterplot
+	var canvas_width = 500;
+	var canvas_height = 500;
+	var padding = 25;
+
+	var plot_data = [["fish", 1, 2, "ocean"], ["tiger", 5, 6, "forest"]];
+
+	var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+	//create SVG element
+	var svg = d3.select("svg")  // This is where we put our plot
+        width = +svg.attr("width"),
+	    height = +svg.attr("height");
+
+    var xScale = d3.scaleLinear()
+                .domain([0, d3.max(plot_data, function(d) {
+                    return d[1];  // get the input domain as first column of array
+                })])
+                .range([padding, canvas_width - padding * 2])  // set the output range
+                .nice();  // Make decimals round up nicely
+
+	var yScale = d3.scaleLinear()
+			    .domain([0, d3.max(plot_data, function(d) {
+			        return d[2];  // gets the input domain as the second column of array
+			    })])
+			    .range([canvas_height - padding, padding])  // set the output range
+			    .nice();  // Make decimals round up nicely
+
+	// Add circles from data
+    svg.selectAll("circle")
+        .data(plot_data)
+        .enter()
+        .append("circle")
+        .attr("x", function(d) {
+            return xScale(d[1]);  // Location of x
+        })
+        .attr("y", function(d) {
+            return yScale(d[2]);  // Location of y
+        })
+        .attr("r", 4)  // Radius
+        .attr("cx", function(d) {
+            return xScale(d[1]);  // Returns scaled circle x
+        })
+        .attr("cy", function(d) {
+            return yScale(d[2]);  // Returns scaled circle y
+        .attr("fill", function(d) {
+        	return color(d[3]);
+        })
+    });
+
+    // Add Text Labels
+    svg.selectAll("text")
+        .data(plot_data)
+        .enter()
+        .append("text")
+        .text(function(d) {
+            return d[0];
+        })
+        .attr("x", function(d) {
+            return xScale(d[1])+8;  // Returns scaled location of x
+        })
+        .attr("y", function(d) {
+            return yScale(d[2]);  // Returns scaled circle y
+        })
+        .attr("font_family", "sans-serif")  // Font type
+        .attr("font-size", "18px")  // Font size
+        .attr("fill", "black");   // Font color
+
+    // Define X axis and attach to graph
+    var xAxis = d3.axisBottom()  // Create an x axis
+        .scale(xScale)      // Scale x axis
+        .ticks(5);  // Set rough # of ticks (optional)
+
+    svg.append("g")     // Append a group element (itself invisible, but helps 'group' elements)
+        .attr("class", "axis")  // Assign the 'axis' CSS
+        .attr("transform", "translate(0," + (canvas_height - padding) + ")")  // Place axis at bottom
+        .call(xAxis);  // Call function to create axis
+
+    // Define Y axis and attach to graph
+    var yAxis = d3.axisLeft()  // Create a y axis
+        .scale(yScale)  // Scale y axis
+        .ticks(5);  // Set rough # of ticks (optional)
+
+    svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(" + padding + ",0)")
+        .call(yAxis);
+
+}
