@@ -3,13 +3,13 @@ import torch.optim as optim
 import numpy as np
 from data_utils import generateData
 import argparse
-from model import EmbeddingModel
+from model import EmbeddingModel, ConvolutionalEmbeddingModel
 from progressbar import progressbar
 import os
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding')
 parser.add_argument('--epochs', type=int, default=100, metavar='EPOCHS', help='Epochs to train embedding model')
-parser.add_argument('--corpus-file', type=str, default='embedding_corpus.txt', metavar='FILE', help='Name of corpus file') 
+parser.add_argument('--corpus-file', type=str, default='corpus_files/embedding_corpus.txt', metavar='FILE', help='Name of corpus file') 
 parser.add_argument('--verbose', action='store_true', help='display tensorflow error messages')
 parser.add_argument('--results-dir', type=str, default='results', metavar='DIR', help='Directory to store results')
 parser.add_argument('--checkpoint-prefix', type=str, default='model', metavar='PREFIX', help='Prefix of filename to save checkpoint')
@@ -20,6 +20,7 @@ parser.add_argument('--train-split-percentage', type=float, default=0.8, metavar
 parser.add_argument('--save-embedding-dict', action='store_true', help='Save computed embeddings to file')
 parser.add_argument('--load-embedding-from-file', action='store_true', help='Load precomputed embeddings from file')
 parser.add_argument('--model-checkpoint', type=str, default='', help='Model checkpoint to resume training')
+parser.add_argument('--embedding-type', type=str, default='linear', help='Model type: linear or conv')
 
 args = parser.parse_args()
 
@@ -28,7 +29,13 @@ if torch.cuda.is_available():
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
 	torch.backends.cudnn.enabled = True 
 args.classes = ["desert", "rainforest", "grassland", "tundra", "ocean"]
-model = EmbeddingModel(len(args.classes))
+if args.embedding_type == 'linear':
+	model = EmbeddingModel(len(args.classes))
+elif args.embedding_type == 'conv':
+	model = ConvolutionalEmbeddingModel(len(args.classes))
+else:
+	print("Model type [{0}] not supported".format(args.embedding_type))
+	exit(1)
 if torch.cuda.is_available():
 	model = model.cuda()
 criterion = torch.nn.CrossEntropyLoss()

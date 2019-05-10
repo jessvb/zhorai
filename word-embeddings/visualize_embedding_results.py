@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from data_utils import generateData, getBertEmbedding
 import argparse
-from model import EmbeddingModel
+from model import EmbeddingModel, ConvolutionalEmbeddingModel
 import os
 from sklearn.decomposition import PCA
 import plotly.plotly as py
@@ -11,17 +11,17 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding')
-parser.add_argument('--corpus-file', type=str, default='ecosystem-sentences.txt', metavar='FILE', help='Name of corpus file')
-parser.add_argument('--eval-file', type=str, default='animal-sentences.txt', metavar='FILE', help='Name of evaluation file')
-parser.add_argument('--eval-words-file', type=str, default='animal-list.txt')
-parser.add_argument('--model-checkpoint', type=str, default='results/model_eco-0100.tar', metavar='CHECKPOINT', help='Name of model checkpoint file')
-parser.add_argument('--embedding-type', type=str, default='attention', metavar='TYPE', help='Type of model. accepted values are "attention" and "embedding". Defaults to attention.')
+parser.add_argument('--corpus-file', type=str, default='corpus_files/embedding_corpus.txt', metavar='FILE', help='Name of corpus file')
+parser.add_argument('--eval-file', type=str, default='corpus_files/embedding_animal_corpus_clean.txt', metavar='FILE', help='Name of evaluation file')
+parser.add_argument('--eval-words-file', type=str, default='corpus_files/animal-list.txt')
+parser.add_argument('--model-checkpoint', type=str, default='results/model_initial-0500.tar', metavar='CHECKPOINT', help='Name of model checkpoint file')
 parser.add_argument('--plot-tag', type=str, default='initial', metavar='TAG', help='tag of plotly plot')
 parser.add_argument('--ignore-plot', action='store_true', help='If set, ignores plotting')
 parser.add_argument('--verbose', action='store_true', help='Verbose data generation')
 parser.add_argument('--load-embedding-dict-from-file', action='store_true', help='If set, loads embedding dictionaries from file and saves updated dictionaries to file.')
 parser.add_argument('--save-embedding-dict', action='store_true', help='If set, loads embedding dictionaries from file and saves updated dictionaries to file.')
 parser.add_argument('--decomp-type', type=str, default='pca', help='Type of dimensionality reduction. Default is pca. Accepted values are "pca" and "tsne"')
+parser.add_argument('--embedding-type', type=str, default='linear', help='Model type: linear or conv')
 
 args = parser.parse_args()
 
@@ -70,7 +70,13 @@ if not args.ignore_plot:
 	py.plot(fig, filename='bert-embedding-initial')
 
 
-model = EmbeddingModel(len(args.classes), args.embedding_type)
+if args.embedding_type == 'linear':
+	model = EmbeddingModel(len(args.classes))
+elif args.embedding_type == 'conv':
+	model = ConvolutionalEmbeddingModel(len(args.classes))
+else:
+	print("Model type [{0}] not supported".format(args.embedding_type))
+	exit(1)
 
 eval_dataset, eval_labels, _, __, ___ = generateData(args.eval_file, eval_list, 1.0, args.load_embedding_dict_from_file, args.save_embedding_dict, args.verbose, 'embedding_dicts/animal_embedding_dict.pkl', False, args.classes)
 embedding_dict = {}
