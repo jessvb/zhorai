@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from data_utils import generateData, getBertEmbedding
 import argparse
-from model import EmbeddingModel
+from model import EmbeddingModel, ConvolutionalEmbeddingModel
 import os
 from sklearn.decomposition import PCA
 import plotly.plotly as py
@@ -22,6 +22,7 @@ parser.add_argument('--verbose', action='store_true', help='Verbose data generat
 parser.add_argument('--load-embedding-dict-from-file', action='store_true', help='If set, loads embedding dictionaries from file and saves updated dictionaries to file.')
 parser.add_argument('--save-embedding-dict', action='store_true', help='If set, loads embedding dictionaries from file and saves updated dictionaries to file.')
 parser.add_argument('--decomp-type', type=str, default='pca', help='Type of dimensionality reduction. Default is pca. Accepted values are "pca" and "tsne"')
+parser.add_argument('--embedding-type', type=str, default='linear', help='Model type: linear or conv')
 
 args = parser.parse_args()
 
@@ -70,7 +71,13 @@ if not args.ignore_plot:
 	py.plot(fig, filename='bert-embedding-initial')
 
 
-model = EmbeddingModel(len(args.classes), args.embedding_type)
+if args.embedding_type == 'linear':
+	model = EmbeddingModel(len(args.classes))
+elif args.embedding_type == 'conv':
+	model = ConvolutionalEmbeddingModel(len(args.classes))
+else:
+	print("Model type [{0}] not supported".format(args.embedding_type))
+	exit(1)
 
 eval_dataset, eval_labels, _, __, ___ = generateData(args.eval_file, eval_list, 1.0, args.load_embedding_dict_from_file, args.save_embedding_dict, args.verbose, 'embedding_dicts/animal_embedding_dict.pkl', False, args.classes)
 embedding_dict = {}
