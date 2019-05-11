@@ -12,7 +12,7 @@ execute `python train.py --help` to see command line options. Typical execution 
 ### Embedding Classification Model Evaluation
 `visualize_embedding_results`: This loads an existing model (trained using train.py) and outputs a CSV file containing word,x,y,prediction tuples. prediction is not output if `--igonre-plot` is set. word is the relevant word, x and y are the PCA reduced coordinates for the embedding, and prediction is the predicted ecosystem for the word based on the input sentence. 
 
-execute `python visualize_embedding_results.py --corpus-file embedding_corpus.txt --eval-file test-sentence.txt --eval-words-file animal-list.txt  ---ignore-plot --embedding-type linear --model-checkpoint results/model_initial-0050.tar`
+execute `python visualize_embedding_results.py --corpus-file corpus_files/embedding_corpus.txt --eval-file corpus_files/test-sentence.txt --eval-words-file corpus_files/animal-list.txt  --ignore-plot --embedding-type linear --model-checkpoint results/model_initial-0050.tar`
 
 execute `python visualize_embedding_results.py --help` to see details about commmand line options.
 

@@ -46,9 +46,9 @@ class ConvolutionalEmbeddingModel(nn.Module):
 	def __init__(self, num_classes):
 		super(ConvolutionalEmbeddingModel, self).__init__()
 		self.lstm1 = SimpleLSTM(768, 512, False)
-		self.lstm2 = SimpleLSTM(512, 384, True)
+		self.lstm2 = SimpleLSTM(512, 256, True)
 		self.conv1 = nn.Conv1d(1, 1, 129)
-		self.l2 = nn.Linear(256, num_classes)
+		self.l2 = nn.Linear(128, num_classes)
 
 	def forward(self, x):
 		x = self.embedding(x)
@@ -59,6 +59,6 @@ class ConvolutionalEmbeddingModel(nn.Module):
 		x = self.lstm1(x)
 		x = self.lstm2(x)
 		x = x.unsqueeze(0)
-		x = F.relu(self.conv1(x))
+		x = self.conv1(x)
 		x = x.squeeze(0)
 		return x
