@@ -9,14 +9,14 @@ import os
 
 parser = argparse.ArgumentParser(description='Zhorai Word Embedding k-fold cross validation')
 parser.add_argument('--epochs', type=int, default=25, metavar='EPOCHS', help='Epochs to train each embedding model')
-parser.add_argument('--corpus-file', type=str, default='embedding_corpus.txt', metavar='FILE', help='Name of corpus file') 
+parser.add_argument('--corpus-file', type=str, default='corpus_files/embedding_corpus.txt', metavar='FILE', help='Name of corpus file') 
 parser.add_argument('--results-dir', type=str, default='results_k_fold', metavar='DIR', help='Directory to store results')
 parser.add_argument('--checkpoint-prefix', type=str, default='model', metavar='PREFIX', help='Prefix of filename to save checkpoint')
 parser.add_argument('--save-frequency', type=int, default=5, metavar='N', help='Save model every N epochs')
 parser.add_argument('--display-frequency', type=int, default=50, metavar='N', help='Display model every N epochs')
 parser.add_argument('--learning-rate', type=float, default=0.001, metavar='lr', help='Learning rate for training')
 parser.add_argument('--save-embedding-dict', action='store_true', help='Save computed embeddings to file')
-parser.add_argument('--load-embedding-from-file', action='store_true', help='Load precomputed embeddings from file')
+parser.add_argument('--load-embedding-dict-from-file', action='store_true', help='Load precomputed embeddings from file')
 parser.add_argument('--model-checkpoint', type=str, default='', help='Model checkpoint to resume training')
 parser.add_argument('--k', type=int, default=10, metavar='NUM_FOLDS', help='Num folds for k-fold cross validation')
 parser.add_argument('--embedding-type', type=str, default='linear', help='Model type: linear or conv')
@@ -28,7 +28,7 @@ if torch.cuda.is_available():
 	torch.cuda.manual_seed(np.random.randint(1, 10000))
 	torch.backends.cudnn.enabled = True 
 args.classes = ["desert", "rainforest", "grassland", "tundra", "ocean"]
-train_set, train_labels, _, __, ___ = generateData(args.corpus_file, args.classes, 1.0, args.load_embedding_from_file, args.save_embedding_dict)
+train_set, train_labels, _, __, ___ = generateData(args.corpus_file, args.classes, 1.0, args.load_embedding_dict_from_file, args.save_embedding_dict)
 num_examples = int(np.ceil(len(train_set) / args.k))
 folds = [(train_set[i:i+num_examples], train_labels[i:i+num_examples]) for i in range(0, len(train_set), num_examples)]
 print('Performing K-Fold Cross Validation...')
