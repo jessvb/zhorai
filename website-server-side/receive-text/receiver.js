@@ -73,15 +73,20 @@ wsServer.on('request', function (request) {
                     console.log("parsing '" + jsonMsg.text + "'");
                     // Create file for parser to parse:
                     writeToFile(dataDir + semParserInputFilename, jsonMsg.text, function () {
-                        parseAndReturnToClient(jsonMsg, connection);
+                        parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
                     });
                 } else {
-                    // there's no text, so let's parse the memory
-                    console.log("parsing '" + dataDir + semParserInputFilename + "'");
-                    // first, write the memory to the data file, and then parse it
-                    writeToFile(dataDir + semParserInputFilename, allText, function () {
-                        parseAndReturnToClient(jsonMsg, connection);
-                    });
+                    // there's no text, so let's either parse the memory or parse the given filepath
+                    if (jsonMsg.filePath) {
+                        parseAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
+                    } else {
+                        // there's no filepath, so let's parse the memory
+                        console.log("parsing '" + dataDir + semParserInputFilename + "'");
+                        // first, write the memory to the data file, and then parse it
+                        writeToFile(dataDir + semParserInputFilename, allText, function () {
+                            parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
+                        });
+                    }
                 }
                 sendEnd = false;
             } else if (jsonMsg.command == 'getEmbeddingCoord') {
@@ -100,7 +105,7 @@ wsServer.on('request', function (request) {
                     // console.log("parsing '" + dataDir + semParserInputFilename + "'");
                     // // first, write the memory to the data file, and then parse it
                     // writeToFile(dataDir + semParserInputFilename, allText, function () {
-                    //     parseAndReturnToClient(jsonMsg, connection);
+                    //     parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
                     // });
                 }
                 sendEnd = false;
@@ -164,10 +169,10 @@ function readFileReturnToClient(filename, stage, connection) {
     });
 }
 
-function parseAndReturnToClient(jsonMsg, connection) {
+function parseAndReturnToClient(jsonMsg, inputPath, connection) {
     // Execute parsing bash script and return name with readFileReturnToClient
     var parseCmd = 'cd ' + semParserPath +
-        ' && sh parse.sh ' + semParserInputPath + ' ' + dataDirRelPath;
+        ' && sh parse.sh ' + inputPath + ' ' + dataDirRelPath;
 
     console.log(parseCmd);
     exec(parseCmd, function (error, stdout, stderr) {
