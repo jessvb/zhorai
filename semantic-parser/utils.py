@@ -1,9 +1,9 @@
 import sys
 import xml.etree.ElementTree as ET
 
-ecosystems = ["forest", "desert", "rainforest", "grassland", "tundra", "plain"]
+ecosystems = ["forest", "desert", "rainforest", "grassland", "tundra", "plain", "ocean"]
 animals = ["alligator","ant","antelope","baboon","bat","bear","beaver","bee","bird","butterfly","camel","cat","coyote","cheetah","chicken","chimpanzee","cow","crocodile","deer","dog","dolphin","donkey","duck","eagle","elephant","fish","firefly","flamingo","fly","fox","frog","gerbil","giraffe","goat","goldfish","gorilla","hamster","hippopotamus","horse","jellyfish","kangaroo","kitten","koala","ladybug","leopard","lion","llama","lobster","monkey","moose","octopus","ostrich","otter","owl","panda","panther","peacock","penguin","pig","puma","puppy","rabbit","rat","rhinoceros","scorpion","seal","seahorse","shark","sheep","sloth","snail","snake","starfish","spider","squirrel","swordfish","tiger","walrus","weasel","whale","turtle","wildcat","whale","wolf","zebra"]
-negatives = ["n't","not","no","little","small","few"]
+negatives = ["n't","not","no","little","small","few","low"]
 
 def isTopic(word):
     if word in ecosystems or word in animals:
