@@ -34,6 +34,14 @@ def getStructure(sentences):
         s.append(combine(subRoot, structureData))
     return s
 
+def isNegative(word):
+    if word in negatives:
+        return True
+    for n in negatives:
+        if n in word:
+            return True
+    return False
+    
 def extractWords(part):
     if type(part) is tuple:
         word = part[0]
@@ -42,7 +50,7 @@ def extractWords(part):
             if (word in ecosystems) or (word in animals):
                 return ('subject', word, pos)
             else:
-                if word in negatives:
+                if isNegative(word):
                     return ('neg', word, pos)
                 return ('pos', word, pos)
         return
