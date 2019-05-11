@@ -83,15 +83,92 @@ function switchButtonTo(toButton) {
     }
 }
 
+function afterRecording(recordedText) {
+    var saidKnownEco = false;
+    var ecoFilepath = '';
+    var zhoraiSpeech = '';
+    var phrases = [];
+
+    // test to see if what they said has an ecosystem in it... e.g., "I didn't quite catch that"
+    var knownEcosystems = ['ocean', 'desert', 'rainforest', 'grassland', 'tundra'];
+    var knownRegex = new RegExp(knownEcosystems.join("|"), "i");
+    saidKnownEco = knownRegex.test(recordedText);
+
+    // check if there was a known ecosystem stated
+    if (saidKnownEco) {
+        // get the particular ecosystem stated:
+        var eco = '';
+        if (recordedText.toLowerCase().includes('ocean')) {
+            eco = 'ocean';
+            ecoFilepath = oceanInputPath;
+        } else if (recordedText.toLowerCase().includes('desert')) {
+            eco = 'desert';
+            ecoFilepath = desertInputPath;
+        } else if (recordedText.toLowerCase().includes('rainforest')) {
+            eco = 'rainforest';
+            ecoFilepath = rainforestInputPath;
+        } else if (recordedText.toLowerCase().includes('grassland')) {
+            eco = 'grassland';
+            ecoFilepath = grasslandInputPath;
+        } else if (recordedText.toLowerCase().includes('tundra')) {
+            eco = 'tundra';
+            ecoFilepath = tundraInputPath;
+        } else {
+            console.error("A known ecosystem was stated, but was not found in the " +
+                "text... I'm very confused.");
+        }
+
+        // say, "I've heard about that ecosystem! Here's what I know about it:"
+        phrases = ["I've heard about " + eco + "s before! Here's what I know about them.",
+            "Oh yes, " + eco + "s are very interesting. Here's what I know.",
+            "Here's what I know about " + eco + "s. They're fascinating!"
+        ];
+    } else {
+        // check if there was an *unknown* ecosystem stated... e.g., "I don't know about that ecosystem yet"
+        var saidUnknownEco = false;
+        var unknownEcosystems = ['forest', 'taiga', 'wetland', 'freshwater', 'coral reef', 'savanna', 'mountain'];
+        var unknownRegex = new RegExp(unknownEcosystems.join("|"), "i");
+        saidUnknownEco = unknownRegex.test(recordedText);
+
+        if (saidUnknownEco) {
+            phrases = ["Hmmm, I haven't heard about that ecosystem before, but I know about " + chooseRandomPhrase(knownEcosystems) + "s.",
+                "I don't know about that ecosystem yet, but I've heard about " + chooseRandomPhrase(knownEcosystems) + "s."
+            ];
+        } else {
+            phrases = ["Sorry, what was that?", "Oh, pardon?", "I didn't quite understand that. Pardon?"];
+        }
+    }
+
+    zhoraiSpeech = chooseRandomPhrase(phrases);
+    showPurpleText(zhoraiSpeech);
+
+    if (saidKnownEco) {
+        speakText(zhoraiSpeech, null, null);
+
+        // delete the current mindmap to prepare for the next
+        deleteMindmap();
+
+        // send the particular ecosystem filepath to the server to parse,
+        parseMem('mindmap', ecoFilepath, 'parsing' + '_mod1');
+        // when done parsing, create the mind map (in mod1ReceiveData)
+
+    } else {
+        speakText(zhoraiSpeech, null,
+            function () {
+                switchButtonTo('micBtn');
+            });
+    }
+}
+
 function mod1ReceiveData(filedata) {
     // We're done parsing and reading the mindmap text file!
     // create the mindmap!
-    console.log('TODO DEL: creating mindmap! filedata:');
+    console.log('Creating mindmap! filedata:');
     filedata = filedata.replace(/'/g, '"');
     console.log(filedata);
     console.log(JSON.parse(filedata));
     clearMemory();
-    switchButtonTo('micAndTextFileBtn');
+    switchButtonTo('micBtn');
     createMindmap(JSON.parse(filedata));
 }
 
@@ -112,23 +189,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // infoLabel.innerHTML = 'Teach Zhorai about the earth by saying things like, "Deserts are hot and dry."';
 
     // Add click handlers
-    record_button.addEventListener("click", recordButtonClick);
-    textFileBtn.addEventListener('click', function () {
-        switchButtonTo('loading');
-        // say something about how we're going to display Zhorai's thoughts after parsing
-        var phrases = ['Thanks for teaching me about Earth! Let me think about all these new things and show you my thoughts.',
-            "Wow, Earth sounds really interesting! Let me think for a bit and then I'll show you my thoughts.",
-            "Interesting! Now I want to visit earth and see everything! I'll show you what I understand about Earth after I think for a little while."
-        ];
-        var toSpeak = chooseRandomPhrase(phrases);
-        showPurpleText(toSpeak);
-        speakText(toSpeak);
-
-        // delete the current mindmap to prepare for the next
-        deleteMindmap();
-
-        // send a command to the server to parse what's in the memory,
-        parseMem('mindmap', null, 'parsing' + '_mod1');
-        // when done parsing, create the mind map (in mod1ReceiveData)
+    recordButton.addEventListener("click", function () {
+        recordButtonClick({
+            callback: afterRecording,
+            onClickStop: switchButtonTo,
+            onClickStopParam: 'loading'
+        });
     });
 });
