@@ -107,7 +107,7 @@ function deleteMindmap() {
 	svg.remove();
 }
 
-// function createScatterplot(plot_data) {
+function createScatterplot(plot_data) {
 
 	//setup settings for scatterplot
 	var canvas_width = 500;
@@ -219,32 +219,6 @@ function deleteMindmap() {
       		clicked = ""
       	}
       });
-
-     
-
-  // legend.append("path")
-  //   .style("fill", function(d) { return color(d); })
-    	
-	 //    .attr("transform", function(d, i) { 
-  //   		return "translate(" + (width) + "," + 1 + ")";
-  // 		})
-  // 		.on("click",function(d){
-  //  d3.selectAll(".symbol").style("opacity",1)
-  //  print("clicked")
-   
-  //  if (clicked !== d){
-  //    d3.selectAll(".symbol")
-  //      .filter(function(e){
-  //      return e[3] !== d;
-  //      print(e[3])
-  //    })
-  //      .style("opacity",0.1)
-  //    clicked = d
-  //  }
-  //   else{
-  //     clicked = ""
-  //   }
-  // });
  
   legend.append("text")
       .attr("x", width - 30)
@@ -274,4 +248,4 @@ function deleteMindmap() {
         .attr("transform", "translate(" + padding + ",0)")
         .call(yAxis);
 
-// }
+}
