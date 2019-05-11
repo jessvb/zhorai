@@ -1,13 +1,15 @@
 function createMindmap(graph) {
 
 	//Building the mindmap functions
+	graph = {"nodes": [{"id": "desert", "group": 3}, {"id": "lot", "group": 1}, {"id": "sand", "group": 1}, {"id": "very", "group": 1}, {"id": "dry", "group": 1}, {"id": "cactus", "group": 1}, {"id": "hot", "group": 1}, {"id": "sunny", "group": 1}, {"id": "much", "group": 1}, {"id": "water", "group": 1}, {"id": "people", "group": 2}, {"id": "flash", "group": 1}, {"id": "flood", "group": 1}, {"id": "dune", "group": 1}, {"id": "sandy", "group": 1}, {"id": "many", "group": 1}, {"id": "plant", "group": 1}, {"id": "vegetation", "group": 2}, {"id": "precipitation", "group": 2}, {"id": "also", "group": 1}, {"id": "dryland", "group": 1}, {"id": "harsh", "group": 1}, {"id": "environment", "group": 1}, {"id": "hard", "group": 1}, {"id": "animal", "group": 1}, {"id": "rare", "group": 1}, {"id": "way", "group": 1}, {"id": "cool", "group": 1}, {"id": "nocturnal", "group": 1}, {"id": "often", "group": 1}, {"id": "night", "group": 1}, {"id": "store", "group": 1}, {"id": "shrub", "group": 1}, {"id": "sun", "group": 1}, {"id": "cold", "group": 1}, {"id": "africa", "group": 1}], "links": [{"source": "lot", "target": "desert", "value": 3}, {"source": "sand", "target": "desert", "value": 2}, {"source": "very", "target": "desert", "value": 3}, {"source": "dry", "target": "desert", "value": 1}, {"source": "cactus", "target": "desert", "value": 2}, {"source": "hot", "target": "desert", "value": 3}, {"source": "sunny", "target": "desert", "value": 1}, {"source": "much", "target": "desert", "value": 1}, {"source": "water", "target": "desert", "value": 4}, {"source": "people", "target": "desert", "value": 1}, {"source": "flash", "target": "desert", "value": 1}, {"source": "flood", "target": "desert", "value": 1}, {"source": "dune", "target": "desert", "value": 1}, {"source": "sandy", "target": "desert", "value": 1}, {"source": "many", "target": "desert", "value": 2}, {"source": "plant", "target": "desert", "value": 2}, {"source": "vegetation", "target": "desert", "value": 1}, {"source": "precipitation", "target": "desert", "value": 1}, {"source": "also", "target": "desert", "value": 1}, {"source": "dryland", "target": "desert", "value": 1}, {"source": "harsh", "target": "desert", "value": 1}, {"source": "environment", "target": "desert", "value": 1}, {"source": "hard", "target": "desert", "value": 2}, {"source": "animal", "target": "desert", "value": 5}, {"source": "rare", "target": "desert", "value": 1}, {"source": "way", "target": "desert", "value": 1}, {"source": "cool", "target": "desert", "value": 1}, {"source": "nocturnal", "target": "desert", "value": 1}, {"source": "often", "target": "desert", "value": 1}, {"source": "night", "target": "desert", "value": 2}, {"source": "store", "target": "desert", "value": 1}, {"source": "shrub", "target": "desert", "value": 1}, {"source": "sun", "target": "desert", "value": 1}, {"source": "cold", "target": "desert", "value": 1}, {"source": "africa", "target": "desert", "value": 1}]}
+
 
 	//create svg to put the mindmap
 	var svg = d3.select("svg"),
 	    width = +svg.attr("width"),
 	    height = +svg.attr("height");
 
-	var color = d3.scaleOrdinal(d3.schemeCategory20);
+	var color = d3.scaleOrdinal().range(["#23B9BD", "#2D3B9F", "#FF5733"]); //purple, blue, red
 
 	var nd;
 	for (var i=0; i<graph.nodes.length; i++) {
@@ -41,11 +43,12 @@ function createMindmap(graph) {
 	    .force("center", d3.forceCenter(width / 2, height / 2));
 
 	var link = svg.append("g")
-	    .attr("class", "link")
+	  .attr("class", "link")
 	  .selectAll("line")
 	  .data(graph.links)
 	  .enter().append("line")
-	    .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+	  .attr("stroke", "black")
+	  .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
 	var text = svg.append("g")
 	    .attr("class", "labels")
@@ -56,7 +59,8 @@ function createMindmap(graph) {
 	    .attr("text-anchor", "middle")
 	    .text(function(d) {return d.id})
 	    .attr("fill", "white")
-	    .style("font-size", "20px");
+	    .style("font-size", "20px")
+	    .style("font_family", "monospace");
 
 
 	simulation
@@ -104,8 +108,10 @@ function createMindmap(graph) {
 
 function deleteMindmap() {
 	var svg = d3.select("svg");
-	svg.remove();
+	svg.selectAll("*").remove();
 }
+
+
 
 function createScatterplot(plot_data) {
 
