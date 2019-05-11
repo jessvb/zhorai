@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
         speakText(toSpeak);
 
         // send a command to the server to parse what's in the memory,
-        parseMem('mindmap', 'parsing' + '_mod1');
+        parseMem('mindmap', null, 'parsing' + '_mod1');
         // when done parsing, create the mind map (in mod2ReceiveData)
     });
 });
