@@ -80,7 +80,8 @@ function mod2ReceiveData(filedata) {
     // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
     // camels,1.315521478652954,0.0048450627364218235,desert\n"
 
-    // Instead, format it so that it's an array of arrays of strings/floats:
+    // Instead, we need to format it so that it's an array of arrays of 
+    // strings/floats, like this:
     // [["camel", 1.1, 2.7, "desert"], ["tundra", 3.5, 0.2, "tundra"]]
 
     // get rid of last newline

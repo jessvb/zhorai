@@ -114,7 +114,7 @@ function deleteMindmap() {
 	var canvas_height = 500;
 	var padding = 25;
 
-	var plot_data = [["fish", -1, 2, "ocean"], ["tiger", 5, 6, "forest"], ["shark", 1, 1, "ocean"]];
+	// var plot_data = [["fish", 1, 2, "ocean"], ["tiger", 5, 6, "forest"]];
 
 	var color = d3.scaleOrdinal(d3.schemeCategory10);
 	var symbols = d3.scaleOrdinal(d3.symbols);

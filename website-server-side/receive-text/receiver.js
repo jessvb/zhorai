@@ -142,9 +142,9 @@ function returnTextToClient(text, stage, connection) {
     }));
     connection.sendUTF(
         JSON.stringify({
-        'filedata': text,
-        'stage': stage
-    }));
+            'filedata': text,
+            'stage': stage
+        }));
     sendDone(connection);
 }
 
@@ -188,9 +188,9 @@ function getCoordsAndReturnToClient(jsonMsg, connection) {
     // Execute embedder bash script and return coords with readFileReturnToClient
     console.log('Getting coords and return to client...');
     var embedCmd = 'cd ' + embedPath +
-        ' && python3 visualize_embedding_results.py --corpus-file embedding_corpus.txt --eval-file ' +
-        embedInputPath + ' --eval-words-file animal-list.txt --embedding-type embedding ' +
-        '--ignore-plot --model-checkpoint results/model_initial-0050.tar';
+        ' && python3 visualize_embedding_results.py --corpus-file corpus_files/embedding_corpus.txt --eval-file ' +
+        embedInputPath + ' --eval-words-file corpus_files/animal-list.txt --ignore-plot --embedding-type linear ' +
+        '--model-checkpoint results/model_initial-0050.tar';
     console.log(embedCmd);
 
     exec(embedCmd, function (error, stdout, stderr) {
