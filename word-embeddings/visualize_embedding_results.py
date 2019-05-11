@@ -110,6 +110,8 @@ accuracies = []
 total = 0.0
 correct = 0.0
 for x in args.classes + eval_list:
+	if x not in embedding_dict:
+		continue
 	predictions = embedding_dict[x][1]
 	prediction = max(set(predictions), key=predictions.count)
 	embedding = torch.zeros(embedding_dict[x][0][0].shape)
