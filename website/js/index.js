@@ -114,9 +114,13 @@ function deleteMindmap() {
 	var canvas_height = 500;
 	var padding = 25;
 
-	var plot_data = [["fish", 1, 2, "ocean"], ["tiger", 5, 6, "ocean"]];
+	var plot_data = [["fish", -1, 2, "ocean"], ["tiger", 5, 6, "forest"], ["shark", 1, 1, "ocean"]];
 
 	var color = d3.scaleOrdinal(d3.schemeCategory10);
+	var symbols = d3.scaleOrdinal(d3.symbols);
+
+	// creates a generator for symbols
+	var symbol = d3.symbol().size(100);  
 
 	//create SVG element
 	var svg = d3.select("svg")  // This is where we put our plot
@@ -124,15 +128,15 @@ function deleteMindmap() {
 	    height = +svg.attr("height");
 
     var xScale = d3.scaleLinear()
-                .domain([0, d3.max(plot_data, function(d) {
-                    return d[1];  // get the input domain as first column of array
+                .domain([d3.min(plot_data, function(d) { return d[1] - 2; }), d3.max(plot_data, function(d) {
+                    return d[1] + 2;  // get the input domain as first column of array
                 })])
                 .range([padding, canvas_width - padding * 2])  // set the output range
                 .nice();  // Make decimals round up nicely
 
 	var yScale = d3.scaleLinear()
-			    .domain([0, d3.max(plot_data, function(d) {
-			        return d[2];  // gets the input domain as the second column of array
+			    .domain([d3.min(plot_data, function(d) { return d[2] - 2; }), d3.max(plot_data, function(d) {
+			        return d[2]+2;  // gets the input domain as the second column of array
 			    })])
 			    .range([canvas_height - padding, padding])  // set the output range
 			    .nice();  // Make decimals round up nicely
@@ -176,6 +180,79 @@ function deleteMindmap() {
         .attr("font_family", "sans-serif")  // Font type
         .attr("font-size", "18px")  // Font size
         .attr("fill", "black");   // Font color
+
+    svg.selectAll(".symbol")
+    .data(plot_data)
+ 	.enter().append("path")
+    .attr("class", "symbol")
+    .attr("d", function(d, i) { return symbol.type(symbols(d[3]))(); })
+    .style("fill", function(d) { return color(d[3]); })
+    .attr("transform", function(d) { 
+      return "translate(" + xScale(d[1]) + "," + yScale(d[2]) +")"; 
+    });
+  
+  var clicked = ""
+
+    var legend = svg.selectAll(".legend")
+	    .data(color.domain())
+	  	.enter().append("g")
+	    .attr("class", "legend")
+	    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+	    legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", function(d) { return color(d) })
+      .on("click", function(d) {
+      	console.log("hi")
+      	d3.selectAll(".symbol").style("opacity", 1)
+      	if (clicked !== d) {
+      		d3.selectAll(".symbol")
+      			.filter(function(e) {
+      				return e[3] !== d;
+      				console.log(e[3])
+      			})
+      			.style("opacity", 0.1)
+      		clicked = d
+      	} else {
+      		clicked = ""
+      	}
+      });
+
+     
+
+  // legend.append("path")
+  //   .style("fill", function(d) { return color(d); })
+    	
+	 //    .attr("transform", function(d, i) { 
+  //   		return "translate(" + (width) + "," + 1 + ")";
+  // 		})
+  // 		.on("click",function(d){
+  //  d3.selectAll(".symbol").style("opacity",1)
+  //  print("clicked")
+   
+  //  if (clicked !== d){
+  //    d3.selectAll(".symbol")
+  //      .filter(function(e){
+  //      return e[3] !== d;
+  //      print(e[3])
+  //    })
+  //      .style("opacity",0.1)
+  //    clicked = d
+  //  }
+  //   else{
+  //     clicked = ""
+  //   }
+  // });
+ 
+  legend.append("text")
+      .attr("x", width - 30)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
 
     // Define X axis and attach to graph
     var xAxis = d3.axisBottom()  // Create an x axis
