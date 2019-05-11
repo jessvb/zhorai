@@ -7,6 +7,15 @@ var loadingGif;
 var currBtnIsMic = true;
 var mindmapPath = "../../website-server-side/receive-text/data/mindmap.txt";
 
+// File paths for mindmap creation
+var dataDir = 'data/';
+var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
+var desertInputPath = dataDirRelPath + 'prior_knowledge/desertInfo.txt'; // relative to semparserfilepath
+var rainforestInputPath = dataDirRelPath + 'prior_knowledge/rainforestInfo.txt'; // relative to semparserfilepath
+var grasslandInputPath = dataDirRelPath + 'prior_knowledge/grasslandInfo.txt'; // relative to semparserfilepath
+var tundraInputPath = dataDirRelPath + 'prior_knowledge/tundraInfo.txt'; // relative to semparserfilepath
+var oceanInputPath = dataDirRelPath + 'prior_knowledge/oceanInfo.txt'; // relative to semparserfilepath
+
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
     zhoraiSpeechBox.innerHTML = '<p style="color:' + zhoraiTextColour + '">' + text + '</p>';
@@ -115,8 +124,11 @@ document.addEventListener('DOMContentLoaded', function () {
         showPurpleText(toSpeak);
         speakText(toSpeak);
 
+        // delete the current mindmap to prepare for the next
+        deleteMindmap();
+
         // send a command to the server to parse what's in the memory,
-        parseMem('mindmap', 'parsing' + '_mod1');
+        parseMem('mindmap', null, 'parsing' + '_mod1');
         // when done parsing, create the mind map (in mod1ReceiveData)
     });
 });
