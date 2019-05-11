@@ -7,6 +7,15 @@ var loadingGif;
 var currBtnIsMic = true;
 var mindmapPath = "../../website-server-side/receive-text/data/mindmap.txt";
 
+// File paths for mindmap creation
+var dataDir = 'data/';
+var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
+var desertInputPath = dataDirRelPath + 'prior_knowledge/desertInfo.txt'; // relative to semparserfilepath
+var rainforestInputPath = dataDirRelPath + 'prior_knowledge/rainforestInfo.txt'; // relative to semparserfilepath
+var grasslandInputPath = dataDirRelPath + 'prior_knowledge/grasslandInfo.txt'; // relative to semparserfilepath
+var tundraInputPath = dataDirRelPath + 'prior_knowledge/tundraInfo.txt'; // relative to semparserfilepath
+var oceanInputPath = dataDirRelPath + 'prior_knowledge/oceanInfo.txt'; // relative to semparserfilepath
+
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
     zhoraiSpeechBox.innerHTML = '<p style="color:' + zhoraiTextColour + '">' + text + '</p>';
@@ -75,41 +84,15 @@ function switchButtonTo(toButton) {
 }
 
 function mod2ReceiveData(filedata) {
-    // We're done getting the embedding data!
-    // Currently, it's like this though:
-    // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
-    // camels,1.315521478652954,0.0048450627364218235,desert\n"
-
-    // Instead, we need to format it so that it's an array of arrays of 
-    // strings/floats, like this:
-    // [["camel", 1.1, 2.7, "desert"], ["tundra", 3.5, 0.2, "tundra"]]
-
-    // get rid of last newline
-    if (filedata.charAt(filedata.length - 1) == '\n') {
-        filedata = filedata.substring(0, filedata.length - 1);
-    }
-    // split by newlines
-    filedata = filedata.split(/\r?\n/);
-    // split by commas, and change the two inner strings to be floats
-    for (i = 0; i < filedata.length; i++) {
-        filedata[i] = filedata[i].split(',');
-        for (j = 0; j < filedata[i].length; j++) {
-            if (!isNaN(parseFloat(filedata[i][j]))) {
-                filedata[i][j] = parseFloat(filedata[i][j]);
-            }
-        }
-    }
-
-    console.log('Creating vector graph! filedata:');
+    // We're done parsing and reading the mindmap text file!
+    // create the mindmap!
+    console.log('Creating mindmap! filedata:');
+    filedata = filedata.replace(/'/g, '"');
     console.log(filedata);
-
-    // Now that filedata is formatted correctly, create the vector graph!
-    console.log("TODO MAKE VECTOR GRAPH!");
-    createScatterplot(filedata);
-    // console.log(JSON.parse(filedata));
-    // clearMemory();
-    // switchButtonTo('micAndTextFileBtn');
-    // createMindmap(JSON.parse(filedata));
+    console.log(JSON.parse(filedata));
+    clearMemory();
+    switchButtonTo('micAndTextFileBtn');
+    createMindmap(JSON.parse(filedata));
 }
 
 /* -------------- Once the page has loaded -------------- */
@@ -141,8 +124,11 @@ document.addEventListener('DOMContentLoaded', function () {
         showPurpleText(toSpeak);
         speakText(toSpeak);
 
+        // delete the current mindmap to prepare for the next
+        deleteMindmap();
+
         // send a command to the server to parse what's in the memory,
         parseMem('mindmap', null, 'parsing' + '_mod1');
-        // when done parsing, create the mind map (in mod2ReceiveData)
+        // when done parsing, create the mind map (in mod1ReceiveData)
     });
 });
