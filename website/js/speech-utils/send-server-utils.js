@@ -85,17 +85,31 @@ function parseText(recordedText, typeOutput, stage) {
 
 /**
  * Parses given text and returns it with a call to onReceive.
- * @param {*} recordedText : the text you want parsed
+ * e.g., parseMem('mindmap', '../website-server-side/receive-text/prior_knowledge/desertInfo.txt', 'parsing_mod1')
+ * or,   parseMem('mindmap', null, 'parsing' + '_mod1');
+ * 
  * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
+ * @param {*} filePath : null to parse the memory or if a pre-defined file, the 
+ * path of the file to parse, relative to the semantic parser
  * @param {*} stage : the current zhorai stage you're in, if applicable. 
  * (This informs 'onReceive' what to do)
+ * 
  */
-function parseMem(typeOutput, stage) {
-    sendJson({
-        'command': 'parse',
-        'typeOutput': typeOutput, // e.g., 'topic', 'name', 'mindmap', etc.
-        'stage': stage
-    });
+function parseMem(typeOutput, filePath, stage) {
+    if (filePath) {
+        sendJson({
+            'command': 'parse',
+            'filePath': filePath,
+            'typeOutput': typeOutput, // e.g., 'topic', 'name', 'mindmap', etc.
+            'stage': stage
+        });
+    } else {
+        sendJson({
+            'command': 'parse',
+            'typeOutput': typeOutput, // e.g., 'topic', 'name', 'mindmap', etc.
+            'stage': stage
+        });
+    }
 }
 
 /**
@@ -117,4 +131,3 @@ function getEmbeddingCoord(animalSentences, stage) {
         'stage': stage
     });
 }
-   
