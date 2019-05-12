@@ -6,27 +6,28 @@ var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
 var mindmapPath = "../../website-server-side/receive-text/data/mindmap.txt";
-var knownAnimals = ['bees',
+var knownAnimals = [
+    'bees',
     'birds',
-    'butterflies',
-    'leopards',
+    // 'butterflies',
+    // 'leopards',
     'cows',
-    'owls',
-    'fireflies',
+    // 'owls',
+    // 'fireflies',
     'dolphins',
     'fish',
-    'lobsters',
-    'starfish',
-    'swordfish',
+    // 'lobsters',
+    // 'starfish',
+    // 'swordfish',
     'whales',
     'polarbears',
-    'arcticfoxes',
-    'yaks',
+    // 'arcticfoxes',
+    // 'yaks',
     'reindeer',
     'camels',
-    'scorpions',
-    'elephants',
-    'giraffes',
+    // 'scorpions',
+    // 'elephants',
+    // 'giraffes',
     'lions'
 ];
 

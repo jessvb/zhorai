@@ -143,8 +143,8 @@ function startStage() {
             // I'd love to learn more."
             break;
         case 'zFinish':
-            infoLabel.innerHTML = 'Zhorai would like to learn more about your planet!';
-            // change button to module 1 button: Teach Zhorai about earth
+            infoLabel.innerHTML = 'Find out what Zhorai knows about your planet!';
+            // change button to module 1 button: Ask Zhorai about ecosystems
             break;
         default:
             console.error("Unknown stage for conversation with Zhorai: " + stages[currStage]);
@@ -296,7 +296,8 @@ document.addEventListener('DOMContentLoaded', function () {
     startStage();
 
     // Add click handlers
-    zhoraiSpeakBtn.addEventListener("click", startStage);
+    // TODO: remove the zhoraiSpeakBtn
+    // zhoraiSpeakBtn.addEventListener("click", startStage);
     recordButton.addEventListener("click", function () {
         recordButtonClick({
             callback: afterRecording,
