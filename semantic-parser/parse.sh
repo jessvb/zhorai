@@ -18,4 +18,9 @@ python ccg2lambda/en/candc2transccg.py $outpath/sentences.candc.xml > $outpath/s
 #create visualization that can be shown in website
 #python ccg2lambda/scripts/visualize.py $outpath/sentences.xml > $outpath/sentences.html
 #build dictionary output for word embedder
-python parserOutput.py $outpath
+if python parserOutput.py $outpath 2>&1 >/dev/null;
+then
+    echo 'OK'
+else
+    echo 'ERROR: BAD ENGLISH'
+fi
