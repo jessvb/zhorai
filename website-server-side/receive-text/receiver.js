@@ -191,8 +191,14 @@ function parseAndReturnToClient(jsonMsg, inputPath, connection) {
         }
         console.log('Finished parsing and wrote to file: ' + dataDir);
 
-        // return the parsed information to client:
-        readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
+        // Check if a sentence caused the parser to hang:
+        if (stdout.includes("BAD ENGLISH")) {
+            // return the error to the client
+            returnTextToClient(stdout, jsonMsg.stage, connection);
+        } else {
+            // return the parsed information to client:
+            readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
+        }
     });
 }
 
