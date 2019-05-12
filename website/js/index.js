@@ -5,7 +5,7 @@ function createMindmap(graph) {
 
 
 	//create svg to put the mindmap
-	var svg = d3.select("svg"),
+	var svg = d3.select("#mindmap"),
 	    width = +svg.attr("width"),
 	    height = +svg.attr("height");
 
@@ -129,7 +129,7 @@ function createScatterplot(plot_data) {
 	var symbol = d3.symbol().size(100);  
 
 	//create SVG element
-	var svg = d3.select("svg")  // This is where we put our plot
+	var svg = d3.select("#scatterplot")  // This is where we put our plot
         width = +svg.attr("width"),
 	    height = +svg.attr("height");
 
