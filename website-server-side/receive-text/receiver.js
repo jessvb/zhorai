@@ -17,6 +17,9 @@ var embedPath = '../../word-embeddings/';
 var embedInputPath = dataDirRelPath + embedInputFilename; // relative to embedfilepath
 var allText = '';
 
+var animalDir = 'animals/';
+var animalDirRelPath = dataDirRelPath + animalDir;
+
 /* to execute bash scripts */
 var exec = require('child_process').exec;
 
