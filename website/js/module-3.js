@@ -36,6 +36,14 @@ var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
 var animalsDir = 'animals/';
 var animalsRelPath = dataDirRelPath + animalsDir;
 
+var justEcosGraph = [
+    ["desert", -0.9816911220550537, 0.8623313903808594, "desert"],
+    ["rainforest", -0.6243925094604492, -0.26911765336990356, "rainforest"],
+    ["grassland", 0.5262490510940552, 1.3611185550689697, "grassland"],
+    ["tundra", 1.4992122650146484, 0.5913272500038147, "tundra"],
+    ["ocean", 0.5613870620727539, -1.175655722618103, "ocean"],
+];
+
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
     zhoraiSpeechBox.innerHTML = '<p style="color:' + zhoraiTextColour + '">' + text + '</p>';
@@ -109,7 +117,7 @@ function getAnimal(text) {
     for (var i = 0; i < knownAnimals.length; i++) {
         allAnimals.push(convertAnimalToSingular(knownAnimals[i]));
     }
-    allAnimals.concat(knownAnimals);
+    allAnimals = allAnimals.concat(knownAnimals);
 
     // return the animal 
     // --> with no whitespace (e.g., polar bear = polarbear)
@@ -153,25 +161,35 @@ function convertAnimalToSingular(animal) {
 }
 
 function convertAnimalToPlural(animal) {
-    if (animal == 'butterfly') {
-        animal = 'butterflies';
-    } else if (animal == 'firefly') {
-        animal = 'fireflies';
-    } else if (animal.includes('fish')) {
-        animal = animal; // stays the same ;)
-    } else if (animal.includes('fox')) {
-        animal = 'arcticfoxes';
-    } else if (animal == 'reindeer') {
-        animal = animal; // stays the same :)
+    if (animal) {
+        if (animal == 'butterfly') {
+            animal = 'butterflies';
+        } else if (animal == 'firefly') {
+            animal = 'fireflies';
+        } else if (animal.includes('fish')) {
+            animal = animal; // stays the same ;)
+        } else if (animal.includes('fox')) {
+            animal = 'arcticfoxes';
+        } else if (animal == 'reindeer') {
+            animal = animal; // stays the same :)
+        } else {
+            // assuming we can just add an 's'
+            animal = animal + 's';
+        }
     } else {
-        // assuming we can just add an 's'
-        animal = animal + 's';
+        animal = null;
     }
     return animal;
 }
 
 function isAnimalPlural(animal) {
-    return knownAnimals.includes(animal);
+    if (animal) {
+        isPlural = knownAnimals.includes(animal);
+    } else {
+        isPlural = false;
+    }
+
+    return isPlural;
 }
 
 function afterRecording(recordedText) {
@@ -189,10 +207,9 @@ function afterRecording(recordedText) {
 
     // if there was a known animal stated...
     if (saidAnimal) {
-        // say, "Based on what I know about Earth, here's where I would guess the animal comes from."
-        phrases = ["Based on what I know about Earth, here's where I would guess " + animal + " come from...",
-            "I would guess " + animal + " live in this ecosystem...",
-            "I think " + animal + " are from this ecosystem based on what I've been taught..."
+        phrases = ["Oh yes! Let me think about " + animal + " for a second.",
+            "I'll think about " + animal + " for a bit and let you know!",
+            "Oh yeah, " + animal + " sound interesting. Let me think about where they might be from."
         ];
     } else {
         phrases = ["Sorry, what was that?", "Oh, pardon?", "I didn't quite understand that. Pardon?"];
@@ -207,7 +224,7 @@ function afterRecording(recordedText) {
         // delete the current mindmap to prepare for the next
         deleteMindmap();
 
-        // send the particular animal filepath to the server to parse, TODO: uncomment :D
+        // send the particular animal filepath to the server to parse,
         parseMem('mindmap', animalsRelPath + animal + '.txt', 'mindmapping' + '_mod3');
         // when done parsing, create the mind map (in mod3ReceiveData)
 
@@ -226,49 +243,72 @@ function mod3ReceiveData(filedata, stage) {
     if (stage.includes('mindmap')) {
         // We're done parsing and reading the mindmap text file!
         // create the mindmap!
-        console.log('Creating mindmap! filedata:');
+        console.log('Creating mindmap!');
         filedata = filedata.replace(/'/g, '"');
-        console.log(filedata);
-        console.log(JSON.parse(filedata));
 
         switchButtonTo('micBtn');
         createMindmap(JSON.parse(filedata));
     } else if (stage.includes('embed')) {
-        // We're done getting the embedding data!
-        // Currently, it's like this though:
-        // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
-        // camels,1.315521478652954,0.0048450627364218235,desert\n"
+        var phrases = [];
+        if (!(filedata.code && filedata.code == 1)) {
+            // We're done getting the embedding data!
+            // Currently, it's like this though:
+            // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
+            // camels,1.315521478652954,0.0048450627364218235,desert\n"
 
-        // Instead, we need to format it so that it's an array of arrays of 
-        // strings/floats, like this:
-        // [["camel", 1.1, 2.7, "desert"], ["tundra", 3.5, 0.2, "tundra"]]
+            // Instead, we need to format it so that it's an array of arrays of 
+            // strings/floats, like this:
+            // [["camel", 1.1, 2.7, "desert"], ["tundra", 3.5, 0.2, "tundra"]]
 
-        // get rid of last newline
-        if (filedata.charAt(filedata.length - 1) == '\n') {
-            filedata = filedata.substring(0, filedata.length - 1);
-        }
-        // split by newlines
-        filedata = filedata.split(/\r?\n/);
-        // split by commas, and change the two inner strings to be floats
-        for (i = 0; i < filedata.length; i++) {
-            filedata[i] = filedata[i].split(',');
-            for (j = 0; j < filedata[i].length; j++) {
-                if (!isNaN(parseFloat(filedata[i][j]))) {
-                    filedata[i][j] = parseFloat(filedata[i][j]);
+            // get rid of last newline
+            if (filedata.charAt(filedata.length - 1) == '\n') {
+                filedata = filedata.substring(0, filedata.length - 1);
+            }
+            // split by newlines
+            filedata = filedata.split(/\r?\n/);
+            // split by commas, and change the two inner strings to be floats
+            for (i = 0; i < filedata.length; i++) {
+                filedata[i] = filedata[i].split(',');
+                for (j = 0; j < filedata[i].length; j++) {
+                    if (!isNaN(parseFloat(filedata[i][j]))) {
+                        filedata[i][j] = parseFloat(filedata[i][j]);
+                    }
                 }
             }
+
+            console.log('Creating vector graph! filedata:');
+            console.log(filedata);
+
+            // Now that filedata is formatted correctly, create the vector graph!
+            createScatterplot(filedata);
+
+            // Get the animal / eco from the data
+            var lastXYData = filedata[filedata.length - 1];
+            var animal = lastXYData[0];
+            var eco = lastXYData[lastXYData.length - 1];
+            // say, "Based on what I know about Earth, here's where I would guess the animal comes from."
+            phrases = ["Based on what I know about Earth, I would guess " + animal + " live in " + eco + "s.",
+                "I would guess " + animal + " live in " + eco + "s from what I know.",
+                "I think " + animal + " are from " + eco + "s based on what you told me."
+            ];
+        } else {
+            console.log('Error creating vector graph. May be due to not talking about ' +
+                'specific animals yet. Command: ' + filedata.cmd);
+
+            // let's assume this is a filenotfounderror and just display the rest
+            // of the map. (NOTE: this is a HARD-CODED plot. Need to update if embedder
+            // is updated.)
+            createScatterplot(justEcosGraph);
+
+            phrases = ["I don't know enough about that animal to guess where it's from.",
+                "I haven't heard enough about that animal to say where it lives.",
+                "Hmm, I'm not sure! I haven't heard much about that animal."
+            ];
+
         }
-
-        console.log('Creating vector graph! filedata:');
-        console.log(filedata);
-
-        // Now that filedata is formatted correctly, create the vector graph!
-        console.log("TODO MAKE VECTOR GRAPH!");
-        createScatterplot(filedata);
-        // console.log(JSON.parse(filedata));
-        // clearMemory();
-        // switchButtonTo('micAndTextFileBtn');
-        // createMindmap(JSON.parse(filedata));
+        var zhoraiSpeech = chooseRandomPhrase(phrases);
+        showPurpleText(zhoraiSpeech);
+        speakText(zhoraiSpeech);
     } else {
         console.error("Unknown stage in mod3receivedata: " + stage);
     }
@@ -287,9 +327,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // remove any memory from previous activites:
     clearMemory("input.txt");
 
-    // insert prompt
-    // infoLabel.innerHTML = 'Teach Zhorai about the earth by saying things like, "Deserts are hot and dry."';
-
     // Add click handlers
     recordButton.addEventListener("click", function () {
         recordButtonClick({
@@ -298,19 +335,4 @@ document.addEventListener('DOMContentLoaded', function () {
             onClickStopParam: 'loading'
         });
     });
-    // textFileBtn.addEventListener('click', function () {
-    //     switchButtonTo('loading');
-    //     // say something about how we're going to display Zhorai's thoughts after parsing
-    //     var phrases = ['Thanks for teaching me about Earth! Let me think about all these new things and show you my thoughts.',
-    //         "Wow, Earth sounds really interesting! Let me think for a bit and then I'll show you my thoughts.",
-    //         "Interesting! Now I want to visit earth and see everything! I'll show you what I understand about Earth after I think for a little while."
-    //     ];
-    //     var toSpeak = chooseRandomPhrase(phrases);
-    //     showPurpleText(toSpeak);
-    //     speakText(toSpeak);
-
-    //     // send a command to the server to parse what's in the memory,
-    //     parseMem('mindmap', null, 'parsing' + '_mod3');
-    //     // when done parsing, create the mind map (in mod3ReceiveData)
-    // });
 });
