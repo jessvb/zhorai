@@ -154,3 +154,12 @@ function getEmbeddingCoordFromFile(filePath, stage) {
         'stage': stage
     });
 }
+
+/**
+ * Sends a signal to the reciever to delete all of the files with sentences about animals.
+ */
+function clearAnimalFiles() {
+    sendJson({
+        'command': 'clearAnimalFiles'
+    });
+}
