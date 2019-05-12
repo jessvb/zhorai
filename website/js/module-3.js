@@ -30,6 +30,12 @@ var knownAnimals = ['bees',
     'lions'
 ];
 
+// File paths for mindmap creation
+var dataDir = 'data/';
+var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
+var animalsDir = 'animals/';
+var animalsMindmapPath = dataDirRelPath + animalsDir;
+
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
     zhoraiSpeechBox.innerHTML = '<p style="color:' + zhoraiTextColour + '">' + text + '</p>';
@@ -68,25 +74,25 @@ function switchButtonTo(toButton) {
     if (toButton == 'micBtn') {
         recordButton.hidden = false;
         loadingGif.hidden = true;
-        textFileBtn.hidden = true;
+        // textFileBtn.hidden = true;
         currBtnIsMic = true;
     } else if (toButton == 'speakBtn') {
         recordButton.hidden = true;
         loadingGif.hidden = true;
-        textFileBtn.hidden = true;
+        // textFileBtn.hidden = true;
         currBtnIsMic = false;
     } else if (toButton == 'loading') {
         loadingGif.hidden = false;
         recordButton.hidden = true;
-        textFileBtn.hidden = true;
+        // textFileBtn.hidden = true;
         currBtnIsMic = false;
-    } else if (toButton == 'textFileBtn') {
-        textFileBtn.hidden = false;
-        loadingGif.hidden = true;
-        recordButton.hidden = true;
-        currBtnIsMic = false;
+        // } else if (toButton == 'textFileBtn') {
+        //     // textFileBtn.hidden = false;
+        //     loadingGif.hidden = true;
+        //     recordButton.hidden = true;
+        //     currBtnIsMic = false;
     } else if (toButton == 'micAndTextFileBtn') {
-        textFileBtn.hidden = false;
+        // textFileBtn.hidden = false;
         recordButton.hidden = false;
         loadingGif.hidden = true;
         currBtnIsMic = true;
@@ -168,42 +174,101 @@ function isAnimalPlural(animal) {
     return knownAnimals.includes(animal);
 }
 
-function mod3ReceiveData(filedata) {
-    // We're done getting the embedding data!
-    // Currently, it's like this though:
-    // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
-    // camels,1.315521478652954,0.0048450627364218235,desert\n"
+function afterRecording(recordedText) {
+    var saidAnimal = false;
+    var animal = '';
+    var zhoraiSpeech = '';
+    var phrases = [];
 
-    // Instead, we need to format it so that it's an array of arrays of 
-    // strings/floats, like this:
-    // [["camel", 1.1, 2.7, "desert"], ["tundra", 3.5, 0.2, "tundra"]]
-
-    // get rid of last newline
-    if (filedata.charAt(filedata.length - 1) == '\n') {
-        filedata = filedata.substring(0, filedata.length - 1);
+    // test to see if what they said has an animal in it... e.g., "I didn't quite catch that"
+    animal = getAnimal(recordedText);
+    if (!isAnimalPlural(animal)) {
+        animal = convertAnimalToPlural(animal);
     }
-    // split by newlines
-    filedata = filedata.split(/\r?\n/);
-    // split by commas, and change the two inner strings to be floats
-    for (i = 0; i < filedata.length; i++) {
-        filedata[i] = filedata[i].split(',');
-        for (j = 0; j < filedata[i].length; j++) {
-            if (!isNaN(parseFloat(filedata[i][j]))) {
-                filedata[i][j] = parseFloat(filedata[i][j]);
+    saidAnimal = knownAnimals.includes(animal);
+
+    // if there was a known animal stated...
+    if (saidAnimal) {
+        // say, "Based on what I know about Earth, here's where I would guess the animal comes from."
+        phrases = ["Based on what I know about Earth, here's where I would guess " + animal + " come from...",
+            "I would guess " + animal + " live in this ecosystem...",
+            "I think " + animal + " are from this ecosystem based on what I've been taught..."
+        ];
+    } else {
+        phrases = ["Sorry, what was that?", "Oh, pardon?", "I didn't quite understand that. Pardon?"];
+    }
+
+    zhoraiSpeech = chooseRandomPhrase(phrases);
+    showPurpleText(zhoraiSpeech);
+
+    if (saidAnimal) {
+        speakText(zhoraiSpeech, null, null);
+
+        // delete the current mindmap to prepare for the next
+        deleteMindmap();
+
+        // send the particular animal filepath to the server to parse,
+        parseMem('mindmap', animalsMindmapPath + animal + '.txt', 'mindmapping' + '_mod3');
+        // when done parsing, create the mind map (in mod3ReceiveData)
+
+    } else {
+        speakText(zhoraiSpeech, null,
+            function () {
+                switchButtonTo('micBtn');
+            });
+    }
+}
+
+function mod3ReceiveData(filedata, stage) {
+    if (stage.includes('mindmap')) {
+        // We're done parsing and reading the mindmap text file!
+        // create the mindmap!
+        console.log('Creating mindmap! filedata:');
+        filedata = filedata.replace(/'/g, '"');
+        console.log(filedata);
+        console.log(JSON.parse(filedata));
+
+        switchButtonTo('micBtn');
+        createMindmap(JSON.parse(filedata));
+    } else if (stage.includes('embed')) {
+        // We're done getting the embedding data!
+        // Currently, it's like this though:
+        // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
+        // camels,1.315521478652954,0.0048450627364218235,desert\n"
+
+        // Instead, we need to format it so that it's an array of arrays of 
+        // strings/floats, like this:
+        // [["camel", 1.1, 2.7, "desert"], ["tundra", 3.5, 0.2, "tundra"]]
+
+        // get rid of last newline
+        if (filedata.charAt(filedata.length - 1) == '\n') {
+            filedata = filedata.substring(0, filedata.length - 1);
+        }
+        // split by newlines
+        filedata = filedata.split(/\r?\n/);
+        // split by commas, and change the two inner strings to be floats
+        for (i = 0; i < filedata.length; i++) {
+            filedata[i] = filedata[i].split(',');
+            for (j = 0; j < filedata[i].length; j++) {
+                if (!isNaN(parseFloat(filedata[i][j]))) {
+                    filedata[i][j] = parseFloat(filedata[i][j]);
+                }
             }
         }
+
+        console.log('Creating vector graph! filedata:');
+        console.log(filedata);
+
+        // Now that filedata is formatted correctly, create the vector graph!
+        console.log("TODO MAKE VECTOR GRAPH!");
+        createScatterplot(filedata);
+        // console.log(JSON.parse(filedata));
+        // clearMemory();
+        // switchButtonTo('micAndTextFileBtn');
+        // createMindmap(JSON.parse(filedata));
+    } else {
+        console.error("Unknown stage in mod3receivedata: " + stage);
     }
-
-    console.log('Creating vector graph! filedata:');
-    console.log(filedata);
-
-    // Now that filedata is formatted correctly, create the vector graph!
-    console.log("TODO MAKE VECTOR GRAPH!");
-    createScatterplot(filedata);
-    // console.log(JSON.parse(filedata));
-    // clearMemory();
-    // switchButtonTo('micAndTextFileBtn');
-    // createMindmap(JSON.parse(filedata));
 }
 
 /* -------------- Once the page has loaded -------------- */
@@ -222,7 +287,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // infoLabel.innerHTML = 'Teach Zhorai about the earth by saying things like, "Deserts are hot and dry."';
 
     // Add click handlers
-    record_button.addEventListener("click", recordButtonClick);
+    recordButton.addEventListener("click", function () {
+        recordButtonClick({
+            callback: afterRecording,
+            onClickStop: switchButtonTo,
+            onClickStopParam: 'loading'
+        });
+    });
     // textFileBtn.addEventListener('click', function () {
     //     switchButtonTo('loading');
     //     // say something about how we're going to display Zhorai's thoughts after parsing

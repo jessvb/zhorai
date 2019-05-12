@@ -57,6 +57,8 @@ function onReceive(event, socket) {
             mod1ReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]); // remove mod1 from stage
         } else if (jsonMsg.stage.toLowerCase().includes('mod2')) {
             mod2ReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]); // remove mod1 from stage
+        } else if (jsonMsg.stage.toLowerCase().includes('mod3')) {
+            mod3ReceiveData(jsonMsg.filedata, jsonMsg.stage.split('_')[0]); // remove mod1 from stage
         } else {
             console.log('onReceive did not understand the current stage, ' + jsonMsg.stage + '.');
         }
