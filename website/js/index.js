@@ -131,18 +131,20 @@ function createScatterplot(plot_data) {
 	//create SVG element
 	var svg = d3.select("#scatterplot")  // This is where we put our plot
         width = +svg.attr("width"),
-	    height = +svg.attr("height");
+			height = +svg.attr("height");
+			
+	var withinPlotMargin = 1;
 
     var xScale = d3.scaleLinear()
-                .domain([d3.min(plot_data, function(d) { return d[1] - 2; }), d3.max(plot_data, function(d) {
+                .domain([d3.min(plot_data, function(d) { return d[1] - withinPlotMargin; }), d3.max(plot_data, function(d) {
                     return d[1] + 2;  // get the input domain as first column of array
                 })])
                 .range([padding, canvas_width - padding * 2])  // set the output range
                 .nice();  // Make decimals round up nicely
 
 	var yScale = d3.scaleLinear()
-			    .domain([d3.min(plot_data, function(d) { return d[2] - 2; }), d3.max(plot_data, function(d) {
-			        return d[2]+2;  // gets the input domain as the second column of array
+			    .domain([d3.min(plot_data, function(d) { return d[2] - withinPlotMargin; }), d3.max(plot_data, function(d) {
+			        return d[2]+withinPlotMargin;  // gets the input domain as the second column of array
 			    })])
 			    .range([canvas_height - padding, padding])  // set the output range
 			    .nice();  // Make decimals round up nicely
