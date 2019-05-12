@@ -22,5 +22,5 @@ if python parserOutput.py $outpath 2>&1 >/dev/null;
 then
     echo 'OK'
 else
-    echo 'ERROR'
+    echo 'ERROR: BAD ENGLISH'
 fi
