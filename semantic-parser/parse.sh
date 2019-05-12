@@ -15,7 +15,7 @@ python ccg2lambda/en/candc2transccg.py $outpath/sentences.candc.xml > $outpath/s
 #build dictionary output for word embedder
 if python parserOutput.py $outpath 2>&1 >/dev/null;
 then
-  if [ -s $outpath//dictionary.txt ]
+  if [ -s $outpath/dictionary.txt ]
   then
        echo 'OK'
   else
