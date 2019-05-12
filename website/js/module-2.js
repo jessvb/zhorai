@@ -104,28 +104,44 @@ function switchButtonTo(toButton) {
 }
 
 function mod2ReceiveData(filedata) {
-    // We're done parsing and reading the mindmap text file!
-    // create the mindmap!
-    console.log('Creating mindmap! filedata:');
-    filedata = filedata.replace(/'/g, '"');
-    console.log(filedata);
-    console.log(JSON.parse(filedata));
+    // Check to see if there was a hangup because of a bad sentence
+    if (filedata.includes("BAD ENGLISH")) {
+        // one of the sentences entered was confusing english... have to redo :(
+        var phrases = ['One of those sentences confused me and I forgot the rest of what you said! Could you please re-teach me about ' + currentAnimal + '?',
+            'I\'m sorry, I got confused in the middle of what you were saying. Could you please teach me again about ' + currentAnimal + '?',
+            'Oops, I got confused by something you said and forgot everything about ' + currentAnimal + '! Could you please talk to me again about ' + currentAnimal + '?'
+        ];
+        var toSpeak = chooseRandomPhrase(phrases);
+        showPurpleText(toSpeak);
+        speakText(toSpeak);
 
-    // save animal info to file for the next module:
-    makeTextFile(animalDir + currentAnimal + '.txt');
 
-    clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
-    switchButtonTo('micAndTextFileBtn');
-    createMindmap(JSON.parse(filedata));
+        clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
+        switchButtonTo('micAndTextFileBtn');
+    } else {
+        // We're done parsing and reading the mindmap text file!
+        // create the mindmap!
+        console.log('Creating mindmap! filedata:');
+        filedata = filedata.replace(/'/g, '"');
+        console.log(filedata);
+        console.log(JSON.parse(filedata));
 
-    // Now let's teach zhorai about another animal :)
-    // Add the current animal to the list of oldAnimals:
-    oldAnimals.push(currentAnimal);
-    currentAnimal = chooseRandomPhrase(knownAnimals.filter(checkNewAnimal));
-    // todo: what if we go through all 22 animals?
+        // save animal info to file for the next module:
+        makeTextFile(animalDir + currentAnimal + '.txt');
 
-    // update the prompts with the new animal
-    setAnimalPrompt(currentAnimal);
+        clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
+        switchButtonTo('micAndTextFileBtn');
+        createMindmap(JSON.parse(filedata));
+
+        // Now let's teach zhorai about another animal :)
+        // Add the current animal to the list of oldAnimals:
+        oldAnimals.push(currentAnimal);
+        currentAnimal = chooseRandomPhrase(knownAnimals.filter(checkNewAnimal));
+        // todo: what if we go through all 10 animals?
+
+        // update the prompts with the new animal
+        setAnimalPrompt(currentAnimal);
+    }
 }
 
 function checkNewAnimal(animal) {
