@@ -6,6 +6,29 @@ var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
 var mindmapPath = "../../website-server-side/receive-text/data/mindmap.txt";
+var knownAnimals = ['bees',
+    'birds',
+    'butterflies',
+    'leopards',
+    'cows',
+    'owls',
+    'fireflies',
+    'dolphins',
+    'fish',
+    'lobsters',
+    'starfish',
+    'swordfish',
+    'whales',
+    'polarbears',
+    'arcticfoxes',
+    'yaks',
+    'reindeer',
+    'camels',
+    'scorpions',
+    'elephants',
+    'giraffes',
+    'lions'
+];
 
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
@@ -74,7 +97,78 @@ function switchButtonTo(toButton) {
     }
 }
 
-function mod2ReceiveData(filedata) {
+function getAnimal(text) {
+    // create a list of all the animals, plural and singular
+    var allAnimals = [];
+    for (var i = 0; i < knownAnimals.length; i++) {
+        allAnimals.push(convertAnimalToSingular(knownAnimals[i]));
+    }
+    allAnimals.concat(knownAnimals);
+
+    // return the animal 
+    // --> with no whitespace (e.g., polar bear = polarbear)
+    // --> lowercase
+    text = text.replace(/\s+/g, '');
+    text = text.toLowerCase();
+    return containsAny(text, allAnimals);
+}
+
+function containsAny(str, substrings) {
+    var foundSubstr = null;
+    for (var i = 0; i != substrings.length; i++) {
+        var substring = substrings[i];
+        if (str.indexOf(substring) != -1) {
+            foundSubstr = substring;
+        }
+    }
+    return foundSubstr;
+}
+
+function convertAnimalToSingular(animal) {
+    if (animal == 'butterflies') {
+        animal = 'butterfly';
+    } else if (animal == 'fireflies') {
+        animal = 'firefly';
+    } else if (animal.includes('fish')) {
+        animal = animal; // stays the same ;)
+    } else if (animal.includes('foxes')) {
+        animal = animal.substring(0, animal.length - 2);
+    } else if (animal == 'reindeer') {
+        animal = animal; // stays the same :)
+    } else {
+        // assuming we can just remove the last letter, which should be an 's'
+        if (animal.charAt(animal.length - 1) == 's') {
+            animal = animal.substring(0, animal.length - 1);
+        } else {
+            console.error("Couldn't convert, " + animal + " to singular");
+        }
+    }
+    return animal;
+}
+
+function convertAnimalToPlural(animal) {
+    if (animal == 'butterfly') {
+        animal = 'butterflies';
+    } else if (animal == 'firefly') {
+        animal = 'fireflies';
+    } else if (animal.includes('fish')) {
+        animal = animal; // stays the same ;)
+    } else if (animal.includes('fox')) {
+        animal = 'arcticfoxes';
+    } else if (animal == 'reindeer') {
+        animal = animal; // stays the same :)
+    } else {
+        // assuming we can just add an 's'
+        animal = animal + 's';
+    }
+    return animal;
+}
+
+function isAnimalPlural(animal) {
+    return knownAnimals.includes(animal);
+}
+
+function mod3ReceiveData(filedata) {
     // We're done getting the embedding data!
     // Currently, it's like this though:
     // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
@@ -120,7 +214,6 @@ document.addEventListener('DOMContentLoaded', function () {
     recordButton = document.getElementById('record_button');
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
-    textFileBtn = document.getElementById('textFileBtn');
 
     // remove any memory from previous activites:
     clearMemory("input.txt");
@@ -130,19 +223,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add click handlers
     record_button.addEventListener("click", recordButtonClick);
-    textFileBtn.addEventListener('click', function () {
-        switchButtonTo('loading');
-        // say something about how we're going to display Zhorai's thoughts after parsing
-        var phrases = ['Thanks for teaching me about Earth! Let me think about all these new things and show you my thoughts.',
-            "Wow, Earth sounds really interesting! Let me think for a bit and then I'll show you my thoughts.",
-            "Interesting! Now I want to visit earth and see everything! I'll show you what I understand about Earth after I think for a little while."
-        ];
-        var toSpeak = chooseRandomPhrase(phrases);
-        showPurpleText(toSpeak);
-        speakText(toSpeak);
+    // textFileBtn.addEventListener('click', function () {
+    //     switchButtonTo('loading');
+    //     // say something about how we're going to display Zhorai's thoughts after parsing
+    //     var phrases = ['Thanks for teaching me about Earth! Let me think about all these new things and show you my thoughts.',
+    //         "Wow, Earth sounds really interesting! Let me think for a bit and then I'll show you my thoughts.",
+    //         "Interesting! Now I want to visit earth and see everything! I'll show you what I understand about Earth after I think for a little while."
+    //     ];
+    //     var toSpeak = chooseRandomPhrase(phrases);
+    //     showPurpleText(toSpeak);
+    //     speakText(toSpeak);
 
-        // send a command to the server to parse what's in the memory,
-        parseMem('mindmap', null, 'parsing' + '_mod1');
-        // when done parsing, create the mind map (in mod2ReceiveData)
-    });
+    //     // send a command to the server to parse what's in the memory,
+    //     parseMem('mindmap', null, 'parsing' + '_mod3');
+    //     // when done parsing, create the mind map (in mod3ReceiveData)
+    // });
 });
