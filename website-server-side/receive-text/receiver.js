@@ -98,18 +98,17 @@ wsServer.on('request', function (request) {
                     console.log("getting coords for '" + jsonMsg.text + "'");
                     // Create file for parser to parse:
                     writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
-                        getCoordsAndReturnToClient(jsonMsg, connection);
+                        getCoordsAndReturnToClient(jsonMsg, null, connection);
                     });
                 } else {
-                    // TODO!
-                    console.log('TODO: coordinates without text sent explicitly');
-                    // // there's no text, so let's get coords for the info in the memory
-                    // console.log("getting coords for '" + dataDir + "'");
-                    // console.log("parsing '" + dataDir + semParserInputFilename + "'");
-                    // // first, write the memory to the data file, and then parse it
-                    // writeToFile(dataDir + semParserInputFilename, allText, function () {
-                    //     parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
-                    // });
+                    // there's no text, so let's parse the given filepath
+                    if (jsonMsg.filePath) {
+                        getCoordsAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
+                    } else {
+                        // there's no filepath... error!
+                        console.log("Error: No filepath or text to give to the embedder. jsonMsg: " +
+                            jsonMsg);
+                    }
                 }
                 sendEnd = false;
             } else if (jsonMsg.text) {
@@ -192,12 +191,15 @@ function parseAndReturnToClient(jsonMsg, inputPath, connection) {
     });
 }
 
-function getCoordsAndReturnToClient(jsonMsg, connection) {
+function getCoordsAndReturnToClient(jsonMsg, filePath, connection) {
     // Execute embedder bash script and return coords with readFileReturnToClient
     console.log('Getting coords and return to client...');
+    if (!filePath) {
+        filePath = embedInputPath;
+    }
     var embedCmd = 'cd ' + embedPath +
         ' && python3 visualize_embedding_results.py --corpus-file corpus_files/embedding_corpus.txt --eval-file ' +
-        embedInputPath + ' --eval-words-file corpus_files/animal-list.txt --ignore-plot --embedding-type linear ' +
+        filePath + ' --eval-words-file corpus_files/animal-list.txt --ignore-plot --embedding-type linear ' +
         '--model-checkpoint results/model_initial-0050.tar';
     console.log(embedCmd);
 

@@ -34,7 +34,7 @@ var knownAnimals = ['bees',
 var dataDir = 'data/';
 var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
 var animalsDir = 'animals/';
-var animalsMindmapPath = dataDirRelPath + animalsDir;
+var animalsRelPath = dataDirRelPath + animalsDir;
 
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
@@ -207,9 +207,12 @@ function afterRecording(recordedText) {
         // delete the current mindmap to prepare for the next
         deleteMindmap();
 
-        // send the particular animal filepath to the server to parse,
-        parseMem('mindmap', animalsMindmapPath + animal + '.txt', 'mindmapping' + '_mod3');
+        // send the particular animal filepath to the server to parse, TODO: uncomment :D
+        parseMem('mindmap', animalsRelPath + animal + '.txt', 'mindmapping' + '_mod3');
         // when done parsing, create the mind map (in mod3ReceiveData)
+
+        // send the particular animal filepath to the server to get embedding coordinates,
+        getEmbeddingCoordFromFile(animalsRelPath + animal + '.txt', 'embedding' + '_mod3');
 
     } else {
         speakText(zhoraiSpeech, null,
@@ -269,6 +272,7 @@ function mod3ReceiveData(filedata, stage) {
     } else {
         console.error("Unknown stage in mod3receivedata: " + stage);
     }
+    switchButtonTo('micBtn');
 }
 
 /* -------------- Once the page has loaded -------------- */

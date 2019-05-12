@@ -120,7 +120,7 @@ function parseMem(typeOutput, filePath, stage) {
  * as well as the animals in the sentences. 
  * 
  * Example call: getEmbeddingCoord('Camels walk on sand and can withstand lots of heat', 
- * 'embedStage_mod2')
+ * 'embedStage_mod3')
  * 
  * @param {*} animalSentences : sentences about animals separated by newlines.
  * @param {*} stage : the current zhorai stage you're in, if applicable. 
@@ -130,6 +130,27 @@ function getEmbeddingCoord(animalSentences, stage) {
     sendJson({
         'command': 'getEmbeddingCoord',
         'text': animalSentences,
+        'stage': stage
+    });
+}
+
+/**
+ * Sends a filepath to a file with sentences, starts the word embedder, and 
+ * returns an array of an array to onReceive with the coordinates of the ecosystems 
+ * as well as the animals in the sentences. 
+ * 
+ * Example call: getEmbeddingCoord('../website-server-side/receive-text/data/animals/dolphin.txt', 
+ * 'embedStage_mod3')
+ * 
+ * @param {*} filePath : path to file containing sentences about an animal. Filepath is 
+ * relative to the embedder.
+ * @param {*} stage : the current zhorai stage you're in, if applicable. 
+ * (This informs 'onReceive' what to do)
+ */
+function getEmbeddingCoordFromFile(filePath, stage) {
+    sendJson({
+        'command': 'getEmbeddingCoord',
+        'filePath': filePath,
         'stage': stage
     });
 }
