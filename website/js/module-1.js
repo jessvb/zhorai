@@ -148,6 +148,9 @@ function afterRecording(recordedText) {
         // delete the current mindmap to prepare for the next
         deleteMindmap();
 
+        // hide the sentences about particular ecosystems to prep for the next
+        hideAllSentences();
+
         // send the particular ecosystem filepath to the server to parse,
         parseMem('mindmap', ecoFilepath, 'parsing' + '_mod1');
         // when done parsing, create the mind map (in mod1ReceiveData)
@@ -160,16 +163,41 @@ function afterRecording(recordedText) {
     }
 }
 
+function hideAllSentences() {
+    document.getElementById("desertSentences").hidden = true;
+    document.getElementById("rainforestSentences").hidden = true;
+    document.getElementById("tundraSentences").hidden = true;
+    document.getElementById("oceanSentences").hidden = true;
+    document.getElementById("grasslandSentences").hidden = true;
+}
+
 function mod1ReceiveData(filedata) {
     // We're done parsing and reading the mindmap text file!
     // create the mindmap!
     console.log('Creating mindmap! filedata:');
     filedata = filedata.replace(/'/g, '"');
+    filedata = JSON.parse(filedata);
     console.log(filedata);
-    console.log(JSON.parse(filedata));
     clearMemory();
     switchButtonTo('micBtn');
-    createMindmap(JSON.parse(filedata));
+    createMindmap(filedata);
+
+    // show the sentences about that particular ecosystem 
+    // (NOTE THAT THESE SENTENCES ARE HARDCODED INTO THE HTML! (eventually: read from file))
+    if (filedata.nodes[0].id.toLowerCase() == "desert") {
+        document.getElementById("desertSentences").hidden = false;
+    } else if (filedata.nodes[0].id.toLowerCase() == "rainforest") {
+        document.getElementById("rainforestSentences").hidden = false;
+    } else if (filedata.nodes[0].id.toLowerCase() == "tundra") {
+        document.getElementById("tundraSentences").hidden = false;
+    } else if (filedata.nodes[0].id.toLowerCase() == "ocean") {
+        document.getElementById("oceanSentences").hidden = false;
+    } else if (filedata.nodes[0].id.toLowerCase() == "grassland") {
+        document.getElementById("grasslandSentences").hidden = false;
+    } else {
+        console.error("Unknown ecosystem for showing sentences.");
+    }
+
 }
 
 /* -------------- Once the page has loaded -------------- */
@@ -184,9 +212,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // remove any memory from previous activites:
     clearMemory("input.txt");
-
-    // insert prompt
-    // infoLabel.innerHTML = 'Teach Zhorai about the earth by saying things like, "Deserts are hot and dry."';
 
     // Add click handlers
     recordButton.addEventListener("click", function () {
