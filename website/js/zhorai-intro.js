@@ -291,6 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // remove any memory from previous activites:
     clearMemory('input.txt');
+    clearAnimalFiles();
 
     startStage();
 

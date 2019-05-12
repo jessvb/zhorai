@@ -111,6 +111,11 @@ wsServer.on('request', function (request) {
                     }
                 }
                 sendEnd = false;
+            } else if (jsonMsg.command == 'clearAnimalFiles') {
+                var cmd = 'rm ' + dataDir + animalDir + '*';
+                exec(cmd);
+                console.log("Cleared animal memory files.");
+                sendEnd = true;
             } else if (jsonMsg.text) {
                 allText += jsonMsg.text + '.\n';
                 sendEnd = true;
