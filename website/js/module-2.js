@@ -1,20 +1,39 @@
 /* -------------- Initialize variables -------------- */
 var zhoraiTextColour = "#5d3e9f";
-var infoLabel;
+var animalPromptLabel;
 var recordButton;
 var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
 var mindmapPath = "../../website-server-side/receive-text/data/mindmap.txt";
+var currentAnimal = "";
+var knownAnimals = ['bees',
+    'birds',
+    'butterflies',
+    'leopards',
+    'cows',
+    'owls',
+    'fireflies',
+    'dolphins',
+    'fish',
+    'lobsters',
+    'starfish',
+    'swordfish',
+    'whales',
+    'polarbears',
+    'arcticfoxes',
+    'yaks',
+    'reindeer',
+    'camels',
+    'scorpions',
+    'elephants',
+    'giraffes',
+    'lions'
+];
+var oldAnimals = [];
 
-// File paths for mindmap creation
-var dataDir = 'data/';
-var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
-var desertInputPath = dataDirRelPath + 'prior_knowledge/desertInfo.txt'; // relative to semparserfilepath
-var rainforestInputPath = dataDirRelPath + 'prior_knowledge/rainforestInfo.txt'; // relative to semparserfilepath
-var grasslandInputPath = dataDirRelPath + 'prior_knowledge/grasslandInfo.txt'; // relative to semparserfilepath
-var tundraInputPath = dataDirRelPath + 'prior_knowledge/tundraInfo.txt'; // relative to semparserfilepath
-var oceanInputPath = dataDirRelPath + 'prior_knowledge/oceanInfo.txt'; // relative to semparserfilepath
+// File paths for saving animal info
+var animalDir = 'animals/';
 
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
@@ -90,20 +109,48 @@ function mod2ReceiveData(filedata) {
     filedata = filedata.replace(/'/g, '"');
     console.log(filedata);
     console.log(JSON.parse(filedata));
-    clearMemory();
+
+    // save animal info to file for the next module:
+    makeTextFile(animalDir + currentAnimal + '.txt');
+
+    clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
     switchButtonTo('micAndTextFileBtn');
     createMindmap(JSON.parse(filedata));
+
+    // Now let's teach zhorai about another animal :)
+    // Add the current animal to the list of oldAnimals:
+    oldAnimals.push(currentAnimal);
+    currentAnimal = chooseRandomPhrase(knownAnimals.filter(checkNewAnimal));
+    // todo: what if we go through all 22 animals?
+
+    // update the prompts with the new animal
+    setAnimalPrompt(currentAnimal);
+}
+
+function checkNewAnimal(animal) {
+    return !(oldAnimals.includes(animal));
+}
+
+function setAnimalPrompt() {
+    animalPromptLabel.innerHTML = "Zhorai would like to know about <span style=\"text-decoration: underline;\">" +
+        currentAnimal + "</span>. Could you teach it about them?";
+    textFileLabel.innerHTML = "Once you're done teaching Zhorai about " +
+        currentAnimal + ", click the button below.";
 }
 
 /* -------------- Once the page has loaded -------------- */
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize variables:
     currStage = 0;
-    infoLabel = document.getElementById('z_info_label');
+    animalPromptLabel = document.getElementById('animalPromptLabel');
     recordButton = document.getElementById('record_button');
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
+    textFileLabel = document.getElementById('textFileLabel');
     textFileBtn = document.getElementById('textFileBtn');
+    currentAnimal = chooseRandomPhrase(knownAnimals);
+
+    setAnimalPrompt();
 
     // remove any memory from previous activites:
     clearMemory("input.txt");
@@ -113,9 +160,9 @@ document.addEventListener('DOMContentLoaded', function () {
     textFileBtn.addEventListener('click', function () {
         switchButtonTo('loading');
         // say something about how we're going to display Zhorai's thoughts after parsing
-        var phrases = ['Thanks for teaching me about Earth\'s animals! Let me think about all these new things and show you my thoughts.',
-            "Wow, Earth's animals sound really interesting! Let me think for a bit and then I'll show you my thoughts.",
-            "Interesting! Now I want to visit earth and all of it's life! I'll show you what I understand after I think for a little while."
+        var phrases = ['Thanks for teaching me about ' + currentAnimal + '! Let me think about all these new things and show you my thoughts.',
+            "Wow, " + currentAnimal + " sound really interesting! Let me think for a bit and then I'll show you my thoughts.",
+            currentAnimal + " sound fascinating! Now I want to visit earth and all of it's life! I'll show you what I understand after I think for a little while."
         ];
         var toSpeak = chooseRandomPhrase(phrases);
         showPurpleText(toSpeak);
