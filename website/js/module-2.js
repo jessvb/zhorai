@@ -108,17 +108,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // remove any memory from previous activites:
     clearMemory("input.txt");
 
-    // insert prompt
-    // infoLabel.innerHTML = 'Teach Zhorai about the earth by saying things like, "Deserts are hot and dry."';
-
     // Add click handlers
     record_button.addEventListener("click", recordButtonClick);
     textFileBtn.addEventListener('click', function () {
         switchButtonTo('loading');
         // say something about how we're going to display Zhorai's thoughts after parsing
-        var phrases = ['Thanks for teaching me about Earth! Let me think about all these new things and show you my thoughts.',
-            "Wow, Earth sounds really interesting! Let me think for a bit and then I'll show you my thoughts.",
-            "Interesting! Now I want to visit earth and see everything! I'll show you what I understand about Earth after I think for a little while."
+        var phrases = ['Thanks for teaching me about Earth\'s animals! Let me think about all these new things and show you my thoughts.',
+            "Wow, Earth's animals sound really interesting! Let me think for a bit and then I'll show you my thoughts.",
+            "Interesting! Now I want to visit earth and all of it's life! I'll show you what I understand after I think for a little while."
         ];
         var toSpeak = chooseRandomPhrase(phrases);
         showPurpleText(toSpeak);
@@ -128,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteMindmap();
 
         // send a command to the server to parse what's in the memory,
-        parseMem('mindmap', null, 'parsing' + '_mod1');
-        // when done parsing, create the mind map (in mod1ReceiveData)
+        parseMem('mindmap', null, 'parsing' + '_mod2');
+        // when done parsing, create the mind map (in mod2ReceiveData)
     });
 });
