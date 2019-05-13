@@ -126,7 +126,7 @@ function afterRecording(recordedText) {
     } else {
         // check if there was an *unknown* ecosystem stated... e.g., "I don't know about that ecosystem yet"
         var saidUnknownEco = false;
-        var unknownEcosystems = ['forest', 'taiga', 'wetland', 'freshwater', 'coral reef', 'savanna', 'mountain'];
+        var unknownEcosystems = ['forest', 'taiga', 'wetland', 'freshwater', 'coral reef', 'savanna', 'mountain', 'plain'];
         var unknownRegex = new RegExp(unknownEcosystems.join("|"), "i");
         saidUnknownEco = unknownRegex.test(recordedText);
 
