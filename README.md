@@ -2,7 +2,8 @@
 An interactive conversational agent for AI education.
 
 This project was written in javascript and python. 
-Speech recognition and syntheszis was implemented using the Web Speech API’swebkitSpeechRecognitioninterface.
+
+Speech recognition and synthesis was implemented using the Web Speech API’s webkitSpeechRecognitioninterface.
 
 To setup the ability to record and stream, follow the README: 
 
@@ -17,4 +18,5 @@ To set up the word embedder and compactor, follow the README:
 https://github.com/jessvb/zhorai/blob/master/word-embeddings/README.md
 
 The website uses the Bootstrap library to construct the overall siteframework. 
+
 The mindmap and scatterplotvisualizations are constructed using the D3 Javascript library
