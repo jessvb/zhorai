@@ -205,9 +205,9 @@ function parseAndReturnToClient(jsonMsg, inputPath, connection) {
 function getCoordsAndReturnToClient(jsonMsg, filePath, connection) {
     // Execute embedder bash script and return coords with readFileReturnToClient
     console.log('Getting coords and return to client...');
-    if (!filePath) {
-        filePath = embedInputPath;
-    }
+    // if (!filePath) {
+    //     filePath = embedInputPath;
+    // }
     var embedCmd = 'cd ' + embedPath +
         ' && python3 visualize_embedding_results.py --corpus-file corpus_files/embedding_corpus.txt --eval-file ' +
         filePath + ' --eval-words-file corpus_files/animal-list.txt --ignore-plot --embedding-type linear ' +
