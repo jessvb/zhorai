@@ -77,6 +77,8 @@ function onReceive(event, socket) {
  * (This informs 'onReceive' what to do)
  */
 function parseText(recordedText, typeOutput, stage) {
+    // convert the words "polar bear" to "polarbear" before giving to the parser:
+    recordedText = recordedText.replace(/polar bear/ig, 'polarbear');
     sendJson({
         'command': 'parse',
         'text': recordedText,
