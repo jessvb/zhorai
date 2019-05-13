@@ -9,9 +9,11 @@ To setup the ability to record and stream, follow the README:
 https://github.com/jessvb/zhorai/blob/master/record-and-stream/README.md
 
 To set up the semantic parser, follow the README:
+
 https://github.com/jessvb/zhorai/blob/master/semantic-parser/README.md
 
 To set up the word embedder and compactor, follow the README:
+
 https://github.com/jessvb/zhorai/blob/master/word-embeddings/README.md
 
 The website uses the Bootstrap library to construct the overall siteframework. 
