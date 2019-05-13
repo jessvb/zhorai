@@ -1,4 +1,4 @@
-# zhorai
+# Zhorai
 An interactive conversational agent for AI education.
 
 This project was written in javascript and python. 
