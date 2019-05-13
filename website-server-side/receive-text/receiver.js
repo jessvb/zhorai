@@ -93,14 +93,14 @@ wsServer.on('request', function (request) {
                 }
                 sendEnd = false;
             } else if (jsonMsg.command == 'getEmbeddingCoord') {
-                // if there's text, then write that text to a file and send it to the embedder
-                if (jsonMsg.text) {
-                    console.log("getting coords for '" + jsonMsg.text + "'");
-                    // Create file for parser to parse:
-                    writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
-                        getCoordsAndReturnToClient(jsonMsg, null, connection);
-                    });
-                } else {
+                // // if there's text, then write that text to a file and send it to the embedder
+                // if (jsonMsg.text) {
+                //     console.log("getting coords for '" + jsonMsg.text + "'");
+                //     // Create file for parser to parse:
+                //     writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
+                //         getCoordsAndReturnToClient(jsonMsg, null, connection);
+                //     });
+                // } else {
                     // there's no text, so let's parse the given filepath
                     if (jsonMsg.filePath) {
                         getCoordsAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
@@ -109,7 +109,7 @@ wsServer.on('request', function (request) {
                         console.log("Error: No filepath or text to give to the embedder. jsonMsg: " +
                             jsonMsg);
                     }
-                }
+                // }
                 sendEnd = false;
             } else if (jsonMsg.command == 'clearAnimalFiles') {
                 var cmd = 'rm ' + dataDir + animalDir + '*';
