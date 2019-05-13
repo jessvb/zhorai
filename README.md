@@ -5,6 +5,7 @@ This project was written in javascript and python.
 Speech recognition and syntheszis was implemented using the Web Speech API’swebkitSpeechRecognitioninterface.
 
 To setup the ability to record and stream, follow the README: 
+
 https://github.com/jessvb/zhorai/blob/master/record-and-stream/README.md
 
 To set up the semantic parser, follow the README:
