@@ -191,8 +191,8 @@ function parseAndReturnToClient(jsonMsg, inputPath, connection) {
         }
         console.log('Finished parsing and wrote to file: ' + dataDir);
 
-        // Check if a sentence caused the parser to hang:
-        if (stdout.includes("BAD ENGLISH")) {
+        // Check if a sentence caused the parser to hang (this only happens in the mindmap case):
+        if (jsonMsg.typeOutput.toLowerCase().includes('mindmap') && stdout.includes("BAD ENGLISH")) {
             // return the error to the client
             returnTextToClient(stdout, jsonMsg.stage, connection);
         } else {
