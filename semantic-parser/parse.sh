@@ -6,6 +6,9 @@ outpath=$2
 
 #splitting sentences so that each sentence appears in new line
 python prepareCorpus.py $infile > $outpath/splitSentences.txt
+#show the sentences being parsed
+echo 'Parsing The following Sentences:'
+cat $outpath/splitSentences.txt
 #splitting words up into tokens
 cat $outpath/splitSentences.txt | sed -f ccg2lambda/en/tokenizer.sed > $outpath/sentences.tok
 #label tokens
