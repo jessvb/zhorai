@@ -5,20 +5,20 @@ var port = 8080;
 
 /* to write to txt file: */
 var fs = require('fs');
-var dataDir = 'data/';
-var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
+var tododelme2 = 'data/';
+var tododelme3 = '../website-server-side/receive-text/' + tododelme2;
 
-var semParserInputFilename = 'input.txt';
+var tododelme = 'input.txt';
 var semParserPath = '../../semantic-parser/';
-var semParserInputPath = dataDirRelPath + semParserInputFilename; // relative to semparserfilepath
+var tododelme4 = tododelme3 + tododelme; // relative to semparserfilepath
 
-var embedInputFilename = 'embed-sentence.txt';
+var tododel5 = 'embed-sentence.txt';
 var embedPath = '../../word-embeddings/';
-var embedInputPath = dataDirRelPath + embedInputFilename; // relative to embedfilepath
+var embedInputPath = tododelme3 + tododel5; // relative to embedfilepath
 var allText = '';
 
 var animalDir = 'animals/';
-var animalDirRelPath = dataDirRelPath + animalDir;
+var tododelme6 = tododelme3 + animalDir;
 
 /* to execute bash scripts */
 var exec = require('child_process').exec;
@@ -51,7 +51,7 @@ wsServer.on('request', function (request) {
             // Add received text to allText:
             if (jsonMsg.command == 'makeTextFile') {
                 // make a text file with allText
-                writeToFile(dataDir + jsonMsg.textFilename, allText);
+                writeToFile(tododelme2 + jsonMsg.textFilename, allText);
                 // reset allText for next text file
                 allText = '';
                 sendEnd = true;
@@ -61,7 +61,7 @@ wsServer.on('request', function (request) {
                 if (jsonMsg.textFilename) {
                     // write empty file
                     console.log('emptying file: ' + jsonMsg.textFilename);
-                    writeToFile(dataDir + jsonMsg.textFilename, allText);
+                    writeToFile(tododelme2 + jsonMsg.textFilename, allText);
                 }
                 sendEnd = true;
             } else if (jsonMsg.command == 'readFile') {
@@ -75,8 +75,8 @@ wsServer.on('request', function (request) {
                     // Parse text for name/dictionary/etc.
                     console.log("parsing '" + jsonMsg.text + "'");
                     // Create file for parser to parse:
-                    writeToFile(dataDir + semParserInputFilename, jsonMsg.text, function () {
-                        parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
+                    writeToFile(tododelme2 + tododelme, jsonMsg.text, function () {
+                        parseAndReturnToClient(jsonMsg, tododelme4, connection);
                     });
                 } else {
                     // there's no text, so let's either parse the memory or parse the given filepath
@@ -84,10 +84,10 @@ wsServer.on('request', function (request) {
                         parseAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
                     } else {
                         // there's no filepath, so let's parse the memory
-                        console.log("parsing '" + dataDir + semParserInputFilename + "'");
+                        console.log("parsing '" + tododelme2 + tododelme + "'");
                         // first, write the memory to the data file, and then parse it
-                        writeToFile(dataDir + semParserInputFilename, allText, function () {
-                            parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
+                        writeToFile(tododelme2 + tododelme, allText, function () {
+                            parseAndReturnToClient(jsonMsg, tododelme4, connection);
                         });
                     }
                 }
@@ -112,7 +112,7 @@ wsServer.on('request', function (request) {
                 // }
                 sendEnd = false;
             } else if (jsonMsg.command == 'clearAnimalFiles') {
-                var cmd = 'rm ' + dataDir + animalDir + '*';
+                var cmd = 'rm ' + tododelme2 + animalDir + '*';
                 exec(cmd);
                 console.log("Cleared animal memory files.");
                 sendEnd = true;
@@ -179,7 +179,7 @@ function readFileReturnToClient(filename, stage, connection) {
 function parseAndReturnToClient(jsonMsg, inputPath, connection) {
     // Execute parsing bash script and return name with readFileReturnToClient
     var parseCmd = 'cd ' + semParserPath +
-        ' && sh parse.sh ' + inputPath + ' ' + dataDirRelPath;
+        ' && sh parse.sh ' + inputPath + ' ' + tododelme3;
 
     console.log(parseCmd);
     exec(parseCmd, function (error, stdout, stderr) {
@@ -189,7 +189,7 @@ function parseAndReturnToClient(jsonMsg, inputPath, connection) {
         if (error) {
             console.log('Function error:\n' + error);
         }
-        console.log('Finished parsing and wrote to file: ' + dataDir);
+        console.log('Finished parsing and wrote to file: ' + tododelme2);
 
         // Check if a sentence caused the parser to hang (this only happens in the mindmap case):
         if (jsonMsg.typeOutput.toLowerCase().includes('mindmap') && stdout.includes("BAD ENGLISH")) {
@@ -197,7 +197,7 @@ function parseAndReturnToClient(jsonMsg, inputPath, connection) {
             returnTextToClient(stdout, jsonMsg.stage, connection);
         } else {
             // return the parsed information to client:
-            readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
+            readFileReturnToClient(tododelme2 + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
         }
     });
 }

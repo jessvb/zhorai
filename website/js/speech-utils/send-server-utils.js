@@ -19,33 +19,40 @@ function sendJson(json) {
     };
 }
 
-function makeTextFile(filename) {
-    sendJson({
-        'command': 'makeTextFile',
-        'textFilename': filename
-    });
+function sendFromSession(key) {
+    sendText(getSessionData(key));
 }
 
-function clearMemory(filename) {
-    var json = {
-        'command': 'clearMem'
-    };
+// TODO: del
+// function makeTextFile(filename) {
+//     sendJson({
+//         'command': 'makeTextFile',
+//         'textFilename': filename
+//     });
+// }
 
-    if (filename) {
-        json.textFilename = filename;
-    }
+// TODO: del --> use clearSessionMemory(), if anything
+// function clearMemory(filename) {
+//     var json = {
+//         'command': 'clearMem'
+//     };
 
-    sendJson(json);
-}
+//     if (filename) {
+//         json.textFilename = filename;
+//     }
 
-function readFile(filename, stage) {
-    var json = {
-        'command': 'readFile',
-        'filename': filename,
-        'stage': stage
-    };
-    sendJson(json);
-}
+//     sendJson(json);
+// }
+
+// TODO del:
+// function readFile(filename, stage) {
+//     var json = {
+//         'command': 'readFile',
+//         'filename': filename,
+//         'stage': stage
+//     };
+//     sendJson(json);
+// }
 
 function onReceive(event, socket) {
     var jsonMsg = JSON.parse(event.data);
@@ -67,6 +74,24 @@ function onReceive(event, socket) {
     if (jsonMsg.done == true) {
         socket.close();
     }
+}
+
+/**
+ * Parses given text and returns it with a call to onReceive.
+ * @param {*} recordedText : the text you want parsed
+ * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
+ * @param {*} stage : the current zhorai stage you're in, if applicable. 
+ * (This informs 'onReceive' what to do)
+ */
+function parseText(recordedText, typeOutput, stage) {
+    // convert the words "polar bear" to "polarbear" before giving to the parser:
+    recordedText = recordedText.replace(/polar bear/ig, 'polarbear');
+    sendJson({
+        'command': 'parse',
+        'text': recordedText,
+        'typeOutput': typeOutput, // e.g., 'topic', 'name', 'dictionary', etc.
+        'stage': stage
+    });
 }
 
 /**
@@ -136,6 +161,7 @@ function parseMem(typeOutput, filePath, stage) {
 //     });
 // }
 
+// TODO: change to no filepath
 /**
  * Sends a filepath to a file with sentences, starts the word embedder, and 
  * returns an array of an array to onReceive with the coordinates of the ecosystems 
@@ -157,11 +183,12 @@ function getEmbeddingCoordFromFile(filePath, stage) {
     });
 }
 
-/**
- * Sends a signal to the reciever to delete all of the files with sentences about animals.
- */
-function clearAnimalFiles() {
-    sendJson({
-        'command': 'clearAnimalFiles'
-    });
-}
+// TODO del / change to no filepath:
+// /**
+//  * Sends a signal to the reciever to delete all of the files with sentences about animals.
+//  */
+// function clearAnimalFiles() {
+//     sendJson({
+//         'command': 'clearAnimalFiles'
+//     });
+// }
