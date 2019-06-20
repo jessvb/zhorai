@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteMindmap();
 
         // send a command to the server to parse what's in the memory,
-        parseMem('mindmap', null, 'parsing' + '_mod2');
+        parseSession('mindmap', currentAnimal, 'parsing' + '_mod2'); // TODO: this should be parseSession now --> correct key?
         // when done parsing, create the mind map (in mod2ReceiveData)
     });
 });

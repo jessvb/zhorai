@@ -10,11 +10,101 @@ var mindmapPath = "../../website-server-side/receive-text/data/mindmap.txt";
 // File paths for mindmap creation
 var dataDir = 'data/';
 var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
-var desertInputPath = dataDirRelPath + 'prior_knowledge/desertInfo.txt'; // relative to semparserfilepath
-var rainforestInputPath = dataDirRelPath + 'prior_knowledge/rainforestInfo.txt'; // relative to semparserfilepath
-var grasslandInputPath = dataDirRelPath + 'prior_knowledge/grasslandInfo.txt'; // relative to semparserfilepath
-var tundraInputPath = dataDirRelPath + 'prior_knowledge/tundraInfo.txt'; // relative to semparserfilepath
-var oceanInputPath = dataDirRelPath + 'prior_knowledge/oceanInfo.txt'; // relative to semparserfilepath
+// TODO: del paths for txt files:
+// var desertInputPath = dataDirRelPath + 'prior_knowledge/desertInfo.txt'; // relative to semparserfilepath
+// var rainforestInputPath = dataDirRelPath + 'prior_knowledge/rainforestInfo.txt'; // relative to semparserfilepath
+// var grasslandInputPath = dataDirRelPath + 'prior_knowledge/grasslandInfo.txt'; // relative to semparserfilepath
+// var tundraInputPath = dataDirRelPath + 'prior_knowledge/tundraInfo.txt'; // relative to semparserfilepath
+// var oceanInputPath = dataDirRelPath + 'prior_knowledge/oceanInfo.txt'; // relative to semparserfilepath
+var desertSentences = 'The desert has lots of sand\n' +
+    'The desert is very dry\n' +
+    'Deserts have cactus\n' +
+    'The desert is very hot and sunny\n' +
+    'Deserts don\'t have much water\n' +
+    'Deserts have few people\n' +
+    'Deserts have flash floods\n' +
+    'Deserts have sand dunes\n' +
+    'Deserts are sandy\n' +
+    'Deserts don\'t have many plants\n' +
+    'Deserts don\'t have much vegetation\n' +
+    'Deserts are hot\n' +
+    'Deserts don\'t have much precipitation\n' +
+    'Deserts are also called drylands\n' +
+    'Deserts are harsh environments\n' +
+    'It\'s hard for animals to survive in the desert\n' +
+    'Animals are rare in the desert\n' +
+    'Animals that live in the desert have ways to keep cool and use less water\n' +
+    'Many animals in the desert are nocturnal\n' +
+    'Animals often come out at night in the desert\n' +
+    'Plants in the desert store water\n' +
+    'There are lots of cacti in the desert\n' +
+    'There are shrubs in the desert\n' +
+    'The sun is hot in the desert\n' +
+    'Deserts get very cold at night\n' +
+    'It is hard to find water in the desert\n' +
+    'There are lots of deserts in africa';
+var rainforestSentences = 'The rainforest is very wet\n' +
+    'The rainforest has a lot of trees\n' +
+    'The rainforest has lots of wood.\n' +
+    'There is a lot of rain in the rainforest\n' +
+    'There are a lot of different plants in the rainforest\n' +
+    'There are a lot of different animals in the rainforest\n' +
+    'Rainforests are damp\n' +
+    'Rainforests have trees\n' +
+    'Rainforests are muddy\n' +
+    'There are rivers in the rainforests\n' +
+    'People go for hikes in the rainforest\n' +
+    'The rainforest is humid\n' +
+    'The rainforest has lots of plants';
+var grasslandSentences = 'The grassland has a lot of grass\n' +
+    'Grasslands can have shrubs\n' +
+    'The grassland is can be cool or warm\n' +
+    'Grasslands are pretty dry\n' +
+    'There are savannas in the grassland\n' +
+    'Grasslands are a large open areas of country covered with grass\n' +
+    'Grasslands have some rain\n' +
+    'Grasslands are open and flat\n' +
+    'The most important plants of grasslands are grasses\n' +
+    'Temperatures in grasslands vary greatly between summer and winter.\n' +
+    'Grasslands don\'t have trees';
+var tundraSentences = 'The tundra is very cold\n' +
+    'The tundra is very dry\n' +
+    'There are not very many trees or bushes in the tundra\n' +
+    'Not many things live in the tundra\n' +
+    'The tundra is very far north\n' +
+    'The tundra is in Canada\n' +
+    'The tundra is very far south\n' +
+    'The tundra is in Antarctica\n' +
+    'The tundra is very windy\n' +
+    'There is a lot of snow in the tundra\n' +
+    'There are not many animals in the tundra\n' +
+    'There is a permafrost in the tundra\n' +
+    'Snow doesn\'t melt very often in the tundra\n' +
+    'The tundra is in Russia\n' +
+    'The tundra stays cold all year\n' +
+    'The tundra is dark in the winter\n' +
+    'It\'s extremely cold in the tundra during winter\n' +
+    'The tundra is bright in the summer\n' +
+    'The tundra is really windy\n' +
+    'There are marshes and lakes in the tundra during the summer\n' +
+    'In the winter, everything in the tundra freezes\n' +
+    'The biodiversity is low in the tundra\n' +
+    'When the tundra permafrost melts, it\'s bad for global warming\n' +
+    'The main plants in the tundra is lichen and mosses';
+var oceanSentences = 'The ocean is filled with water\n' +
+    'All animals in the ocean need water to survive\n' +
+    'The ocean is very wet\n' +
+    'The ocean is salty\n' +
+    'The ocean has coral reefs\n' +
+    'The ocean is very deep\n' +
+    'The ocean is huge\n' +
+    'The ocean covers most of the earth\n' +
+    'The ocean has lots of animals\n' +
+    'The ocean is blue\n' +
+    'The ocean has currents\n' +
+    'The ocean has seaweed and kelp\n' +
+    'The ocean has the most animals out of all the biomes\n' +
+    'The ocean is like a big sea';
 
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
@@ -85,7 +175,8 @@ function switchButtonTo(toButton) {
 
 function afterRecording(recordedText) {
     var saidKnownEco = false;
-    var ecoFilepath = '';
+    // var ecoFilepath = ''; todo del
+    var ecoSentences = '';
     var zhoraiSpeech = '';
     var phrases = [];
 
@@ -100,19 +191,24 @@ function afterRecording(recordedText) {
         var eco = '';
         if (recordedText.toLowerCase().includes('ocean')) {
             eco = 'ocean';
-            ecoFilepath = oceanInputPath;
+            // ecoFilepath = oceanInputPath; todo
+            ecoSentences = oceanSentences;
         } else if (recordedText.toLowerCase().includes('desert')) {
             eco = 'desert';
-            ecoFilepath = desertInputPath;
+            // ecoFilepath = desertInputPath; todo
+            ecoSentences = desertSentences;
         } else if (recordedText.toLowerCase().includes('rainforest')) {
             eco = 'rainforest';
-            ecoFilepath = rainforestInputPath;
+            // ecoFilepath = rainforestInputPath; todo
+            ecoSentences = rainforestSentences;
         } else if (recordedText.toLowerCase().includes('grassland')) {
             eco = 'grassland';
-            ecoFilepath = grasslandInputPath;
+            // ecoFilepath = grasslandInputPath; todo 
+            ecoSentences = grasslandSentences;
         } else if (recordedText.toLowerCase().includes('tundra')) {
             eco = 'tundra';
-            ecoFilepath = tundraInputPath;
+            // ecoFilepath = tundraInputPath; todo
+            ecoSentences = tundraSentences;
         } else {
             console.error("A known ecosystem was stated, but was not found in the " +
                 "text... I'm very confused.");
@@ -151,9 +247,11 @@ function afterRecording(recordedText) {
         // hide the sentences about particular ecosystems to prep for the next
         hideAllSentences();
 
+        // TODO: remove this with file and instead just send the text
         // send the particular ecosystem filepath to the server to parse,
-        parseMem('mindmap', ecoFilepath, 'parsing' + '_mod1');
-        // when done parsing, create the mind map (in mod1ReceiveData)
+        // parseFile('mindmap', ecoFilepath, 'parsing' + '_mod1');
+        parseText(ecoSentences, 'mindmap', 'parsing' + '_mod1');
+        // when done parsing, the mind map will be created in mod1ReceiveData
 
     } else {
         speakText(zhoraiSpeech, null,
