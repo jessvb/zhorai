@@ -270,13 +270,13 @@ function hideAllSentences() {
 }
 
 function mod1ReceiveData(filedata) {
-    // We're done parsing and reading the mindmap text file!
+    // We're done parsing the mindmap info!
     // create the mindmap!
     console.log('Creating mindmap! filedata:');
     filedata = filedata.replace(/'/g, '"');
     filedata = JSON.parse(filedata);
     console.log(filedata);
-    clearMemory();
+    // clearMemory(); TODO DEL
     switchButtonTo('micBtn');
     createMindmap(filedata);
 
@@ -308,8 +308,9 @@ document.addEventListener('DOMContentLoaded', function () {
     loadingGif = document.getElementById('loadingGif');
     textFileBtn = document.getElementById('textFileBtn');
 
-    // remove any memory from previous activites:
-    clearMemory("input.txt");
+    // todo del:
+    // // remove any memory from previous activites:
+    // clearMemory("input.txt");
 
     // Add click handlers
     recordButton.addEventListener("click", function () {
