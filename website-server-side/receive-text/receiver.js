@@ -5,20 +5,20 @@ var port = 8080;
 
 /* to write to txt file: */
 var fs = require('fs');
-var tododelme2 = 'data/';
-var tododelme3 = '../website-server-side/receive-text/' + tododelme2;
+// var tododelme2 = 'data/';
+// var tododelme3 = '../website-server-side/receive-text/' + tododelme2;
 
-var tododelme = 'input.txt';
+// var tododelme = 'input.txt';
 var semParserPath = '../../semantic-parser/';
-var tododelme4 = tododelme3 + tododelme; // relative to semparserfilepath
+// var tododelme4 = tododelme3 + tododelme; // relative to semparserfilepath
 
-var tododel5 = 'embed-sentence.txt';
+// var tododel5 = 'embed-sentence.txt';
 var embedPath = '../../word-embeddings/';
-var embedInputPath = tododelme3 + tododel5; // relative to embedfilepath
+// var tododelembedInputPath = tododelme3 + tododel5; // relative to embedfilepath
 // var allText = ''; TODO REMOVE
 
-var animalDir = 'animals/';
-var tododelme6 = tododelme3 + animalDir;
+// var tododelanimalDir = 'animals/';
+// var tododelme6 = tododelme3 + animalDir;
 
 /* to execute bash scripts */
 var exec = require('child_process').exec;
@@ -85,6 +85,7 @@ wsServer.on('request', function (request) {
                     parseAndReturnToClient(jsonMsg, connection);
                 } else {
                     console.log("Error: No text to give to the parser. jsonMsg: " + jsonMsg);
+                    returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
                 }
                 // TODO del:
                 // else {
@@ -121,6 +122,7 @@ wsServer.on('request', function (request) {
                     // there's no text provided... error!
                     console.log("Error: No text to give to the embedder. jsonMsg: " +
                         jsonMsg);
+                    returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
                 }
                 // }
                 sendEnd = false;
