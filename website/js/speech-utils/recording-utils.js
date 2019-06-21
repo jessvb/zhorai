@@ -11,6 +11,7 @@ var onClickStop;
 var onClickStopParam;
 var doneProcessing = false;
 var doneRecording = false;
+var currKey; // key to store information in session
 
 // These functions are called outside this js file (thus we leave them outside
 // the DOMContentLoaded event):
@@ -24,6 +25,9 @@ function recordButtonClick(event) {
         if (event.onClickStopParam) {
             onClickStopParam = event.onClickStopParam;
         }
+    }
+    if (event.key) {
+        currKey = event.key;
     }
 
     // start or stop recording
@@ -142,8 +146,24 @@ document.addEventListener('DOMContentLoaded', function () {
             if (doneProcessing && doneRecording) {
                 whenDoneRecAndProcessing();
             }
-            // send the transcript to the server
-            sendText(final_transcript);
+
+            // If there's a key, then we should save the sentence to this key
+            if (currKey) {
+                var currSessData = getSessionData(currKey);
+                if (currSessData && JSON.parse(currSessData).sentences) {
+                    // there are sentences already at the current key, so append the newest one
+                    var dataToSave = JSON.parse(currSessData).sentences;
+                    dataToSave.push(final_transcript);
+                    saveSessionData(currKey, JSON.stringify({
+                        sentences: dataToSave
+                    }));
+                } else {
+                    // there's no session data for this key yet, so let's make it!
+                    saveSessionData(currKey, JSON.stringify({
+                        sentences: [final_transcript]
+                    }));
+                }
+            }
 
             if (textFileBtn) {
                 textFileBtn.disabled = false;
