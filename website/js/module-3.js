@@ -230,9 +230,10 @@ function afterRecording(recordedText) {
         parseSession('mindmap', animal, 'mindmapping' + '_mod3'); // todo check correct
         // when done parsing, create the mind map (in mod3ReceiveData)
 
-        // send the particular animal filepath to the server to get embedding coordinates,
-        getEmbeddingCoordFromFile(animalsRelPath + animal + '.txt', 'embedding' + '_mod3');
-
+        // TODO change to session:
+        // // send the particular animal filepath to the server to get embedding coordinates,
+        // getEmbeddingCoordFromFile(animalsRelPath + animal + '.txt', 'embedding' + '_mod3');
+        getEmbeddingCoordFromSession(animal, 'embedding' + '_mod3');
     } else {
         speakText(zhoraiSpeech, null,
             function () {
@@ -326,8 +327,9 @@ document.addEventListener('DOMContentLoaded', function () {
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
 
-    // remove any memory from previous activites:
-    clearMemory("input.txt");
+    // todo del:
+    // // remove any memory from previous activites:
+    // clearMemory("input.txt");
 
     // Add click handlers
     recordButton.addEventListener("click", function () {
