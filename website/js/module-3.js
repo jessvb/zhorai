@@ -253,8 +253,8 @@ function mod3ReceiveData(filedata, stage) {
         createMindmap(JSON.parse(filedata));
     } else if (stage.includes('embed')) {
         var phrases = [];
-        if (!(filedata.code && filedata.code == 1)) {
-            // We're done getting the embedding data!
+        if (!(filedata.code && filedata.code == 1) && filedata != 'ERR_NO_TEXT') {
+            // We're done getting the embedding data! (and there were no errors)
             // Currently, it's like this though:
             // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
             // camels,1.315521478652954,0.0048450627364218235,desert\n"
