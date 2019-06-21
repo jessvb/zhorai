@@ -3,14 +3,11 @@ import xml.etree.ElementTree as ET
 import json
 import utils
 
-tree = ET.parse(sys.argv[1] + '/sentences.xml')
-root = tree.getroot()
-
-# only one doc
-for doc in root:
-    # only one set of sentences per doc
-    for sentences in doc:
-        s = utils.getStructure(sentences)
+file = open(sys.argv[1] + "splitSentences.txt",'r')
+content = file.readlines()
+content = [x.strip() for x in content]
+s = utils.getStructure(content)
+file.close()
 
 #output dictionary
 file = open(sys.argv[1] + "/dictionary.txt","w")
@@ -24,7 +21,7 @@ file = open(sys.argv[1] + "/topic.txt","w")
 if res:
     file.write(next(iter(res)))
 else:
-    with open(sys.argv[1] + '/sentences.tok','r') as f:
+    with open(sys.argv[1] + '/splitSentences.txt','r') as f:
         for line in f:
             for word in line.split():
                 if utils.isTopic(word):

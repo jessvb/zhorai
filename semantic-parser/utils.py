@@ -1,10 +1,13 @@
 import sys
 import xml.etree.ElementTree as ET
+from nltk.parse.corenlp import CoreNLPParser
+from nltk.stem import WordNetLemmatizer
 
 ecosystems = ["forest", "desert", "rainforest", "grassland", "tundra", "plain", "ocean"]
 animals = ["alligator","ant","antelope","baboon","bat","bear","beaver","bee","bird","butterfly","camel","cat","coyote","cheetah","chicken","chimpanzee","cow","crocodile","deer","dog","dolphin","donkey","duck","eagle","elephant","fish","firefly","flamingo","fly","fox","frog","gerbil","giraffe","goat","goldfish","gorilla","hamster","hippopotamus","horse","jellyfish","kangaroo","kitten","koala","ladybug","leopard","lion","llama","lobster","monkey","moose","octopus","ostrich","otter","owl","panda","panther","peacock","penguin","pig","polarbear","puma","puppy","rabbit","rat","reindeer","rhinoceros","scorpion","seal","seahorse","shark","sheep","sloth","snail","snake","starfish","spider","squirrel","swordfish","tiger","walrus","weasel","whale","turtle","wildcat","whale","wolf","zebra"]
 negatives = ["n’t","n't","not","no","little","small","few","low"]
 stopwords = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "more", "most", "other", "some", "such", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now", "lot", "many"]
+lemmatizer = WordNetLemmatizer()
 
 def isTopic(word):
     if word in ecosystems or word in animals:
@@ -21,7 +24,7 @@ def combine(id, structureData):
             sentenceStruct.append(combine(c, structureData))
     return sentenceStruct
 
-def getStructure(sentences):
+def getStructureOld(sentences):
     s = []
     for sentence in sentences:
         structureData = {}
@@ -34,6 +37,27 @@ def getStructure(sentences):
                 structureData[span.attrib['id']] = (span.attrib['base'], span.attrib['pos'])
         s.append(combine(subRoot, structureData))
     return s
+
+def traverse_tree(tree):
+    if len(tree.leaves()) == 1:
+        word = tree.leaves()[0]
+        leaf_index = tree.leaves().index(word)
+        tree_location = tree.leaf_treeposition(leaf_index)
+        pos = tree[tree_location[:-1]].label()
+        return (lemmatizer.lemmatize(word).lower(),pos)
+    s = []
+    for subtree in tree:
+        s.append(traverse_tree(subtree))
+    return s
+
+def getStructure(sentences):
+    parser = CoreNLPParser()
+    s = []
+    for sentence in sentences:
+        parsed = next(parser.raw_parse(sentence))
+        s.append(traverse_tree(parsed))
+    return s
+
 
 def isNegative(word):
     if word in negatives:
@@ -69,7 +93,7 @@ def extractName(part):
     if type(part) is tuple:
         word = part[0]
         pos = part[1]
-        if pos == 'NNP':
+        if pos == 'NNP' or pos == "NN":
             return [word]
         return
     else:
@@ -116,6 +140,7 @@ def buildDict(s):
 def getName(s):
     sentence = s[-1]
     name = extractName(sentence)
+    print(name)
     if name:
         res = name[-1]
     else:
