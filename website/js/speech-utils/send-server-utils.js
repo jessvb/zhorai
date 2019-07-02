@@ -1,5 +1,5 @@
 /* --- utils for sending text to the server --- */
-var url = 'ws://localhost:8080';
+var url = 'wss://zhorai.csail.mit.edu:8080';
 
 function sendText(text) {
     sendJson({
@@ -9,7 +9,6 @@ function sendText(text) {
 
 function sendJson(json) {
     var socket = new WebSocket(url);
-
     socket.onopen = function (event) {
         socket.send(JSON.stringify(json));
     };

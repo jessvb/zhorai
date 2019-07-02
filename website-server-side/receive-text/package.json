@@ -9,6 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "websocket": "^1.0.28"
+    "ws": "^7.0.1"
   }
 }

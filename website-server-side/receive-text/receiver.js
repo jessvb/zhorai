@@ -1,10 +1,15 @@
 /* to connect to website via websocket: */
-var WebSocketServer = require('websocket').server;
-var http = require('http');
-var port = 8080;
+var WebSocket = require('ws');
+var https = require('https');
+var fs = require('fs');
+
+const port = 8080;
+const server = https.createServer({
+    cert: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/cert.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/privkey.pem')
+});
 
 /* to write to txt file: */
-var fs = require('fs');
 var dataDir = 'data/';
 var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
 
@@ -23,108 +28,94 @@ var animalDirRelPath = dataDirRelPath + animalDir;
 /* to execute bash scripts */
 var exec = require('child_process').exec;
 
-
-var server = http.createServer(function (request, response) {
-    // process HTTP request. Since we're writing just WebSockets
-    // server we don't have to implement anything.
-});
-server.listen(port, function () {});
-
-// create the server
-wsServer = new WebSocketServer({
-    httpServer: server
+// Create secure websocket server
+const wss = new WebSocket.Server({
+    server
 });
 
-// WebSocket server
-wsServer.on('request', function (request) {
-    var connection = request.accept(null, request.origin);
-
-    // This is the most important callback for us, we'll handle
-    // all messages from users here.
-    connection.on('message', function (message) {
+// Define websocket handlers
+wss.on('connection', function (connection) {
+    connection.on('message', function incoming(message) {
+        // process WebSocket message
+        console.log('received message: ' + message);
         var sendEnd = false;
-        if (message.type === 'utf8') {
-            // process WebSocket message
-            console.log('\nReceived message:\n' + message.utf8Data);
-
-            var jsonMsg = JSON.parse(message.utf8Data);
-            // Add received text to allText:
-            if (jsonMsg.command == 'makeTextFile') {
-                // make a text file with allText
+        var jsonMsg = JSON.parse(message);
+        // Add received text to allText:
+        if (jsonMsg.command == 'makeTextFile') {
+            // make a text file with allText
+            writeToFile(dataDir + jsonMsg.textFilename, allText);
+            // reset allText for next text file
+            allText = '';
+            sendEnd = true;
+        } else if (jsonMsg.command == 'clearMem') {
+            // remove all remembered data:
+            allText = '';
+            if (jsonMsg.textFilename) {
+                // write empty file
+                console.log('emptying file: ' + jsonMsg.textFilename);
                 writeToFile(dataDir + jsonMsg.textFilename, allText);
-                // reset allText for next text file
-                allText = '';
-                sendEnd = true;
-            } else if (jsonMsg.command == 'clearMem') {
-                // remove all remembered data:
-                allText = '';
-                if (jsonMsg.textFilename) {
-                    // write empty file
-                    console.log('emptying file: ' + jsonMsg.textFilename);
-                    writeToFile(dataDir + jsonMsg.textFilename, allText);
-                }
-                sendEnd = true;
-            } else if (jsonMsg.command == 'readFile') {
-                // get file data and return it to the client
-                console.log('Reading file: ' + jsonMsg.filename);
-                readFileReturnToClient(jsonMsg.filename, jsonMsg.stage, connection);
-                sendEnd = false;
-            } else if (jsonMsg.command == 'parse') {
-                // if there's text, then write that text to a file and parse it
-                if (jsonMsg.text) {
-                    // Parse text for name/dictionary/etc.
-                    console.log("parsing '" + jsonMsg.text + "'");
-                    // Create file for parser to parse:
-                    writeToFile(dataDir + semParserInputFilename, jsonMsg.text, function () {
+            }
+            sendEnd = true;
+        } else if (jsonMsg.command == 'readFile') {
+            // get file data and return it to the client
+            console.log('Reading file: ' + jsonMsg.filename);
+            readFileReturnToClient(jsonMsg.filename, jsonMsg.stage, connection);
+            sendEnd = false;
+        } else if (jsonMsg.command == 'parse') {
+            // if there's text, then write that text to a file and parse it
+            if (jsonMsg.text) {
+                // Parse text for name/dictionary/etc.
+                console.log("parsing '" + jsonMsg.text + "'");
+                // Create file for parser to parse:
+                writeToFile(dataDir + semParserInputFilename, jsonMsg.text, function () {
+                    parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
+                });
+            } else {
+                // there's no text, so let's either parse the memory or parse the given filepath
+                if (jsonMsg.filePath) {
+                    parseAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
+                } else {
+                    // there's no filepath, so let's parse the memory
+                    console.log("parsing '" + dataDir + semParserInputFilename + "'");
+                    // first, write the memory to the data file, and then parse it
+                    writeToFile(dataDir + semParserInputFilename, allText, function () {
                         parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
                     });
-                } else {
-                    // there's no text, so let's either parse the memory or parse the given filepath
-                    if (jsonMsg.filePath) {
-                        parseAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
-                    } else {
-                        // there's no filepath, so let's parse the memory
-                        console.log("parsing '" + dataDir + semParserInputFilename + "'");
-                        // first, write the memory to the data file, and then parse it
-                        writeToFile(dataDir + semParserInputFilename, allText, function () {
-                            parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
-                        });
-                    }
                 }
-                sendEnd = false;
-            } else if (jsonMsg.command == 'getEmbeddingCoord') {
-                // // if there's text, then write that text to a file and send it to the embedder
-                // if (jsonMsg.text) {
-                //     console.log("getting coords for '" + jsonMsg.text + "'");
-                //     // Create file for parser to parse:
-                //     writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
-                //         getCoordsAndReturnToClient(jsonMsg, null, connection);
-                //     });
-                // } else {
-                    // there's no text, so let's parse the given filepath
-                    if (jsonMsg.filePath) {
-                        getCoordsAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
-                    } else {
-                        // there's no filepath... error!
-                        console.log("Error: No filepath or text to give to the embedder. jsonMsg: " +
-                            jsonMsg);
-                    }
-                // }
-                sendEnd = false;
-            } else if (jsonMsg.command == 'clearAnimalFiles') {
-                var cmd = 'rm ' + dataDir + animalDir + '*';
-                exec(cmd);
-                console.log("Cleared animal memory files.");
-                sendEnd = true;
-            } else if (jsonMsg.text) {
-                allText += jsonMsg.text + '.\n';
-                sendEnd = true;
             }
-            console.log('text in current memory:');
-            console.log(allText);
-            if (sendEnd) {
-                sendDone(connection);
+            sendEnd = false;
+        } else if (jsonMsg.command == 'getEmbeddingCoord') {
+            // // if there's text, then write that text to a file and send it to the embedder
+            // if (jsonMsg.text) {
+            //     console.log("getting coords for '" + jsonMsg.text + "'");
+            //     // Create file for parser to parse:
+            //     writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
+            //         getCoordsAndReturnToClient(jsonMsg, null, connection);
+            //     });
+            // } else {
+            // there's no text, so let's parse the given filepath
+            if (jsonMsg.filePath) {
+                getCoordsAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
+            } else {
+                // there's no filepath... error!
+                console.log("Error: No filepath or text to give to the embedder. jsonMsg: " +
+                    jsonMsg);
             }
+            // }
+            sendEnd = false;
+        } else if (jsonMsg.command == 'clearAnimalFiles') {
+            var cmd = 'rm ' + dataDir + animalDir + '*';
+            exec(cmd);
+            console.log("Cleared animal memory files.");
+            sendEnd = true;
+        } else if (jsonMsg.text) {
+            allText += jsonMsg.text + '.\n';
+            sendEnd = true;
+        }
+        console.log('text in current memory:');
+        console.log(allText);
+        if (sendEnd) {
+            sendDone(connection);
         }
     });
 
@@ -132,6 +123,7 @@ wsServer.on('request', function (request) {
         // client closed connection
         console.log("Closed connection.\n");
     });
+
 });
 
 function writeToFile(filename, text, callback) {
@@ -152,7 +144,7 @@ function returnTextToClient(text, stage, connection) {
         'filedata': text,
         'stage': stage
     }));
-    connection.sendUTF(
+    connection.send(
         JSON.stringify({
             'filedata': text,
             'stage': stage
@@ -167,8 +159,8 @@ function readFileReturnToClient(filename, stage, connection) {
             console.error("Error reading file, " + filename + ": " + err);
         } else {
             console.log("read from file: " + data);
-            connection.sendUTF(JSON.stringify({
-                'filedata': new TextDecoder().decode(data),
+            connection.send(JSON.stringify({
+                'filedata': data.toString(),
                 'stage': stage
             }));
             sendDone(connection);
@@ -233,9 +225,11 @@ function getCoordsAndReturnToClient(jsonMsg, filePath, connection) {
 
 function sendDone(connection) {
     // tell the client to close the connection
-    connection.sendUTF(JSON.stringify({
+    connection.send(JSON.stringify({
         'done': true
     }));
 }
+
+server.listen(port);
 
 console.log("Zhorai's brain is ready for info!");
