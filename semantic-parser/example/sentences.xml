@@ -32,6 +32,7 @@
         <tokens>
           <token start="0" span="1" pos="EX" chunk="I-NP" entity="O" cat="NP[thr]" id="t1_0" surf="There" base="there"/>
           <token start="1" span="1" pos="VBZ" chunk="I-VP" entity="O" cat="(S[dcl]\NP[thr])/NP" id="t1_1" surf="is" base="be"/>
+<<<<<<< HEAD
           <token start="2" span="1" pos="JJ" chunk="I-NP" entity="O" cat="N/N" id="t1_2" surf="little" base="little"/>
           <token start="3" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t1_3" surf="water" base="water"/>
           <token start="4" span="1" pos="IN" chunk="I-PP" entity="O" cat="(NP\NP)/NP" id="t1_4" surf="in" base="in"/>
@@ -41,10 +42,21 @@
         </tokens>
         <ccg root="s1_sp0" id="s1_ccg0">
           <span root="true" id="s1_sp0" child="s1_sp1 s1_sp15" pos="None" category="S[dcl=true]" rule="rp"/>
+=======
+          <token start="2" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t1_2" surf="sand" base="sand"/>
+          <token start="3" span="1" pos="IN" chunk="I-PP" entity="O" cat="(NP\NP)/NP" id="t1_3" surf="in" base="in"/>
+          <token start="4" span="1" pos="DT" chunk="I-NP" entity="O" cat="NP[nb]/N" id="t1_4" surf="the" base="the"/>
+          <token start="5" span="1" pos="NN" chunk="I-NP" entity="O" cat="N" id="t1_5" surf="desert" base="desert"/>
+          <token start="6" span="1" pos="." chunk="O" entity="O" cat="." id="t1_6" surf="." base="."/>
+        </tokens>
+        <ccg root="s1_sp0" id="s1_ccg0">
+          <span root="true" id="s1_sp0" child="s1_sp1 s1_sp13" pos="None" category="S[dcl=true]" rule="rp"/>
+>>>>>>> newParser
           <span id="s1_sp1" child="s1_sp2 s1_sp3" pos="None" category="S[dcl=true]" rule="ba"/>
           <span start="0" span="1" pos="EX" chunk="I-NP" entity="O" id="s1_sp2" surf="There" base="there" terminal="t1_0" category="NP[thr=true]"/>
           <span id="s1_sp3" child="s1_sp4 s1_sp5" pos="None" category="S[dcl=true]\NP[thr=true]" rule="fa"/>
           <span start="1" span="1" pos="VBZ" chunk="I-VP" entity="O" id="s1_sp4" surf="is" base="be" terminal="t1_1" category="(S[dcl=true]\NP[thr=true])/NP"/>
+<<<<<<< HEAD
           <span id="s1_sp5" child="s1_sp6 s1_sp10" pos="None" category="NP" rule="ba"/>
           <span id="s1_sp6" child="s1_sp7" pos="None" category="NP" rule="lex"/>
           <span id="s1_sp7" child="s1_sp8 s1_sp9" pos="None" category="N" rule="fa"/>
@@ -443,6 +455,17 @@
           <span id="s11_sp10" child="s11_sp11" pos="None" category="NP" rule="lex"/>
           <span start="4" span="1" pos="NNP" chunk="I-NP" entity="I-ORG" id="s11_sp11" surf="Zhorai" base="zhorai" terminal="t11_4" category="N"/>
           <span start="5" span="1" pos="." chunk="O" entity="O" id="s11_sp12" surf="." base="." terminal="t11_5" category="."/>
+=======
+          <span id="s1_sp5" child="s1_sp6 s1_sp8" pos="None" category="NP" rule="ba"/>
+          <span id="s1_sp6" child="s1_sp7" pos="None" category="NP" rule="lex"/>
+          <span start="2" span="1" pos="NN" chunk="I-NP" entity="O" id="s1_sp7" surf="sand" base="sand" terminal="t1_2" category="N"/>
+          <span id="s1_sp8" child="s1_sp9 s1_sp10" pos="None" category="NP\NP" rule="fa"/>
+          <span start="3" span="1" pos="IN" chunk="I-PP" entity="O" id="s1_sp9" surf="in" base="in" terminal="t1_3" category="(NP\NP)/NP"/>
+          <span id="s1_sp10" child="s1_sp11 s1_sp12" pos="None" category="NP[nb=true]" rule="fa"/>
+          <span start="4" span="1" pos="DT" chunk="I-NP" entity="O" id="s1_sp11" surf="the" base="the" terminal="t1_4" category="NP[nb=true]/N"/>
+          <span start="5" span="1" pos="NN" chunk="I-NP" entity="O" id="s1_sp12" surf="desert" base="desert" terminal="t1_5" category="N"/>
+          <span start="6" span="1" pos="." chunk="O" entity="O" id="s1_sp13" surf="." base="." terminal="t1_6" category="."/>
+>>>>>>> newParser
         </ccg>
       </sentence>
     </sentences>

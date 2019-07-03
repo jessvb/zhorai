@@ -31,6 +31,7 @@
     <lf start="1" span="1" word="is" lemma="be" pos="VBZ" chunk="I-VP" entity="O" cat="(S[dcl]\NP[thr])/NP" />
     <rule type="ba" cat="NP">
      <rule type="lex" cat="NP">
+<<<<<<< HEAD
       <rule type="fa" cat="N">
        <lf start="2" span="1" word="little" lemma="little" pos="JJ" chunk="I-NP" entity="O" cat="N/N" />
        <lf start="3" span="1" word="water" lemma="water" pos="NN" chunk="I-NP" entity="O" cat="N" />
@@ -144,12 +145,21 @@
       <lf start="3" span="1" word="of" lemma="of" pos="IN" chunk="I-PP" entity="O" cat="PP/NP" />
       <rule type="fa" cat="NP[nb]">
        <lf start="4" span="1" word="a" lemma="a" pos="DT" chunk="I-NP" entity="O" cat="NP[nb]/N" />
+=======
+      <lf start="2" span="1" word="sand" lemma="sand" pos="NN" chunk="I-NP" entity="O" cat="N" />
+     </rule>
+     <rule type="fa" cat="NP\NP">
+      <lf start="3" span="1" word="in" lemma="in" pos="IN" chunk="I-PP" entity="O" cat="(NP\NP)/NP" />
+      <rule type="fa" cat="NP[nb]">
+       <lf start="4" span="1" word="the" lemma="the" pos="DT" chunk="I-NP" entity="O" cat="NP[nb]/N" />
+>>>>>>> newParser
        <lf start="5" span="1" word="desert" lemma="desert" pos="NN" chunk="I-NP" entity="O" cat="N" />
       </rule>
      </rule>
     </rule>
    </rule>
   </rule>
+<<<<<<< HEAD
   <rule type="rp" cat="S[dcl]">
    <rule type="lp" cat="S[dcl]">
     <lf start="6" span="1" word="," lemma="," pos="," chunk="O" entity="O" cat="," />
@@ -406,6 +416,9 @@
    </rule>
   </rule>
   <lf start="5" span="1" word="." lemma="." pos="." chunk="O" entity="O" cat="." />
+=======
+  <lf start="6" span="1" word="." lemma="." pos="." chunk="O" entity="O" cat="." />
+>>>>>>> newParser
  </rule>
 </ccg>
 </candc>
