@@ -1,4 +1,5 @@
 import sys
+import string
 import xml.etree.ElementTree as ET
 import json
 import utils
@@ -20,9 +21,12 @@ if sys.argv[1] == "Topic":
         print(next(iter(res)).title()) if next(iter(res)) else print("")
     else:
         for s in content:
-            for word in s:
+            words = s.split(' ')
+            for word in words:
+                word = word.translate(str.maketrans('','',string.punctuation))
                 if utils.isTopic(word):
                     print(word.title()) if word else print("")
+                    break
 
 #output name
 if sys.argv[1] == "Name":
@@ -30,7 +34,7 @@ if sys.argv[1] == "Name":
     print(name.title()) if name else None
 
 #output mindmap
-if sys.argv[1] == "MindMap":
+if sys.argv[1] == "Mindmap":
     map = utils.getMindMap(res)
     emptyMap = {"nodes": [], "links": []}
     if map != {"nodes": [], "links": []}:
