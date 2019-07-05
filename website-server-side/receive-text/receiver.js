@@ -1,7 +1,13 @@
 /* to connect to website via websocket: */
-var WebSocketServer = require('websocket').server;
-var http = require('http');
-var port = 8080;
+var WebSocket = require('ws');
+var https = require('https');
+var fs = require('fs');
+
+const port = 8080;
+const server = https.createServer({
+    cert: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/cert.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/privkey.pem')
+});
 
 /* to write to txt file: */
 var fs = require('fs');
@@ -23,25 +29,16 @@ var embedPath = '../../word-embeddings/';
 /* to execute bash scripts */
 var exec = require('child_process').exec;
 
-
-var server = http.createServer(function (request, response) {
-    // process HTTP request. Since we're writing just WebSockets
-    // server we don't have to implement anything.
-});
-server.listen(port, function () {});
-
-// create the server
-wsServer = new WebSocketServer({
-    httpServer: server
+// Create secure websocket server
+const wss = new WebSocket.Server({
+    server
 });
 
-// WebSocket server
-wsServer.on('request', function (request) {
-    var connection = request.accept(null, request.origin);
-
-    // This is the most important callback for us, we'll handle
-    // all messages from users here.
-    connection.on('message', function (message) {
+// Define websocket handlers
+wss.on('connection', function (connection) {
+    connection.on('message', function incoming(message) {
+        // process WebSocket message
+        console.log('received message: ' + message);
         var sendEnd = false;
         if (message.type === 'utf8') {
             // process WebSocket message
@@ -70,7 +67,7 @@ wsServer.on('request', function (request) {
             //     console.log('Reading file: ' + jsonMsg.filename);
             //     readFileReturnToClient(jsonMsg.filename, jsonMsg.stage, connection);
             //     sendEnd = false;
-            // } else 
+            // } else
             if (jsonMsg.command == 'parse') {
                 // if there's text, then write that text to a file and parse it
                 if (jsonMsg.text) {
@@ -92,7 +89,7 @@ wsServer.on('request', function (request) {
                 //     // there's no text, so let's either parse the memory or parse the given filepath
                 //     if (jsonMsg.filePath) {
                 //         parseAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
-                //     } 
+                //     }
                 //     else {
                 //         // there's no filepath, so let's parse the memory
                 //         console.log("parsing '" + tododelme2 + tododelme + "'");
@@ -142,6 +139,21 @@ wsServer.on('request', function (request) {
             if (sendEnd) {
                 sendDone(connection);
             }
+            // }
+            sendEnd = false;
+        } else if (jsonMsg.command == 'clearAnimalFiles') {
+            var cmd = 'rm ' + dataDir + animalDir + '*';
+            exec(cmd);
+            console.log("Cleared animal memory files.");
+            sendEnd = true;
+        } else if (jsonMsg.text) {
+            allText += jsonMsg.text + '.\n';
+            sendEnd = true;
+        }
+        console.log('text in current memory:');
+        console.log(allText);
+        if (sendEnd) {
+            sendDone(connection);
         }
     });
 
@@ -149,6 +161,7 @@ wsServer.on('request', function (request) {
         // client closed connection
         console.log("Closed connection.\n");
     });
+
 });
 
 // todo del:
@@ -170,7 +183,7 @@ function returnTextToClient(text, stage, connection) {
         'filedata': text,
         'stage': stage
     }));
-    connection.sendUTF(
+    connection.send(
         JSON.stringify({
             'filedata': text,
             'stage': stage
@@ -257,9 +270,11 @@ function getCoordsAndReturnToClient(jsonMsg, connection) {
 
 function sendDone(connection) {
     // tell the client to close the connection
-    connection.sendUTF(JSON.stringify({
+    connection.send(JSON.stringify({
         'done': true
     }));
 }
+
+server.listen(port);
 
 console.log("Zhorai's brain is ready for info!");

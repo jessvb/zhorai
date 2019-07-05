@@ -1,5 +1,5 @@
 /* --- utils for sending text to the server --- */
-var url = 'ws://localhost:8080';
+var url = 'wss://zhorai.csail.mit.edu:8080';
 
 function sendText(text) {
     sendJson({
@@ -9,7 +9,6 @@ function sendText(text) {
 
 function sendJson(json) {
     var socket = new WebSocket(url);
-
     socket.onopen = function (event) {
         socket.send(JSON.stringify(json));
     };
@@ -80,7 +79,7 @@ function onReceive(event, socket) {
  * Parses given text and returns it with a call to onReceive.
  * @param {*} recordedText : the text you want parsed
  * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
- * @param {*} stage : the current zhorai stage you're in, if applicable. 
+ * @param {*} stage : the current zhorai stage you're in, if applicable.
  * (This informs 'onReceive' what to do)
  */
 function parseText(recordedText, typeOutput, stage) {
@@ -98,13 +97,13 @@ function parseText(recordedText, typeOutput, stage) {
  * Parses given text and returns it with a call to onReceive.
  * e.g., parseSession('mindmap', 'polarbear', 'parsing_mod1')
  * or,   parseSession('mindmap', 'camel', 'parsing' + '_mod3');
- * 
+ *
  * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
  * @param {*} key : the key used for session storage. This will be used to retrieve
  * the value stored (e.g., the sentences associated with the animal-key).
- * @param {*} stage : the current zhorai stage you're in, if applicable. 
+ * @param {*} stage : the current zhorai stage you're in, if applicable.
  * (This informs 'onReceive' what to do)
- * 
+ *
  */
 function parseSession(typeOutput, key, stage) {
     var value = getSessionData(key);
@@ -119,15 +118,15 @@ function parseSession(typeOutput, key, stage) {
 // TODO: del and instead use parsetext
 // /**
 //  * Parses given text and returns it with a call to onReceive.
-//  * e.g., parseFile('mindmap', 
+//  * e.g., parseFile('mindmap',
 //  * '../website-server-side/receive-text/prior_knowledge/desertInfo.txt', 'parsing_mod1')
-//  * 
+//  *
 //  * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
-//  * @param {*} filePath : null to parse the memory or if a pre-defined file, the 
+//  * @param {*} filePath : null to parse the memory or if a pre-defined file, the
 //  * path of the file to parse, relative to the semantic parser
-//  * @param {*} stage : the current zhorai stage you're in, if applicable. 
+//  * @param {*} stage : the current zhorai stage you're in, if applicable.
 //  * (This informs 'onReceive' what to do)
-//  * 
+//  *
 //  */
 // function parseFile(typeOutput, filePath, stage) {
 //     sendJson({
@@ -140,16 +139,16 @@ function parseSession(typeOutput, key, stage) {
 
 // TODO: change to no filepath
 // /**
-//  * Sends a filepath to a file with sentences, starts the word embedder, and 
-//  * returns an array of an array to onReceive with the coordinates of the ecosystems 
-//  * as well as the animals in the sentences. 
-//  * 
-//  * Example call: getEmbeddingCoord('../website-server-side/receive-text/data/animals/dolphin.txt', 
+//  * Sends a filepath to a file with sentences, starts the word embedder, and
+//  * returns an array of an array to onReceive with the coordinates of the ecosystems
+//  * as well as the animals in the sentences.
+//  *
+//  * Example call: getEmbeddingCoord('../website-server-side/receive-text/data/animals/dolphin.txt',
 //  * 'embedStage_mod3')
-//  * 
-//  * @param {*} filePath : path to file containing sentences about an animal. Filepath is 
+//  *
+//  * @param {*} filePath : path to file containing sentences about an animal. Filepath is
 //  * relative to the embedder.
-//  * @param {*} stage : the current zhorai stage you're in, if applicable. 
+//  * @param {*} stage : the current zhorai stage you're in, if applicable.
 //  * (This informs 'onReceive' what to do)
 //  */
 // function getEmbeddingCoordFromFile(filePath, stage) {
@@ -161,14 +160,14 @@ function parseSession(typeOutput, key, stage) {
 // }
 
 /**
- * Sends sentences, starts the word embedder, and returns an array of an array to onReceive 
- * with the coordinates of the ecosystems as well as the animals in the sentences. 
- * 
- * Example call: getEmbeddingCoord('Camels live in the hot sun.\nCamels spit onto sand.\n', 
+ * Sends sentences, starts the word embedder, and returns an array of an array to onReceive
+ * with the coordinates of the ecosystems as well as the animals in the sentences.
+ *
+ * Example call: getEmbeddingCoord('Camels live in the hot sun.\nCamels spit onto sand.\n',
  * 'embedStage_mod3')
- * 
+ *
  * @param {*} sentences : text containing sentences about an animal.
- * @param {*} stage : the current zhorai stage you're in, if applicable. 
+ * @param {*} stage : the current zhorai stage you're in, if applicable.
  * (This informs 'onReceive' what to do)
  */
 function getEmbeddingCoordFromText(sentences, stage) {
@@ -180,14 +179,14 @@ function getEmbeddingCoordFromText(sentences, stage) {
 }
 
 /**
- * Retrieves sentences from session, sends the sentences, starts the word embedder, and 
- * returns an array of an array to onReceive with the coordinates of the ecosystems as 
- * well as the animals in the sentences. 
- * 
+ * Retrieves sentences from session, sends the sentences, starts the word embedder, and
+ * returns an array of an array to onReceive with the coordinates of the ecosystems as
+ * well as the animals in the sentences.
+ *
  * Example call: getEmbeddingCoord('camelSentences', 'embedStage_mod3')
- * 
+ *
  * @param {*} key : key for the session variable containing sentences about an animal.
- * @param {*} stage : the current zhorai stage you're in, if applicable. 
+ * @param {*} stage : the current zhorai stage you're in, if applicable.
  * (This informs 'onReceive' what to do)
  */
 function getEmbeddingCoordFromSession(key, stage) {

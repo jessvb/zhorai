@@ -1,4 +1,5 @@
 The desert is dry and hot . 
+<<<<<<< HEAD
 There is little water in the desert . 
 The only plant in the desert is the cactus . 
 Camels can be in the sun all day . 
@@ -11,3 +12,6 @@ My name is Jessica .
 My name is Galit . 
 Hi , I am Zhorai . 
 
+=======
+There is sand in the desert . 
+>>>>>>> newParser
