@@ -3,41 +3,35 @@ import xml.etree.ElementTree as ET
 import json
 import utils
 
-
-file = open(sys.argv[1] + "splitSentences.txt",'r')
-content = file.readlines()
-content = [x.strip() for x in content]
+print(sys.argv[2])
+content = sys.argv[2]
 s = utils.getStructure(content)
-file.close()
-
-#output dictionary
-file = open(sys.argv[1] + "/dictionary.txt","w")
+# dictionary
 res = utils.buildDict(s)
 if res:
-    file.write(json.dumps(res))
-file.close()
+    dictionary = json.dumps(res)
+    if sys.argv[1] == "Dictionary":
+        print(dictionary) if dictionary else print("")
 
-#output ecosystem/animal
-file = open(sys.argv[1] + "/topic.txt","w")
-if res:
-    file.write(next(iter(res)))
-else:
-    with open(sys.argv[1] + '/splitSentences.txt','r') as f:
-        for line in f:
-            for word in line.split():
+if sys.argv[1] == "Topic":
+    #output ecosystem/animal
+    if res:
+        print(next(iter(res))) if next(iter(res)) else print("")
+    else:
+        for s in content:
+            for word in s:
                 if utils.isTopic(word):
-                    file.write(word)
-file.close()
+                    print(word) if word else print("")
 
 #output name
-file = open(sys.argv[1] + "/name.txt","w")
-file.write(utils.getName(s))
-file.close()
+if sys.argv[1] == "Name":
+    name = utils.getName(s)
+    print(name) if name else None
 
 #output mindmap
-file = open(sys.argv[1] + "/mindmap.txt","w")
-map = utils.getMindMap(res)
-emptyMap = {"nodes": [], "links": []}
-if map != {"nodes": [], "links": []}:
-    file.write(json.dumps(map))
-file.close()
+if sys.argv[1] == "MindMap":
+    map = utils.getMindMap(res)
+    emptyMap = {"nodes": [], "links": []}
+    if map != {"nodes": [], "links": []}:
+        minmdap = json.dumps(map)
+        print(minmdap) if minmdap else print("")
