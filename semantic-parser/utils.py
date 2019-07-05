@@ -144,7 +144,6 @@ def buildDict(s):
 def getName(s):
     sentence = s[-1]
     name = extractName(sentence)
-    print(name)
     if name:
         res = name[-1]
     else:

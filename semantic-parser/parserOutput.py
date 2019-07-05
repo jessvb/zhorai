@@ -17,17 +17,17 @@ if res:
 #output ecosystem/animal
 if sys.argv[1] == "Topic":
     if res:
-        print(next(iter(res))) if next(iter(res)) else print("")
+        print(next(iter(res)).title()) if next(iter(res)) else print("")
     else:
         for s in content:
             for word in s:
                 if utils.isTopic(word):
-                    print(word) if word else print("")
+                    print(word.title()) if word else print("")
 
 #output name
 if sys.argv[1] == "Name":
     name = utils.getName(s)
-    print(name) if name else None
+    print(name.title()) if name else None
 
 #output mindmap
 if sys.argv[1] == "MindMap":
