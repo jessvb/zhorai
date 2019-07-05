@@ -1,0 +1,1 @@
+{"lion": [["pos", "run"], ["pos", "grass"], ["pos", "need"], ["pos", "space"], ["pos", "hunt"], ["pos", "animal"], ["pos", "sleep"], ["pos", "grass"], ["pos", "weed"], ["pos", "drink"], ["pos", "water"], ["pos", "lake"], ["pos", "plant"], ["pos", "type"], ["pos", "big"], ["pos", "cave"], ["pos", "weed"]], "cat": [["pos", "type"], ["pos", "big"]]}
