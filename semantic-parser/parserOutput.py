@@ -10,11 +10,12 @@ s = utils.getStructure(content)
 res = utils.buildDict(s)
 if res:
     dictionary = json.dumps(res)
+    #output dictionary
     if sys.argv[1] == "Dictionary":
         print(dictionary) if dictionary else print("")
 
+#output ecosystem/animal
 if sys.argv[1] == "Topic":
-    #output ecosystem/animal
     if res:
         print(next(iter(res))) if next(iter(res)) else print("")
     else:

@@ -6,7 +6,7 @@ sentences=$2
 
 #splitting sentences so that each sentence appears in new line
 splitSentences=$(python prepareCorpus.py "$sentences");
-echo "$splitSentences"
+# echo "$splitSentences"
 # #splitting words up into tokens
 # cat $outpath/splitSentences.txt | sed -f ccg2lambda/en/tokenizer.sed > $outpath/sentences.tok
 # #label tokens
@@ -18,7 +18,12 @@ echo "$splitSentences"
 retVal=$(python parserOutput.py "$type" "$splitSentences");
 if [ -z "$retVal" ]
 then
+    echo "START$type"
     echo 'ERROR: BAD ENGLISH'
+    echo "END$type"
 else
-     echo 'OK'
+    echo "START$type"
+    echo "$retVal"
+    echo 'OK'
+    echo "END$type"
 fi
