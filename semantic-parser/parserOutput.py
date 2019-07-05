@@ -3,8 +3,8 @@ import xml.etree.ElementTree as ET
 import json
 import utils
 
-print(sys.argv[2])
 content = sys.argv[2]
+content = content[1:-1].split(', ')
 s = utils.getStructure(content)
 # dictionary
 res = utils.buildDict(s)
