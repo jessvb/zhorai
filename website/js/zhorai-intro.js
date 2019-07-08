@@ -174,7 +174,7 @@ function afterRecording(recordedText) {
         case 'respondWithName':
         case 'respondWithPlace':
             // get name/place from server:
-            parseText(recordedText, 'name', stages[currStage] + "_intro");
+            parseText(recordedText, 'Name', stages[currStage] + "_intro");
             // this will call the introReceiveData() method, in which zhorai responds
             break;
         default:

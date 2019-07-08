@@ -227,7 +227,7 @@ function afterRecording(recordedText) {
 
         // send the particular animal filepath to the server to parse,
         // TODO change to session: parseMem('mindmap', animalsRelPath + animal + '.txt', 'mindmapping' + '_mod3');
-        parseSession('mindmap', animal, 'mindmapping' + '_mod3'); // todo check correct
+        parseSession('Mindmap', animal, 'mindmapping' + '_mod3'); // todo check correct
         // when done parsing, create the mind map (in mod3ReceiveData)
 
         // TODO change to session:

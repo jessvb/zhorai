@@ -127,8 +127,8 @@ function mod2ReceiveData(filedata) {
         console.log(filedata);
         console.log(JSON.parse(filedata));
 
-        // save animal info to file for the next module:
-        makeTextFile(animalDir + currentAnimal + '.txt');
+        // TODO: del: save animal info to file for the next module:
+        // makeTextFile(animalDir + currentAnimal + '.txt');
 
         // TODO: del clear mem
         // clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteMindmap();
 
         // send a command to the server to parse what's in the session memory,
-        parseSession('mindmap', currentAnimal, 'parsing' + '_mod2'); // TODO: this should be parseSession now --> correct key?
+        parseSession('Mindmap', currentAnimal, 'parsing' + '_mod2'); // TODO: this should be parseSession now --> correct key?
         // when done parsing, create the mind map (in mod2ReceiveData)
     });
 });

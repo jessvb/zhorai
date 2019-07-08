@@ -22,14 +22,6 @@ function sendFromSession(key) {
     sendText(getSessionData(key));
 }
 
-// TODO: del
-// function makeTextFile(filename) {
-//     sendJson({
-//         'command': 'makeTextFile',
-//         'textFilename': filename
-//     });
-// }
-
 // TODO: del --> use clearSessionMemory(), if anything
 // function clearMemory(filename) {
 //     var json = {
@@ -40,16 +32,6 @@ function sendFromSession(key) {
 //         json.textFilename = filename;
 //     }
 
-//     sendJson(json);
-// }
-
-// TODO del:
-// function readFile(filename, stage) {
-//     var json = {
-//         'command': 'readFile',
-//         'filename': filename,
-//         'stage': stage
-//     };
 //     sendJson(json);
 // }
 
@@ -78,7 +60,7 @@ function onReceive(event, socket) {
 /**
  * Parses given text and returns it with a call to onReceive.
  * @param {*} recordedText : the text you want parsed
- * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
+ * @param {*} typeOutput : e.g., 'Mindmap', 'Name', 'Dictionary', etc.
  * @param {*} stage : the current zhorai stage you're in, if applicable.
  * (This informs 'onReceive' what to do)
  */
@@ -88,17 +70,17 @@ function parseText(recordedText, typeOutput, stage) {
     sendJson({
         'command': 'parse',
         'text': recordedText,
-        'typeOutput': typeOutput, // e.g., 'topic', 'name', 'dictionary', etc.
+        'typeOutput': typeOutput, // e.g., 'Mindmap', 'Name', 'Dictionary', etc.
         'stage': stage
     });
 }
 
-/** todo: make this work for session storage:
+/**
  * Parses given text and returns it with a call to onReceive.
  * e.g., parseSession('mindmap', 'polarbear', 'parsing_mod1')
  * or,   parseSession('mindmap', 'camel', 'parsing' + '_mod3');
  *
- * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
+ * @param {*} typeOutput : e.g., 'Topic', 'Name', 'Dictionary', etc.
  * @param {*} key : the key used for session storage. This will be used to retrieve
  * the value stored (e.g., the sentences associated with the animal-key).
  * @param {*} stage : the current zhorai stage you're in, if applicable.
@@ -107,35 +89,22 @@ function parseText(recordedText, typeOutput, stage) {
  */
 function parseSession(typeOutput, key, stage) {
     var value = getSessionData(key);
+    // If there are a bunch of sentences in an array, make it into a single string:
+    if (JSON.parse(value).sentences) {
+        var sentences = JSON.parse(value).sentences;
+        value = "";
+        for (i = 0; i < sentences.length; i++){
+            value += sentences[i] + '. ';
+        }
+    }
+
     sendJson({
         'command': 'parse',
-        'text': value, // TODO: should we leave this?
-        'typeOutput': typeOutput, // e.g., 'topic', 'name', 'mindmap', etc.
+        'text': value,
+        'typeOutput': typeOutput, // e.g., 'Topic', 'Name', 'Mindmap', etc.
         'stage': stage
     });
 }
-
-// TODO: del and instead use parsetext
-// /**
-//  * Parses given text and returns it with a call to onReceive.
-//  * e.g., parseFile('mindmap',
-//  * '../website-server-side/receive-text/prior_knowledge/desertInfo.txt', 'parsing_mod1')
-//  *
-//  * @param {*} typeOutput : e.g., 'topic', 'name', 'dictionary', etc.
-//  * @param {*} filePath : null to parse the memory or if a pre-defined file, the
-//  * path of the file to parse, relative to the semantic parser
-//  * @param {*} stage : the current zhorai stage you're in, if applicable.
-//  * (This informs 'onReceive' what to do)
-//  *
-//  */
-// function parseFile(typeOutput, filePath, stage) {
-//     sendJson({
-//         'command': 'parse',
-//         'filePath': filePath,
-//         'typeOutput': typeOutput, // e.g., 'topic', 'name', 'mindmap', etc.
-//         'stage': stage
-//     });
-// }
 
 // TODO: change to no filepath
 // /**
