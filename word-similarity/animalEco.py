@@ -74,11 +74,11 @@ def main():
     # assumes student told the agent only about one animal.
     # Otherwise, takes the first one
     # animal_dict = eval(open(sys.argv[2], 'r').read())
-    animal_dict = json.loads(sys.argv[2])
+    animal_dict = json.loads(sys.argv[1])
     animal_name = list(animal_dict.keys())[0]
     animal = Entity(animal_dict[animal_name],animal_name)
     # get and save all ecosystem that agent knows about
-    eco_dict = eval(open(sys.argv[1], 'r').read())
+    eco_dict = eval(open('eco_dict.txt', 'r').read())
     animal_eco = AnimalEco(animal)
     for e in eco_dict.keys():
         ecosystem = Entity(eco_dict[e],e)

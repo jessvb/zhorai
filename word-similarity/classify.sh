@@ -1,4 +1,3 @@
-ecosystems=$1
-animal=$2
+animal=$1
 
-echo &(python animalEco.py $ecosystems "$animal" 2>&1)
+echo &(python animalEco.py "$animal" 2>&1)
