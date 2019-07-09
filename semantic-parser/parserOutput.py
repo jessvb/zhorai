@@ -36,7 +36,8 @@ if sys.argv[1] == "Topic":
 #output name
 if sys.argv[1] == "Name":
     name = utils.getName(s)
-    print(name.title()) if name else None
+    if name.strip():
+        print(name.title())
 
 #output mindmap
 if sys.argv[1] == "Mindmap":

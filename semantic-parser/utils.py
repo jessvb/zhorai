@@ -118,7 +118,7 @@ def extractName(part):
     if type(part) is tuple:
         word = part[0]
         pos = part[1]
-        if pos == 'NNP' or pos == "NN":
+        if pos == 'NNP' or pos == "NN" or pos == "FW":
             return [word]
         return
     else:
