@@ -85,11 +85,10 @@ def main():
         animal_eco.addEco(ecosystem)
         animal_eco.compare(animal,ecosystem)
     animal_eco.findMatch()
-    if debug:
-        for i in range(len(animal_eco.ecosystems)):
-            print(animal_eco.ecosystems[i].name, animal_eco.scores[i])
-    print(animal_eco.match)
+    ret = {}
+    for i in range(len(animal_eco.ecosystems)):
+        ret[str(animal_eco.ecosystems[i].name)] = animal_eco.scores[i]
+    print(ret)
 
-debug = 0
 if __name__ == "__main__":
     main()
