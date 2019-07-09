@@ -22,10 +22,10 @@ def stem(a):
         new_line = ' '.join(lemmatizer.lemmatize(word) for word in split_line)
         b.append(new_line) #add it to the new list of lines
         for word in split_line:
-            lemw = lemmatizer.lemmatize(word)
+            word_stripped = word.translate(str.maketrans('','',string.punctuation))
+            lemw = lemmatizer.lemmatize(word_stripped)
             if lemw not in full_word_dict.keys():
-                full_word_dict[lemw] = word
-                print(lemw,word)
+                full_word_dict[lemw] = word_stripped
     return str(b), full_word_dict
 
 def split(sentences):
