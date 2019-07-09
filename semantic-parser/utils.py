@@ -1,4 +1,5 @@
 import sys
+import re
 import xml.etree.ElementTree as ET
 from nltk.parse.corenlp import CoreNLPParser
 from nltk.stem import WordNetLemmatizer
@@ -24,7 +25,8 @@ def stem(a):
             lemw = lemmatizer.lemmatize(word)
             if lemw not in full_word_dict.keys():
                 full_word_dict[lemw] = word
-    return b, full_word_dict
+                print(lemw,word)
+    return str(b), full_word_dict
 
 def split(sentences):
     aSplit = re.split('(?<=[.!?]) +',sentences)

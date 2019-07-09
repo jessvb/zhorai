@@ -9,7 +9,7 @@ from nltk.stem import WordNetLemmatizer
 
 import utils
 
-content, full_word_dict = stem(split(sys.argv[2]))
+content, full_word_dict = utils.stem(utils.split(sys.argv[2]))
 content = content[1:-1].split(', ')
 s = utils.getStructure(content)
 # dictionary
