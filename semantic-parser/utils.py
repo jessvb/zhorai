@@ -12,6 +12,24 @@ stopwords = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you",
 lemmatizer = WordNetLemmatizer()
 parser = CoreNLPParser()
 
+def stem(a):
+    lemmatizer = WordNetLemmatizer()
+    b = []
+    full_word_dict = {}
+    for line in a:
+        split_line = line.split() #break it up so we can get access to the word
+        new_line = ' '.join(lemmatizer.lemmatize(word) for word in split_line)
+        b.append(new_line) #add it to the new list of lines
+        for word in split_line:
+            lemw = lemmatizer.lemmatize(word)
+            if lemw not in full_word_dict.keys():
+                full_word_dict[lemw] = word
+    return b, full_word_dict
+
+def split(sentences):
+    aSplit = re.split('(?<=[.!?]) +',sentences)
+    b = [x.lower() for x in aSplit]
+    return b
 
 def isTopic(word):
     if word in ecosystems or word in animals:
@@ -110,7 +128,7 @@ def extractName(part):
                 words = words + res
     return words
 
-def buildDict(s):
+def buildDict(s, full_word_dict):
     res = {}
     for sentence in s:
         words = extractWords(sentence)
@@ -129,16 +147,16 @@ def buildDict(s):
                     for i in subjects:
                         if pos == 'NN' or pos == 'NNS':
                             if i in res.keys():
-                                res[i].append(["neg",w])
+                                res[i].append(["neg",full_word_dict[w]])
                             else:
-                                res[i] = [["neg",w]]
+                                res[i] = [["neg",full_word_dict[w]]]
                             isNeg = False
                 else:
                     for i in subjects:
                         if i in res.keys():
-                            res[i].append(["pos",w])
+                            res[i].append(["pos",full_word_dict[w]])
                         else:
-                            res[i] = [["pos",w]]
+                            res[i] = [["pos",full_word_dict[w]]]
     return res
 
 def getName(s):

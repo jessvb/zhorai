@@ -5,7 +5,7 @@ type=$1
 sentences=$2
 
 #splitting sentences so that each sentence appears in new line
-splitSentences=$(python prepareCorpus.py "$sentences");
+# splitSentences=$(python prepareCorpus.py "$sentences");
 # echo "$splitSentences"
 # #splitting words up into tokens
 # cat $outpath/splitSentences.txt | sed -f ccg2lambda/en/tokenizer.sed > $outpath/sentences.tok
@@ -15,7 +15,7 @@ splitSentences=$(python prepareCorpus.py "$sentences");
 # python ccg2lambda/en/candc2transccg.py $outpath/sentences.candc.xml > $outpath/sentences.xml
 
 #build dictionary output for word embedder
-retVal=$(python parserOutput.py "$type" "$splitSentences");
+retVal=$(python parserOutput.py "$type" "$sentences");
 if [ -z "$retVal" ]
 then
     echo "START$type"

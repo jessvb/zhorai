@@ -1,14 +1,19 @@
 import sys
 import string
-import xml.etree.ElementTree as ET
+import re
 import json
+
+import xml.etree.ElementTree as ET
+import nltk.data
+from nltk.stem import WordNetLemmatizer
+
 import utils
 
-content = sys.argv[2]
+content, full_word_dict = stem(split(sys.argv[2]))
 content = content[1:-1].split(', ')
 s = utils.getStructure(content)
 # dictionary
-res = utils.buildDict(s)
+res = utils.buildDict(s, full_word_dict)
 if res:
     dictionary = json.dumps(res)
     #output dictionary
