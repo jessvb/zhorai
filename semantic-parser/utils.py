@@ -1,5 +1,6 @@
 import sys
 import re
+import string
 import xml.etree.ElementTree as ET
 from nltk.parse.corenlp import CoreNLPParser
 from nltk.stem import WordNetLemmatizer
