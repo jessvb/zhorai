@@ -1,4 +1,6 @@
 import sys
+import re
+import string
 import xml.etree.ElementTree as ET
 from nltk.parse.corenlp import CoreNLPParser
 from nltk.stem import WordNetLemmatizer
@@ -7,11 +9,30 @@ from nltk.stem import WordNetLemmatizer
 ecosystems = ["forest", "desert", "rainforest", "grassland", "tundra", "plain", "ocean"]
 animals = ["alligator","ant","antelope","baboon","bat","bear","beaver","bee","bird","butterfly","camel","cat","coyote","cheetah","chicken","chimpanzee","cow","crocodile","deer","dog","dolphin","donkey","duck","eagle","elephant","fish","firefly","flamingo","fly","fox","frog","gerbil","giraffe","goat","goldfish","gorilla","hamster","hippopotamus","horse","jellyfish","kangaroo","kitten","koala","ladybug","leopard","lion","llama","lobster","monkey","moose","octopus","ostrich","otter","owl","panda","panther","peacock","penguin","pig","polarbear","puma","puppy","rabbit","rat","reindeer","rhinoceros","scorpion","seal","seahorse","shark","sheep","sloth","snail","snake","starfish","spider","squirrel","swordfish","tiger","walrus","weasel","whale","turtle","wildcat","whale","wolf","zebra"]
 negatives = ["n’t","n't","not","no","little","small","few","low"]
-stopwords = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "more", "most", "other", "some", "such", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now", "lot", "many"]
+stopwords = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "ha", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "more", "most", "other", "some", "such", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now", "lot", "many"]
 
 lemmatizer = WordNetLemmatizer()
 parser = CoreNLPParser()
 
+def stem(a):
+    lemmatizer = WordNetLemmatizer()
+    b = []
+    full_word_dict = {}
+    for line in a:
+        split_line = line.split() #break it up so we can get access to the word
+        new_line = ' '.join(lemmatizer.lemmatize(word) for word in split_line)
+        b.append(new_line) #add it to the new list of lines
+        for word in split_line:
+            word_stripped = word.translate(str.maketrans('','',string.punctuation))
+            lemw = lemmatizer.lemmatize(word_stripped)
+            if lemw not in full_word_dict.keys():
+                full_word_dict[lemw] = word_stripped
+    return str(b), full_word_dict
+
+def split(sentences):
+    aSplit = re.split('(?<=[.!?]) +',sentences)
+    b = [x.lower() for x in aSplit]
+    return b
 
 def isTopic(word):
     if word in ecosystems or word in animals:
@@ -110,7 +131,7 @@ def extractName(part):
                 words = words + res
     return words
 
-def buildDict(s):
+def buildDict(s, full_word_dict):
     res = {}
     for sentence in s:
         words = extractWords(sentence)
@@ -129,22 +150,21 @@ def buildDict(s):
                     for i in subjects:
                         if pos == 'NN' or pos == 'NNS':
                             if i in res.keys():
-                                res[i].append(["neg",w])
+                                res[i].append(["neg",full_word_dict[w]])
                             else:
-                                res[i] = [["neg",w]]
+                                res[i] = [["neg",full_word_dict[w]]]
                             isNeg = False
                 else:
                     for i in subjects:
                         if i in res.keys():
-                            res[i].append(["pos",w])
+                            res[i].append(["pos",full_word_dict[w]])
                         else:
-                            res[i] = [["pos",w]]
+                            res[i] = [["pos",full_word_dict[w]]]
     return res
 
 def getName(s):
     sentence = s[-1]
     name = extractName(sentence)
-    print(name)
     if name:
         res = name[-1]
     else:

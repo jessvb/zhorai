@@ -10,20 +10,9 @@ const server = https.createServer({
 });
 
 /* to write to txt file: */
-var dataDir = 'data/';
-var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
-
-var semParserInputFilename = 'input.txt';
+var fs = require('fs');
 var semParserPath = '../../semantic-parser/';
-var semParserInputPath = dataDirRelPath + semParserInputFilename; // relative to semparserfilepath
-
-var embedInputFilename = 'embed-sentence.txt';
 var embedPath = '../../word-embeddings/';
-var embedInputPath = dataDirRelPath + embedInputFilename; // relative to embedfilepath
-var allText = '';
-
-var animalDir = 'animals/';
-var animalDirRelPath = dataDirRelPath + animalDir;
 
 /* to execute bash scripts */
 var exec = require('child_process').exec;
@@ -40,80 +29,40 @@ wss.on('connection', function (connection) {
         console.log('received message: ' + message);
         var sendEnd = false;
         var jsonMsg = JSON.parse(message);
-        // Add received text to allText:
-        if (jsonMsg.command == 'makeTextFile') {
-            // make a text file with allText
-            writeToFile(dataDir + jsonMsg.textFilename, allText);
-            // reset allText for next text file
-            allText = '';
-            sendEnd = true;
-        } else if (jsonMsg.command == 'clearMem') {
-            // remove all remembered data:
-            allText = '';
-            if (jsonMsg.textFilename) {
-                // write empty file
-                console.log('emptying file: ' + jsonMsg.textFilename);
-                writeToFile(dataDir + jsonMsg.textFilename, allText);
-            }
-            sendEnd = true;
-        } else if (jsonMsg.command == 'readFile') {
-            // get file data and return it to the client
-            console.log('Reading file: ' + jsonMsg.filename);
-            readFileReturnToClient(jsonMsg.filename, jsonMsg.stage, connection);
-            sendEnd = false;
-        } else if (jsonMsg.command == 'parse') {
-            // if there's text, then write that text to a file and parse it
+        if (jsonMsg.command == 'parse') {
+            // if there's text, then parse it according to jsonMsg.typeOutput
             if (jsonMsg.text) {
                 // Parse text for name/dictionary/etc.
-                console.log("parsing '" + jsonMsg.text + "'");
-                // Create file for parser to parse:
-                writeToFile(dataDir + semParserInputFilename, jsonMsg.text, function () {
-                    parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
-                });
+                console.log("parsing '" + jsonMsg.text + "' and outputting '" + jsonMsg.typeOutput + "'");
+                parseAndReturnToClient(jsonMsg, connection);
             } else {
-                // there's no text, so let's either parse the memory or parse the given filepath
-                if (jsonMsg.filePath) {
-                    parseAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
-                } else {
-                    // there's no filepath, so let's parse the memory
-                    console.log("parsing '" + dataDir + semParserInputFilename + "'");
-                    // first, write the memory to the data file, and then parse it
-                    writeToFile(dataDir + semParserInputFilename, allText, function () {
-                        parseAndReturnToClient(jsonMsg, semParserInputPath, connection);
-                    });
-                }
+                console.log("Error: No text to give to the parser. jsonMsg: " + jsonMsg);
+                returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
             }
             sendEnd = false;
         } else if (jsonMsg.command == 'getEmbeddingCoord') {
+            // TODO: don't write to a file here!
             // // if there's text, then write that text to a file and send it to the embedder
-            // if (jsonMsg.text) {
-            //     console.log("getting coords for '" + jsonMsg.text + "'");
-            //     // Create file for parser to parse:
-            //     writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
-            //         getCoordsAndReturnToClient(jsonMsg, null, connection);
-            //     });
-            // } else {
-            // there's no text, so let's parse the given filepath
-            if (jsonMsg.filePath) {
-                getCoordsAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
+            if (jsonMsg.text) {
+                console.log("getting coords for '" + jsonMsg.text + "'");
+                // TODO: don't create file!
+                // Create file for parser to parse:
+                // writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
+                //     getCoordsAndReturnToClient(jsonMsg, null, connection);
+                // });
+                // } else {
+                // // there's no text, so let's parse the given filepath
+                // if (jsonMsg.filePath) {
+                //     getCoordsAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
+                getCoordsAndReturnToClient(jsonMsg, connection);
             } else {
-                // there's no filepath... error!
-                console.log("Error: No filepath or text to give to the embedder. jsonMsg: " +
+                // there's no text provided... error!
+                console.log("Error: No text to give to the embedder. jsonMsg: " +
                     jsonMsg);
+                returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
             }
-            // }
             sendEnd = false;
-        } else if (jsonMsg.command == 'clearAnimalFiles') {
-            var cmd = 'rm ' + dataDir + animalDir + '*';
-            exec(cmd);
-            console.log("Cleared animal memory files.");
-            sendEnd = true;
-        } else if (jsonMsg.text) {
-            allText += jsonMsg.text + '.\n';
-            sendEnd = true;
         }
-        console.log('text in current memory:');
-        console.log(allText);
         if (sendEnd) {
             sendDone(connection);
         }
@@ -125,19 +74,6 @@ wss.on('connection', function (connection) {
     });
 
 });
-
-function writeToFile(filename, text, callback) {
-    fs.writeFile(filename, text, function (err) {
-        if (err) {
-            console.error("Error writing to file: " + err);
-        } else {
-            console.log('File successfully written!');
-            if (callback) {
-                callback();
-            }
-        }
-    });
-}
 
 function returnTextToClient(text, stage, connection) {
     console.log("Returning text to client: " + JSON.stringify({
@@ -152,58 +88,50 @@ function returnTextToClient(text, stage, connection) {
     sendDone(connection);
 }
 
-function readFileReturnToClient(filename, stage, connection) {
-    console.log('Reading file: ' + filename);
-    fs.readFile(filename, function (err, data) {
-        if (err) {
-            console.error("Error reading file, " + filename + ": " + err);
-        } else {
-            console.log("read from file: " + data);
-            connection.send(JSON.stringify({
-                'filedata': data.toString(),
-                'stage': stage
-            }));
-            sendDone(connection);
-        }
-    });
-}
-
-function parseAndReturnToClient(jsonMsg, inputPath, connection) {
-    // Execute parsing bash script and return name with readFileReturnToClient
+function parseAndReturnToClient(jsonMsg, connection) {
+    // Execute parsing bash script and return output (stdout) to client
     var parseCmd = 'cd ' + semParserPath +
-        ' && sh parse.sh ' + inputPath + ' ' + dataDirRelPath;
+        ' && sh parse.sh "' + jsonMsg.typeOutput + '" "' + jsonMsg.text + '"';
 
     console.log(parseCmd);
     exec(parseCmd, function (error, stdout, stderr) {
+        var justOutput = "";
         if (stdout) {
             console.log('Parser command output:\n' + stdout);
+            // Grab the output without "STARTName" and "ENDName" etc.:
+            var startIndex = stdout.lastIndexOf("START" + jsonMsg.typeOutput) + ("START" + jsonMsg.typeOutput + "\n").length;
+            var endIndex = stdout.lastIndexOf("END" + jsonMsg.typeOutput) - ("\nOK\n").length;
+
+            justOutput = stdout.substring(startIndex, endIndex);
         }
         if (error) {
             console.log('Function error:\n' + error);
         }
-        console.log('Finished parsing and wrote to file: ' + dataDir);
+        console.log('Finished parsing.');
 
         // Check if a sentence caused the parser to hang (this only happens in the mindmap case):
         if (jsonMsg.typeOutput.toLowerCase().includes('mindmap') && stdout.includes("BAD ENGLISH")) {
             // return the error to the client
             returnTextToClient(stdout, jsonMsg.stage, connection);
         } else {
-            // return the parsed information to client:
-            readFileReturnToClient(dataDir + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
+            // TODO: return parsed info without reading from a file...
+            // // return the parsed information to client:
+            // readFileReturnToClient(tododelme2 + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
+            returnTextToClient(justOutput, jsonMsg.stage, connection);
         }
     });
 }
 
-function getCoordsAndReturnToClient(jsonMsg, filePath, connection) {
+function getCoordsAndReturnToClient(jsonMsg, connection) {
     // Execute embedder bash script and return coords with readFileReturnToClient
     console.log('Getting coords and return to client...');
-    // if (!filePath) {
-    //     filePath = embedInputPath;
-    // }
-    var embedCmd = 'cd ' + embedPath +
-        ' && python3 visualize_embedding_results.py --corpus-file corpus_files/embedding_corpus.txt --eval-file ' +
-        filePath + ' --eval-words-file corpus_files/animal-list.txt --ignore-plot --embedding-type linear ' +
-        '--model-checkpoint results/model_initial-0050.tar';
+
+    // TODO: get rid of text file
+    // var embedCmd = 'cd ' + embedPath +
+    //     ' && python3 visualize_embedding_results.py --corpus-file corpus_files/embedding_corpus.txt --eval-file ' +
+    //     filePath + ' --eval-words-file corpus_files/animal-list.txt --ignore-plot --embedding-type linear ' +
+    //     '--model-checkpoint results/model_initial-0050.tar';
+    var embedCmd = 'cd ' + embedPath; // TODO
     console.log(embedCmd);
 
     exec(embedCmd, function (error, stdout, stderr) {
@@ -218,7 +146,8 @@ function getCoordsAndReturnToClient(jsonMsg, filePath, connection) {
         }
 
         // Send text back to client:
-        returnTextToClient(textToSend, jsonMsg.stage, connection);
+        // returnTextToClient(textToSend, jsonMsg.stage, connection);
+        returnTextToClient('TODO get coords without making file (getCoordsAndReturnToClient)', jsonMsg.stage, connection);
     });
 
 }

@@ -1,43 +1,47 @@
 import sys
-import xml.etree.ElementTree as ET
+import string
+import re
 import json
+
+import xml.etree.ElementTree as ET
+import nltk.data
+from nltk.stem import WordNetLemmatizer
+
 import utils
 
-
-file = open(sys.argv[1] + "splitSentences.txt",'r')
-content = file.readlines()
-content = [x.strip() for x in content]
+content, full_word_dict = utils.stem(utils.split(sys.argv[2]))
+content = content[1:-1].split(', ')
 s = utils.getStructure(content)
-file.close()
-
-#output dictionary
-file = open(sys.argv[1] + "/dictionary.txt","w")
-res = utils.buildDict(s)
+# dictionary
+res = utils.buildDict(s, full_word_dict)
 if res:
-    file.write(json.dumps(res))
-file.close()
+    dictionary = json.dumps(res)
+    #output dictionary
+    if sys.argv[1] == "Dictionary":
+        print(dictionary) if dictionary else print("")
 
 #output ecosystem/animal
-file = open(sys.argv[1] + "/topic.txt","w")
-if res:
-    file.write(next(iter(res)))
-else:
-    with open(sys.argv[1] + '/splitSentences.txt','r') as f:
-        for line in f:
-            for word in line.split():
+if sys.argv[1] == "Topic":
+    if res:
+        print(next(iter(res)).title()) if next(iter(res)) else print("")
+    else:
+        for s in content:
+            words = s.split(' ')
+            for word in words:
+                word = word.translate(str.maketrans('','',string.punctuation))
                 if utils.isTopic(word):
-                    file.write(word)
-file.close()
+                    print(word.title()) if word else print("")
+                    break
 
 #output name
-file = open(sys.argv[1] + "/name.txt","w")
-file.write(utils.getName(s))
-file.close()
+if sys.argv[1] == "Name":
+    name = utils.getName(s)
+    print(name.title()) if name else None
 
 #output mindmap
-file = open(sys.argv[1] + "/mindmap.txt","w")
-map = utils.getMindMap(res)
-emptyMap = {"nodes": [], "links": []}
-if map != {"nodes": [], "links": []}:
-    file.write(json.dumps(map))
-file.close()
+if sys.argv[1] == "Mindmap":
+    map = utils.getMindMap(res)
+    emptyMap = {"nodes": [], "links": []}
+    if map != {"nodes": [], "links": []}:
+        minmdap = json.dumps(map)
+        print(minmdap) if minmdap else print("")

@@ -1,7 +1,8 @@
 /* -------------- Initialize variables -------------- */
+var recordButton;
+var recordBtnCurrHandler; // Reference so we can remove/replace handler depending on curranimal
 var zhoraiTextColour = "#5d3e9f";
 var animalPromptLabel;
-var recordButton;
 var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
@@ -115,8 +116,8 @@ function mod2ReceiveData(filedata) {
         showPurpleText(toSpeak);
         speakText(toSpeak);
 
-
-        clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
+        // TODO: del clear mem
+        // clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
         switchButtonTo('micAndTextFileBtn');
     } else {
         // We're done parsing and reading the mindmap text file!
@@ -126,10 +127,11 @@ function mod2ReceiveData(filedata) {
         console.log(filedata);
         console.log(JSON.parse(filedata));
 
-        // save animal info to file for the next module:
-        makeTextFile(animalDir + currentAnimal + '.txt');
+        // TODO: del: save animal info to file for the next module:
+        // makeTextFile(animalDir + currentAnimal + '.txt');
 
-        clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
+        // TODO: del clear mem
+        // clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
         switchButtonTo('micAndTextFileBtn');
         createMindmap(JSON.parse(filedata));
 
@@ -169,11 +171,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setAnimalPrompt();
 
-    // remove any memory from previous activites:
-    clearMemory("input.txt");
+    // TODO del:
+    // // remove any memory from previous activites:
+    // clearMemory("input.txt");
 
     // Add click handlers
-    record_button.addEventListener("click", recordButtonClick);
+    // todo record_button.addEventListener("click", recordButtonClick);
+    record_button.addEventListener("click", function () {
+        recordButtonClick({
+            key: currentAnimal
+        });
+    });
     textFileBtn.addEventListener('click', function () {
         switchButtonTo('loading');
         // say something about how we're going to display Zhorai's thoughts after parsing
@@ -188,8 +196,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // delete the current mindmap to prepare for the next
         deleteMindmap();
 
-        // send a command to the server to parse what's in the memory,
-        parseMem('mindmap', null, 'parsing' + '_mod2');
+        // send a command to the server to parse what's in the session memory,
+        parseSession('Mindmap', currentAnimal, 'parsing' + '_mod2'); // TODO: this should be parseSession now --> correct key?
         // when done parsing, create the mind map (in mod2ReceiveData)
     });
 });

@@ -226,12 +226,14 @@ function afterRecording(recordedText) {
         deleteMindmap();
 
         // send the particular animal filepath to the server to parse,
-        parseMem('mindmap', animalsRelPath + animal + '.txt', 'mindmapping' + '_mod3');
+        // TODO change to session: parseMem('mindmap', animalsRelPath + animal + '.txt', 'mindmapping' + '_mod3');
+        parseSession('Mindmap', animal, 'mindmapping' + '_mod3'); // todo check correct
         // when done parsing, create the mind map (in mod3ReceiveData)
 
-        // send the particular animal filepath to the server to get embedding coordinates,
-        getEmbeddingCoordFromFile(animalsRelPath + animal + '.txt', 'embedding' + '_mod3');
-
+        // TODO change to session:
+        // // send the particular animal filepath to the server to get embedding coordinates,
+        // getEmbeddingCoordFromFile(animalsRelPath + animal + '.txt', 'embedding' + '_mod3');
+        getEmbeddingCoordFromSession(animal, 'embedding' + '_mod3');
     } else {
         speakText(zhoraiSpeech, null,
             function () {
@@ -251,8 +253,8 @@ function mod3ReceiveData(filedata, stage) {
         createMindmap(JSON.parse(filedata));
     } else if (stage.includes('embed')) {
         var phrases = [];
-        if (!(filedata.code && filedata.code == 1)) {
-            // We're done getting the embedding data!
+        if (!(filedata.code && filedata.code == 1) && filedata != 'ERR_NO_TEXT') {
+            // We're done getting the embedding data! (and there were no errors)
             // Currently, it's like this though:
             // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
             // camels,1.315521478652954,0.0048450627364218235,desert\n"
@@ -325,8 +327,9 @@ document.addEventListener('DOMContentLoaded', function () {
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
 
-    // remove any memory from previous activites:
-    clearMemory("input.txt");
+    // todo del:
+    // // remove any memory from previous activites:
+    // clearMemory("input.txt");
 
     // Add click handlers
     recordButton.addEventListener("click", function () {

@@ -1,8 +1,7 @@
 import sys
+import re
 import nltk.data
 from nltk.stem import WordNetLemmatizer
-
-input = sys.argv[1]
 
 def stem(a):
     lemmatizer = WordNetLemmatizer()
@@ -13,23 +12,9 @@ def stem(a):
         b.append(new_line) #add it to the new list of lines
     return b
 
-def addPeriod(s):
-    if s[-1] == '.' or s[-1] == '\n':
-        return s
-    return s + '.'
+def split(sentences):
+    aSplit = re.split('(?<=[.!?]) +',sentences)
+    b = [x.lower() for x in aSplit]
+    return b
 
-def openfile(f):
-    with open(f,'r') as a:
-        a = a.readlines()
-        aSplit = []
-        for l in range(len(a)):
-            aSplit = aSplit + [addPeriod(x) for x in a[l].split('. ')]
-        b = [x.lower() for x in aSplit]
-        return b
-
-def returnfile(a):
-    with open(input,'r') as d:
-        for line in a:
-            print(line)
-
-returnfile(stem(openfile(input)))
+print(stem(split(sys.argv[1])))
