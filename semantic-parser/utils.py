@@ -30,6 +30,8 @@ def stem(a):
     return str(b), full_word_dict
 
 def split(sentences):
+    sentences = sentences.replace("\r",". ")
+    sentences = sentences.replace("\n",". ")
     aSplit = re.split('(?<=[.!?]) +',sentences)
     b = [x.lower() for x in aSplit]
     return b
