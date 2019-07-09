@@ -1,4 +1,5 @@
 import sys
+import json
 from nltk.corpus import wordnet as wn
 from itertools import product
 
@@ -63,7 +64,8 @@ class AnimalEco:
 def main():
     # assumes student told the agent only about one animal.
     # Otherwise, takes the first one
-    animal_dict = eval(open(sys.argv[2], 'r').read())
+    # animal_dict = eval(open(sys.argv[2], 'r').read())
+    animal_dict = eval(json.load(sys.argv[2]))
     animal_name = list(animal_dict.keys())[0]
     animal = Entity(animal_dict[animal_name],animal_name)
     # get and save all ecosystem that agent knows about
