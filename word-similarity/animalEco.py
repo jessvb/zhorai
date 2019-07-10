@@ -87,8 +87,8 @@ def main():
     animal_eco.findMatch()
     ret = {}
     for i in range(len(animal_eco.ecosystems)):
-        ret[str(animal_eco.ecosystems[i].name)] = animal_eco.scores[i]
-    print(ret)
+        ret[animal_eco.ecosystems[i].name] = animal_eco.scores[i]
+    print(json.dumps(ret))
 
 if __name__ == "__main__":
     main()
