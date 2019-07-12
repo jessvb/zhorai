@@ -57,6 +57,12 @@ class AnimalEco:
 
         self.scores.append(score/weight)
 
+    def normScores(self):
+        mi = min(self.scores)
+        ma = max(self.scores)
+        r = ma - mi
+        self.scores = [float(s - mi)/r for s in self.scores]
+
     def findMatch(self):
         ind = self.scores.index(max(self.scores))
         self.match = self.ecosystems[ind].name
@@ -84,7 +90,9 @@ def main():
         ecosystem = Entity(eco_dict[e],e)
         animal_eco.addEco(ecosystem)
         animal_eco.compare(animal,ecosystem)
-    animal_eco.findMatch()
+    animal_eco.normScores()
+    # not returning match for now
+    # animal_eco.findMatch()
     ret = {}
     for i in range(len(animal_eco.ecosystems)):
         ret[animal_eco.ecosystems[i].name] = animal_eco.scores[i]
