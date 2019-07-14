@@ -13,6 +13,13 @@ class SentenceManager {
     }
 
     /* --- public methods for adding/removing div and session info --- */
+    /**
+     * Adds a new sentence to the session storage and adds a new div 
+     * showing that sentence to the user.
+     * 
+     * @param {*} key : The key where the sentences are stored (e.g., "camel")
+     * @param {*} sentence : The sentence to be stored and visualized
+     */
     newSentence(key, sentence) {
         // add div
         this._addSentenceDiv(key, this._currIdNum, sentence);
@@ -36,8 +43,6 @@ class SentenceManager {
 
     /* --- utils for changing sentence divs --- */
     _addSentenceDiv(key, idNum, sentence) {
-        // todo: add id to sentence and cancel btn so that the div can later be removed
-
         // Create new div:
         // e.g., <div id=sent0>A sentence. <img class="delSentence" src="img/x_del.svg" width="30px" height="30px"></div>
         var newDiv = document.createElement('div');
@@ -142,5 +147,31 @@ class SentenceManager {
 
     static clearAllSessionData() {
         sessionStorage.clear();
+    }
+
+    /**
+     * Returns the sentences at this key as a long string of sentences 
+     * with periods in between.
+     * @param {*} key : The key where the sentences are stored (e.g., "camel")
+     */
+    static getSentencesAsString(key) {
+        // sessionData: {sentences: {sent0: "...", sent1: "..."}}
+        var sessionData = SentenceManager.getSessionData(key)
+        var sentenceStr = "";
+
+        // Check if we got sentences:
+        if (sessionData && JSON.parse(sessionData).sentences) {
+            // Then iterate over all the sentence keys and combine the sentences into a
+            // single string:
+            var sentences = JSON.parse(sessionData).sentences;
+            var keys = Object.keys(sentences);
+            sessionData = "";
+            for (var i = 0; i < keys.length; i++) {
+                var currKey = keys[i];
+                sentenceStr += sentences[currKey] + '. ';
+            }
+        }
+
+        return sentenceStr;
     }
 }
