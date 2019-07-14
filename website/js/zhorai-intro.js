@@ -188,15 +188,15 @@ function introReceiveData(filedata) {
     var phrases = [];
     var zhoraiSpeech = '';
     var recordingIsGood = false;
-    var currName = getSessionData('name');
-    var currPlace = getSessionData('place');
+    var currName = SentenceManager.getSessionData('name');
+    var currPlace = SentenceManager.getSessionData('place');
     switch (stages[currStage]) {
         case 'respondWithName':
             // test to see if what they said was correct... e.g., "I didn't quite catch that"
             if (filedata.trim() && !filedata.includes('ERR_NO_TEXT')) {
                 // got a name! Capitalize and store it:
                 currName = filedata.charAt(0).toUpperCase() + filedata.slice(1);
-                saveSessionData('name', currName);
+                SentenceManager.saveSessionData('name', currName);
                 recordingIsGood = true;
                 phrases = ["Hello, " + currName + "! Nice to meet you! Where are you from?",
                     "Nice to meet you, " + currName + "! Where are you from?",
@@ -213,7 +213,7 @@ function introReceiveData(filedata) {
             if (filedata.trim() && !filedata.includes('ERR_NO_TEXT')) {
                 // got a name (place)! Capitalize it:
                 currPlace = filedata.charAt(0).toUpperCase() + filedata.slice(1);
-                saveSessionData('place', currPlace);
+                SentenceManager.saveSessionData('place', currPlace);
                 recordingIsGood = true;
                 phrases = ["Ooo, " + currPlace + " sounds interesting! I'm from planet Igbruhmmelkin, so I've never heard of " + currPlace + " before! Tell me more!",
                     currPlace + " sounds cool! I have no idea where that is, since I'm from another planet! I'd love to hear more!",

@@ -171,6 +171,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setAnimalPrompt();
 
+    // Create sentence manager and put all known sentences about the current animal on the page
+    var sm = new SentenceManager(document.getElementById("sentencesDiv"), "./img/x_del.svg");
+    // Add all sentences in memory to page:
+    sm.setDivToSessionSentences(currentAnimal);
+
     // TODO del:
     // // remove any memory from previous activites:
     // clearMemory("input.txt");
@@ -179,7 +184,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // todo record_button.addEventListener("click", recordButtonClick);
     record_button.addEventListener("click", function () {
         recordButtonClick({
-            key: currentAnimal
+            key: currentAnimal,
+            sentenceManager: sm
         });
     });
     textFileBtn.addEventListener('click', function () {

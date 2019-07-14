@@ -10,12 +10,12 @@
 
   <title>Zhorai</title>
 
+  <!-- Class for getting/setting sentences (req'd for recording-utils) -->
+  <script src="js/speech-utils/SentenceManager.js"></script>
+
   <!-- Recording -->
   <script src="js/speech-utils/recording-utils.js"></script>
   <script src="js/speech-utils/send-server-utils.js"></script>
-
-  <!-- Storing session info (e.g., sentences) -->
-  <script src="js/speech-utils/session-utils.js"></script>
 
   <!-- Zhorai's voice -->
   <script src="js/speech-utils/voice-utils.js"></script>
@@ -123,7 +123,7 @@
         <!-- Record button -->
         <div class="text-center">
           <button id="record_button">
-            <img id="start_img" src="img/mic.gif" alt="Start"></button>
+            <img id="start_img" src="img/mic.svg" alt="Start" width="50px" height="50px"></button>
         </div>
         <div class="text-center">
           <!-- Tell Zhorai to speak button -->

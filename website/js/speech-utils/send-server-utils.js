@@ -19,7 +19,7 @@ function sendJson(json) {
 }
 
 function sendFromSession(key) {
-    sendText(getSessionData(key));
+    sendText(SentenceManager.getSessionData(key));
 }
 
 // TODO: del --> use clearSessionMemory(), if anything
@@ -88,16 +88,7 @@ function parseText(recordedText, typeOutput, stage) {
  *
  */
 function parseSession(typeOutput, key, stage) {
-    var value = getSessionData(key);
-    // If there are a bunch of sentences in an array, make it into a single string:
-    if (JSON.parse(value).sentences) {
-        var sentences = JSON.parse(value).sentences;
-        value = "";
-        for (i = 0; i < sentences.length; i++){
-            value += sentences[i] + '. ';
-        }
-    }
-
+    var value = SentenceManager.getSentencesAsString(key);
     sendJson({
         'command': 'parse',
         'text': value,
@@ -159,7 +150,8 @@ function getEmbeddingCoordFromText(sentences, stage) {
  * (This informs 'onReceive' what to do)
  */
 function getEmbeddingCoordFromSession(key, stage) {
-    var sentences = getSessionData(key);
+    // TODO: need to get the correct parsing for the sentences, as in parseSession
+    var sentences = SentenceManager.getSessionData(key);
     getEmbeddingCoordFromText(sentences, stage);
 }
 
