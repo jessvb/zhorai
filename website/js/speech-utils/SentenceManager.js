@@ -32,6 +32,52 @@ class SentenceManager {
 
     }
 
+    /**
+     * Adds all of the current sentences with the key in the session to the DOM. 
+     * Note that it first checks to see if there are any sentences on the div, deletes
+     * them, and then adds everything in memory.
+     * @param {*} key : The key where the sentences are stored (e.g., "camel")
+     */
+    setDivToSessionSentences(key) {
+        // delete all sentences on div:
+        this._removeAllSentenceDivs();
+        // add all sentences to div (note that _currId gets updated in this method):
+        this._addSessionSentencesToDiv(key);
+    }
+
+    /**
+     * Adds all of the current sentences with the key in the session to the DOM.
+     * Note that it updates the _currId to the [maximum value of ids in session +1].
+     * @param {*} key : The key where the sentences are stored (e.g., "camel")
+     */
+    _addSessionSentencesToDiv(key) {
+        // sessionData: {sentences: {sent0: "...", sent1: "..."}}
+        var sessionData = SentenceManager.getSessionData(key);
+
+        var maxId = 0;
+        // Check if we got sentences:
+        if (sessionData && JSON.parse(sessionData).sentences) {
+            // Then iterate over all the sentence keys and add to div
+            var sentences = JSON.parse(sessionData).sentences;
+            var ids = Object.keys(sentences);
+            sessionData = "";
+            for (var i = 0; i < ids.length; i++) {
+                var currId = ids[i];
+                var idNum = parseInt(currId.replace('sent', ''));
+                // add the sentence to the div:
+                this._addSentenceDiv(key, idNum, sentences[currId]);
+
+                // update the maxId if necessary
+                if (idNum > maxId) {
+                    maxId = idNum;
+                }
+            }
+        }
+
+        // Update _currId to the max id in the session +1:
+        this._currIdNum = maxId + 1;
+    }
+
     // click handler for x_del button:
     _removeSentence(key, idNum) {
         // remove from session
@@ -75,6 +121,14 @@ class SentenceManager {
         } else {
             console.log("There was no div with id: " + "sent" + idNum + ". " +
                 "Div was not removed");
+        }
+    }
+
+    _removeAllSentenceDivs() {
+        var child = this._sentencesDiv.lastElementChild;
+        while (child) {
+            this._sentencesDiv.removeChild(child);
+            child = this._sentencesDiv.lastElementChild;
         }
     }
 
