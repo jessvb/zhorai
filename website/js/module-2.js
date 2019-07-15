@@ -116,8 +116,6 @@ function mod2ReceiveData(filedata) {
         showPurpleText(toSpeak);
         speakText(toSpeak);
 
-        // TODO: del clear mem
-        // clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
         switchButtonTo('micAndTextFileBtn');
     } else {
         // We're done parsing and reading the mindmap text file!
@@ -127,11 +125,6 @@ function mod2ReceiveData(filedata) {
         console.log(filedata);
         console.log(JSON.parse(filedata));
 
-        // TODO: del: save animal info to file for the next module:
-        // makeTextFile(animalDir + currentAnimal + '.txt');
-
-        // TODO: del clear mem
-        // clearMemory(); // note: maketextfile clears the mem in receiver.js already ;P
         switchButtonTo('micAndTextFileBtn');
         createMindmap(JSON.parse(filedata));
 
@@ -176,12 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add all sentences in memory to page:
     sm.setDivToSessionSentences(currentAnimal);
 
-    // TODO del:
-    // // remove any memory from previous activites:
-    // clearMemory("input.txt");
-
     // Add click handlers
-    // todo record_button.addEventListener("click", recordButtonClick);
     record_button.addEventListener("click", function () {
         recordButtonClick({
             key: currentAnimal,
@@ -203,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteMindmap();
 
         // send a command to the server to parse what's in the session memory,
-        parseSession('Mindmap', currentAnimal, 'parsing' + '_mod2'); // TODO: this should be parseSession now --> correct key?
+        parseSession('Mindmap', currentAnimal, 'parsing' + '_mod2');
         // when done parsing, create the mind map (in mod2ReceiveData)
     });
 });

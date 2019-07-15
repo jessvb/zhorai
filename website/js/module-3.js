@@ -225,12 +225,12 @@ function afterRecording(recordedText) {
         // delete the current mindmap to prepare for the next
         deleteMindmap();
 
-        // send the particular animal filepath to the server to parse,
-        // TODO change to session: parseMem('mindmap', animalsRelPath + animal + '.txt', 'mindmapping' + '_mod3');
-        parseSession('Mindmap', animal, 'mindmapping' + '_mod3'); // todo check correct
+        // send the particular animal info to the server to parse by getting the info
+        // from the session:
+        parseSession('Mindmap', animal, 'mindmapping' + '_mod3');
         // when done parsing, create the mind map (in mod3ReceiveData)
 
-        // TODO change to session:
+        // TODO change to session / non-embedder:
         // // send the particular animal filepath to the server to get embedding coordinates,
         // getEmbeddingCoordFromFile(animalsRelPath + animal + '.txt', 'embedding' + '_mod3');
         getEmbeddingCoordFromSession(animal, 'embedding' + '_mod3');
@@ -326,10 +326,6 @@ document.addEventListener('DOMContentLoaded', function () {
     recordButton = document.getElementById('record_button');
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
-
-    // todo del:
-    // // remove any memory from previous activites:
-    // clearMemory("input.txt");
 
     // Add click handlers
     recordButton.addEventListener("click", function () {

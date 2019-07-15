@@ -5,17 +5,8 @@ var recordButton;
 var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
-var mindmapPath = "../../website-server-side/receive-text/data/mindmap.txt";
 
 // File paths for mindmap creation
-var dataDir = 'data/';
-var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
-// TODO: del paths for txt files:
-// var desertInputPath = dataDirRelPath + 'prior_knowledge/desertInfo.txt'; // relative to semparserfilepath
-// var rainforestInputPath = dataDirRelPath + 'prior_knowledge/rainforestInfo.txt'; // relative to semparserfilepath
-// var grasslandInputPath = dataDirRelPath + 'prior_knowledge/grasslandInfo.txt'; // relative to semparserfilepath
-// var tundraInputPath = dataDirRelPath + 'prior_knowledge/tundraInfo.txt'; // relative to semparserfilepath
-// var oceanInputPath = dataDirRelPath + 'prior_knowledge/oceanInfo.txt'; // relative to semparserfilepath
 var desertSentences = 'The desert has lots of sand. ' +
     'The desert is very dry. ' +
     'Deserts have cactus. ' +
@@ -175,7 +166,6 @@ function switchButtonTo(toButton) {
 
 function afterRecording(recordedText) {
     var saidKnownEco = false;
-    // var ecoFilepath = ''; todo del
     var ecoSentences = '';
     var zhoraiSpeech = '';
     var phrases = [];
@@ -191,23 +181,18 @@ function afterRecording(recordedText) {
         var eco = '';
         if (recordedText.toLowerCase().includes('ocean')) {
             eco = 'ocean';
-            // ecoFilepath = oceanInputPath; todo
             ecoSentences = oceanSentences;
         } else if (recordedText.toLowerCase().includes('desert')) {
             eco = 'desert';
-            // ecoFilepath = desertInputPath; todo
             ecoSentences = desertSentences;
         } else if (recordedText.toLowerCase().includes('rainforest')) {
             eco = 'rainforest';
-            // ecoFilepath = rainforestInputPath; todo
             ecoSentences = rainforestSentences;
         } else if (recordedText.toLowerCase().includes('grassland')) {
             eco = 'grassland';
-            // ecoFilepath = grasslandInputPath; todo 
             ecoSentences = grasslandSentences;
         } else if (recordedText.toLowerCase().includes('tundra')) {
             eco = 'tundra';
-            // ecoFilepath = tundraInputPath; todo
             ecoSentences = tundraSentences;
         } else {
             console.error("A known ecosystem was stated, but was not found in the " +
@@ -247,9 +232,7 @@ function afterRecording(recordedText) {
         // hide the sentences about particular ecosystems to prep for the next
         hideAllSentences();
 
-        // TODO: remove this with file and instead just send the text
-        // send the particular ecosystem filepath to the server to parse,
-        // parseFile('mindmap', ecoFilepath, 'parsing' + '_mod1');
+        // send the sentences for the particular ecosystem for the server to parse:
         parseText(ecoSentences, 'Mindmap', 'parsing' + '_mod1');
         // when done parsing, the mind map will be created in mod1ReceiveData
 
@@ -276,7 +259,6 @@ function mod1ReceiveData(filedata) {
     filedata = filedata.replace(/'/g, '"');
     filedata = JSON.parse(filedata);
     console.log(filedata);
-    // clearMemory(); TODO DEL
     switchButtonTo('micBtn');
     createMindmap(filedata);
 
@@ -307,10 +289,6 @@ document.addEventListener('DOMContentLoaded', function () {
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
     textFileBtn = document.getElementById('textFileBtn');
-
-    // todo del:
-    // // remove any memory from previous activites:
-    // clearMemory("input.txt");
 
     // Add click handlers
     recordButton.addEventListener("click", function () {

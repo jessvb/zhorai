@@ -22,19 +22,6 @@ function sendFromSession(key) {
     sendText(SentenceManager.getSessionData(key));
 }
 
-// TODO: del --> use clearSessionMemory(), if anything
-// function clearMemory(filename) {
-//     var json = {
-//         'command': 'clearMem'
-//     };
-
-//     if (filename) {
-//         json.textFilename = filename;
-//     }
-
-//     sendJson(json);
-// }
-
 function onReceive(event, socket) {
     var jsonMsg = JSON.parse(event.data);
     if (jsonMsg.filedata) {
@@ -97,28 +84,6 @@ function parseSession(typeOutput, key, stage) {
     });
 }
 
-// TODO: change to no filepath
-// /**
-//  * Sends a filepath to a file with sentences, starts the word embedder, and
-//  * returns an array of an array to onReceive with the coordinates of the ecosystems
-//  * as well as the animals in the sentences.
-//  *
-//  * Example call: getEmbeddingCoord('../website-server-side/receive-text/data/animals/dolphin.txt',
-//  * 'embedStage_mod3')
-//  *
-//  * @param {*} filePath : path to file containing sentences about an animal. Filepath is
-//  * relative to the embedder.
-//  * @param {*} stage : the current zhorai stage you're in, if applicable.
-//  * (This informs 'onReceive' what to do)
-//  */
-// function getEmbeddingCoordFromFile(filePath, stage) {
-//     sendJson({
-//         'command': 'getEmbeddingCoord',
-//         'filePath': filePath,
-//         'stage': stage
-//     });
-// }
-
 /**
  * Sends sentences, starts the word embedder, and returns an array of an array to onReceive
  * with the coordinates of the ecosystems as well as the animals in the sentences.
@@ -154,14 +119,3 @@ function getEmbeddingCoordFromSession(key, stage) {
     var sentences = SentenceManager.getSessionData(key);
     getEmbeddingCoordFromText(sentences, stage);
 }
-
-
-// TODO del / change to no filepath:
-// /**
-//  * Sends a signal to the reciever to delete all of the files with sentences about animals.
-//  */
-// function clearAnimalFiles() {
-//     sendJson({
-//         'command': 'clearAnimalFiles'
-//     });
-// }

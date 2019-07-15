@@ -167,9 +167,6 @@ function afterRecording(recordedText) {
                 var phrases = ["Sorry, what was that?", "Oh, pardon?"];
                 zhoraiSpeech = chooseRandomPhrase(phrases);
             }
-            // TODO: clearing mem shouldn't be nec any more, right??:
-            // // clear memory so that we don't have two name sentences:
-            // clearMemory();
             break;
         case 'respondWithName':
         case 'respondWithPlace':
@@ -292,16 +289,9 @@ document.addEventListener('DOMContentLoaded', function () {
     mod1Btn = document.getElementById('mod1Btn');
     loadingGif = document.getElementById('loadingGif');
 
-    // TODO del:
-    // remove any memory from previous activites:
-    // clearMemory('input.txt');
-    // clearAnimalFiles();
-
     startStage();
 
     // Add click handlers
-    // TODO: remove the zhoraiSpeakBtn
-    // zhoraiSpeakBtn.addEventListener("click", startStage);
     recordButton.addEventListener("click", function () {
         recordButtonClick({
             callback: afterRecording,

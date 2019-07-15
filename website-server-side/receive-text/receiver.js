@@ -114,9 +114,7 @@ function parseAndReturnToClient(jsonMsg, connection) {
             // return the error to the client
             returnTextToClient(stdout, jsonMsg.stage, connection);
         } else {
-            // TODO: return parsed info without reading from a file...
-            // // return the parsed information to client:
-            // readFileReturnToClient(tododelme2 + jsonMsg.typeOutput + '.txt', jsonMsg.stage, connection);
+            // return parsed info
             returnTextToClient(justOutput, jsonMsg.stage, connection);
         }
     });
