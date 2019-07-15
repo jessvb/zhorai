@@ -117,6 +117,17 @@ function mod2ReceiveData(filedata) {
         speakText(toSpeak);
 
         switchButtonTo('micAndTextFileBtn');
+    } else if (filedata.includes("ERR_NO_TEXT")) {
+        // There were no sentences saved for this animal... Let the user know:
+        var phrases = ['Hmm, I actually don\'t know anything about ' + currentAnimal + ' yet. Could you please teach me about them?',
+            'I haven\'t learned about ' + currentAnimal + ' yet, actually! What do you know about them?',
+            'Oops! I don\'t know anything about ' + currentAnimal + '. Could you teach me some things about them?'
+        ];
+        var toSpeak = chooseRandomPhrase(phrases);
+        showPurpleText(toSpeak);
+        speakText(toSpeak);
+
+        switchButtonTo('micAndTextFileBtn');
     } else {
         // We're done parsing and reading the mindmap text file!
         // create the mindmap!
