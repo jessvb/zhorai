@@ -1,0 +1,2 @@
+# Image sources
+A number of the icons were found in (and/or modified from) the [Heroicons collection](https://www.iconfinder.com/iconsets/heroicons-ui) by Steve Schoger. The loading icon was found in Hassan Alkhateeb's [open source collection](https://www.behance.net/gallery/31234507/Open-source-Loading-GIF-Icons-Vol-1). The Zhorai images are original artwork by [phoebelin](https://github.com/phoebelin).
