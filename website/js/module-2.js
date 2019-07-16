@@ -140,10 +140,11 @@ function mod2ReceiveData(filedata) {
         createMindmap(JSON.parse(filedata));
 
         // Now let's teach zhorai about another animal :)
+        // todo: get rid of oldAnimals
         // Add the current animal to the list of oldAnimals:
-        oldAnimals.push(currentAnimal);
-        currentAnimal = chooseRandomPhrase(knownAnimals.filter(checkNewAnimal));
-        // todo: what if we go through all 10 animals?
+        // oldAnimals.push(currentAnimal);
+        // currentAnimal = chooseRandomPhrase(knownAnimals.filter(checkNewAnimal));
+        currentAnimal = chooseRandomPhrase(knownAnimals);
 
         // update the prompt and sentences with the new animal
         setAnimalPrompt(currentAnimal);
