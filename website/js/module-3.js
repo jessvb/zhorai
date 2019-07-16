@@ -256,27 +256,31 @@ function mod3ReceiveData(filedata, stage) {
         if (!filedata.includes('ERR_NO_TEXT')) {
             createMindmap(JSON.parse(filedata));
         } // note: we deal with this error (no text provided) in the histogram code below:
+
     } else if (stage.includes('histogram')) {
         // TODO: send the json to the histogram-making method
         console.log('In histogram mod3receivedata :) filedata: ' + filedata);
 
-        // todo: get animal and closest ecosystem from returned info:
-        var animal = 'todo get from data returned...';
-        var eco = 'todo get ecosystem from data returned...';
+        if (!filedata.includes('ERR_NO_TEXT')) {
+            // todo: get animal and closest ecosystem from returned info:
+            var animal = 'todo get from data returned...';
+            var eco = 'todo get ecosystem from data returned...';
 
-        // say, "Based on what I know about Earth, here's where I would guess the animal 
-        // comes from.":
-        phrases = ["Based on what I know about Earth, I would guess " + animal +
-            " live in " + eco + "s.",
-            "I would guess " + animal + " live in " + eco + "s from what I know.",
-            "I think " + animal + " are from " + eco + "s based on what you told me."
-        ];
+            // say, "Based on what I know about Earth, here's where I would guess the animal 
+            // comes from.":
+            phrases = ["Based on what I know about Earth, I would guess " + animal +
+                " live in " + eco + "s.",
+                "I would guess " + animal + " live in " + eco + "s from what I know.",
+                "I think " + animal + " are from " + eco + "s based on what you told me."
+            ];
+        } else {
+            // error checking:
+            phrases = ["I don't know enough about that animal to guess where it's from.",
+                "I haven't heard enough about that animal to say where it lives.",
+                "Hmm, I'm not sure! I haven't heard much about that animal."
+            ];
+        }
 
-        // todo: error checking:
-        //     phrases = ["I don't know enough about that animal to guess where it's from.",
-        //         "I haven't heard enough about that animal to say where it lives.",
-        //         "Hmm, I'm not sure! I haven't heard much about that animal."
-        //     ];
         var zhoraiSpeech = chooseRandomPhrase(phrases);
         showPurpleText(zhoraiSpeech);
         speakText(zhoraiSpeech);
