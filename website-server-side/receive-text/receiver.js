@@ -131,7 +131,7 @@ function parseAndReturnToClient(jsonMsg, connection) {
         }
         console.log('Finished parsing.');
 
-        // Check if a sentence caused the parser to hang (this only happens in the mindmap case):
+        // Check if a sentence caused the parser to hang (this only happens in the mindmap case): TODO: should I add "Dictionary" here too??
         if (jsonMsg.typeOutput.toLowerCase().includes('mindmap') && stdout.includes("BAD ENGLISH")) {
             // return the error to the client
             returnTextToClient(stdout, jsonMsg.stage, connection);
@@ -146,9 +146,11 @@ function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
     // First, parse the sentences, then execute word similarity bash script and return values to client
     console.log('Getting word similarity and returning to client... (But first, we parse!)');
 
+    // Let's make sure the parseAndReturnToClient knows we're parsing for a dictionary:
+    jsonMsg.typeOutput = "Dictionary";
     // Execute parsing bash script and return output (stdout) to word similarity command:
     var parseCmd = 'cd ' + semParserPath +
-        ' && sh parse.sh "Dictionary" "' + jsonMsg.text + '"';
+        ' && sh parse.sh "' + jsonMsg.typeOutput + '" "' + jsonMsg.text + '"';
 
     console.log(parseCmd);
     exec(parseCmd, function (error, stdout, stderr) {
