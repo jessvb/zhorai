@@ -43,8 +43,6 @@ wss.on('connection', function (connection) {
         } else if (jsonMsg.command == 'getHistogramValues') {
             // if there's text, then send it to the word similarity program:
             if (jsonMsg.text) {
-                // todo        
-                console.log("getting histogram values for '" + jsonMsg.text + "'");
                 getWordSimilarityAndReturnToClient(jsonMsg, connection);
 
             } else {
@@ -54,32 +52,7 @@ wss.on('connection', function (connection) {
                 returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
             }
             sendEnd = false;
-        }
-        // todo del:
-        // else if (jsonMsg.command == 'getEmbeddingCoord') {
-        //     // TODO: don't write to a file here!
-        //     // // if there's text, then write that text to a file and send it to the embedder
-        //     if (jsonMsg.text) {
-        //         console.log("getting coords for '" + jsonMsg.text + "'");
-        //         // TODO: don't create file!
-        //         // Create file for parser to parse:
-        //         // writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
-        //         //     getCoordsAndReturnToClient(jsonMsg, null, connection);
-        //         // });
-        //         // } else {
-        //         // // there's no text, so let's parse the given filepath
-        //         // if (jsonMsg.filePath) {
-        //         //     getCoordsAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
-        //         getCoordsAndReturnToClient(jsonMsg, connection);
-        //     } else {
-        //         // there's no text provided... error!
-        //         console.log("Error: No text to give to the embedder. jsonMsg: " +
-        //             jsonMsg);
-        //         returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
-        //     }
-        //     sendEnd = false;
-        // } 
-        else {
+        } else {
             console.log("Error: Command, '" + jsonMsg.command + "', not recognized. Closing connection.");
             sendEnd = true;
         }
@@ -192,39 +165,12 @@ function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
                 }
 
                 // Send text back to client:
-                // TODO: do we need to edit the textToSend, or is it formatted correctly already??
                 returnTextToClient(JSON.stringify(jsonToSend), jsonMsg.stage, connection);
             });
 
         }
     });
 }
-
-// todo del:
-// function getCoordsAndReturnToClient(jsonMsg, connection) {
-//     // Execute embedder bash script and return coords with readFileReturnToClient
-//     console.log('Getting coords and return to client...');
-
-//     var embedCmd = 'cd ' + wordSimPath; // TODO
-//     console.log(embedCmd);
-
-//     exec(embedCmd, function (error, stdout, stderr) {
-//         var textToSend = "";
-//         if (stdout) {
-//             console.log('Parser command output:\n' + stdout);
-//             textToSend = stdout;
-//         }
-//         if (error) {
-//             console.log('Function error:\n' + error);
-//             textToSend = error;
-//         }
-
-//         // Send text back to client:
-//         // returnTextToClient(textToSend, jsonMsg.stage, connection);
-//         returnTextToClient('TODO get coords without making file (getCoordsAndReturnToClient)', jsonMsg.stage, connection);
-//     });
-
-// }
 
 function sendDone(connection) {
     // tell the client to close the connection

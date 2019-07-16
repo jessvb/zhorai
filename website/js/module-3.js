@@ -230,11 +230,6 @@ function afterRecording(recordedText) {
         parseSession('Mindmap', animal, 'mindmapping' + '_mod3');
         // when done parsing, create the mind map (in mod3ReceiveData)
 
-        // TODO del / change to session / non-embedder:
-        // // send the particular animal filepath to the server to get embedding coordinates,
-        // getEmbeddingCoordFromFile(animalsRelPath + animal + '.txt', 'embedding' + '_mod3');
-        // getEmbeddingCoordFromSession(animal, 'embedding' + '_mod3');
-
         // send the server the particular animal info (and get the histogram info in mod3ReceiveData)
         getHistogramValuesFromSession(animal, 'histogram' + '_mod3');
     } else {
@@ -257,9 +252,6 @@ function mod3ReceiveData(filedata, stage) {
         } // note: we deal with this error (no text provided) in the histogram code below:
 
     } else if (stage.includes('histogram')) {
-        // TODO: send the json to the histogram-making method
-        console.log('In histogram mod3receivedata :) filedata: ' + filedata);
-
         if (!filedata.includes('ERR_NO_TEXT')) {
             // filedata should look something like this:
             // {ecoData: {"desert": 1.0, "rainforest": 0.8170465764721643, "tundra": 
@@ -269,17 +261,17 @@ function mod3ReceiveData(filedata, stage) {
             // get animal and ecosystem word similarity from returned info:
             var animal = JSON.parse(filedata).animal;
             var ecoData = JSON.parse(filedata).ecoData;
-            
+
             // find the ecosystem with the largest word similarity value:
             var maxVal = 0;
             var eco = '';
-            Object.keys(ecoData).forEach(function(key) {
+            Object.keys(ecoData).forEach(function (key) {
                 var currVal = parseInt(ecoData[key]);
                 if (currVal > maxVal) {
                     maxVal = currVal;
                     eco = key;
                 }
-            }); 
+            });
 
             // say, "Based on what I know about Earth, here's where I would guess the animal 
             // comes from.":
@@ -288,6 +280,9 @@ function mod3ReceiveData(filedata, stage) {
                 "I would guess " + animal + " live in " + eco + "s from what I know.",
                 "I think " + animal + " are from " + eco + "s based on what you told me."
             ];
+
+            // TODO: make histogram here 
+            // (e.g., createHistogram(ecoData))
         } else {
             // error checking:
             phrases = ["I don't know enough about that animal to guess where it's from.",
@@ -302,70 +297,7 @@ function mod3ReceiveData(filedata, stage) {
             function () {
                 switchButtonTo('micBtn');
             });
-    }
-    // TODO del:
-    // } else if (stage.includes('embed')) {
-    //     var phrases = [];
-    //     if (!(filedata.code && filedata.code == 1) && filedata != 'ERR_NO_TEXT') {
-    //         // We're done getting the embedding data! (and there were no errors)
-    //         // Currently, it's like this though:
-    //         // "ocean,-0.49885207414627075,1.453416109085083,ocean\n
-    //         // camels,1.315521478652954,0.0048450627364218235,desert\n"
-
-    //         // Instead, we need to format it so that it's an array of arrays of 
-    //         // strings/floats, like this:
-    //         // [["camel", 1.1, 2.7, "desert"], ["tundra", 3.5, 0.2, "tundra"]]
-
-    //         // get rid of last newline
-    //         if (filedata.charAt(filedata.length - 1) == '\n') {
-    //             filedata = filedata.substring(0, filedata.length - 1);
-    //         }
-    //         // split by newlines
-    //         filedata = filedata.split(/\r?\n/);
-    //         // split by commas, and change the two inner strings to be floats
-    //         for (i = 0; i < filedata.length; i++) {
-    //             filedata[i] = filedata[i].split(',');
-    //             for (j = 0; j < filedata[i].length; j++) {
-    //                 if (!isNaN(parseFloat(filedata[i][j]))) {
-    //                     filedata[i][j] = parseFloat(filedata[i][j]);
-    //                 }
-    //             }
-    //         }
-
-    //         console.log('Creating vector graph! filedata:');
-    //         console.log(filedata);
-
-    //         // Now that filedata is formatted correctly, create the vector graph!
-    //         createScatterplot(filedata);
-
-    //         // Get the animal / eco from the data
-    //         var lastXYData = filedata[filedata.length - 1];
-    //         var animal = lastXYData[0];
-    //         var eco = lastXYData[lastXYData.length - 1];
-    //         // say, "Based on what I know about Earth, here's where I would guess the animal comes from."
-    //         phrases = ["Based on what I know about Earth, I would guess " + animal + " live in " + eco + "s.",
-    //             "I would guess " + animal + " live in " + eco + "s from what I know.",
-    //             "I think " + animal + " are from " + eco + "s based on what you told me."
-    //         ];
-    // } else {
-    //     console.log('Error creating vector graph. May be due to not talking about ' +
-    //         'specific animals yet. Command: ' + filedata.cmd);
-
-    //     // let's assume this is a filenotfounderror and just display the rest
-    //     // of the map. (NOTE: this is a HARD-CODED plot. Need to update if embedder
-    //     // is updated.)
-    //     createScatterplot(justEcosGraph);
-
-    //     phrases = ["I don't know enough about that animal to guess where it's from.",
-    //         "I haven't heard enough about that animal to say where it lives.",
-    //         "Hmm, I'm not sure! I haven't heard much about that animal."
-    //     ];
-
-    // }
-    // var zhoraiSpeech = chooseRandomPhrase(phrases);
-    // showPurpleText(zhoraiSpeech);
-    // speakText(zhoraiSpeech);
-    else {
+    } else {
         console.error("Unknown stage in mod3receivedata: " + stage);
         switchButtonTo('micBtn');
     }

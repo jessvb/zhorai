@@ -84,26 +84,6 @@ function parseSession(typeOutput, key, stage) {
     });
 }
 
-// todo del:
-// /**
-//  * Sends sentences, starts the word embedder, and returns an array of an array to onReceive
-//  * with the coordinates of the ecosystems as well as the animals in the sentences.
-//  *
-//  * Example call: getEmbeddingCoord('Camels live in the hot sun.\nCamels spit onto sand.\n',
-//  * 'embedStage_mod3')
-//  *
-//  * @param {*} sentences : text containing sentences about an animal.
-//  * @param {*} stage : the current zhorai stage you're in, if applicable.
-//  * (This informs 'onReceive' what to do)
-//  */
-// function getEmbeddingCoordFromText(sentences, stage) {
-//     sendJson({
-//         'command': 'getEmbeddingCoord',
-//         'text': sentences,
-//         'stage': stage
-//     });
-// }
-
 /**
  * Gets sentences, starts the word similarity library on the server, and returns an array 
  * of an array to onReceive with the coordinates of the ecosystems as well as the animals 
@@ -125,21 +105,3 @@ function getHistogramValuesFromSession(key, stage) {
         'stage': stage
     });
 }
-
-// todo del:
-// /**
-//  * Retrieves sentences from session, sends the sentences, starts the word embedder, and
-//  * returns an array of an array to onReceive with the coordinates of the ecosystems as
-//  * well as the animals in the sentences.
-//  *
-//  * Example call: getEmbeddingCoord('camelSentences', 'embedStage_mod3')
-//  *
-//  * @param {*} key : key for the session variable containing sentences about an animal.
-//  * @param {*} stage : the current zhorai stage you're in, if applicable.
-//  * (This informs 'onReceive' what to do)
-//  */
-// function getEmbeddingCoordFromSession(key, stage) {
-//     // TODO: need to get the correct parsing for the sentences, as in parseSession
-//     var sentences = SentenceManager.getSessionData(key);
-//     getEmbeddingCoordFromText(sentences, stage);
-// }
