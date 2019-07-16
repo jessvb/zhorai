@@ -12,7 +12,7 @@ const server = https.createServer({
 /* to write to txt file: */
 var fs = require('fs');
 var semParserPath = '../../semantic-parser/';
-var embedPath = '../../word-embeddings/';
+var wordSimPath = '../../word-similarity/';
 
 /* to execute bash scripts */
 var exec = require('child_process').exec;
@@ -40,29 +40,51 @@ wss.on('connection', function (connection) {
                 returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
             }
             sendEnd = false;
-        } else if (jsonMsg.command == 'getEmbeddingCoord') {
-            // TODO: don't write to a file here!
-            // // if there's text, then write that text to a file and send it to the embedder
+        } else if (jsonMsg.command == 'getHistogramValues') {
+            // if there's text, then send it to the word similarity program:
             if (jsonMsg.text) {
-                console.log("getting coords for '" + jsonMsg.text + "'");
-                // TODO: don't create file!
-                // Create file for parser to parse:
-                // writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
-                //     getCoordsAndReturnToClient(jsonMsg, null, connection);
-                // });
-                // } else {
-                // // there's no text, so let's parse the given filepath
-                // if (jsonMsg.filePath) {
-                //     getCoordsAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
-                getCoordsAndReturnToClient(jsonMsg, connection);
+                // todo        
+                console.log("getting histogram values for '" + jsonMsg.text + "'");
+                getWordSimilarityAndReturnToClient(jsonMsg, connection);
+
             } else {
                 // there's no text provided... error!
-                console.log("Error: No text to give to the embedder. jsonMsg: " +
+                console.log("Error: No text to give to the word similarity program. jsonMsg: " +
                     jsonMsg);
                 returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
             }
             sendEnd = false;
         }
+        // todo del:
+        // else if (jsonMsg.command == 'getEmbeddingCoord') {
+        //     // TODO: don't write to a file here!
+        //     // // if there's text, then write that text to a file and send it to the embedder
+        //     if (jsonMsg.text) {
+        //         console.log("getting coords for '" + jsonMsg.text + "'");
+        //         // TODO: don't create file!
+        //         // Create file for parser to parse:
+        //         // writeToFile(dataDir + embedInputFilename, jsonMsg.text, function () {
+        //         //     getCoordsAndReturnToClient(jsonMsg, null, connection);
+        //         // });
+        //         // } else {
+        //         // // there's no text, so let's parse the given filepath
+        //         // if (jsonMsg.filePath) {
+        //         //     getCoordsAndReturnToClient(jsonMsg, jsonMsg.filePath, connection);
+        //         getCoordsAndReturnToClient(jsonMsg, connection);
+        //     } else {
+        //         // there's no text provided... error!
+        //         console.log("Error: No text to give to the embedder. jsonMsg: " +
+        //             jsonMsg);
+        //         returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
+        //     }
+        //     sendEnd = false;
+        // } 
+        else {
+            console.log("Error: Command, '" + jsonMsg.command + "', not recognized. Closing connection.");
+            sendEnd = true;
+        }
+
+        // End the ws connection if sendEnd==true
         if (sendEnd) {
             sendDone(connection);
         }
@@ -120,35 +142,86 @@ function parseAndReturnToClient(jsonMsg, connection) {
     });
 }
 
-function getCoordsAndReturnToClient(jsonMsg, connection) {
-    // Execute embedder bash script and return coords with readFileReturnToClient
-    console.log('Getting coords and return to client...');
+function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
+    // First, parse the sentences, then execute word similarity bash script and return values to client
+    console.log('Getting word similarity and returning to client... (But first, we parse!)');
 
-    // TODO: get rid of text file
-    // var embedCmd = 'cd ' + embedPath +
-    //     ' && python3 visualize_embedding_results.py --corpus-file corpus_files/embedding_corpus.txt --eval-file ' +
-    //     filePath + ' --eval-words-file corpus_files/animal-list.txt --ignore-plot --embedding-type linear ' +
-    //     '--model-checkpoint results/model_initial-0050.tar';
-    var embedCmd = 'cd ' + embedPath; // TODO
-    console.log(embedCmd);
+    // Execute parsing bash script and return output (stdout) to word similarity command:
+    var parseCmd = 'cd ' + semParserPath +
+        ' && sh parse.sh "Dictionary" "' + jsonMsg.text + '"';
 
-    exec(embedCmd, function (error, stdout, stderr) {
-        var textToSend = "";
+    console.log(parseCmd);
+    exec(parseCmd, function (error, stdout, stderr) {
+        var parserOutput = "";
         if (stdout) {
             console.log('Parser command output:\n' + stdout);
-            textToSend = stdout;
+            // Grab the output without "STARTName" and "ENDName" etc.:
+            var startIndex = stdout.lastIndexOf("START" + jsonMsg.typeOutput) + ("START" + jsonMsg.typeOutput + "\n").length;
+            var endIndex = stdout.lastIndexOf("END" + jsonMsg.typeOutput) - ("\nOK\n").length;
+
+            parserOutput = stdout.substring(startIndex, endIndex);
         }
         if (error) {
             console.log('Function error:\n' + error);
-            textToSend = error;
         }
 
-        // Send text back to client:
-        // returnTextToClient(textToSend, jsonMsg.stage, connection);
-        returnTextToClient('TODO get coords without making file (getCoordsAndReturnToClient)', jsonMsg.stage, connection);
-    });
+        // Check if a sentence caused the parser to hang:
+        if (jsonMsg.typeOutput.toLowerCase().includes('mindmap') && stdout.includes("BAD ENGLISH")) {
+            console.log('Parser error... Returning to client.');
+            // return the error to the client
+            returnTextToClient(stdout, jsonMsg.stage, connection);
+        } else {
+            console.log('Finished parsing. Now to get the word similarity...');
 
+            var wordSimCmd = 'cd ' + wordSimPath +
+                ' && sh classify.sh \'' + parserOutput + '\'';
+            console.log(wordSimCmd);
+
+            exec(wordSimCmd, function (error, stdout, stderr) {
+                var textToSend = "";
+                if (stdout) {
+                    console.log('Parser command output:\n' + stdout);
+                    textToSend = stdout;
+                }
+                if (error) {
+                    console.log('Function error:\n' + error);
+                    textToSend = error;
+                }
+
+                // Send text back to client:
+                // TODO: do we need to edit the textToSend, or is it formatted correctly already??
+                returnTextToClient(textToSend, jsonMsg.stage, connection);
+            });
+
+        }
+    });
 }
+
+// todo del:
+// function getCoordsAndReturnToClient(jsonMsg, connection) {
+//     // Execute embedder bash script and return coords with readFileReturnToClient
+//     console.log('Getting coords and return to client...');
+
+//     var embedCmd = 'cd ' + wordSimPath; // TODO
+//     console.log(embedCmd);
+
+//     exec(embedCmd, function (error, stdout, stderr) {
+//         var textToSend = "";
+//         if (stdout) {
+//             console.log('Parser command output:\n' + stdout);
+//             textToSend = stdout;
+//         }
+//         if (error) {
+//             console.log('Function error:\n' + error);
+//             textToSend = error;
+//         }
+
+//         // Send text back to client:
+//         // returnTextToClient(textToSend, jsonMsg.stage, connection);
+//         returnTextToClient('TODO get coords without making file (getCoordsAndReturnToClient)', jsonMsg.stage, connection);
+//     });
+
+// }
 
 function sendDone(connection) {
     // tell the client to close the connection
