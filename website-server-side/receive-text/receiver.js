@@ -131,7 +131,7 @@ function parseAndReturnToClient(jsonMsg, connection) {
         }
         console.log('Finished parsing.');
 
-        // Check if a sentence caused the parser to hang (this only happens in the mindmap case): TODO: should I add "Dictionary" here too??
+        // Check if a sentence caused the parser to hang (this only happens in the mindmap case):
         if (jsonMsg.typeOutput.toLowerCase().includes('mindmap') && stdout.includes("BAD ENGLISH")) {
             // return the error to the client
             returnTextToClient(stdout, jsonMsg.stage, connection);
@@ -180,19 +180,20 @@ function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
             console.log(wordSimCmd);
 
             exec(wordSimCmd, function (error, stdout, stderr) {
-                var textToSend = "";
+                var jsonToSend = {};
                 if (stdout) {
                     console.log('Parser command output:\n' + stdout);
-                    textToSend = stdout;
+                    jsonToSend.ecoData = JSON.parse(stdout);
+                    jsonToSend.animal = jsonMsg.key;
                 }
                 if (error) {
                     console.log('Function error:\n' + error);
-                    textToSend = error;
+                    jsonToSend = error;
                 }
 
                 // Send text back to client:
                 // TODO: do we need to edit the textToSend, or is it formatted correctly already??
-                returnTextToClient(textToSend, jsonMsg.stage, connection);
+                returnTextToClient(JSON.stringify(jsonToSend), jsonMsg.stage, connection);
             });
 
         }

@@ -121,6 +121,7 @@ function getHistogramValuesFromSession(key, stage) {
     sendJson({
         'command': 'getHistogramValues',
         'text': value,
+        'key': key,
         'stage': stage
     });
 }

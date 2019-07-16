@@ -261,9 +261,25 @@ function mod3ReceiveData(filedata, stage) {
         console.log('In histogram mod3receivedata :) filedata: ' + filedata);
 
         if (!filedata.includes('ERR_NO_TEXT')) {
-            // todo: get animal and closest ecosystem from returned info:
-            var animal = 'todo get from data returned...';
-            var eco = 'todo get ecosystem from data returned...';
+            // filedata should look something like this:
+            // {ecoData: {"desert": 1.0, "rainforest": 0.8170465764721643, "tundra": 
+            //    0.33213671992101007, "grassland": 0.8271058674638075, "ocean": 0.0},
+            //  animal: "camel"}
+
+            // get animal and ecosystem word similarity from returned info:
+            var animal = JSON.parse(filedata).animal;
+            var ecoData = JSON.parse(filedata).ecoData;
+            
+            // find the ecosystem with the largest word similarity value:
+            var maxVal = 0;
+            var eco = '';
+            Object.keys(ecoData).forEach(function(key) {
+                var currVal = parseInt(ecoData[key]);
+                if (currVal > maxVal) {
+                    maxVal = currVal;
+                    eco = key;
+                }
+            }); 
 
             // say, "Based on what I know about Earth, here's where I would guess the animal 
             // comes from.":
