@@ -220,7 +220,7 @@ function afterRecording(recordedText) {
     showPurpleText(zhoraiSpeech);
 
     if (saidAnimal) {
-        speakText(zhoraiSpeech, null, null);
+        speakText(zhoraiSpeech, null, null); // don't switch to mic yet -- do that in mod3receivedata
 
         // delete the current mindmap to prepare for the next
         deleteMindmap();
@@ -252,7 +252,6 @@ function mod3ReceiveData(filedata, stage) {
         console.log('Creating mindmap!');
         filedata = filedata.replace(/'/g, '"');
 
-        switchButtonTo('micBtn');
         if (!filedata.includes('ERR_NO_TEXT')) {
             createMindmap(JSON.parse(filedata));
         } // note: we deal with this error (no text provided) in the histogram code below:
@@ -283,7 +282,10 @@ function mod3ReceiveData(filedata, stage) {
 
         var zhoraiSpeech = chooseRandomPhrase(phrases);
         showPurpleText(zhoraiSpeech);
-        speakText(zhoraiSpeech);
+        speakText(zhoraiSpeech, null,
+            function () {
+                switchButtonTo('micBtn');
+            });
     }
     // TODO del:
     // } else if (stage.includes('embed')) {
