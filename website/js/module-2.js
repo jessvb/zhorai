@@ -145,8 +145,9 @@ function mod2ReceiveData(filedata) {
         currentAnimal = chooseRandomPhrase(knownAnimals.filter(checkNewAnimal));
         // todo: what if we go through all 10 animals?
 
-        // update the prompts with the new animal
+        // update the prompt and sentences with the new animal
         setAnimalPrompt(currentAnimal);
+        sm.setDivToSessionSentences(currentAnimal);
     }
 }
 
