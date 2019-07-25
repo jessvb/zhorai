@@ -257,3 +257,72 @@ function createScatterplot(plot_data) {
         .call(yAxis);
 
 }
+var plot_data = {"desert": 0.2992, "rainforest": 0.2998, "tundra": 0.2440};
+createHistogram(plot_data);
+function createHistogram(plot_data) {
+
+	var data = [];
+	for (var key in plot_data) {
+		data.push({"ecosystem": key, "value": plot_data[key]});
+	}
+	//setup settings for histogram
+	var canvas_width = 500;
+	var canvas_height = 500;
+	var margin = {top:10, right:10, bottom:90, left:10};
+
+	
+
+	var color = d3.scaleOrdinal(d3.schemeCategory10);
+	var symbols = d3.scaleOrdinal(d3.symbols);
+
+	// creates a generator for symbols
+	var symbol = d3.symbol().size(100);  
+
+	//create SVG element
+	var svg = d3.select("#histogram")  // This is where we put our plot
+        width = +svg.attr("width"),
+			height = +svg.attr("height");
+
+	var xAxis = d3.scaleBand()
+		.range([0, canvas_width])
+		.padding(0.1);
+
+	var yAxis = d3.scaleLinear()
+		.range([canvas_height, 0]);
+
+	svg.append("text")
+		.attr("x", canvas_width/2)
+		.attr("y", 10)
+		.style("text-anchor", "middle")
+		.text("Likelihood for where [animal] lives");
+
+	svg.append("g")
+		.attr("transform", "translate(" +margin.left + "," + margin.top + ")");
+
+	xAxis.domain(data.map(function(d) { return d.ecosystem; }));
+	yAxis.domain([0, d3.max(data, function(d) { return d.value; })]);
+	color.domain(data.map(function(d) { return d.ecosystem; }));
+
+	// append the rectangles for the bar chart
+	svg.selectAll(".bar")
+	    .data(data)
+	    .enter().append("rect")
+	    .attr("class", "bar")
+	    .attr("x", function(d) { return xAxis(d.ecosystem); })
+	    .attr("width", xAxis.bandwidth())
+	    .attr("y", function(d) { return yAxis(d.value); })
+	    .attr("height", function(d) { return canvas_height - yAxis(d.value); })
+	    .attr("fill", function(d) { return color(d.ecosystem); });
+
+
+	  // add the x Axis
+	svg.append("g")
+		.style("font-size", "30px")
+	    .attr("transform", "translate(0," + canvas_height + ")")
+	    .call(d3.axisBottom(xAxis));
+
+	  // add the y Axis
+	svg.append("g")
+	    .call(d3.axisLeft(yAxis));
+
+}

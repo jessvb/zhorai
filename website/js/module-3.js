@@ -283,6 +283,7 @@ function mod3ReceiveData(filedata, stage) {
 
             // TODO: make histogram here 
             // (e.g., createHistogram(ecoData))
+            createHistogram(ecoData);
         } else {
             // error checking:
             phrases = ["I don't know enough about that animal to guess where it's from.",
