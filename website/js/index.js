@@ -257,8 +257,9 @@ function createScatterplot(plot_data) {
         .call(yAxis);
 
 }
-var plot_data = {"desert": 0.2992, "rainforest": 0.2998, "tundra": 0.2440};
-createHistogram(plot_data);
+
+//var plot_data = {"desert": 0.2992, "rainforest": 0.2998, "tundra": 0.2440};
+//createHistogram(plot_data);
 function createHistogram(plot_data) {
 
 	var data = [];
@@ -292,9 +293,10 @@ function createHistogram(plot_data) {
 
 	svg.append("text")
 		.attr("x", canvas_width/2)
-		.attr("y", 10)
+		.attr("y", 20)
 		.style("text-anchor", "middle")
-		.text("Likelihood for where [animal] lives");
+		.style("font-size", "30px")
+		.text("Where I think this animal lives");
 
 	svg.append("g")
 		.attr("transform", "translate(" +margin.left + "," + margin.top + ")");
@@ -310,14 +312,14 @@ function createHistogram(plot_data) {
 	    .attr("class", "bar")
 	    .attr("x", function(d) { return xAxis(d.ecosystem); })
 	    .attr("width", xAxis.bandwidth())
-	    .attr("y", function(d) { return yAxis(d.value); })
-	    .attr("height", function(d) { return canvas_height - yAxis(d.value); })
+	    .attr("y", function(d) { return yAxis(d.value)+30; })
+	    .attr("height", function(d) { return canvas_height - yAxis(d.value)-30; })
 	    .attr("fill", function(d) { return color(d.ecosystem); });
 
 
 	  // add the x Axis
 	svg.append("g")
-		.style("font-size", "30px")
+		.style("font-size", "25px")
 	    .attr("transform", "translate(0," + canvas_height + ")")
 	    .call(d3.axisBottom(xAxis));
 
