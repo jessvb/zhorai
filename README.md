@@ -23,7 +23,7 @@ The mindmap and scatter plot visualizations are constructed using the D3 JavaScr
 
 # To be implemented
 
+- [ ] Update the animal in module 3 to correspond to an animal spoken about in module 2
 - [ ] Make it possible to switch animals in module 2 (drop down menu?)
 - [ ] Add method to edit sentences spoken to Zhorai
-- [ ] Implement histogram in module 3
 - [ ] Update README with necessary packages/libraries
