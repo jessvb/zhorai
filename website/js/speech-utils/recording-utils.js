@@ -13,6 +13,7 @@ var doneProcessing = false;
 var doneRecording = false;
 var currKey; // key to store information in session
 var sm; // sentence manager
+var recordBtnAllowed = true;
 
 // These functions are called outside this js file (thus we leave them outside
 // the DOMContentLoaded event):
@@ -93,6 +94,51 @@ function whenDoneRecAndProcessing() {
     if (afterRecordingCallback) {
         afterRecordingCallback(final_transcript);
     }
+}
+
+/* ------ click handlers for pages ------ */
+function setUpRecordingHandlers(recordBtn, fxn) {
+    recordBtn.addEventListener("mouseup", function () {
+        fxn();
+    });
+    recordBtn.addEventListener("mousedown", function () {
+        fxn();
+    });
+    // spacebar up:
+    document.body.onkeyup = function (e) {
+        // if record button is available:
+        if (recordBtn.hidden == false) {
+            // if spacebar:
+            if (e.keyCode == 32) {
+                fxn();
+                // allow the spacebar to be repeated again:
+                recordBtnAllowed = true;
+            }
+        }
+    };
+    // spacebar down:
+    document.body.onkeydown = function (e) {
+        // if record button is available to be pressed:
+        if (recordBtn.hidden == false) {
+            // if spacebar:
+            if (e.keyCode == 32) {
+                // make sure the spacebar isn't just repeating 
+                // because it's being held down:
+                if (event.repeat != undefined) {
+                    recordBtnAllowed = !event.repeat;
+                }
+                if (recordBtnAllowed) {
+                    recordBtnAllowed = false;
+                    fxn();
+                }
+            }
+        }
+        // prevent scrolling to the bottom of the page:
+        // (if not typing in a text box):
+        if (e.keyCode == 32 && e.target == document.body) {
+            e.preventDefault();
+        }
+    };
 }
 
 /* -------------- Once the page has loaded -------------- */
