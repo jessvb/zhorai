@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
     sm.setDivToSessionSentences(currentAnimal);
 
     // Add click handlers
-    record_button.addEventListener("click", function () {
+    setUpRecordingHandlers(record_button, function () {
         recordButtonClick({
             key: currentAnimal,
             sentenceManager: sm

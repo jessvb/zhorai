@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
     startStage();
 
     // Add click handlers
-    recordButton.addEventListener("click", function () {
+    setUpRecordingHandlers(recordButton, function () {
         recordButtonClick({
             callback: afterRecording,
             onClickStop: switchButtonTo,

@@ -281,8 +281,6 @@ function mod3ReceiveData(filedata, stage) {
                 "I think " + animal + " are from " + eco + "s based on what you told me."
             ];
 
-            // TODO: make histogram here 
-            // (e.g., createHistogram(ecoData))
             createHistogram(ecoData);
         } else {
             // error checking:
@@ -314,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadingGif = document.getElementById('loadingGif');
 
     // Add click handlers
-    recordButton.addEventListener("click", function () {
+    setUpRecordingHandlers(recordButton, function () {
         recordButtonClick({
             callback: afterRecording,
             onClickStop: switchButtonTo,

@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
     textFileBtn = document.getElementById('textFileBtn');
 
     // Add click handlers
-    recordButton.addEventListener("click", function () {
+    setUpRecordingHandlers(recordButton, function () {
         recordButtonClick({
             callback: afterRecording,
             onClickStop: switchButtonTo,
