@@ -1,5 +1,5 @@
 /* --- utils for sending text to the server --- */
-var url = 'ws://zhorai.csail.mit.edu:8080';
+var url = 'wss://zhorai.csail.mit.edu:8080';
 
 function sendText(text) {
     sendJson({
