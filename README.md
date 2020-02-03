@@ -20,10 +20,3 @@ https://github.com/jessvb/zhorai/blob/master/word-embeddings/README.md
 The website uses the Bootstrap library to construct the overall site framework. 
 
 The mindmap and scatter plot visualizations are constructed using the D3 JavaScript library.
-
-# To be implemented
-
-- [ ] Update the animal in module 3 to correspond to an animal spoken about in module 2
-- [ ] Make it possible to switch animals in module 2 (drop down menu?)
-- [ ] Add method to edit sentences spoken to Zhorai
-- [ ] Update README with necessary packages/libraries
