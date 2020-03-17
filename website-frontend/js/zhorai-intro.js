@@ -15,7 +15,7 @@ var zhoraiSpeechBox;
 var mod1Btn;
 var loadingGif;
 var currBtnIsMic = true;
-var dataFilename = "../../website-server-side/receive-text/data/name.txt";
+var dataFilename = "../../website-backend/receive-text/data/name.txt";
 
 
 /* -------------- Initialize functions -------------- */

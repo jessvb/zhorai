@@ -6,7 +6,7 @@ var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
 
-// File paths for mindmap creation
+// Sentences for mindmap creation
 var desertSentences = 'The desert has lots of sand. ' +
     'The desert is very dry. ' +
     'Deserts have cactus. ' +

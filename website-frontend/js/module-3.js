@@ -5,7 +5,7 @@ var recordButton;
 var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
-var mindmapPath = "../../website-server-side/receive-text/data/mindmap.txt";
+var mindmapPath = "../../website-backend/receive-text/data/mindmap.txt";
 var knownAnimals = [
     'bees',
     'birds',
@@ -33,7 +33,7 @@ var knownAnimals = [
 
 // File paths for mindmap creation
 var dataDir = 'data/';
-var dataDirRelPath = '../website-server-side/receive-text/' + dataDir;
+var dataDirRelPath = '../website-backend/receive-text/' + dataDir;
 var animalsDir = 'animals/';
 var animalsRelPath = dataDirRelPath + animalsDir;
 

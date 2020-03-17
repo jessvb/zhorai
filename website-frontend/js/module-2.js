@@ -6,7 +6,7 @@ var animalPromptLabel;
 var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
-var mindmapPath = "../../website-server-side/receive-text/data/mindmap.txt";
+var mindmapPath = "../../website-backend/receive-text/data/mindmap.txt";
 var currentAnimal = "";
 var knownAnimals = [
     'bees',
