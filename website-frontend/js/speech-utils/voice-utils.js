@@ -13,8 +13,8 @@ function speakText(text, onSpeak, callback) {
 
     msg.voice = zhoraiVoice; // Note: some voices don't support altering params
     msg.volume = 1; // 0 to 1
-    msg.rate = 1.1; // 0.1 to 10
-    msg.pitch = 1.5; // 0 to 2
+    msg.rate = 1.2; // 0.1 to 10
+    msg.pitch = 2; // 0 to 2
     msg.lang = 'en-US';
 
     // onSpeak e.g., set the button to the "hear again" button
@@ -36,9 +36,11 @@ function speakText(text, onSpeak, callback) {
 document.addEventListener('DOMContentLoaded', function () {
     // Prepare Zhorai's voice:
     window.speechSynthesis.onvoiceschanged = function () {
-        // good voices: Alex pitch 2, Google US English 1.5, Google UK English Female 1.5, Google UK English Male 2
+        // good voices: Alex pitch 2, Google US English 1.5, Google UK English Female 1.5, Google UK English Male 2 --> speed = 1.1
+        // Karen 2, Melina 2, Google US English Female 2 (put speed = 1.2 for Karen/Melina)
         zhoraiVoice = window.speechSynthesis.getVoices().filter(function (voice) {
-            return voice.name == 'Google US English';
+            return voice.name == 'Melina';
+            // return voice.name == 'Google US English Female';
             // return voice.name == 'Google UK English Female';
             // return voice.name == 'Google UK English Male';
             // return voice.name == 'Alex';
