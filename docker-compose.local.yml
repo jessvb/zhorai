@@ -1,0 +1,54 @@
+version: '3.0'
+services:
+  server:
+    build: ./website-backend/receive-text
+    restart: on-failure
+    volumes:
+      - ./website-backend/receive-text:/usr/src/app
+    environment:
+      - NODE_ENV=development # todo: this may be unnecessary
+    ports:
+      - 5000:5000 # todo: get correct ports!!
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
+    command: npm devstart
+    # ^TODO: change to 'npm start' in production -- use forever instead of node
+
+# TODO: change parser to be better -- error with java... need java...
+  # parser:
+  #   build: ./semantic-parser #/stanford-corenlp-full-2018-10-05 todo del
+  #   restart: on-failure
+  #   volumes:
+  #     - ./semantic-parser:/usr/src/app
+  #   environment:
+  #     - PARSER_ENV=development # todo: this may be unnecessary
+  #   ports:
+  #     - 5000:5000 # todo: get correct ports!!
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "20m"
+  #       max-file: "5"
+  #   command: java -mx6g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -timeout 5000
+
+
+  # TODO: create an express server for the frontend:
+  web:
+    build: ./website-frontend
+    restart: on-failure
+    volumes:
+      - ./website-frontend:/usr/src/app
+    environment:
+      - NODE_ENV=development # todo: this may be unnecessary
+    ports:
+      - 8080:8080
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
+    command: npm start # <- todo add scripts start to package.json
+    

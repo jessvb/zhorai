@@ -4,11 +4,14 @@
   "description": "",
   "main": "receiver.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "forever app.js",
+    "devstart": "node app.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "forever": "^2.0.0",
     "ws": "^7.0.1"
   }
 }
