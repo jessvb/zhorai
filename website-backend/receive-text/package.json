@@ -5,8 +5,8 @@
   "main": "receiver.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "forever app.js",
-    "devstart": "node app.js"
+    "start": "forever receiver.js",
+    "devstart": "node receiver.js"
   },
   "author": "",
   "license": "MIT",

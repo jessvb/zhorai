@@ -27,8 +27,6 @@ RUN cd ccg2lambda && coqc coqlib.v && cd ..
 RUN ccg2lambda/en/install_candc.sh
 
 RUN echo "/path/to/candc-1.00/" > ccg2lambda/en/candc_location.txt
-RUN cat ccg2lambda/en/candc_location.txt
-# todo del^
 
 COPY . .
 

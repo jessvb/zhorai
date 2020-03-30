@@ -19,9 +19,32 @@ const httpServer = require('http').Server(app); //todo this should be https? or 
 // provide all the resources in the 'public' directory
 app.use(express.static('public'));
 
+
+/////////////////////////////////////////////////////////////////////
+// Set variables to be accessible on static html pages via cookies //
+/////////////////////////////////////////////////////////////////////
+// TODO(eventually): Cookies are slightly hack-y. Would recommend switching
+// to a rendering approach (e.g., using ejs to render & send variables)
+// instead. https://stackoverflow.com/a/41641782/8162699
+var wssUrl = '';
+if (process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
+    wssUrl = 'wss://zhorai.csail.mit.edu:5000';
+} else {
+    // development mode
+    wssUrl = 'ws://localhost:5000';
+}
+
+
+/////////////
+// Routing //
+/////////////
 app.get('/', (req, res) => res.sendFile(path.resolve('./public/zhorai-intro.html')));
 
-app.get('/intro', (req, res) => res.sendFile(path.resolve('./public/zhorai-intro.html')));
+// app.get('/intro', (req, res) => res.sendFile(path.resolve('./public/zhorai-intro.html')));
+app.get('/intro', function (req, res){
+    res.cookie('wssUrl', wssUrl);
+    res.sendFile(path.resolve('./public/zhorai-intro.html'));
+});
 app.get('/activity-1', (req, res) => res.sendFile(path.resolve('./public/activity-1.html')));
 app.get('/activity-2', (req, res) => res.sendFile(path.resolve('./public/activity-2.html')));
 app.get('/activity-3', (req, res) => res.sendFile(path.resolve('./public/activity-3.html')));
@@ -35,6 +58,8 @@ app.get('/teacher-guide', (req, res) => {
 app.get('/student-worksheet', (req, res) => {
     res.redirect('https://docs.google.com/document/d/1ycv8Vm_H52Ph-5JBdxayFUotsLOcHlnagNpNfQCvogQ/edit?usp=sharing');
 });
+
+
 
 
 //////////////////////////////////////////////////////////
@@ -180,7 +205,7 @@ app.get('/student-worksheet', (req, res) => {
 // });
 
 httpServer.listen(port, host, () => {
-    console.log(`HTTP server started at http://${host}:${port}/.`)
+    console.log(`HTTP server started at http://${host}:${port}/.`);
 });
 //todo https?
 // httpsServer.listen(8443);

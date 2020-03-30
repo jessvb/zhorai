@@ -1,13 +1,25 @@
 /* to connect to website via websocket: */
 var WebSocket = require('ws');
-var https = require('https');
+var https;
+var http;
 var fs = require('fs');
 
-const port = 8080;
-const server = https.createServer({
-    cert: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/cert.pem'),
-    key: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/privkey.pem')
-});
+const port = 5000;
+var server;
+if (process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
+    https = require('https');
+    server = https.createServer({
+        cert: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/cert.pem'),
+        key: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/privkey.pem')
+    });
+} else {
+    // development mode
+    http = require('http');
+    server = http.createServer(function (request, response) {
+        // empty for http
+    });
+}
+
 
 /* to write to txt file: */
 var fs = require('fs');
@@ -17,7 +29,7 @@ var wordSimPath = '../../word-similarity/';
 /* to execute bash scripts */
 var exec = require('child_process').exec;
 
-// Create secure websocket server
+// Create websocket server (note: not necessarily secure)
 const wss = new WebSocket.Server({
     server
 });

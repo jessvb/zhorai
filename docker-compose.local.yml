@@ -1,4 +1,4 @@
-version: '3.0'
+version: "3.0"
 services:
   server:
     build: ./website-backend/receive-text
@@ -6,7 +6,7 @@ services:
     volumes:
       - ./website-backend/receive-text:/usr/src/app
     environment:
-      - NODE_ENV=development # todo: this may be unnecessary
+      - NODE_ENV=development # todo: also make production version
     ports:
       - 5000:5000 # todo: get correct ports!!
     logging:
@@ -14,10 +14,10 @@ services:
       options:
         max-size: "20m"
         max-file: "5"
-    command: npm devstart
+    command: npm run devstart
     # ^TODO: change to 'npm start' in production -- use forever instead of node
 
-# TODO: change parser to be better -- error with java... need java...
+  # TODO: change parser to be better -- error with java... need java...
   # parser:
   #   build: ./semantic-parser #/stanford-corenlp-full-2018-10-05 todo del
   #   restart: on-failure
@@ -34,7 +34,6 @@ services:
   #       max-file: "5"
   #   command: java -mx6g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -timeout 5000
 
-
   # TODO: create an express server for the frontend:
   web:
     build: ./website-frontend
@@ -50,5 +49,5 @@ services:
       options:
         max-size: "20m"
         max-file: "5"
-    command: npm start # <- todo add scripts start to package.json
-    
+    command: npm run devstart
+    # ^TODO: change to 'npm start' in production -- use forever instead of node
