@@ -1,20 +1,24 @@
 version: "3.0"
 services:
   server:
-    build: ./website-backend/receive-text
+    # build: ./website-backend/receive-text todo del
+    build: ./
     restart: on-failure
     volumes:
-      - ./website-backend/receive-text:/usr/src/app
+      - ./website-backend/receive-text:/usr/src/website-backend/receive-text
+      - ./semantic-parser:/usr/src/semantic-parser
     environment:
       - NODE_ENV=development # todo: also make production version
     ports:
-      - 5000:5000 # todo: get correct ports!!
+      - 5000:5000
     logging:
       driver: "json-file"
       options:
         max-size: "20m"
         max-file: "5"
-    command: npm run devstart
+    command: bash -c "
+      cd /usr/src/website-backend/receive-text &&
+      ls && pwd && npm run devstart" # && java -mx6g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -timeout 5000"
     # ^TODO: change to 'npm start' in production -- use forever instead of node
 
   # TODO: change parser to be better -- error with java... need java...
