@@ -175,6 +175,10 @@ document.addEventListener('DOMContentLoaded', function () {
     textFileBtn = document.getElementById('textFileBtn');
     currentAnimal = chooseRandomPhrase(knownAnimals);
 
+    // Restart speech synthesizer:
+    // (see https://stackoverflow.com/a/58775876/8162699)
+    window.speechSynthesis.cancel();
+
     setAnimalPrompt();
 
     // Create sentence manager and put all known sentences about the current animal on the page

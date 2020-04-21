@@ -7,6 +7,7 @@ FROM ubuntu:16.04
 WORKDIR /usr/src/semantic-parser
 RUN mkdir ./ccg2lambda
 COPY ./semantic-parser/ccg2lambda /usr/src/semantic-parser/ccg2lambda
+COPY ./word-similarity /usr/src/word-similarity
 
 # install python3
 RUN apt-get update \

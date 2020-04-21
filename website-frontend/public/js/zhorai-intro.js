@@ -289,6 +289,10 @@ document.addEventListener('DOMContentLoaded', function () {
     mod1Btn = document.getElementById('mod1Btn');
     loadingGif = document.getElementById('loadingGif');
 
+    // Restart speech synthesizer:
+    // (see https://stackoverflow.com/a/58775876/8162699)
+    window.speechSynthesis.cancel();
+
     startStage();
 
     // Add click handlers

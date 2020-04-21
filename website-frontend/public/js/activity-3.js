@@ -311,6 +311,11 @@ document.addEventListener('DOMContentLoaded', function () {
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
 
+    // Restart speech synthesizer:
+    // (see https://stackoverflow.com/a/58775876/8162699)
+    window.speechSynthesis.cancel();
+
+
     // Add click handlers
     setUpRecordingHandlers(recordButton, function () {
         recordButtonClick({
