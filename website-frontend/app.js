@@ -1,19 +1,9 @@
-// const fs = require('fs'); // todo del?
 const path = require('path');
 const express = require('express');
 const app = express();
 const host = '0.0.0.0';
 const port = 8080;
-const httpServer = require('http').Server(app); //todo this should be https? or maybe it's covered by the docker thing...
-// todo like this? 
-// var https = require('https');
-// var privateKey  = fs.readFileSync('certificates/key.pem', 'utf8');
-// var certificate = fs.readFileSync('certificates/cert.pem', 'utf8');
-// var credentials = {key: privateKey, cert: certificate};
-// var httpsServer = https.createServer(credentials, app);
-
-
-// const io = require('socket.io')(httpServer); // todo del?
+const httpServer = require('http').Server(app);
 // const wav = require('wav'); // todo -- for saving wav files
 
 // provide all the resources in the 'public' directory
@@ -25,14 +15,11 @@ app.use(express.static('public'));
 /////////////////////////////////////////////////////////////////////
 // TODO(eventually): Cookies are slightly hack-y. Would recommend switching
 // to a rendering approach (e.g., using ejs to render & send variables)
-// instead. https://stackoverflow.com/a/41641782/8162699
-var wssUrl = '';
-if (process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
-    wssUrl = 'wss://zhorai.csail.mit.edu:5000';
-} else {
-    // development mode
-    wssUrl = 'ws://localhost:5000';
-}
+// instead. https://stackoverflow.com/a/41641782/8162699 (but for now we're
+// using them for serving the ws variable so that each page has it)
+// TODO: noticed that the cookie is only set for /intro... might want to set
+// it for every page in case users don't start on /intro!!
+var wssUrl = 'ws://localhost:5000'; // todo: refactor variable name to 'wsUrl'
 
 
 /////////////
@@ -41,7 +28,7 @@ if (process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
 app.get('/', (req, res) => res.sendFile(path.resolve('./public/zhorai-intro.html')));
 
 // app.get('/intro', (req, res) => res.sendFile(path.resolve('./public/zhorai-intro.html')));
-app.get('/intro', function (req, res){
+app.get('/intro', function (req, res) {
     res.cookie('wssUrl', wssUrl);
     res.sendFile(path.resolve('./public/zhorai-intro.html'));
 });
@@ -207,5 +194,3 @@ app.get('/student-worksheet', (req, res) => {
 httpServer.listen(port, host, () => {
     console.log(`HTTP server started at http://${host}:${port}/.`);
 });
-//todo https?
-// httpsServer.listen(8443);

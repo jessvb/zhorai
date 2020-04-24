@@ -5,13 +5,12 @@
   "main": "receiver.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "forever receiver.js",
+    "start": "node receiver.js",
     "devstart": "node receiver.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "forever": "^2.0.0",
     "ws": "^7.0.1"
   }
 }

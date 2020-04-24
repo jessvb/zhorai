@@ -7,7 +7,7 @@ services:
       - ./website-backend/receive-text:/usr/src/website-backend/receive-text
       - ./semantic-parser:/usr/src/semantic-parser
     environment:
-      - NODE_ENV=development # todo: change for production version
+      - NODE_ENV=development
     ports:
       - 5000:5000
     logging:
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./website-frontend:/usr/src/app
     environment:
-      - NODE_ENV=development # todo: change for production
+      - NODE_ENV=development
     ports:
       - 8080:8080
     logging:
@@ -32,4 +32,4 @@ services:
         max-size: "20m"
         max-file: "5"
     command: npm run devstart
-    # ^TODO: change to 'npm start' in production -- use forever instead of node -- make bash script
+

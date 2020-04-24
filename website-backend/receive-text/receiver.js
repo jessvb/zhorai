@@ -6,20 +6,10 @@ var fs = require('fs');
 
 const port = 5000;
 var server;
-if (process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
-    https = require('https');
-    server = https.createServer({
-        cert: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/cert.pem'),
-        key: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/privkey.pem')
-    });
-} else {
-    // development mode
-    http = require('http');
-    server = http.createServer(function (request, response) {
-        // empty for http
-    });
-}
-
+http = require('http');
+server = http.createServer(function (request, response) {
+    // empty for http
+});
 
 /* to write to txt file: */
 var fs = require('fs');

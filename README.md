@@ -19,30 +19,42 @@ Docker version 19.03.2, build 6a30dfc
 docker-compose version 1.24.1, build 4667896b
 ```
 
-Docker Compose automatically runs the `server`  and `web`  services that are defined in `docker-compose.local.yml`.
+Docker Compose automatically runs the `server`  and `web`  services (explained below) that are defined in `docker-compose.local.yml` and `docker-compose.yml`. As described in the following setup sections, use `docker-compose.local.yml` for local development and `docker-compose.yml` for production. Note that Docker Compose additionally runs the `nginx` service for production.
 1. `server`: Semantic parser and website backend that communicates with the parser
 2. `web`: Frontend server that allows clients to interface with the backend
+3. `nginx`: Web server for https (which is only run in production)
 
-Eventually, there will be two YAML files that can be used with `docker-compose`: `docker-compose.yml` (for production with https) and `docker-compose.local.yml` (for local development), but for now, there is only the local development version. For production, complete the manual setup on the main branch instead.
-<!-- 
-- `docker-compose.yml`: used for production with https
-- `docker-compose.local.yml`: used for local development - main difference is no service is needed for a reverse-proxy and CertBot since everything is local 
--->
+As noted above, there are two YAML files that can be used with `docker-compose`:
+- `docker-compose.yml`: for production (with https, nginx, etc.)
+- `docker-compose.local.yml`: used for local development - main difference is no service is needed for a reverse-proxy and CertBot since everything is local
 
-#### Docker setup
-To run the system using `docker-compose`, run in the project root:
+See [Local Docker setup](#local-docker-setup) or [Docker setup for production](#docker-setup-for-production) depending on your needs.
+
+#### Local Docker setup
+To run the system for local development using `docker-compose`, run in the project root:
 ```bash
 docker-compose -f docker-compose.local.yml up --build
 ```
 
-To view the Zhorai website, go to [http://localhost:8080](http://localhost:8080).
+To view the Zhorai website, go to [http://localhost:8080](http://localhost:8080). Once done, see [Docker take down](#docker-take-down).
 
+#### Docker setup for production
+To set up the system for production, nginx and certbot need to be set up. To do so, you can follow the instructions found [in this Medium article](https://medium.com/@pentacent/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71). Example `app.conf` and `init-letsencrypt.sh` files can be found at `zhorai/data/nginx/app.templateconf` and `zhorai/init-letsencrypt.templatesh`.
+
+To run the system for production with `docker-compose`, run in the project root:
+```bash
+docker-compose -f docker-compose.yml up --build
+```
+
+Now you should be able to view your Zhorai website at your domain. To take down the site, see [Docker take down](#docker-take-down).
+
+#### Docker take down
 Once done,<!-- after stopping or pausing the process (e.g., ctrl+c, ctrl+z),--> run the following command to clean up containers created by `docker-compose up`.
 
 ```bash
 docker-compose -f docker-compose.local.yml down
+# or for production, change `docker-compose.local.yml` to `docker-compose.yml`
 ```
- <!-- --rmi local-->
 
 #### Development/testing within Docker container
 To enter into the docker container (e.g., for testing installed libraries), use `docker exec -it` as follows:
@@ -81,16 +93,14 @@ To start the backend node server:
 ```bash
 cd website-backend/receive-text
 npm run devstart
-# For production, use 'forever' instead of node so that it continually respawns
-# (even if it crashes) by running `npm start` (which runs `forever receiver.js`)
+# or run `npm start` for production
 ```
 
 Similarly, to start the frontend express server:
 ```bash
 cd website-frontend
 npm run devstart
-# For production, use 'forever' instead of node so that it continually respawns
-# (even if it crashes) by running `npm start` (which runs `forever app.js`)
+# or run `npm start` for production
 ```
 
-To view the Zhorai website, go to [http://localhost:8080](http://localhost:8080).
+For local development, to view the Zhorai website, go to [http://localhost:8080](http://localhost:8080). For production, you will additionally have to set up certificates for your domain.

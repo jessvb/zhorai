@@ -77,7 +77,11 @@ semantic-parser/ccg2lambda/scripts/__pycache__/
 .DS_Store
 
 # don't need to keep committing the generated txt files:
-**/data
+semantic-parser/data
 semantic-parser/example
+website-backend/receive-text/data/
 
-
+### certbot & nginx ###
+**certbot/
+app.conf
+init-letsencrypt.sh

@@ -40,5 +40,5 @@ if [[ "$NODE_ENV" == "development" ]]; then
     npm run devstart
 elif [[ "$NODE_ENV" == "production" ]]; then
     echo "Starting production receive-text server..."
-    npm start # todo: add production in dockerfile
+    npm start
 fi
