@@ -2,7 +2,7 @@
 var WebSocket = require('ws');
 var https;
 var http;
-var fs = require('fs');
+var fs = require('fs'); // also for writing to txt file
 
 const port = 5000;
 var server;
@@ -12,7 +12,6 @@ server = http.createServer(function (request, response) {
 });
 
 /* to write to txt file: */
-var fs = require('fs');
 var semParserPath = '../../semantic-parser/';
 var wordSimPath = '../../word-similarity/';
 

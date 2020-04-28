@@ -6,6 +6,7 @@ services:
     volumes:
       - ./website-backend/receive-text:/usr/src/website-backend/receive-text
       - ./semantic-parser:/usr/src/semantic-parser
+      - ./data/certbot/conf:/etc/letsencrypt
     environment:
       - NODE_ENV=production
     ports:
