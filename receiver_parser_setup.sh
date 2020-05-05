@@ -34,6 +34,7 @@ java -mx6g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -timeout 5000
 # sh parse.sh "Mindmap" "The desert has lots of sand. The desert is very dry. Deserts have cactus. The desert is very hot and sunny. Deserts don't have much water. Deserts have few people. Deserts have flash floods. Deserts have sand dunes. Deserts are sandy. Deserts don't have many plants. Deserts don't have much vegetation. Deserts are hot. Deserts don't have much precipitation. Deserts are also called drylands. Deserts are harsh environments. It's hard for animals to survive in the desert. Animals are rare in the desert. Animals that live in the desert have ways to keep cool and use less water. Many animals in the desert are nocturnal. Animals often come out at night in the desert. Plants in the desert store water. There are lots of cacti in the desert. There are shrubs in the desert. The sun is hot in the desert. Deserts get very cold at night. It is hard to find water in the desert. There are lots of deserts in africa"
 
 cd /usr/src/website-backend/receive-text
+npm install
 echo $NODE_ENV
 if [[ "$NODE_ENV" == "development" ]]; then
     echo "Starting development receive-text server..."

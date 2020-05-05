@@ -31,5 +31,5 @@ services:
       options:
         max-size: "20m"
         max-file: "5"
-    command: npm run devstart
+    command: bash -c "npm install && npm run devstart"
 
