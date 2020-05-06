@@ -1,4 +1,8 @@
 version: "3.0"
+
+volumes:
+  logs:
+
 services:
   server:
     build: ./
@@ -7,15 +11,12 @@ services:
       - ./website-backend/receive-text:/usr/src/website-backend/receive-text
       - ./semantic-parser:/usr/src/semantic-parser
       - ./data/certbot/conf:/etc/letsencrypt
+      - ./logs:/usr/src/logs
     environment:
       - NODE_ENV=production
+      - LOGGING=true
     ports:
       - 5000:5000
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "20m"
-        max-file: "5"
     command: bash -c "cd /usr/src && ./receiver_parser_setup.sh"
 
   web:
@@ -27,11 +28,6 @@ services:
       - NODE_ENV=production
     ports:
       - 8080:8080
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "20m"
-        max-file: "5"
     command: bash -c "npm install && npm start"
 
   nginx:
@@ -51,6 +47,4 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-    logging:
-      driver: "none"
 

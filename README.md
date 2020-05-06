@@ -28,7 +28,7 @@ As noted above, there are two YAML files that can be used with `docker-compose`:
 - `docker-compose.yml`: for production (with https, nginx, etc.)
 - `docker-compose.local.yml`: used for local development - main difference is no service is needed for a reverse-proxy and CertBot since everything is local
 
-See [Local Docker setup](#local-docker-setup) or [Docker setup for production](#docker-setup-for-production) depending on your needs.
+See [Local Docker setup](#local-docker-setup) or [Docker setup for production](#docker-setup-for-production) depending on your needs. Note that logging (i.e., recording the text input to Zhorai) is enabled by default. To change this setting, see [Disable logging](#disable-logging).
 
 #### Local Docker setup
 To run the system for local development using `docker-compose`, run in the project root:
@@ -56,6 +56,13 @@ docker-compose -f docker-compose.local.yml down
 # or for production, change `docker-compose.local.yml` to `docker-compose.yml`
 ```
 
+Note: If you see an error when running `docker-compose up --build` about there not being enough memory (or something similar to `no space left on device`), try [pruning unused docker data](https://docs.docker.com/engine/reference/commandline/system_prune/):
+```bash
+docker system prune
+```
+Note that both `docker-compose down` and `docker system prune` **do not** remove volumes (your log data is safe-- phew!). The system prune **does** remove stopped containers, dangling images, build cache and unused networks.
+
+
 #### Development/testing within Docker container
 To enter into the docker container (e.g., for testing installed libraries), use `docker exec -it` as follows:
 ```bash
@@ -65,6 +72,27 @@ docker container list
 # services respectively), and use it in the command below instead of <CONTAINER_ID>
 docker exec -it <CONTAINER_ID> /bin/bash
 ```
+
+#### Disable logging
+To disable logging (which is enabled by default in both of the `docker-compose` files), edit the `docker-compose.yml` (if production) or `docker-compose.local.yml` (if development) file in the project root, as follows.
+
+In the `docker-compose` `yml` file, find the line `- LOGGING=true` and change it to `- LOGGING=false`. For example:
+
+<pre>
+  server:
+    build: ./
+    restart: on-failure
+    volumes:
+      - ./website-backend/receive-text:/usr/src/website-backend/receive-text
+      - ./semantic-parser:/usr/src/semantic-parser
+    environment:
+      - NODE_ENV=development
+      <strong>- LOGGING=false</strong>
+    ports:
+      - 5000:5000
+    logging:
+...
+</pre>
 
 ### Manual setup
 Although manual setup is not recommended, it is possible. To do so, you will have to set up the semantic paser and the frontend and backend node servers.

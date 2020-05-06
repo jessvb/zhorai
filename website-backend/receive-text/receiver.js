@@ -1,8 +1,6 @@
 /* to connect to website via websocket: */
 var WebSocket = require('ws');
-var https;
 var http;
-var fs = require('fs'); // also for writing to txt file
 
 const port = 5000;
 var server;
@@ -14,6 +12,8 @@ server = http.createServer(function (request, response) {
 /* to write to txt file: */
 var semParserPath = '../../semantic-parser/';
 var wordSimPath = '../../word-similarity/';
+var loggingPath = '../../logs/';
+var fs = require('fs');
 
 /* to execute bash scripts */
 var exec = require('child_process').exec;
@@ -22,6 +22,18 @@ var exec = require('child_process').exec;
 const wss = new WebSocket.Server({
     server
 });
+
+var logging = false;
+/* Retrieve the LOGGING environment variable */
+if (process.env.LOGGING && process.env.LOGGING === 'true') {
+    logging = true;
+    console.log("Logging in " + loggingPath);
+    console.log('todo del: making file in loggingpath:' + loggingPath);
+    fs.appendFile(loggingPath + 'message.txt', 'data to append', (err) => {
+        if (err) throw err;
+        console.log('todo del Data was appended to the file.');
+    });
+}
 
 // Define websocket handlers
 wss.on('connection', function (connection) {
