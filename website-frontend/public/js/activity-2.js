@@ -1,3 +1,8 @@
+// TODO: SEND LOG MSG TO RECIEVER EVERY TIME SOMETHING IS SPOKEN
+// AND/OR REMOVED!!
+// ('RAW TEXT' or something --> maybe just put this in the text speech record util js...) BUT ALSO REMOVED!!
+
+
 /* -------------- Initialize variables -------------- */
 var recordButton;
 var recordBtnCurrHandler; // Reference so we can remove/replace handler depending on curranimal

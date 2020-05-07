@@ -14,6 +14,7 @@ var semParserPath = '../../semantic-parser/';
 var wordSimPath = '../../word-similarity/';
 var loggingPath = '../../logs/';
 var fs = require('fs');
+var converter = require('json-2-csv');
 
 /* to execute bash scripts */
 var exec = require('child_process').exec;
@@ -27,12 +28,6 @@ var logging = false;
 /* Retrieve the LOGGING environment variable */
 if (process.env.LOGGING && process.env.LOGGING === 'true') {
     logging = true;
-    console.log("Logging in " + loggingPath);
-    console.log('todo del: making file in loggingpath:' + loggingPath);
-    fs.appendFile(loggingPath + 'message.txt', 'data to append', (err) => {
-        if (err) throw err;
-        console.log('todo del Data was appended to the file.');
-    });
 }
 
 // Define websocket handlers
@@ -40,8 +35,10 @@ wss.on('connection', function (connection) {
     connection.on('message', function incoming(message) {
         // process WebSocket message
         console.log('received message: ' + message);
-        var sendEnd = false;
         var jsonMsg = JSON.parse(message);
+        // add timestamp for later logging:
+        jsonMsg.timeReceived = Date.now();
+        // perform command
         if (jsonMsg.command == 'parse') {
             // if there's text, then parse it according to jsonMsg.typeOutput
             if (jsonMsg.text) {
@@ -50,9 +47,8 @@ wss.on('connection', function (connection) {
                 parseAndReturnToClient(jsonMsg, connection);
             } else {
                 console.log("Error: No text to give to the parser. jsonMsg: " + jsonMsg);
-                returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
+                returnTextToClient('ERR_NO_TEXT', jsonMsg, connection);
             }
-            sendEnd = false;
         } else if (jsonMsg.command == 'getHistogramValues') {
             // if there's text, then send it to the word similarity program:
             if (jsonMsg.text) {
@@ -62,16 +58,17 @@ wss.on('connection', function (connection) {
                 // there's no text provided... error!
                 console.log("Error: No text to give to the word similarity program. jsonMsg: " +
                     jsonMsg);
-                returnTextToClient('ERR_NO_TEXT', jsonMsg.stage, connection);
+                returnTextToClient('ERR_NO_TEXT', jsonMsg, connection);
             }
-            sendEnd = false;
         } else {
             console.log("Error: Command, '" + jsonMsg.command + "', not recognized. Closing connection.");
-            sendEnd = true;
-        }
 
-        // End the ws connection if sendEnd==true
-        if (sendEnd) {
+            // log the error
+            if (logging) {
+                logFromJsonMsg(jsonMsg, 'ERR_CMD_NOT_RECOGNIZED');
+            }
+
+            // End the ws connection
             sendDone(connection);
         }
     });
@@ -83,17 +80,19 @@ wss.on('connection', function (connection) {
 
 });
 
-function returnTextToClient(text, stage, connection) {
-    console.log("Returning text to client: " + JSON.stringify({
+function returnTextToClient(text, jsonMsg, connection) {
+    var stage = jsonMsg.stage;
+    var strToReturn = JSON.stringify({
         'filedata': text,
         'stage': stage
-    }));
-    connection.send(
-        JSON.stringify({
-            'filedata': text,
-            'stage': stage
-        }));
+    });
+    console.log("Returning text to client: " + strToReturn);
+    connection.send(strToReturn);
     sendDone(connection);
+
+    if (logging) {
+        logFromJsonMsg(jsonMsg, text);
+    }
 }
 
 function parseAndReturnToClient(jsonMsg, connection) {
@@ -120,10 +119,10 @@ function parseAndReturnToClient(jsonMsg, connection) {
         // Check if a sentence caused the parser to hang (this only happens in the mindmap case):
         if (jsonMsg.typeOutput.toLowerCase().includes('mindmap') && stdout.includes("BAD ENGLISH")) {
             // return the error to the client
-            returnTextToClient(stdout, jsonMsg.stage, connection);
+            returnTextToClient(stdout, jsonMsg, connection);
         } else {
             // return parsed info
-            returnTextToClient(justOutput, jsonMsg.stage, connection);
+            returnTextToClient(justOutput, jsonMsg, connection);
         }
     });
 }
@@ -157,7 +156,7 @@ function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
         if (jsonMsg.typeOutput.toLowerCase().includes('mindmap') && stdout.includes("BAD ENGLISH")) {
             console.log('Parser error... Returning to client.');
             // return the error to the client
-            returnTextToClient(stdout, jsonMsg.stage, connection);
+            returnTextToClient(stdout, jsonMsg, connection);
         } else {
             console.log('Finished parsing. Now to get the word similarity...');
 
@@ -178,7 +177,7 @@ function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
                 }
 
                 // Send text back to client:
-                returnTextToClient(JSON.stringify(jsonToSend), jsonMsg.stage, connection);
+                returnTextToClient(JSON.stringify(jsonToSend), jsonMsg, connection);
             });
 
         }
@@ -190,6 +189,24 @@ function sendDone(connection) {
     connection.send(JSON.stringify({
         'done': true
     }));
+}
+
+function logFromJsonMsg(jsonMsg, output) {
+    var toLog = Object.assign({}, jsonMsg);
+    toLog.output = output;
+
+    var json2csvCallback = function (err, csv) {
+        if (err) {
+            console.log('ERROR IN JSON2CSV CALLBACK (LOGS WILL NOT BE RECORDED): ' + err);
+        }
+        fs.appendFile(loggingPath + jsonMsg.uid + '.csv', csv + '\n', (err) => {
+            if (err) {
+                console.log('ERROR IN JSON2CSV CALLBACK (LOGS WILL NOT BE RECORDED): ' + err);
+            }
+        });
+    };
+
+    converter.json2csv(toLog, json2csvCallback);
 }
 
 server.listen(port);

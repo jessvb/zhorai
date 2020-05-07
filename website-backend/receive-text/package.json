@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "json-2-csv": "^3.6.2",
     "ws": "^7.0.1"
   }
 }

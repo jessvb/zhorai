@@ -9,21 +9,26 @@ function getCookie(key) {
 var wssUrl = decodeURIComponent(getCookie('wssUrl'));
 
 // Util Functions
-function sendText(text) {
-    sendJson({
-        'text': text
-    });
-}
-
 function sendJson(json) {
+    // first, add the user id for logging purposes
+    json.uid = getUniqueId();
+
+    // set up websocket and send json as a string
     var socket = new WebSocket(wssUrl);
     socket.onopen = function (event) {
         socket.send(JSON.stringify(json));
     };
 
+    // set the function that's called when receiving a message from the websocket
     socket.onmessage = function (event) {
         onReceive(event, socket);
     };
+}
+
+function sendText(text) {
+    sendJson({
+        'text': text
+    });
 }
 
 function sendFromSession(key) {
@@ -113,3 +118,36 @@ function getHistogramValuesFromSession(key, stage) {
         'stage': stage
     });
 }
+
+/**
+ * Generates or retrieves a (nearly always) unique ID based on the browser, OS,
+ * and a randomly generated number.
+ */
+let getUniqueId = () => {
+    if (!('uid' in localStorage)) {
+        let browser = findFirstString(navigator.userAgent, [
+            'Chrome', 'Firefox', 'Chromium', 'Safari', 'OPR', 'Opera', 'Seamonkey',
+            'Edge', 'MSIE', 'Blink', 'Webkit', 'Gecko', 'Trident', 'Mozilla'
+        ]);
+        let os = findFirstString(navigator.userAgent, [
+            'Android', 'iOS', 'Windows', 'Windows Phone', 'OS X',
+            'Linux', 'Symbian', 'Blackberry', 'CrOS'
+        ]).replace(/ /g, '_');
+        let num = ('' + Math.random()).substr(2);
+        localStorage.setItem('uid', `${os}_${browser}_${num}`);
+    }
+
+    return localStorage.getItem('uid');
+};
+
+/**
+ * Parse string for first recognized substring, given multiple options for substrings.
+ */ 
+let findFirstString = (str, options) => {
+    for (let i = 0; i < options.length; i++) {
+        if (str.indexOf(options[i]) >= 0) {
+            return options[i];
+        }
+    }
+    return '0';
+};

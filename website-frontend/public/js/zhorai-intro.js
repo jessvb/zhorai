@@ -1,3 +1,6 @@
+// TODO: SEND LOG MSG TO RECIEVER EVERY TIME SOMETHING IS SPOKEN
+// 'LOGSPEECH' 'RAW TEXT' or something --> maybe just put this in the text speech record util js...
+
 /* -------------- Initialize variables -------------- */
 var nextPagePath = 'activity-1';
 var zhoraiTextColour = "#5d3e9f";
