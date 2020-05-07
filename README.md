@@ -2,7 +2,7 @@
 An interactive conversational agent for K-12 AI education. See the [EAAI 2020 paper about Zhorai here](https://uploads-ssl.webflow.com/5e388f0cc3c41617d66719d8/5e432a7280e474409a4c2e83_EAAI-LinP.27.pdf). The Zhorai website uses the Bootstrap library to construct the overall site framework, the Web Speech API for speech recognition and synthesis, and the D3 JavaScript library for mindmap and scatter plot visualizations.
 
 ## Setup
-There are two ways to set up Zhorai:
+After [cloning the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository), there are two ways to set up Zhorai:
 1. [With Docker](#with-docker) (recommended)
 2. [Manually](#manual-setup)
 
