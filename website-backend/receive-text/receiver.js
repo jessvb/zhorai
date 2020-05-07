@@ -1,23 +1,24 @@
 /* to connect to website via websocket: */
 var WebSocket = require('ws');
-var https = require('https');
-var fs = require('fs');
+var https;
+var http;
+var fs = require('fs'); // also for writing to txt file
 
-const port = 8080;
-const server = https.createServer({
-    cert: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/cert.pem'),
-    key: fs.readFileSync('/etc/letsencrypt/live/zhorai.csail.mit.edu/privkey.pem')
+const port = 5000;
+var server;
+http = require('http');
+server = http.createServer(function (request, response) {
+    // empty for http
 });
 
 /* to write to txt file: */
-var fs = require('fs');
 var semParserPath = '../../semantic-parser/';
 var wordSimPath = '../../word-similarity/';
 
 /* to execute bash scripts */
 var exec = require('child_process').exec;
 
-// Create secure websocket server
+// Create websocket server (note: not necessarily secure)
 const wss = new WebSocket.Server({
     server
 });

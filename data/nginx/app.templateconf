@@ -1,0 +1,59 @@
+# for websockets
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    '' close;
+}
+
+upstream websocket {
+    server www.domain.com:5000;
+}
+
+# https
+server {
+    listen 443 ssl;
+    server_name www.domain.com;
+    server_tokens off;
+    
+    ssl_certificate /etc/letsencrypt/live/www.domain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/www.domain.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    
+    location /ws/ {
+        proxy_pass http://websocket;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header Host $host;
+    }
+
+    location / {
+        proxy_pass  http://www.domain.com;
+        proxy_set_header    Host                $http_host;
+        proxy_set_header    X-Real-IP           $remote_addr;
+        proxy_set_header    X-Forwarded-For     $proxy_add_x_forwarded_for;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+
+# http
+server {
+    listen 80;
+    server_name www.domain.com;
+    server_tokens off;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        proxy_pass http://www.domain.com:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+
+

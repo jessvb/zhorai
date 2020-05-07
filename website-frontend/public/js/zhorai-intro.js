@@ -1,5 +1,5 @@
 /* -------------- Initialize variables -------------- */
-var nextPagePath = 'module-1.html';
+var nextPagePath = 'activity-1';
 var zhoraiTextColour = "#5d3e9f";
 var stages = ['sayHi',
     'zAskName',
@@ -142,7 +142,7 @@ function startStage() {
             break;
         case 'zFinish':
             infoLabel.innerHTML = 'Find out what Zhorai knows about your planet!';
-            // change button to module 1 button: Ask Zhorai about ecosystems
+            // change button to Activity 1 button: Ask Zhorai about ecosystems
             break;
         default:
             console.error("Unknown stage for conversation with Zhorai: " + stages[currStage]);
@@ -288,6 +288,10 @@ document.addEventListener('DOMContentLoaded', function () {
     zhoraiSpeechBox = document.getElementById('final_span');
     mod1Btn = document.getElementById('mod1Btn');
     loadingGif = document.getElementById('loadingGif');
+
+    // Restart speech synthesizer:
+    // (see https://stackoverflow.com/a/58775876/8162699)
+    window.speechSynthesis.cancel();
 
     startStage();
 

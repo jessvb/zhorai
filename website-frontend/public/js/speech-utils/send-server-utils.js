@@ -1,6 +1,14 @@
 /* --- utils for sending text to the server --- */
-var url = 'wss://zhorai.csail.mit.edu:8080';
 
+// get wssUrl from website-frontend/app.js cookie:
+function getCookie(key) {
+    var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+
+    return keyValue ? keyValue[2] : null;
+}
+var wssUrl = decodeURIComponent(getCookie('wssUrl'));
+
+// Util Functions
 function sendText(text) {
     sendJson({
         'text': text
@@ -8,7 +16,7 @@ function sendText(text) {
 }
 
 function sendJson(json) {
-    var socket = new WebSocket(url);
+    var socket = new WebSocket(wssUrl);
     socket.onopen = function (event) {
         socket.send(JSON.stringify(json));
     };

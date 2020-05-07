@@ -1,0 +1,56 @@
+version: "3.0"
+services:
+  server:
+    build: ./
+    restart: on-failure
+    volumes:
+      - ./website-backend/receive-text:/usr/src/website-backend/receive-text
+      - ./semantic-parser:/usr/src/semantic-parser
+      - ./data/certbot/conf:/etc/letsencrypt
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 5000:5000
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
+    command: bash -c "cd /usr/src && ./receiver_parser_setup.sh"
+
+  web:
+    build: ./website-frontend
+    restart: on-failure
+    volumes:
+      - ./website-frontend:/usr/src/app
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 8080:8080
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
+    command: bash -c "npm install && npm start"
+
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    volumes:
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+    ports:
+      - 80:80
+      - 443:443
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    logging:
+      driver: "none"
+
