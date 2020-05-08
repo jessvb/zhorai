@@ -14,7 +14,20 @@ var semParserPath = '../../semantic-parser/';
 var wordSimPath = '../../word-similarity/';
 var loggingPath = '../../logs/';
 var fs = require('fs');
-var converter = require('json-2-csv');
+var csvConverter = require('json-2-csv');
+var csvOptions = {
+    delimiter : {
+        wrap  : '"', // Double Quote (") character
+        field : ',', // Comma field delimiter
+        eol   : '\n' // Newline delimiter
+    },
+    prependHeader    : false,
+    sortHeader       : false,
+    excelBOM         : true,
+    trimHeaderValues : true,
+    trimFieldValues  : true,
+    keys             : ['uid','timeReceived','command','text','key','stage','typeOutput','output']
+};
 
 /* to execute bash scripts */
 var exec = require('child_process').exec;
@@ -201,12 +214,12 @@ function logFromJsonMsg(jsonMsg, output) {
         }
         fs.appendFile(loggingPath + jsonMsg.uid + '.csv', csv + '\n', (err) => {
             if (err) {
-                console.log('ERROR IN JSON2CSV CALLBACK (LOGS WILL NOT BE RECORDED): ' + err);
+                console.log('ERROR IN FS CALLBACK (LOGS WILL NOT BE RECORDED): ' + err);
             }
         });
     };
 
-    converter.json2csv(toLog, json2csvCallback);
+    csvConverter.json2csv(toLog, json2csvCallback, csvOptions);
 }
 
 server.listen(port);

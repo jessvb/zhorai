@@ -64,6 +64,13 @@ Note that both `docker-compose down` and `docker system prune` **do not** remove
 
 
 #### Development/testing within Docker container
+##### Tip #1
+When developing, if you already built a Docker container image, and you aren't changing anything in the Docker build settings (e.g., editing `docker-compose.yml`, `DockerFile`, etc.), you don't need to keep rebuilding the image, so instead of running `docker-compose -f docker-compose.local.yml up --build`, you can run:
+```bash
+docker-compose -f docker-compose.local.yml up
+```
+
+##### Tip #2
 To enter into the docker container (e.g., for testing installed libraries), use `docker exec -it` as follows:
 ```bash
 docker container list
