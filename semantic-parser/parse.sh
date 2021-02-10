@@ -15,7 +15,7 @@ sentences=$2
 # python ccg2lambda/en/candc2transccg.py $outpath/sentences.candc.xml > $outpath/sentences.xml
 
 #build dictionary output for word embedder
-retVal=$(python parserOutput.py "$type" "$sentences");
+retVal=$(python3.6 parserOutput.py "$type" "$sentences");
 if [ -z "$retVal" ]
 then
     echo "START$type"
