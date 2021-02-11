@@ -1,3 +1,3 @@
 animal=$1
 
-echo &(python animalEco.py "$animal" 2>&1)
+echo &(python3.6 animalEco.py "$animal" 2>&1)
