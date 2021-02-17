@@ -157,8 +157,8 @@ function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
                 var jsonToSend = {};
                 if (stdout) {
                     console.log('Parser command output:\n' + stdout);
-                    jsonToSend.ecoData = JSON.parse(stdout);
-                    jsonToSend.animal = jsonMsg.key;
+                    jsonToSend.categoryData = JSON.parse(stdout);
+                    jsonToSend.topic = jsonMsg.key;
                 }
                 if (error) {
                     console.log('Function error:\n' + error);

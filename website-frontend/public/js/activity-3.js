@@ -6,29 +6,14 @@ var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
 var mindmapPath = "../../website-backend/receive-text/data/mindmap.txt";
-var knownAnimals = [
-    'bees',
-    'birds',
-    // 'butterflies',
-    // 'leopards',
-    'cows',
-    // 'owls',
-    // 'fireflies',
-    'dolphins',
-    'fish',
-    // 'lobsters',
-    // 'starfish',
-    // 'swordfish',
-    'whales',
-    'polarbears',
-    // 'arcticfoxes',
-    // 'yaks',
-    'reindeer',
-    'camels',
-    // 'scorpions',
-    // 'elephants',
-    // 'giraffes',
-    'lions'
+var knownTopics = [
+    'icecream',
+    'ice cream',
+    'flavour',
+    'flavor',
+    'ice cream flavour',
+    'spirit animal',
+    'animal'
 ];
 
 // File paths for mindmap creation
@@ -36,14 +21,6 @@ var dataDir = 'data/';
 var dataDirRelPath = '../website-backend/receive-text/' + dataDir;
 var animalsDir = 'animals/';
 var animalsRelPath = dataDirRelPath + animalsDir;
-
-var justEcosGraph = [
-    ["desert", -0.9816911220550537, 0.8623313903808594, "desert"],
-    ["rainforest", -0.6243925094604492, -0.26911765336990356, "rainforest"],
-    ["grassland", 0.5262490510940552, 1.3611185550689697, "grassland"],
-    ["tundra", 1.4992122650146484, 0.5913272500038147, "tundra"],
-    ["ocean", 0.5613870620727539, -1.175655722618103, "ocean"],
-];
 
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
@@ -112,23 +89,23 @@ function switchButtonTo(toButton) {
     }
 }
 
-function getAnimal(text) {
-    // create a list of all the animals, plural and singular
-    var allAnimals = [];
-    for (var i = 0; i < knownAnimals.length; i++) {
-        allAnimals.push(convertAnimalToSingular(knownAnimals[i]));
-    }
-    allAnimals = allAnimals.concat(knownAnimals);
-
-    // return the animal 
-    // --> with no whitespace (e.g., polar bear = polarbear)
-    // --> lowercase
-    text = text.replace(/\s+/g, '');
+/**
+ * Returns the topic in a standardized format (e.g., ice cream vs. icecream) 
+ * that the user wants to ask Zhorai about, given the text the user said.
+ * 
+ * If there is no topic from the list of topics, this returns null.
+ */
+function getTopic(text) {
+    // return the topic standardized, singular & lowercase
     text = text.toLowerCase();
-    return containsAny(text, allAnimals);
+    topic = getAnySubstring(text, knownTopics)
+    if (topic) {
+        topic = standardizeTopic(topic);
+    }
+    return topic;
 }
 
-function containsAny(str, substrings) {
+function getAnySubstring(str, substrings) {
     var foundSubstr = null;
     for (var i = 0; i != substrings.length; i++) {
         var substring = substrings[i];
@@ -139,78 +116,35 @@ function containsAny(str, substrings) {
     return foundSubstr;
 }
 
-function convertAnimalToSingular(animal) {
-    if (animal == 'butterflies') {
-        animal = 'butterfly';
-    } else if (animal == 'fireflies') {
-        animal = 'firefly';
-    } else if (animal.includes('fish')) {
-        animal = animal; // stays the same ;)
-    } else if (animal.includes('foxes')) {
-        animal = animal.substring(0, animal.length - 2);
-    } else if (animal == 'reindeer') {
-        animal = animal; // stays the same :)
-    } else {
-        // assuming we can just remove the last letter, which should be an 's'
-        if (animal.charAt(animal.length - 1) == 's') {
-            animal = animal.substring(0, animal.length - 1);
-        } else {
-            console.error("Couldn't convert, " + animal + " to singular");
-        }
+/**
+ * Converts non-standard topics to standard ones, including:
+ * - ice cream flavour
+ * - spirit animal
+ * @param {*} topic 
+ */
+function standardizeTopic(topic) {
+    topic = topic.toLowerCase();
+    if (topic == 'flavor' || topic == 'flavour' || topic.includes('ice')) {
+        topic = 'ice cream flavour';
+    } else if (topic == 'spiritanimal' || topic == 'animal') {
+        topic = 'spirit animal';
     }
-    return animal;
-}
-
-function convertAnimalToPlural(animal) {
-    if (animal) {
-        if (animal == 'butterfly') {
-            animal = 'butterflies';
-        } else if (animal == 'firefly') {
-            animal = 'fireflies';
-        } else if (animal.includes('fish')) {
-            animal = animal; // stays the same ;)
-        } else if (animal.includes('fox')) {
-            animal = 'arcticfoxes';
-        } else if (animal == 'reindeer') {
-            animal = animal; // stays the same :)
-        } else {
-            // assuming we can just add an 's'
-            animal = animal + 's';
-        }
-    } else {
-        animal = null;
-    }
-    return animal;
-}
-
-function isAnimalPlural(animal) {
-    if (animal) {
-        isPlural = knownAnimals.includes(animal);
-    } else {
-        isPlural = false;
-    }
-
-    return isPlural;
+    return topic;
 }
 
 function afterRecording(recordedText) {
-    var saidAnimal = false;
-    var animal = '';
+    var topic = '';
     var zhoraiSpeech = '';
     var phrases = [];
 
-    // test to see if what they said has an animal in it... e.g., "I didn't quite catch that"
-    animal = getAnimal(recordedText);
-    if (!isAnimalPlural(animal)) {
-        animal = convertAnimalToPlural(animal);
-    }
-    saidAnimal = knownAnimals.includes(animal);
+    // test to see if what they said has a specific topic in it... e.g., "I didn't quite catch that"
+    topic = getTopic(recordedText);
 
-    // if there was a known animal stated...
-    if (saidAnimal) {
-        phrases = ["Oh yes! Let me think about " + animal + " for a second.",
-            "I'll think about " + animal + " for a bit and let you know!",
-            "Oh yeah, " + animal + " sound interesting. Let me think about where they might be from."
+    // if there was a known topic stated...
+    if (topic) {
+        phrases = ["Oh yes! Let me think about you and " + topic + "s for a second.",
+            "I'll think about you and " + topic + "s for a bit and let you know!",
+            "Oh yeah, you seem really interesting! Let me think about " + topic + "s and who you are."
         ];
     } else {
         phrases = ["Sorry, what was that?", "Oh, pardon?", "I didn't quite understand that. Pardon?"];
@@ -219,19 +153,19 @@ function afterRecording(recordedText) {
     zhoraiSpeech = chooseRandomPhrase(phrases);
     showPurpleText(zhoraiSpeech);
 
-    if (saidAnimal) {
+    if (topic) {
         speakText(zhoraiSpeech, null, null); // don't switch to mic yet -- do that in mod3receivedata
 
         // delete the current mindmap to prepare for the next
         deleteMindmap();
 
-        // send the particular animal info to the server to parse by getting the info
+        // send the person's info/sentences to the server to parse by getting the info
         // from the session:
-        parseSession('Mindmap', animal, 'mindmapping' + '_mod3');
+        parseSession('Mindmap', topic, 'mindmapping' + '_mod3');
         // when done parsing, create the mind map (in mod3ReceiveData)
 
-        // send the server the particular animal info (and get the histogram info in mod3ReceiveData)
-        getHistogramValuesFromSession(animal, 'histogram' + '_mod3');
+        // send the server the person's info/senetnces info (and get the histogram info in mod3ReceiveData)
+        getHistogramValuesFromSession(topic, 'histogram' + '_mod3');
     } else {
         speakText(zhoraiSpeech, null,
             function () {
@@ -254,39 +188,50 @@ function mod3ReceiveData(filedata, stage) {
     } else if (stage.includes('histogram')) {
         if (!filedata.includes('ERR_NO_TEXT')) {
             // filedata should look something like this:
-            // {ecoData: {"desert": 1.0, "rainforest": 0.8170465764721643, "tundra": 
+            // {categoryData: {"desert": 1.0, "rainforest": 0.8170465764721643, "tundra": 
             //    0.33213671992101007, "grassland": 0.8271058674638075, "ocean": 0.0},
             //  animal: "camel"}
 
-            // get animal and ecosystem word similarity from returned info:
-            var animal = JSON.parse(filedata).animal;
-            var ecoData = JSON.parse(filedata).ecoData;
+            // get topic and category word similarity from returned info:
+            var topic = JSON.parse(filedata).topic;
+            var categoryData = JSON.parse(filedata).categoryData;
 
-            // find the ecosystem with the largest word similarity value:
+            // find the category with the largest word similarity value:
             var maxVal = 0;
-            var eco = '';
-            Object.keys(ecoData).forEach(function (key) {
-                var currVal = parseInt(ecoData[key]);
+            var category = '';
+            Object.keys(categoryData).forEach(function (key) {
+                var currVal = parseInt(categoryData[key]);
                 if (currVal > maxVal) {
                     maxVal = currVal;
-                    eco = key;
+                    category = key;
                 }
             });
 
-            // say, "Based on what I know about Earth, here's where I would guess the animal 
-            // comes from.":
-            phrases = ["Based on what I know about Earth, I would guess " + animal +
-                " live in " + eco + "s.",
-                "I would guess " + animal + " live in " + eco + "s from what I know.",
-                "I think " + animal + " are from " + eco + "s based on what you told me."
-            ];
+            // say something about the guess, depending on the topic:
+            if (topic == 'ice cream flavour') {
+                phrases = ["Based on what I know about you, I would guess your favourite " + topic +
+                    " is " + category + ".",
+                    "I would guess you like " + category + " ice cream, from what I know.",
+                    "From what I know, you seem like a " + category + "-type person to me!"
+                ];
+            } else if (topic == 'spirit animal') {
+                phrases = ["Based on what I know about you, I would guess your " + topic +
+                    " is a " + category + ".",
+                    "I would guess your " + topic + " is " + category + " from what I know.",
+                    "Your " + topic + " seems like a " + category + " from what I know!"
+                ];
+            } else {
+                // This shouldn't happen
+                console.error("Error: topic was not in known topics.");
+                phrases = ["I got confused about the topic we were talking about... Can you ask me again?"];
+            }
 
-            createHistogram(ecoData);
+            createHistogram(categoryData);
         } else {
             // error checking:
-            phrases = ["I don't know enough about that animal to guess where it's from.",
-                "I haven't heard enough about that animal to say where it lives.",
-                "Hmm, I'm not sure! I haven't heard much about that animal."
+            phrases = ["I don't think I know enough about you to guess.",
+                "I feel like I haven't heard enough about you yet to guess.",
+                "Hmm, I'm not sure! I don't feel like I know enough about you yet."
             ];
         }
 

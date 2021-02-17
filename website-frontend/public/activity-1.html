@@ -82,8 +82,8 @@
   <!-- Activity 1 Section -->
   <section class="portfolio" id="portfolio">
     <div class="text-center">
-      <h3 class="font-weight-light mb-0">Ask Zhorai about earth's ecosystems by saying things like, "What do you know
-        about the desert?"</h3>
+      <h3 class="font-weight-light mb-0">Ask Zhorai about ice cream flavours or spirit animals by saying things like, "What do you know
+        about chocolate ice cream?"</h3>
       <!-- Recording info -->
       <div id="info">
         <p id="info_start" hidden="true">Click on the microphone icon and begin speaking.</p>
@@ -147,179 +147,21 @@
   </section>
 
 
-  <!-- Label for training sentences -->
-  <!-- <div class="text-center">
-      <h3 id="trainingSentences" class="font-weight-light">
-        Here's what Zhorai heard about __ ecosystem:
-      </h3>
-  </div> -->
-  <!-- Textbox for sentences -->
-  <!-- <div class="text-center">
-      <div id="trainingSentences"> 
-        <p>sentence 1</p>
-        <p>sentence 2</p>
-      </div>
-  </div> -->
-
-  <div id="desertSentences" hidden="true">
-    <!-- Label for desert training sentences -->
+  <div id="sentenceContainer" hidden="true">
+    <!-- Label for training data sentences -->
     <div class="text-center">
       <h3 class="font-weight-light">
-        Zhorai heard these things about deserts from other Earthlings:
+        Zhorai heard these things about <span id="sentenceTopic">foxes</span> from other Earthlings:
       </h3>
     </div>
-    <!-- Textbox for desert sentences -->
-    <div class="text-center">
+    <!-- Textbox for training data sentences -->
+    <div class="text-center" id="trainingSentences">
       <p>
-        The desert has lots of sand<br>
-        The desert is very dry<br>
-        Deserts have cactus<br>
-        The desert is very hot and sunny<br>
-        Deserts don’t have much water<br>
-        Deserts have few people<br>
-        Deserts have flash floods<br>
-        Deserts have sand dunes<br>
-        Deserts are sandy<br>
-        Deserts don’t have many plants<br>
-        Deserts don't have much vegetation<br>
-        Deserts are hot<br>
-        Deserts don't have much precipitation<br>
-        Deserts are also called drylands<br>
-        Deserts are harsh environments<br>
-        It’s hard for animals to survive in the desert<br>
-        Animals are rare in the desert<br>
-        Animals that live in the desert have ways to keep cool and use less water<br>
-        Many animals in the desert are nocturnal<br>
-        Animals often come out at night in the desert<br>
-        Plants in the desert store water<br>
-        There are lots of cacti in the desert<br>
-        There are shrubs in the desert<br>
-        The sun is hot in the desert<br>
-        Deserts get very cold at night<br>
-        It is hard to find water in the desert<br>
-        There are lots of deserts in africa<br>
+        Example sentence 1<br>
+        Example sentence 2<br>
       </p>
     </div>
   </div>
-
-  <div id="tundraSentences" hidden="true">
-    <!-- Label for tundra training sentences -->
-    <div class="text-center">
-      <h3 class="font-weight-light">
-        Zhorai heard these things about tundras from other Earthlings:
-      </h3>
-    </div>
-    <!-- Textbox for tundra sentences -->
-    <div class="text-center">
-      <p>
-        The tundra is very cold<br>
-        The tundra is very dry<br>
-        There are not very many trees or bushes in the tundra<br>
-        Not many things live in the tundra<br>
-        The tundra is very far north<br>
-        The tundra is in Canada<br>
-        The tundra is very far south<br>
-        The tundra is in Antarctica<br>
-        The tundra is very windy<br>
-        There is a lot of snow in the tundra<br>
-        There are not many animals in the tundra<br>
-        There is a permafrost in the tundra<br>
-        Snow doesn’t melt very often in the tundra<br>
-        The tundra is in Russia<br>
-        The tundra stays cold all year<br>
-        The tundra is dark in the winter<br>
-        It’s extremely cold in the tundra during winter<br>
-        The tundra is bright in the summer<br>
-        The tundra is really windy<br>
-        There are marshes and lakes in the tundra during the summer<br>
-        In the winter, everything in the tundra freezes<br>
-        The biodiversity is low in the tundra<br>
-        When the tundra permafrost melts, it’s bad for global warming<br>
-        The main plants in the tundra is lichen and mosses<br>
-      </p>
-    </div>
-  </div>
-
-  <div id="rainforestSentences" hidden="true">
-    <!-- Label for rainforest training sentences -->
-    <div class="text-center">
-      <h3 class="font-weight-light">
-        Zhorai heard these things about rainforests from other Earthlings:
-      </h3>
-    </div>
-    <!-- Textbox for rainforest sentences -->
-    <div class="text-center">
-      <p>
-        The rainforest is very wet<br>
-        The rainforest has a lot of trees<br>
-        The rainforest has lots of wood<br>
-        There is a lot of rain in the rainforest<br>
-        There are a lot of different plants in the rainforest<br>
-        There are a lot of different animals in the rainforest<br>
-        Rainforests are damp<br>
-        Rainforests have trees<br>
-        Rainforests are muddy<br>
-        There are rivers in the rainforests<br>
-        People go for hikes in the rainforest<br>
-        The rainforest is humid<br>
-        The rainforest has lots of plants<br>
-      </p>
-    </div>
-  </div>
-
-  <div id="oceanSentences" hidden="true">
-    <!-- Label for ocean training sentences -->
-    <div class="text-center">
-      <h3 class="font-weight-light">
-        Zhorai heard these things about oceans from other Earthlings:
-      </h3>
-    </div>
-    <!-- Textbox for ocean sentences -->
-    <div class="text-center">
-      <p>
-        The ocean is filled with water<br>
-        All animals in the ocean need water to survive<br>
-        The ocean is very wet<br>
-        The ocean is salty<br>
-        The ocean has coral reefs<br>
-        The ocean is very deep<br>
-        The ocean is huge<br>
-        The ocean covers most of the earth<br>
-        The ocean has lots of animals<br>
-        The ocean is blue<br>
-        The ocean has currents<br>
-        The ocean has seaweed and kelp<br>
-        The ocean has the most animals out of all the biomes<br>
-        The ocean is like a big sea<br>
-      </p>
-    </div>
-  </div>
-
-  <div id="grasslandSentences" hidden="true">
-    <!-- Label for grassland training sentences -->
-    <div class="text-center">
-      <h3 class="font-weight-light">
-        Zhorai heard these things about grasslands from other Earthlings:
-      </h3>
-    </div>
-    <!-- Textbox for grassland sentences -->
-    <div class="text-center">
-      <p>
-        The grassland has a lot of grass<br>
-        Grasslands can have shrubs<br>
-        The grassland is can be cool or warm<br>
-        Grasslands are pretty dry<br>
-        There are savannas in the grassland<br>
-        Grasslands are a large open areas of country covered with grass<br>
-        Grasslands have some rain<br>
-        Grasslands are open and flat<br>
-        The most important plants of grasslands are grasses<br>
-        Temperatures in grasslands vary greatly between summer and winter<br>
-        Grasslands don’t have trees<br>
-      </p>
-    </div>
-  </div>
-
 
   <!-- Footer -->
   <footer class="footer text-center">
