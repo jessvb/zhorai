@@ -14,9 +14,16 @@ function createMindmap(graph) {
 	var nd;
 	for (var i=0; i<graph.nodes.length; i++) {
 	  nd = graph.nodes[i];
-	  nd.rx = nd.id.length * 8.5; 
+	  // we're changing the text for 'i' to be 'me', so we'll have to change
+	  // the corresponding node's x radius to be larger, as follows:
+	  if (nd.id == 'i') {
+		  nd.rx = 'me'.length * 8.5;
+	  } else {
+		  nd.rx = nd.id.length * 8.5;
+	  }
 	  nd.ry = 20;
-	  // console.log(nd);
+	  console.log('nd: ');
+	  console.log(nd);
 	} 
 
 
@@ -57,7 +64,15 @@ function createMindmap(graph) {
 	  .enter().append("text")  
 	    .attr("dy", 2)
 	    .attr("text-anchor", "middle")
-	    .text(function(d) {return d.id})
+	    .text(function(d) {
+			// if node text is "i", it's referring to the person themselves, so change
+			// it to be "me", so that it makes a bit more sense:
+			text = d.id
+			if (text == 'i') {
+				text = 'me';
+			}
+			return text;
+		})
 	    .attr("fill", "white")
 	    .style("font-size", "20px")
 	    .style("font_family", "monospace");
@@ -296,7 +311,7 @@ function createHistogram(plot_data) {
 		.attr("y", 20)
 		.style("text-anchor", "middle")
 		.style("font-size", "30px")
-		.text("Where I think this animal lives");
+		.text("Here's what I think:");
 
 	svg.append("g")
 		.attr("transform", "translate(" +margin.left + "," + margin.top + ")");
