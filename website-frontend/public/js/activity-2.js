@@ -2,40 +2,14 @@
 var recordButton;
 var recordBtnCurrHandler; // Reference so we can remove/replace handler depending on curranimal
 var zhoraiTextColour = "#5d3e9f";
-var animalPromptLabel;
+var promptLabel;
 var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
 var mindmapPath = "../../website-backend/receive-text/data/mindmap.txt";
-var currentAnimal = "";
-var knownAnimals = [
-    'bees',
-    'birds',
-    // 'butterflies',
-    // 'leopards',
-    'cows',
-    // 'owls',
-    // 'fireflies',
-    'dolphins',
-    'fish',
-    // 'lobsters',
-    // 'starfish',
-    // 'swordfish',
-    'whales',
-    'polarbears',
-    // 'arcticfoxes',
-    // 'yaks',
-    'reindeer',
-    'camels',
-    // 'scorpions',
-    // 'elephants',
-    // 'giraffes',
-    'lions'
-];
-var oldAnimals = [];
-
-// File paths for saving animal info
-var animalDir = 'animals/';
+var currentSubject = "";
+// Note: in this case, currentSubject will always be set to "yourself" 
+// (we're only teaching zhorai about ourselves, not animals etc.)
 
 /* -------------- Initialize functions -------------- */
 function showPurpleText(text) {
@@ -108,9 +82,9 @@ function mod2ReceiveData(filedata) {
     // Check to see if there was a hangup because of a bad sentence
     if (filedata.includes("BAD ENGLISH")) {
         // one of the sentences entered was confusing english... have to redo :(
-        var phrases = ['One of those sentences confused me and I forgot the rest of what you said! Could you please re-teach me about ' + currentAnimal + '?',
-            'I\'m sorry, I got confused in the middle of what you were saying. Could you please teach me again about ' + currentAnimal + '?',
-            'Oops, I got confused by something you said and forgot everything about ' + currentAnimal + '! Could you please talk to me again about ' + currentAnimal + '?'
+        var phrases = ['One of those sentences confused me and I forgot the rest of what you said! Could you please re-teach me about ' + currentSubject + '?',
+            'I\'m sorry, I got confused in the middle of what you were saying. Could you please teach me again about ' + currentSubject + '?',
+            'Oops, I got confused by something you said and forgot everything you taught me about ' + currentSubject + '! Could you please teach me again?'
         ];
         var toSpeak = chooseRandomPhrase(phrases);
         showPurpleText(toSpeak);
@@ -119,9 +93,9 @@ function mod2ReceiveData(filedata) {
         switchButtonTo('micAndTextFileBtn');
     } else if (filedata.includes("ERR_NO_TEXT")) {
         // There were no sentences saved for this animal... Let the user know:
-        var phrases = ['Hmm, I actually don\'t know anything about ' + currentAnimal + ' yet. Could you please teach me about them?',
-            'I haven\'t learned about ' + currentAnimal + ' yet, actually! What do you know about them?',
-            'Oops! I don\'t know anything about ' + currentAnimal + '. Could you teach me some things about them?'
+        var phrases = ['Hmm, I actually don\'t know much of anything about you yet. Could you please teach me?',
+            'I haven\'t learned about you yet, actually! Could you tell me about ' + currentSubject + '?',
+            'Oops! I don\'t know anything about you yet. Could you teach me some things?'
         ];
         var toSpeak = chooseRandomPhrase(phrases);
         showPurpleText(toSpeak);
@@ -139,66 +113,52 @@ function mod2ReceiveData(filedata) {
         switchButtonTo('micAndTextFileBtn');
         createMindmap(JSON.parse(filedata));
 
-        // Now let's teach zhorai about another animal :)
-        // todo: get rid of oldAnimals
-        // Add the current animal to the list of oldAnimals:
-        // oldAnimals.push(currentAnimal);
-        // currentAnimal = chooseRandomPhrase(knownAnimals.filter(checkNewAnimal));
-        currentAnimal = chooseRandomPhrase(knownAnimals);
-
-        // update the prompt and sentences with the new animal
-        setAnimalPrompt(currentAnimal);
-        sm.setDivToSessionSentences(currentAnimal);
+        sm.setDivToSessionSentences(currentSubject);
     }
 }
 
-function checkNewAnimal(animal) {
-    return !(oldAnimals.includes(animal));
-}
-
-function setAnimalPrompt() {
-    animalPromptLabel.innerHTML = "Zhorai would like to know about <span style=\"text-decoration: underline;\">" +
-        currentAnimal + "</span>. Could you teach it about them?";
+function setPrompt() {
+    promptLabel.innerHTML = "Zhorai would like to know more about you! Could you teach it about " + currentSubject + "?";
     textFileLabel.innerHTML = "Once you're done teaching Zhorai about " +
-        currentAnimal + ", click the button below.";
+        currentSubject + ", click the button below.";
 }
 
 /* -------------- Once the page has loaded -------------- */
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize variables:
     currStage = 0;
-    animalPromptLabel = document.getElementById('animalPromptLabel');
+    promptLabel = document.getElementById('promptLabel');
     recordButton = document.getElementById('record_button');
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
     textFileLabel = document.getElementById('textFileLabel');
     textFileBtn = document.getElementById('textFileBtn');
-    currentAnimal = chooseRandomPhrase(knownAnimals);
+    currentSubject = 'yourself';
 
     // Restart speech synthesizer:
     // (see https://stackoverflow.com/a/58775876/8162699)
     window.speechSynthesis.cancel();
 
-    setAnimalPrompt();
+    setPrompt();
 
     // Create sentence manager and put all known sentences about the current animal on the page
     var sm = new SentenceManager(document.getElementById("sentencesDiv"), "./img/x_del.svg");
     // Add all sentences in memory to page:
-    sm.setDivToSessionSentences(currentAnimal);
+    sm.setDivToSessionSentences(currentSubject);
 
     // Add click handlers
     setUpRecordingHandlers(record_button, function () {
         recordButtonClick({
-            key: currentAnimal,
+            key: currentSubject,
             sentenceManager: sm
         });
     });
     textFileBtn.addEventListener('click', function () {
         switchButtonTo('loading');
         // say something about how we're going to display Zhorai's thoughts after parsing
-        var phrases = ['Thanks for teaching me about ' + currentAnimal + '! Let me think about all these new things and show you my thoughts.',
-            "Wow, " + currentAnimal + " sound really interesting! Let me think for a bit and then I'll show you my thoughts.",
-            currentAnimal + " sound fascinating! Now I want to visit earth and all of it's life! I'll show you what I understand after I think for a little while."
+        var phrases = ['Thanks for teaching me about ' + currentSubject + '! Let me think about all these new things and show you my thoughts.',
+            "Wow, you sound really interesting! Let me think for a bit and then I'll show you my thoughts.",
+            "I really enjoyed hearing more about you! I'll show you what I understand after I think for a little while."
         ];
         var toSpeak = chooseRandomPhrase(phrases);
         showPurpleText(toSpeak);
@@ -208,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteMindmap();
 
         // send a command to the server to parse what's in the session memory,
-        parseSession('Mindmap', currentAnimal, 'parsing' + '_mod2');
+        parseSession('Mindmap', currentSubject, 'parsing' + '_mod2');
         // when done parsing, create the mind map (in mod2ReceiveData)
     });
 });
