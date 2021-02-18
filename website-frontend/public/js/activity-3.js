@@ -15,6 +15,7 @@ var knownTopics = [
     'spirit animal',
     'animal'
 ];
+var subject = '';
 
 // File paths for mindmap creation
 var dataDir = 'data/';
@@ -161,11 +162,11 @@ function afterRecording(recordedText) {
 
         // send the person's info/sentences to the server to parse by getting the info
         // from the session:
-        parseSession('Mindmap', topic, 'mindmapping' + '_mod3');
+        parseSession('Mindmap', subject, 'mindmapping' + '_mod3');
         // when done parsing, create the mind map (in mod3ReceiveData)
 
         // send the server the person's info/senetnces info (and get the histogram info in mod3ReceiveData)
-        getHistogramValuesFromSession(topic, 'histogram' + '_mod3');
+        getHistogramValuesFromSession(subject, topic, 'histogram' + '_mod3');
     } else {
         speakText(zhoraiSpeech, null,
             function () {
@@ -255,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
     recordButton = document.getElementById('record_button');
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');
+    subject = 'yourself'; // in this case, we're always considering the data about the person
 
     // Restart speech synthesizer:
     // (see https://stackoverflow.com/a/58775876/8162699)

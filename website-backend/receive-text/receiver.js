@@ -150,7 +150,7 @@ function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
             console.log('Finished parsing. Now to get the word similarity...');
 
             var wordSimCmd = 'cd ' + wordSimPath +
-                ' && sh classify.sh \'' + parserOutput + '\'';
+                ' && sh classify.sh \'' + jsonMsg.topicKey + '\' \'' + parserOutput + '\'';
             console.log(wordSimCmd);
 
             exec(wordSimCmd, function (error, stdout, stderr) {
@@ -158,7 +158,7 @@ function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
                 if (stdout) {
                     console.log('Parser command output:\n' + stdout);
                     jsonToSend.categoryData = JSON.parse(stdout);
-                    jsonToSend.topic = jsonMsg.key;
+                    jsonToSend.topic = jsonMsg.topicKey; // e.g., 'ice cream flavour', 'spirit animal'
                 }
                 if (error) {
                     console.log('Function error:\n' + error);

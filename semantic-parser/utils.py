@@ -36,7 +36,7 @@ def split(sentences):
     return b
 
 def isTopic(word):
-    if word in ecosystems or word in animals:
+    if word in animals:
         return True
     return False
 
@@ -161,6 +161,7 @@ def buildDict(s, full_word_dict):
                             res[i].append(["pos",full_word_dict[w]])
                         else:
                             res[i] = [["pos",full_word_dict[w]]]
+    # print(f'TODO for ice cream: DICT!!!\n{res}')
     return res
 
 def getName(s):

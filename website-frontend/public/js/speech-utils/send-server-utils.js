@@ -99,17 +99,18 @@ function parseSession(typeOutput, key, stage) {
  *
  * Example call: getHistogramValuesFromSession('camels', 'histogram_mod3')
  *
- * @param {*} key : the key used for session storage. This will be used to retrieve
+ * @param {*} subjectKey : the key used for session storage. This will be used to retrieve
  * the value stored (e.g., the sentences associated with the animal-key).
  * @param {*} stage : the current zhorai stage you're in, if applicable.
  * (This informs the callback, 'onReceive', what to do)
  */
-function getHistogramValuesFromSession(key, stage) {
-    var value = SentenceManager.getSentencesAsString(key);
+function getHistogramValuesFromSession(subjectKey, topicKey, stage) {
+    var value = SentenceManager.getSentencesAsString(subjectKey);
     sendJson({
         'command': 'getHistogramValues',
         'text': value,
-        'key': key,
+        'subjectKey': subjectKey, // e.g., 'yourself'
+        'topicKey': topicKey, // e.g., 'ice cream flavour', 'spirit animal'
         'stage': stage
     });
 }
