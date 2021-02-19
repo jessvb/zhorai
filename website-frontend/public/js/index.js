@@ -14,16 +14,18 @@ function createMindmap(graph) {
 	var nd;
 	for (var i=0; i<graph.nodes.length; i++) {
 	  nd = graph.nodes[i];
-	  // we're changing the text for 'i' to be 'me', so we'll have to change
+	  // we're changing the text for certain nodes, so we'll have to change
 	  // the corresponding node's x radius to be larger, as follows:
 	  if (nd.id == 'i') {
 		  nd.rx = 'me'.length * 8.5;
+	  } else if (nd.id == 'cooky' || nd.id == 'cookies') {
+		  nd.rx = 'cookies & cream'.length * 8.5;
+	  } else if (nd.id == 'mint') {
+		  nd.rx = 'mint chocolate chip'.length * 8.5;
 	  } else {
 		  nd.rx = nd.id.length * 8.5;
 	  }
 	  nd.ry = 20;
-	  console.log('nd: ');
-	  console.log(nd);
 	} 
 
 
@@ -65,12 +67,17 @@ function createMindmap(graph) {
 	    .attr("dy", 2)
 	    .attr("text-anchor", "middle")
 	    .text(function(d) {
-			// if node text is "i", it's referring to the person themselves, so change
-			// it to be "me", so that it makes a bit more sense:
+			// Change certain keywords (e.g., "i" -> "me", "cooky" -> "cookies & cream", 
+			// "mint" -> "mint chocolate chip")
 			text = d.id
 			if (text == 'i') {
 				text = 'me';
+			} else if (text == 'cooky' || text == 'cookies') {
+				text = 'cookies & cream';
+			} else if (text == 'mint') {
+				text = 'mint chocolate chip';
 			}
+
 			return text;
 		})
 	    .attr("fill", "white")

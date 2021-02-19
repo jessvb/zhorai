@@ -6,7 +6,8 @@ from nltk.parse.corenlp import CoreNLPParser
 from nltk.stem import WordNetLemmatizer
 
 
-animals = ["i","i've","i'm","me","myself","alligator","ant","antelope","baboon","bat","bear","beaver","bee","bird","butterfly","camel","cat","coyote","cheetah","chicken","chimpanzee","cow","crocodile","deer","dog","dolphin","donkey","duck","eagle","elephant","fish","firefly","flamingo","fly","fox","frog","gerbil","giraffe","goat","goldfish","gorilla","hamster","hippopotamus","horse","jellyfish","kangaroo","kitten","koala","ladybug","leopard","lion","llama","lobster","monkey","moose","octopus","ostrich","otter","owl","panda","panther","peacock","penguin","pig","polarbear","puma","puppy","rabbit","rat","reindeer","rhinoceros","scorpion","seal","seahorse","shark","sheep","sloth","snail","snake","starfish","spider","squirrel","swordfish","tiger","walrus","weasel","whale","turtle","wildcat","whale","wolf","zebra"]
+importantWords = ["i","i've","i'm","me","myself","vanilla","chocolate","strawberry","cookies","cooky","mint","fox","butterfly","bear","frog","horse","beaver"]
+#"alligator","ant","antelope","baboon","bat","bear","beaver","bee","bird","butterfly","camel","cat","coyote","cheetah","chicken","chimpanzee","cow","crocodile","deer","dog","dolphin","donkey","duck","eagle","elephant","fish","firefly","flamingo","fly","fox","frog","gerbil","giraffe","goat","goldfish","gorilla","hamster","hippopotamus","horse","jellyfish","kangaroo","kitten","koala","ladybug","leopard","lion","llama","lobster","monkey","moose","octopus","ostrich","otter","owl","panda","panther","peacock","penguin","pig","polarbear","puma","puppy","rabbit","rat","reindeer","rhinoceros","scorpion","seal","seahorse","shark","sheep","sloth","snail","snake","starfish","spider","squirrel","swordfish","tiger","walrus","weasel","whale","turtle","wildcat","whale","wolf","zebra"]
 negatives = ["n’t","n't","not","no","little","small","few","low"]
 stopwords = ["we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "ha", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "more", "most", "other", "some", "such", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now", "lot", "many"]
 
@@ -35,8 +36,8 @@ def split(sentences):
     b = [x.lower() for x in aSplit]
     return b
 
-def isTopic(word):
-    if word in animals:
+def isImportant(word):
+    if word in importantWords:
         return True
     return False
 
@@ -97,8 +98,8 @@ def extractWords(part):
     if type(part) is tuple:
         word = part[0]
         pos = part[1]
-        if pos == 'NN' or pos == 'JJ' or pos == 'RB' or pos == 'NNS' or (pos == 'VBP' and isNegative(word)) or (pos == 'FW' and word in animals):
-            if word in animals:
+        if pos == 'NN' or pos == 'JJ' or pos == 'RB' or pos == 'NNS' or (pos == 'VBP' and isNegative(word)) or (pos == 'FW' and word in importantWords):
+            if word in importantWords:
                 return ('subject', word, pos)
             else:
                 if isNegative(word):
@@ -161,7 +162,7 @@ def buildDict(s, full_word_dict):
                             res[i].append(["pos",full_word_dict[w]])
                         else:
                             res[i] = [["pos",full_word_dict[w]]]
-    # print(f'TODO for ice cream: DICT!!!\n{res}')
+    # print(f'Use this for categories_dict.txt files:\n{res}')
     return res
 
 def getName(s):

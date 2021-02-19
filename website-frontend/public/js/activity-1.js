@@ -14,8 +14,8 @@ var sentences = {
         // "Foxes like to eat birds and other small game",
         "Foxes have a flexible diet",
         "Foxes will eat fruits and vegetables",
-        "Foxes will eat fish and frogs",
-        "Foxes will even eat worms",//, fish, frogs, and worms",
+        // "Foxes will eat fish and frogs",
+        "Foxes will eat fish and even worms",//, fish, frogs, and worms",
         "If living among humans, foxes will opportunistically dine on garbage and pet food",
         "Like a cat's, the fox's thick tail aids its balance, but it has other uses as well",
         "A fox uses its tail as a warm cover in cold weather",
@@ -176,11 +176,123 @@ var sentences = {
         "Aggressive horse facial gestures include the ears being laid back and the nostrils closed while exposing the same teeth",
     ],
     beaver: ['TODO'],
-    vanilla: ['TODO'],
-    chocolate: ['TODO'],
-    strawberry: ['TODO'],
-    cookiesncream: ['TODO'],
-    mintchocolatechip: ['TODO'],
+    vanilla: [
+        "Vanilla ice cream is a simple treasure",
+        "Nothing but vanilla bean mixed with cane sugar and cream fresh from the dairy farm up the street",
+        "Vanilla evokes purity and simplicity",
+        "Vanilla is like an old friend",
+        "Fresh milk and cream and the highest quality make vanilla the benchmark of the Hudsonville lineup",
+        "With butter fat this is the creamiest, dreamiest vanilla ever",
+        "Our Original Vanilla Ice Cream",
+        "The way vanilla should taste",
+        "Our Natural Vanilla is made with fresh cream, sugar and vanilla beans",
+        "Our vanilla is made with non-GMO sourced ingredients",
+        "Vanilla's distinctive taste brings out the natural goodness of your favorite fresh fruit desserts, like classic Apple Pie a la Mode or Peach Cobbler",
+        "Vanilla is frequently used to flavor ice cream, especially in North America, Asia, and Europe",
+        "Vanilla ice cream was originally created by cooling a mixture above a container of ice and salt", //made of cream, sugar, and vanilla 
+        "The type of vanilla used to flavor ice cream varies by location",
+        "In North America and Europe consumers are interested in a more prominent, smoky flavor for vanilla, while in Ireland they want a more anise-like flavor",
+        "To create the smooth consistency of vanilla ice cream, the mixture has to be stirred occasionally and then returned to the container of ice and salt to continue the solidification process",
+        "According to Iced: Very Cool Concoctions, many people often consider vanilla to be the default or plain flavor of ice cream (see Plain vanilla)",
+        "Vanilla is the essence of elegance and sophistication",
+        "This marriage of pure, sweet cream and Madagascar vanilla creates the sweet scent of exotic spice and a distinctive taste that lingers on your tongue",
+        "In my humble opinion, vanilla is a highly underappreciated ice cream flavor",
+        "Yes, vanilla has had its time in the spotlight",
+        // "The debate over the superior flavor (vanilla or chocolate) almost always draws heated opinions and reveals fierce loyalties",
+        // "I have never once seen someone hesitate when asked if they prefer vanilla or chocolate",//– it's almost as if this preference is somehow wired into our DNA",
+        // "But lately, I've noticed more people proclaiming their love for chocolate, and vanilla has become synonymous with boring",
+        "Some people think vanilla is boring",
+        "Vanilla fans say that vanilla is anything but basic",//long-time 
+    ],
+    chocolate: [
+        "The earliest frozen chocolate recipes were published in Naples, Italy in Antonio Latini's The Modern Steward",
+        "Chocolate was one of the first ice cream flavors",// (created before vanilla)",
+        "Common drinks such as hot chocolate, coffee and tea were the first food items to be turned into frozen desserts",
+        "Hot chocolate had become a popular drink in seventeenth century Europe, alongside coffee and tea, and all three beverages were used to make frozen and unfrozen desserts",
+        "Latini produced two recipes for ices based on the drink, both of which contained only chocolate and sugar",
+        "In Italian doctor Filippo Baldini wrote a treatise entitled De sorbetti, in which he recommended chocolate ice cream as a remedy for various medical conditions, including gout and scurvy",
+        "Chocolate ice cream became popular in the United States in the late nineteenth century",
+        "The first advertisement of chocolate ice cream in America started in New York when Philip Lenzi announced that ice cream was officially available almost every day",
+        "Chocolate ice cream (and ice cream in general) was once a rare and exotic dessert enjoyed mostly by the elite",
+        "Around insulated ice houses were invented and manufacturing ice cream, including chocolate ice cream, soon became an industry in America",
+        "Chocolate ice cream is generally made by blending cocoa powder with cream, eggs and sugar",// along with the eggs, cream, and sugar used to make vanilla ice cream
+        "Sometimes chocolate liquor is used in addition to cocoa powder, or it is used exclusively, to create the chocolate flavor",
+        "Cocoa powder gives chocolate ice cream its brown color, and it is uncommon to add other colorings",
+        // "The Codex Alimentarius, which provides an international set of standards for food, states that the flavor in chocolate ice cream must come from nonfat cocoa solids that must comprise at least of the mix weight",
+        "The US Code of Federal Regulations permits reductions in the content of milk fat and total milk solids of chocolate ice cream by a factor of times the weight of the cocoa solids, in order to take into account the use of additional sweeteners",
+
+        "The minimum fat content of chocolate ice cream in both Canada and the United States is irrespective of the amount of chocolate sweetener in the recipe",
+        "Death by Chocolate Ice Cream features an ultra rich, thick and creamy double chocolate ice cream with chocolate fudge swirled throughout",
+        // "Every bite of our chocolate ice cream is a chocoholic's dream",
+        "Our thick, rich and creamy chocolate ice cream is anything but ordinary",
+        "Made with real Dutch cocoa and fresh cream right from neighboring farms the only thing better than our velvety chocolate ice cream is more",
+        "Dig into a delicious scoop of our Chocolate ice cream to find out why it's America's favorite",
+        "Rich, creamy chocolate ice cream with just the right amount of sweetness and real cocoa",
+        "Who can resist our Chocolate ice cream",
+        "That fresh cream taste in our Chocolate ice cream is thanks in part to our partnerships with American farmers, who ensure the highest quality of dairy for our desserts",
+    ],
+    strawberry: [
+        "Strawberry ice cream is a flavor of ice cream made with strawberry or strawberry flavoring",
+        "It is made by blending in fresh strawberries or strawberry flavoring with the eggs, cream and sugar used to make ice cream",
+        "Most strawberry ice cream is colored pink or light red",
+        "Strawberry ice cream dates back at least to, when it was served at the second inauguration of James Madison",
+        "Strawberry is one of the three flavors in Neapolitan ice cream",
+        "Variations of strawberry ice cream include strawberry cheesecake ice cream and strawberry ripple ice cream, which has a ribbon of strawberry jam or syrup",
+        "Some ice cream sandwiches are prepared neapolitan-style, and include strawberry ice cream",
+        "We introduce sweet summer strawberries to pure cream and other natural ingredients",
+        "Because it's brimming with real fruit, the true flavor of our strawberries comes shining through",
+        "This strawberry ice cream is the freshest of fresh",
+        "Its so creamy and has the perfect fresh strawberry flavor",
+        "You will use cups of diced strawberries, pureed up in a blender to make the ice cream totally smooth",
+        "But if you want it a little chunkier, with pieces of strawberries throughout then you can just mash the strawberries with a potato masher, or forks instead",
+        "Our strawberry ice cream is loaded with chunks of real strawberries",
+        "Rich, smooth and creamy, we use a simple recipe for strawberry ice cream that combines real cream and premium ingredients with no artificial flavors or colors",
+        "California strawberries are amazing in strawberry ice cream",
+        "Strawberries were swirled around in this delicious ice cream",
+        "What could be better than strawberry ice cream",
+        "Our Natural Strawberry ice cream is packed with strawberries picked at the peak of happiness",
+    ],
+    cookies: [
+        "Cookies and cream is a variety of ice cream based on flavoring from sandwich or crumbled cookies",// and milkshake , with the most popular version containing from brandname cookies
+        "Cookies and cream ice cream generally mixes in crumbled sandwich cookies into plain ice cream",//, though variations exist which might instead use chocolate, coffee or mint ice cream",
+        "Pieces of rich cookies are dunked in delicious, creamy ice cream to satisfy the kid in all of us",
+        "This is not your average Cookies and Cream Ice Cream, this is creamy, homemade ice cream loaded with chunks of delicious cookies",
+        "This is nearly an entire package of sandwich cookies stuffed into a batch of ice cream and not just cookie dust or a few crumbles of cookies ",
+        "If you love cookies filled with cream, you are certain to LOVE this Cookies and Cream Ice Cream",
+        "Why dunk your cookies in milk when you can dunk them in ice cream",
+        "We blend cookies filled with cream into the velvety smooth sweetness of our creamy ice cream for a rich and crunchy treat",
+        "Take a milk and cookie break with cookies and cream ice cream",
+        "Dive into rich and creamy ice cream packed with scrumptious pieces of cookies filled with cream in our Cookies & Cream",
+        "That delicious ice cream taste mixed with cookies is an amazing combination",
+    ],
+    mint: [
+        "Mint chocolate chip is an ice cream flavor composed of mint ice cream with small chocolate chips",
+        "In most cases peppermint or spearmint flavoring is used to make mint chocolate chip ice cream", //In some cases the liqueur creme de menthe is used to provide the mint flavor, but i
+        "Food coloring is usually added to make mint chocolate chip ice cream green, but it may be beige or white in natural or organic varieties",
+        "According to the International Dairy Foods Association mint chocolate chip was the most popular flavor of ice cream", //(IDFA)
+        "In a July survey by IDFA, mint chocolate chip was ranked as America's most popular ice cream flavor",
+        "The popularity of the mint chocolate chip has led to its use in other foods as well a number of products such as cosmetics and air fresheners", //(such as cookies and meringues) 
+        "There is a hard candy named mint chocolate chip that tastes similar to the ice cream of the same name", //Ice cream manufacturer Baskin-Robbins has created a (which is one of their permanent flavors)",
+        "Some brands name it chocolate (or choco) chip mint, mint 'n chip, or just mint chip",
+        "It is also known as peppermint bon bon, mostly in Minnesota, North Dakota and Wisconsin",
+        "This creamy and delicious homemade mint chocolate chip ice cream is made with just a handful of ingredients and is better than anything you could buy at the store",
+        "Made with a custard base and flavored with mint extract and dark chocolate, it’s wonderfully refreshing and tastes like an Andes mint",
+        // "You may not think of mint ice cream as the kind of thing that tears people apart, but l'll tell you from experience: Precious few discussions of the flavor stay civil for long",
+        "When it comes to mint chocolate chip ice cream, there are fresh mint leaf people and mint extract people",
+        "Some people insist that great mint ice cream can only be made with real mint leaves steeped in milk and cream",
+        "Others demand that the only acceptable mint chip is loaded with peppermint extract and hued a nuclear green",
+        // "Try to please them both and you wind up with a Treaty of Versailles situation: Everyone's unhappy and looking into building some tanks",
+        //"More than most foods, our expectations for mint chocolate chip ice cream are fixed early and rarely change",
+        // "So I'm about to dive deep into the makings of the perfect mint chip ice cream, but I need to get this out of the way",
+        // "Which side you fall on likely comes down to what version of mint chip you grew up with",
+        "For some people, mint chocolate chip made with mint extract tastes like toothpaste",
+        "If you refuse to take your mint any other way, here's some peppermint extract and green food coloring as parting gifts",
+        "But if your crystalline vision of the perfect ice cream is a pale green scoop speckled with dark chocolate, redolent of the crisp and subtly grassy aroma and taste of genuine spearmint leaf, step a little closer",
+        "Mint chocolate chip ice cream makes the kitchen smell awesome",
+        "Cool mint ice cream dotted with rich chocolate chips make a perfect pairing in this refreshing favorite",
+        "Cool, white mint ice cream with the real taste of mint and rich chocolatey chips is what our Mint Chocolate Chip ice cream is all about",
+        "A classic dessert, and the perfect combination of mint flavor and rich chocolatey chips for your taste buds to enjoy",
+    ],
 };
 
 /* -------------- Initialize functions -------------- */
@@ -265,11 +377,9 @@ function afterRecording(recordedText) {
     var zhoraiSpeech = '';
     var phrases = [];
 
-    // test to see if what they said has a category in it... e.g., "I didn't quite catch that"
-    var knownCategories = ['foxes', 'beavers', 'butterflies', 'bears', 'horses', 'frogs'];
-
     // get the particular category stated, if there was one:
     var category = '';
+    var verb = 'are';
     if (recordedText.toLowerCase().includes('fox')) {
         category = 'foxes';
         categorySentences = sentences.fox;
@@ -294,13 +404,38 @@ function afterRecording(recordedText) {
         category = 'beavers';
         categorySentences = sentences.beaver;
         saidKnownCategory = true;
+    } else if (recordedText.toLowerCase().includes('vanilla')) {
+        category = 'vanilla ice cream';
+        verb = 'is';
+        categorySentences = sentences.vanilla;
+        saidKnownCategory = true;
+    } else if (!recordedText.toLowerCase().includes('mint') && recordedText.toLowerCase().includes('chocolate')) {
+        category = 'chocolate ice cream';
+        verb = 'is';
+        categorySentences = sentences.chocolate;
+        saidKnownCategory = true;
+    } else if (recordedText.toLowerCase().includes('strawberry')) {
+        category = 'strawberry ice cream';
+        verb = 'is';
+        categorySentences = sentences.strawberry;
+        saidKnownCategory = true;
+    } else if (recordedText.toLowerCase().includes('cookies')) {
+        category = 'cookies & cream ice cream';
+        verb = 'is';
+        categorySentences = sentences.cookies;
+        saidKnownCategory = true;
+    } else if (recordedText.toLowerCase().includes('mint')) {
+        category = 'mint chocolate chip ice cream';
+        verb = 'is';
+        categorySentences = sentences.mint;
+        saidKnownCategory = true;
     }
 
     if (saidKnownCategory) {
         // say, "I've heard about that category! Here's what I know about it:"
-        phrases = ["I've heard about " + category + " before! Here's what I know about them.",
-            "Oh yes, " + category + " are very interesting. Here's what I know.",
-            "Here's what I know about " + category + ". They're fascinating!"
+        phrases = ["I've heard about " + category + " before! Here's what I know.",
+            "Oh yes, " + category + " " + verb + " very interesting. Here's what I know.",
+            "Here's what I know about " + category + ". So fascinating!"
         ];
     } else {
         // check if there was an *unknown* category stated... e.g., "I don't know about that category yet"
@@ -323,9 +458,10 @@ function afterRecording(recordedText) {
         var unknownRegex = new RegExp(unknownCategories.join("|"), "i");
         saidUnknownCategory = unknownRegex.test(recordedText);
 
+        var knownCategories = ['foxes', 'beavers', 'butterflies', 'bears', 'horses', 'frogs', 'vanilla ice cream', 'chocolate ice cream', 'strawberry ice cream', 'cookies & cream ice cream', 'mint chocolate chip ice cream'];
         if (saidUnknownCategory) {
-            phrases = ["Hmmm, I haven't heard about that before, but I know about " + chooseRandomPhrase(knownCategories) + "s.",
-                "I don't know about that yet, but I've heard about " + chooseRandomPhrase(knownCategories) + "s."
+            phrases = ["Hmmm, I haven't heard about that before, but I know about " + chooseRandomPhrase(knownCategories) + ".",
+                "I don't know about that yet, but I've heard about " + chooseRandomPhrase(knownCategories) + "."
             ];
         } else {
             phrases = ["Sorry, what was that?", "Oh, pardon?", "I didn't quite understand that. Pardon?"];
@@ -397,6 +533,26 @@ function mod1ReceiveData(filedata) {
     } else if (filedata.nodes[0].id.toLowerCase() == "beaver") {
         sentenceTopic.innerHTML = "beavers";
         trainingSentencesDiv.innerHTML = createHTMLSentences(sentences.beaver);
+        sentenceContainer.hidden = false;
+    } else if (filedata.nodes[0].id.toLowerCase() == "vanilla") {
+        sentenceTopic.innerHTML = "vanilla ice cream";
+        trainingSentencesDiv.innerHTML = createHTMLSentences(sentences.vanilla);
+        sentenceContainer.hidden = false;
+    } else if (filedata.nodes[0].id.toLowerCase() == "chocolate") {
+        sentenceTopic.innerHTML = "chocolate ice cream";
+        trainingSentencesDiv.innerHTML = createHTMLSentences(sentences.chocolate);
+        sentenceContainer.hidden = false;
+    } else if (filedata.nodes[0].id.toLowerCase() == "strawberry") {
+        sentenceTopic.innerHTML = "strawberry ice cream";
+        trainingSentencesDiv.innerHTML = createHTMLSentences(sentences.strawberry);
+        sentenceContainer.hidden = false;
+    } else if (filedata.nodes[0].id.toLowerCase() == "cookies" || filedata.nodes[0].id.toLowerCase() == "cooky") {
+        sentenceTopic.innerHTML = "cookies & cream ice cream";
+        trainingSentencesDiv.innerHTML = createHTMLSentences(sentences.cookies);
+        sentenceContainer.hidden = false;
+    } else if (filedata.nodes[0].id.toLowerCase() == "mint") {
+        sentenceTopic.innerHTML = "mint chocolate chip ice cream";
+        trainingSentencesDiv.innerHTML = createHTMLSentences(sentences.mint);
         sentenceContainer.hidden = false;
     } else {
         console.error("Unknown category for showing sentences.");
