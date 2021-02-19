@@ -286,7 +286,18 @@ function createHistogram(plot_data) {
 
 	var data = [];
 	for (var key in plot_data) {
-		data.push({"ecosystem": key, "value": plot_data[key]});
+		// change some of the names (e.g., cooky -> cookies) for the visuals
+		visualKey = key;
+		if (key == 'cooky') {
+			visualKey = 'cookies';
+		} else if (key == 'strawberry') {
+			visualKey = 'strawb.';
+		} else if (key == 'mint') {
+			visualKey = 'mint chip';
+		} else if (key == 'chocolate') {
+			visualKey = 'choco.';
+		}
+		data.push({"category": visualKey, "value": plot_data[key]});
 	}
 	//setup settings for histogram
 	var canvas_width = 500;
@@ -323,20 +334,19 @@ function createHistogram(plot_data) {
 	svg.append("g")
 		.attr("transform", "translate(" +margin.left + "," + margin.top + ")");
 
-	xAxis.domain(data.map(function(d) { return d.ecosystem; }));
+	xAxis.domain(data.map(function(d) { return d.category; }));
 	yAxis.domain([0, d3.max(data, function(d) { return d.value; })]);
-	color.domain(data.map(function(d) { return d.ecosystem; }));
-
+	color.domain(data.map(function(d) { return d.category; }));
 	// append the rectangles for the bar chart
 	svg.selectAll(".bar")
 	    .data(data)
 	    .enter().append("rect")
 	    .attr("class", "bar")
-	    .attr("x", function(d) { return xAxis(d.ecosystem); })
+	    .attr("x", function(d) { return xAxis(d.category); })
 	    .attr("width", xAxis.bandwidth())
 	    .attr("y", function(d) { return yAxis(d.value)+30; })
 	    .attr("height", function(d) { return canvas_height - yAxis(d.value)-30; })
-	    .attr("fill", function(d) { return color(d.ecosystem); });
+	    .attr("fill", function(d) { return color(d.category); });
 
 
 	  // add the x Axis

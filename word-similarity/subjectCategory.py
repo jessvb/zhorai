@@ -20,8 +20,8 @@ class Entity:
         return res
 
 class SubjectCategory:
-    def __init__(self, animal):
-        self.animal = animal
+    def __init__(self, subject):
+        self.subject = subject
         self.categories = []
         self.scores = []
         self.match = None
@@ -46,6 +46,7 @@ class SubjectCategory:
                 failed += 1
             score += subject_c*category_c * similarity
             weight += subject_c*category_c
+            # print(f'subject_c: {subject_c}; subject_desc: {subject_desc}; category_c: {category_c}; category_desc: {category_desc}\nsimilarity{similarity}; score:{score}; weight:{weight}\n')
 
         subject_syns = create_syns(subject.neg)
         category_syns = create_syns(category.neg)

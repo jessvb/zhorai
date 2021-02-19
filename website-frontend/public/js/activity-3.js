@@ -133,6 +133,20 @@ function standardizeTopic(topic) {
     return topic;
 }
 
+/**
+ * Converts standard subjects to 'pretty' ones, including:
+ * - mint -> mint chocolate chip
+ * - cooky -> cookies & cream
+ */
+function prettyCategory(category) {
+    if (category == 'mint') {
+        category = 'mint chocolate chip';
+    } else if (category == 'cooky') {
+        category = 'cookies & cream';
+    }
+    return category;
+}
+
 function afterRecording(recordedText) {
     var topic = '';
     var zhoraiSpeech = '';
@@ -201,10 +215,10 @@ function mod3ReceiveData(filedata, stage) {
             var maxVal = 0;
             var category = '';
             Object.keys(categoryData).forEach(function (key) {
-                var currVal = parseInt(categoryData[key]);
+                var currVal = categoryData[key];
                 if (currVal > maxVal) {
                     maxVal = currVal;
-                    category = key;
+                    category = prettyCategory(key);
                 }
             });
 
@@ -218,7 +232,7 @@ function mod3ReceiveData(filedata, stage) {
             } else if (topic == 'spirit animal') {
                 phrases = ["Based on what I know about you, I would guess your " + topic +
                     " is a " + category + ".",
-                    "I would guess your " + topic + " is " + category + " from what I know.",
+                    "I would guess your " + topic + " is a " + category + " from what I know.",
                     "Your " + topic + " seems like a " + category + " from what I know!"
                 ];
             } else {
