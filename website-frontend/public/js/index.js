@@ -9,7 +9,8 @@ function createMindmap(graph) {
 	    width = +svg.attr("width"),
 	    height = +svg.attr("height");
 
-	var color = d3.scaleOrdinal().range(["#23B9BD", "#2D3B9F", "#FF5733"]); //purple, blue, red
+	// (main category, positively associated, negatively associated) <-> (lightblue, blue, blue)
+	var color = d3.scaleOrdinal().range(["#23B9BD", "#2D3B9F", "#2D3B9F"]); //"#FF5733"]); 
 
 	var nd;
 	for (var i=0; i<graph.nodes.length; i++) {
