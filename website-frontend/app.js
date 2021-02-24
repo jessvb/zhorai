@@ -60,6 +60,9 @@ app.get('/teacher-guide', (req, res) => {
 app.get('/student-worksheet', (req, res) => {
     res.redirect('https://docs.google.com/document/d/1ycv8Vm_H52Ph-5JBdxayFUotsLOcHlnagNpNfQCvogQ/edit?usp=sharing');
 });
+app.get('/original-zhorai', (req, res) => {
+    res.redirect('https://aieducation.mit.edu/zhorai.html');
+});
 
 
 //////////////////////////////////////////////////////////
