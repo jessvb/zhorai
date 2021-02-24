@@ -88,7 +88,7 @@ def main():
     # assumes student told the agent only about one subject (e.g., themselves, 
     # an animal). Otherwise, takes the first one
     
-    # sys.argv[1] = topicKey (e.g., 'spirit animal', 'ice cream flavour')
+    # sys.argv[1] = topicKey (e.g., 'animal avatar', 'ice cream flavour')
     # sys.argv[2] = subjectDict (e.g., personal data)
     
     # animal_dict = eval(open(sys.argv[2], 'r').read())
@@ -98,14 +98,14 @@ def main():
     topic = sys.argv[1]
 
     # get and save all relevant category (e.g., ecosystems, ice cream 
-    # flavours, spirit animals) info that agent knows about
+    # flavours, animal avatars) info that agent knows about
     topicFilename = ''
     if (topic == 'ecosystems'):
         topicFilename = 'eco_dict.txt'
     elif (topic == 'ice cream flavour'):
         topicFilename = 'ice_cream_dict.txt'
-    elif (topic == 'spirit animal'):
-        topicFilename = 'spirit_animal_dict.txt'
+    elif (topic == 'animal avatar'):
+        topicFilename = 'animal_avatar_dict.txt'
     
     category_dict = eval(open(topicFilename, 'r').read())
     subject_category = SubjectCategory(subject)

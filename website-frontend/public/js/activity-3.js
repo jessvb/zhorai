@@ -12,8 +12,9 @@ var knownTopics = [
     'flavour',
     'flavor',
     'ice cream flavour',
-    'spirit animal',
-    'animal'
+    'animal avatar',
+    'animal',
+    'avatar'
 ];
 var subject = '';
 
@@ -120,15 +121,15 @@ function getAnySubstring(str, substrings) {
 /**
  * Converts non-standard topics to standard ones, including:
  * - ice cream flavour
- * - spirit animal
+ * - animal avatar
  * @param {*} topic 
  */
 function standardizeTopic(topic) {
     topic = topic.toLowerCase();
     if (topic == 'flavor' || topic == 'flavour' || topic.includes('ice')) {
         topic = 'ice cream flavour';
-    } else if (topic == 'spiritanimal' || topic == 'animal') {
-        topic = 'spirit animal';
+    } else if (topic == 'animalavatar' || topic == 'animal' || topic == 'avatar') {
+        topic = 'animal avatar';
     }
     return topic;
 }
@@ -229,7 +230,7 @@ function mod3ReceiveData(filedata, stage) {
                     "I would guess you like " + category + " ice cream, from what I know.",
                     "From what I know, you seem like a " + category + "-type person to me!"
                 ];
-            } else if (topic == 'spirit animal') {
+            } else if (topic == 'animal avatar') {
                 phrases = ["Based on what I know about you, I would guess your " + topic +
                     " is a " + category + ".",
                     "I would guess your " + topic + " is a " + category + " from what I know.",

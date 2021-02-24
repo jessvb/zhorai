@@ -110,7 +110,7 @@ function getHistogramValuesFromSession(subjectKey, topicKey, stage) {
         'command': 'getHistogramValues',
         'text': value,
         'subjectKey': subjectKey, // e.g., 'yourself'
-        'topicKey': topicKey, // e.g., 'ice cream flavour', 'spirit animal'
+        'topicKey': topicKey, // e.g., 'ice cream flavour', 'animal avatar'
         'stage': stage
     });
 }

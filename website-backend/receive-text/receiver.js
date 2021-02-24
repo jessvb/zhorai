@@ -158,7 +158,7 @@ function getWordSimilarityAndReturnToClient(jsonMsg, connection) {
                 if (stdout) {
                     console.log('Parser command output:\n' + stdout);
                     jsonToSend.categoryData = JSON.parse(stdout);
-                    jsonToSend.topic = jsonMsg.topicKey; // e.g., 'ice cream flavour', 'spirit animal'
+                    jsonToSend.topic = jsonMsg.topicKey; // e.g., 'ice cream flavour', 'animal avatar'
                 }
                 if (error) {
                     console.log('Function error:\n' + error);
