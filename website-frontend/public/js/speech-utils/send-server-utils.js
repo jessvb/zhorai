@@ -94,7 +94,7 @@ function parseSession(typeOutput, key, stage) {
 
 /**
  * Gets sentences, starts the word similarity library on the server, and returns an array 
- * of an array to onReceive with the coordinates of the ecosystems as well as the animals 
+ * of an array to onReceive with the coordinates of the categories as well as the animals 
  * in the sentences.
  *
  * Example call: getHistogramValuesFromSession('camels', 'histogram_mod3')

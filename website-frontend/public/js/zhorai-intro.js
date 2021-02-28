@@ -142,7 +142,7 @@ function startStage() {
             break;
         case 'zFinish':
             infoLabel.innerHTML = 'Find out what Zhorai knows about your planet!';
-            // change button to Activity 1 button: Ask Zhorai about ecosystems
+            // change button to Activity 1 button: Ask Zhorai about what it knows
             break;
         default:
             console.error("Unknown stage for conversation with Zhorai: " + stages[currStage]);
