@@ -28,7 +28,10 @@ if (process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
 /////////////
 // Routing //
 /////////////
-app.get('/', (req, res) => res.sendFile(path.resolve('./public/zhorai-intro.html')));
+app.get('/', function (req, res) {
+    res.cookie('wssUrl', wssUrl);
+    res.sendFile(path.resolve('./public/zhorai-intro.html'));
+});
 
 // app.get('/intro', (req, res) => res.sendFile(path.resolve('./public/zhorai-intro.html')));
 app.get('/intro', function (req, res) {
