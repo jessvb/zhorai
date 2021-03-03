@@ -283,7 +283,7 @@ function createScatterplot(plot_data) {
 
 //var plot_data = {"desert": 0.2992, "rainforest": 0.2998, "tundra": 0.2440};
 //createHistogram(plot_data);
-function createHistogram(plot_data) {
+function createHistogram(topic, plot_data) {
 
 	var data = [];
 	for (var key in plot_data) {
@@ -300,6 +300,17 @@ function createHistogram(plot_data) {
 		}
 		data.push({"category": visualKey, "value": plot_data[key]});
 	}
+
+	var userSentences = SentenceManager.getSentencesAsString('yourself').split(". ");
+	var formattedUserSentences = "<h3 class=\"font-weight-light\">What you taught Zhorai about " + "yourself" + "</h3><div class=\"text-center\">"; // eventually, change 'yourself' to a variable that's what the user spoke about (not the 'topic')
+	for (i = 0; i < userSentences.length-1 ; i++) { // len-1 b/c empty str at end
+		formattedUserSentences += userSentences[i] + "<br>";
+	}
+	formattedUserSentences += "</div>";
+	userSentencesLabel.innerHTML = formattedUserSentences;
+	topicSentencesLabel.hidden = false;
+
+
 	//setup settings for histogram
 	var canvas_width = 500;
 	var canvas_height = 500;
@@ -347,7 +358,32 @@ function createHistogram(plot_data) {
 	    .attr("width", xAxis.bandwidth())
 	    .attr("y", function(d) { return yAxis(d.value)+30; })
 	    .attr("height", function(d) { return canvas_height - yAxis(d.value)-30; })
-	    .attr("fill", function(d) { return color(d.category); });
+	    .attr("fill", function(d) { return color(d.category); })
+		.on("mouseover", function (d) {
+			d3.selectAll(".bar").style("opacity", 0.4);
+			var id = "#" + d.category;
+			d3.selectAll(id).style("opacity", 1.0);
+			d3.select(this).style("cursor", "pointer");
+			var formattedTopicSentences = "<p><u>What Zhorai knows about the " + d.category + "</u></p><ul>";
+			var sentencesText = SentenceManager.getEcosystemSentences(d.category);
+			var sentencesArray = sentencesText.split(".");
+			for (i = 0; i < sentencesArray.length; i++) {
+				formattedTopicSentences += "<li>" + sentencesArray[i] + "</li>";
+			}
+			topicSentencesLabel.innerHTML = formattedTopicSentences;
+			d3.selectAll(".bar").style("opacity", 0.4);
+			var id = "#" + d.topic;
+			d3.selectAll(id).style("opacity", 1.0);
+
+			// If there's an objective wrt to hovering over bars, check if
+			// the objective is complete and run the corresponding
+			// uponCompletion function.
+			if (updateListBasedObj && om &&
+				om.getObjectiveNames().includes("histogram-hover") &&
+				!om.isCompleted('histogram-hover')) {
+				updateListBasedObj('histogram-hover', d.ecosystem);
+			}
+		});
 
 
 	  // add the x Axis

@@ -2,6 +2,8 @@
 var zhoraiTextColour = "#5d3e9f";
 var infoLabel;
 var recordButton;
+var userSentencesLabel;
+var topicSentencesLabel;
 var zhoraiSpeechBox;
 var loadingGif;
 var currBtnIsMic = true;
@@ -242,7 +244,7 @@ function mod3ReceiveData(filedata, stage) {
                 phrases = ["I got confused about the topic we were talking about... Can you ask me again?"];
             }
 
-            createHistogram(categoryData);
+            createHistogram(topic, categoryData);
         } else {
             // error checking:
             phrases = ["I don't think I know enough about you to guess.",
@@ -268,6 +270,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize variables:
     currStage = 0;
     infoLabel = document.getElementById('z_info_label');
+    userSentencesLabel = document.getElementById('user-sentences-label');
+    topicSentencesLabel = document.getElementById('topic-sentences-label');
     recordButton = document.getElementById('record_button');
     zhoraiSpeechBox = document.getElementById('final_span');
     loadingGif = document.getElementById('loadingGif');

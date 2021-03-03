@@ -8,6 +8,7 @@ var loadingGif;
 var currBtnIsMic = true;
 var mindmapPath = "../../website-backend/receive-text/data/mindmap.txt";
 var currentSubject = "";
+var sm;
 // Note: in this case, currentSubject will always be set to "yourself" 
 // (we're only teaching zhorai about ourselves, not animals etc.)
 
@@ -142,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setPrompt();
 
     // Create sentence manager and put all known sentences about the current animal on the page
-    var sm = new SentenceManager(document.getElementById("sentencesDiv"), "./img/x_del.svg");
+    sm = new SentenceManager(document.getElementById("sentencesDiv"), "./img/x_del.svg");
     // Add all sentences in memory to page:
     sm.setDivToSessionSentences(currentSubject);
 
