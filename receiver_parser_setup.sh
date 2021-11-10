@@ -11,14 +11,16 @@ python3.6 -c "import nltk; nltk.download('wordnet')"
 pip3 install -U nltk[corenlp]
 
 # get stanford-corenlp, if not already there:
+# NOTE: stanford-corenlp has changed their download system and folder naming structure
+# https://downloads.cs.stanford.edu/nlp/software/stanford-corenlp-latest.zip
 cd /usr/src/semantic-parser/
-if [ ! -d stanford-corenlp-full-2018-10-05 ]; then
+if [ ! -d stanford-corenlp-* ]; then
     echo "Please wait until the stanford-corenlp libraries have been downloaded..."
-    curl -O https://nlp.stanford.edu/software/stanford-corenlp-full-2018-10-05.zip
-    unzip stanford-corenlp-full-2018-10-05.zip
-    rm stanford-corenlp-full-2018-10-05.zip
+    curl -O https://downloads.cs.stanford.edu/nlp/software/stanford-corenlp-latest.zip
+    unzip stanford-corenlp-latest.zip
+    rm stanford-corenlp-latest.zip
 fi
-cd stanford-corenlp-full-2018-10-05
+cd stanford-corenlp-*
 ls && pwd && echo "Starting the StanfordCoreNLPServer..."
 java -mx6g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -timeout 5000 &
 
