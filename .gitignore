@@ -64,7 +64,7 @@ typings/
 semantic-parser/bin
 semantic-parser/include
 semantic-parser/lib
-semantic-parser/stanford-corenlp-full-2018-10-05/
+semantic-parser/stanford*
 
 
 #semantic-parser pycache
